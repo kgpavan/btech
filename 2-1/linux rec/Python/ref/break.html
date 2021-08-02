@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.9 The break statement </title>
+<META NAME="description" CONTENT="6.9 The break statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="continue.html">
+<LINK REL="previous" href="raise.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="continue.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="continue.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="simple.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="raise.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="continue.html">6.10 The continue statement</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="simple.html">6. Simple statements</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="raise.html">6.8 The raise statement</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008900000000000000000"></A>
+<BR>
+6.9 The <tt class="keyword">break</tt> statement 
+</H1>
+<a name='l2h-362'></a>
+
+<P>
+<dl><dd><pre class="verbatim">
+break_stmt:     "break"
+</pre></dl>
+
+<P>
+<tt class="keyword">break</tt> may only occur syntactically nested in a <tt class="keyword">for</tt>
+or <tt class="keyword">while</tt> loop, but not nested in a function or class definition
+within that loop.
+<a name='l2h-363'></a>
+
+<P>
+It terminates the nearest enclosing loop, skipping the optional
+<tt class="keyword">else</tt> clause if the loop has one.
+<a name='l2h-364'></a>
+
+<P>
+If a <tt class="keyword">for</tt> loop is terminated by <tt class="keyword">break</tt>, the loop control
+target keeps its current value.
+<a name='l2h-365'></a>
+
+<P>
+When <tt class="keyword">break</tt> passes control out of a <tt class="keyword">try</tt> statement
+with a <tt class="keyword">finally</tt> clause, that <tt class="keyword">finally</tt> clause is executed
+before really leaving the loop.
+<a name='l2h-366'></a>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="continue.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="simple.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="raise.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="continue.html">6.10 The continue statement</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="simple.html">6. Simple statements</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="raise.html">6.8 The raise statement</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

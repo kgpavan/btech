@@ -1,0 +1,26 @@
+#include<stdio.h>
+main()
+{
+	int a,b,x,y,z,t,q,w,n,i;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	scanf("%d",&a);
+	q=a;
+	while(a>100)
+	{
+		a=a/10;
+	}
+	x=a;
+	b=(q-(x*10000));
+	w=b;
+	while(b>100)
+	{
+		b=b/10;
+	}
+	y=b;
+	z=(w-(y*100));
+	t=((x*3600)+(y*60)+z);
+	printf("%d\n",t);
+	}
+}

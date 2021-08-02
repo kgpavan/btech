@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.1.7 Other Built-in Types </title>
+<META NAME="description" CONTENT="2.1.7 Other Built-in Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="specialattrs.html">
+<LINK REL="previous" href="typesmapping.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="specialattrs.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="specialattrs.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="types.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="typesmapping.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="specialattrs.html">2.1.8 Special Attributes</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="types.html">2.1 Built-in Types</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="typesmapping.html">2.1.6 Mapping Types</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html802"
+ href="typesother.html#SECTION004171000000000000000">2.1.7.1 Modules </A>
+<LI><A NAME="tex2html803"
+ href="typesother.html#SECTION004172000000000000000">2.1.7.2 Classes and Class Instances </A>
+<LI><A NAME="tex2html804"
+ href="typesother.html#SECTION004173000000000000000">2.1.7.3 Functions </A>
+<LI><A NAME="tex2html805"
+ href="typesother.html#SECTION004174000000000000000">2.1.7.4 Methods </A>
+<LI><A NAME="tex2html806"
+ href="typesother.html#SECTION004175000000000000000">2.1.7.5 Code Objects </A>
+<LI><A NAME="tex2html807"
+ href="typesother.html#SECTION004176000000000000000">2.1.7.6 Type Objects </A>
+<LI><A NAME="tex2html808"
+ href="typesother.html#SECTION004177000000000000000">2.1.7.7 The Null Object </A>
+<LI><A NAME="tex2html809"
+ href="typesother.html#SECTION004178000000000000000">2.1.7.8 The Ellipsis Object </A>
+<LI><A NAME="tex2html810"
+ href="typesother.html#SECTION004179000000000000000">2.1.7.9 File Objects<a name='l2h-52'></a>
+               </A>
+<LI><A NAME="tex2html811"
+ href="typesother.html#SECTION0041710000000000000000">2.1.7.10 Internal Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION004170000000000000000"></A>
+<BR>
+2.1.7 Other Built-in Types 
+</H2>
+
+<P>
+The interpreter supports several other kinds of objects.
+Most of these support only one or two operations.
+
+<P>
+
+<H3><A NAME="SECTION004171000000000000000"></A>
+<BR>
+2.1.7.1 Modules 
+</H3>
+
+<P>
+The only special operation on a module is attribute access:
+<code><var>m</var>.<var>name</var></code>, where <var>m</var> is a module and <var>name</var>
+accesses a name defined in <var>m</var>'s symbol table.  Module attributes
+can be assigned to.  (Note that the <tt class="keyword">import</tt> statement is not,
+strictly speaking, an operation on a module object; <code>import
+<var>foo</var></code> does not require a module object named <var>foo</var> to exist,
+rather it requires an (external) <i>definition</i> for a module named
+<var>foo</var> somewhere.)
+
+<P>
+A special member of every module is <tt class="member">__dict__</tt>.
+This is the dictionary containing the module's symbol table.
+Modifying this dictionary will actually change the module's symbol
+table, but direct assignment to the <tt class="member">__dict__</tt> attribute is not
+possible (i.e., you can write <code><var>m</var>.__dict__['a'] = 1</code>, which
+defines <code><var>m</var>.a</code> to be <code>1</code>, but you can't write
+<code><var>m</var>.__dict__ = {}</code>.
+
+<P>
+Modules built into the interpreter are written like this:
+<code>&lt;module 'sys' (built-in)&gt;</code>.  If loaded from a file, they are
+written as <code>&lt;module 'os' from '/usr/local/lib/python1.5/os.pyc'&gt;</code>.
+
+<P>
+
+<H3><A NAME="SECTION004172000000000000000"></A>
+<BR>
+2.1.7.2 Classes and Class Instances 
+</H3>
+
+<P>
+See chapters 3 and 7 of the <i>Python Reference Manual</i> for these.
+
+<P>
+
+<H3><A NAME="SECTION004173000000000000000"></A>
+<BR>
+2.1.7.3 Functions 
+</H3>
+
+<P>
+Function objects are created by function definitions.  The only
+operation on a function object is to call it:
+<code><var>func</var>(<var>argument-list</var>)</code>.
+
+<P>
+There are really two flavors of function objects: built-in functions
+and user-defined functions.  Both support the same operation (to call
+the function), but the implementation is different, hence the
+different object types.
+
+<P>
+The implementation adds two special read-only attributes:
+<code><var>f</var>.func_code</code> is a function's <i class="dfn">code
+object</i><a name='l2h-44'></a> (see below) and <code><var>f</var>.func_globals</code> is
+the dictionary used as the function's global name space (this is the
+same as <code><var>m</var>.__dict__</code> where <var>m</var> is the module in which
+the function <var>f</var> was defined).
+
+<P>
+
+<H3><A NAME="SECTION004174000000000000000"></A>
+<BR>
+2.1.7.4 Methods 
+</H3>
+<a name='l2h-45'></a>
+
+<P>
+Methods are functions that are called using the attribute notation.
+There are two flavors: built-in methods (such as <tt class="method">append()</tt> on
+lists) and class instance methods.  Built-in methods are described
+with the types that support them.
+
+<P>
+The implementation adds two special read-only attributes to class
+instance methods: <code><var>m</var>.im_self</code> is the object on which the
+method operates, and <code><var>m</var>.im_func</code> is the function
+implementing the method.  Calling <code><var>m</var>(<var>arg-1</var>,
+<var>arg-2</var>,  ..., <var>arg-n</var>)</code> is completely equivalent to
+calling <code><var>m</var>.im_func(<var>m</var>.im_self, <var>arg-1</var>,
+<var>arg-2</var>,  ..., <var>arg-n</var>)</code>.
+
+<P>
+See the <i>Python Reference Manual</i> for more information.
+
+<P>
+
+<H3><A NAME="SECTION004175000000000000000"></A>
+<BR>
+2.1.7.5 Code Objects 
+</H3>
+<a name='l2h-48'></a>
+
+<P>
+Code objects are used by the implementation to represent
+``pseudo-compiled'' executable Python code such as a function body.
+They differ from function objects because they don't contain a
+reference to their global execution environment.  Code objects are
+returned by the built-in <tt class="function">compile()</tt> function and can be
+extracted from function objects through their <tt class="member">func_code</tt>
+attribute.
+<a name='l2h-49'></a>
+<a name='l2h-47'></a>
+<P>
+A code object can be executed or evaluated by passing it (instead of a
+source string) to the <tt class="keyword">exec</tt> statement or the built-in
+<tt class="function">eval()</tt> function.
+<a name='l2h-50'></a>
+
+<P>
+See the <i>Python Reference Manual</i> for more information.
+
+<P>
+
+<H3><A NAME="SECTION004176000000000000000"></A>
+<BR>
+2.1.7.6 Type Objects 
+</H3>
+
+<P>
+Type objects represent the various object types.  An object's type is
+accessed by the built-in function <tt class="function">type()</tt>.  There are no special
+operations on types.  The standard module <tt class="module">types</tt> defines names
+for all standard built-in types.
+<a name='l2h-51'></a>
+
+<P>
+Types are written like this: <code>&lt;type 'int'&gt;</code>.
+
+<P>
+
+<H3><A NAME="SECTION004177000000000000000"></A>
+<BR>
+2.1.7.7 The Null Object 
+</H3>
+
+<P>
+This object is returned by functions that don't explicitly return a
+value.  It supports no special operations.  There is exactly one null
+object, named <code>None</code> (a built-in name).
+
+<P>
+It is written as <code>None</code>.
+
+<P>
+
+<H3><A NAME="SECTION004178000000000000000"></A>
+<BR>
+2.1.7.8 The Ellipsis Object 
+</H3>
+
+<P>
+This object is used by extended slice notation (see the <i>Python
+Reference Manual</i>).  It supports no special operations.  There is
+exactly one ellipsis object, named <code>Ellipsis</code> (a built-in name).
+
+<P>
+It is written as <code>Ellipsis</code>.
+
+<P>
+
+<H3><A NAME="SECTION004179000000000000000"></A>
+<BR>
+2.1.7.9 File Objects<a name='l2h-52'></a>
+               
+</H3>
+
+<P>
+File objects are implemented using C's <code>stdio</code>package and can be created with the built-in function
+<tt class="function">open()</tt><a name='l2h-69'></a> described in section
+<A href="built-in-funcs.html#built-in-funcs">2.3</A>, ``Built-in Functions.''  They are also returned
+by some other built-in functions and methods, e.g.,
+<tt class="function">posix.popen()</tt> and <tt class="function">posix.fdopen()</tt> and the
+<tt class="method">makefile()</tt> method of socket objects.
+<a name='l2h-70'></a>
+
+<P>
+When a file operation fails for an I/O-related reason, the exception
+<tt class="exception">IOError</tt> is raised.  This includes situations where the
+operation is not defined for some reason, like <tt class="method">seek()</tt> on a tty
+device or writing a file opened for reading.
+
+<P>
+Files have the following methods:
+
+<P>
+<dl><dt><b><a name='l2h-53'><tt class='method'>close</tt></a></b> ()
+<dd>
+  Close the file.  A closed file cannot be read or written anymore.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-54'><tt class='method'>flush</tt></a></b> ()
+<dd>
+  Flush the internal buffer, like <code>stdio</code>'s <tt class="cfunction">fflush()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-55'><tt class='method'>isatty</tt></a></b> ()
+<dd>
+  Return <code>1</code> if the file is connected to a tty(-like) device, else
+  <code>0</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-56'><tt class='method'>fileno</tt></a></b> ()
+<dd>
+Return the integer ``file descriptor'' that is used by the underlying
+implementation to request I/O operations from the operating system.
+This can be useful for other, lower level interfaces that use file
+descriptors, e.g. module <tt class="module">fcntl</tt> or <tt class="function">os.read()</tt> and friends.
+<a name='l2h-71'></a>
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-57'><tt class='method'>read</tt></a></b> (<big>[</big><var>size</var><big>]</big>)
+<dd>
+  Read at most <var>size</var> bytes from the file (less if the read hits
+  EOF before obtaining <var>size</var> bytes).  If the <var>size</var>
+  argument is negative or omitted, read all data until EOF is
+  reached.  The bytes are returned as a string object.  An empty
+  string is returned when EOF is encountered immediately.  (For
+  certain files, like ttys, it makes sense to continue reading after
+  an EOF is hit.)  Note that this method may call the underlying
+  C function <tt class="cfunction">fread()</tt> more than once in an effort to
+  acquire as close to <var>size</var> bytes as possible.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-58'><tt class='method'>readline</tt></a></b> (<big>[</big><var>size</var><big>]</big>)
+<dd>
+  Read one entire line from the file.  A trailing newline character is
+  kept in the string<A NAME="tex2html7"
+ HREF="#foot1325"><SUP>2.7</SUP></A>  (but may be absent when a file ends with an
+  incomplete line).  If the <var>size</var> argument is present and
+  non-negative, it is a maximum byte count (including the trailing
+  newline) and an incomplete line may be returned.
+  An empty string is returned when EOF is hit
+  immediately.  Note: Unlike <code>stdio</code>'s <tt class="cfunction">fgets()</tt>, the returned
+  string contains null characters (<code>'&#92;0'</code>) if they occurred in the
+  input.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-59'><tt class='method'>readlines</tt></a></b> (<big>[</big><var>sizehint</var><big>]</big>)
+<dd>
+  Read until EOF using <tt class="method">readline()</tt> and return a list containing
+  the lines thus read.  If the optional <var>sizehint</var> argument is
+  present, instead of reading up to EOF, whole lines totalling
+  approximately <var>sizehint</var> bytes (possibly after rounding up to an
+  internal buffer size) are read.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-60'><tt class='method'>seek</tt></a></b> (<var>offset</var><big>[</big><var>, whence</var><big>]</big>)
+<dd>
+  Set the file's current position, like <code>stdio</code>'s <tt class="cfunction">fseek()</tt>.
+  The <var>whence</var> argument is optional and defaults to <code>0</code>  (absolute file positioning); other values are <code>1</code> (seek
+  relative to the current position) and <code>2</code> (seek relative to the
+  file's end).  There is no return value.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-61'><tt class='method'>tell</tt></a></b> ()
+<dd>
+  Return the file's current position, like <code>stdio</code>'s
+  <tt class="cfunction">ftell()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-62'><tt class='method'>truncate</tt></a></b> (<big>[</big><var>size</var><big>]</big>)
+<dd>
+Truncate the file's size.  If the optional size argument present, the
+file is truncated to (at most) that size.  The size defaults to the
+current position.  Availability of this function depends on the
+operating system version (for example, not all Unix versions support this
+operation).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-63'><tt class='method'>write</tt></a></b> (<var>str</var>)
+<dd>
+Write a string to the file.  There is no return value.  Note: Due to
+buffering, the string may not actually show up in the file until
+the <tt class="method">flush()</tt> or <tt class="method">close()</tt> method is called.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-64'><tt class='method'>writelines</tt></a></b> (<var>list</var>)
+<dd>
+Write a list of strings to the file.  There is no return value.
+(The name is intended to match <tt class="method">readlines()</tt>;
+<tt class="method">writelines()</tt> does not add line separators.)
+</dl>
+
+<P>
+File objects also offer the following attributes:
+
+<P>
+<dl><dt><b><a name='l2h-65'><tt class='member'>closed</tt></a></b>
+<dd>
+Boolean indicating the current state of the file object.  This is a
+read-only attribute; the <tt class="method">close()</tt> method changes the value.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-66'><tt class='member'>mode</tt></a></b>
+<dd>
+The I/O mode for the file.  If the file was created using the
+<tt class="function">open()</tt> built-in function, this will be the value of the
+<var>mode</var> parameter.  This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-67'><tt class='member'>name</tt></a></b>
+<dd>
+If the file object was created using <tt class="function">open()</tt>, the name of
+the file.  Otherwise, some string that indicates the source of the
+file object, of the form "<tt class="samp">&lt;...&gt;</tt>".  This is a read-only
+attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-68'><tt class='member'>softspace</tt></a></b>
+<dd>
+Boolean that indicates whether a space character needs to be printed
+before another value when using the <tt class="keyword">print</tt> statement.
+Classes that are trying to simulate a file object should also have a
+writable <tt class="member">softspace</tt> attribute, which should be initialized to
+zero.  This will be automatic for classes implemented in Python; types
+implemented in C will have to provide a writable <tt class="member">softspace</tt>
+attribute.
+</dl>
+
+<P>
+
+<H3><A NAME="SECTION0041710000000000000000"></A>
+<BR>
+2.1.7.10 Internal Objects 
+</H3>
+
+<P>
+See the <i>Python Reference Manual</i> for this information.  It
+describes code objects, stack frame objects, traceback objects, and
+slice objects.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot1325">... string</A><A NAME="foot1325"
+ href="typesother.html#tex2html7"><SUP>2.7</SUP></A>
+<DD>
+	The advantage of leaving the newline on is that an empty string 
+	can be returned to mean EOF without being ambiguous.  Another 
+	advantage is that (in cases where it might matter, e.g. if you 
+	want to make an exact copy of a file while scanning its lines) 
+	you can tell whether the last line of a file ended in a newline
+	or not (yes this happens!).
+
+</DL><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="specialattrs.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="types.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="typesmapping.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="specialattrs.html">2.1.8 Special Attributes</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="types.html">2.1 Built-in Types</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="typesmapping.html">2.1.6 Mapping Types</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

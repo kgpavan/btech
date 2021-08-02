@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.9 calendar -- General calendar-related functions</title>
+<META NAME="description" CONTENT="5.9 calendar -- General calendar-related functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-cmd.html">
+<LINK REL="previous" href="module-fileinput.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-cmd.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-cmd.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="misc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-fileinput.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-cmd.html">5.10 cmd  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="misc.html">5. Miscellaneous Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-fileinput.html">5.8 fileinput  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007900000000000000000">
+5.9 <tt class="module">calendar</tt> --
+         General calendar-related functions</A>
+</H1>
+
+<P>
+
+
+<P>
+This module allows you to output calendars like the Unix
+<b class="program">cal</b> program, and provides additional useful functions
+related to the calendar.
+
+<P>
+<dl><dt><b><a name='l2h-769'><tt class='function'>isleap</tt></a></b> (<var>year</var>)
+<dd>
+Returns true if <var>year</var> is a leap year.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-770'><tt class='function'>leapdays</tt></a></b> (<var>year1, year2</var>)
+<dd>
+Return the number of leap years in the range
+[<var>year1</var>...<var>year2</var>].
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-771'><tt class='function'>weekday</tt></a></b> (<var>year, month, day</var>)
+<dd>
+Returns the day of the week (<code>0</code> is Monday) for <var>year</var>
+(<code>1970</code>-...), <var>month</var> (<code>1</code>-<code>12</code>), <var>day</var>
+(<code>1</code>-<code>31</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-772'><tt class='function'>monthrange</tt></a></b> (<var>year, month</var>)
+<dd>
+Returns weekday of first day of the month and number of days in month, 
+for the specified <var>year</var> and <var>month</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-773'><tt class='function'>monthcalendar</tt></a></b> (<var>year, month</var>)
+<dd>
+Returns a matrix representing a month's calendar.  Each row represents
+a week; days outside of the month a represented by zeros.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-774'><tt class='function'>prmonth</tt></a></b> (<var>year, month</var><big>[</big><var>, width</var><big>[</big><var>, length</var><big>]</big><big>]</big>)
+<dd>
+Prints a month's calendar.  If <var>width</var> is provided, it specifies
+the width of the columns that the numbers are centered in.  If
+<var>length</var> is given, it specifies the number of lines that each
+week will use.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-775'><tt class='function'>prcal</tt></a></b> (<var>year</var>)
+<dd>
+Prints the calendar for the year <var>year</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-776'><tt class='function'>timegm</tt></a></b> (<var>tuple</var>)
+<dd>
+An unrelated but handy function that takes a time tuple such as
+returned by the <tt class="function">gmtime()</tt> function in the <tt class='module'><a href='module-time.html'>time</a></tt>
+module, and returns the corresponding Unix timestamp value, assuming
+an epoch of 1970, and the POSIX encoding.  In fact,
+<tt class="function">time.gmtime()</tt> and <tt class="function">timegm()</tt> are each others' inverse.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-time.html'>time</a></tt>:</b>
+    <dd>Low-level time related functions.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-cmd.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="misc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-fileinput.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-cmd.html">5.10 cmd  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="misc.html">5. Miscellaneous Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-fileinput.html">5.8 fileinput  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

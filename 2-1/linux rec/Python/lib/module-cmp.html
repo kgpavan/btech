@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.7 cmp -- File comparisons</title>
+<META NAME="description" CONTENT="6.7 cmp -- File comparisons">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-cmpcache.html">
+<LINK REL="previous" href="module-statvfs.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-cmpcache.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-cmpcache.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-statvfs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-cmpcache.html">6.8 cmpcache  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-statvfs.html">6.6 statvfs  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008700000000000000000">
+6.7 <tt class="module">cmp</tt> --
+         File comparisons</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">cmp</tt> module defines a function to compare files, taking all
+sort of short-cuts to make it a highly efficient operation.
+
+<P>
+The <tt class="module">cmp</tt> module defines the following function:
+
+<P>
+<dl><dt><b><a name='l2h-1011'><tt class='function'>cmp</tt></a></b> (<var>f1, f2</var>)
+<dd>
+Compare two files given as names. The following tricks are used to
+optimize the comparisons:
+
+<P>
+
+<UL><LI>Files with identical type, size and mtime are assumed equal.
+
+<LI>Files with different type or size are never equal.
+
+<LI>The module only compares files it already compared if their
+        signature (type, size and mtime) changed.
+
+<LI>No external programs are called.
+
+</UL>
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import cmp
+&gt;&gt;&gt; cmp.cmp('libundoc.tex', 'libundoc.tex')
+1
+&gt;&gt;&gt; cmp.cmp('libundoc.tex', 'lib.tex')
+0
+</pre></dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-cmpcache.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-statvfs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-cmpcache.html">6.8 cmpcache  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-statvfs.html">6.6 statvfs  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

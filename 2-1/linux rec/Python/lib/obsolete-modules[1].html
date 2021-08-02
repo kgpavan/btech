@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.5 Obsolete </title>
+<META NAME="description" CONTENT="19.5 Obsolete ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" HREF="node347.html">
+<LINK REL="previous" HREF="node345.html">
+<LINK REL="up" href="undoc.html">
+<LINK REL="next" HREF="node347.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node347.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="undoc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node345.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node347.html">19.6 Extension modules</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="undoc.html">19. Undocumented Modules</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node345.html">19.4 Multimedia</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021500000000000000000"></A>
+<BR>
+19.5 Obsolete 
+</H1>
+
+<P>
+These modules are not normally available for import; additional work
+must be done to make them available.
+
+<P>
+Those which are written in Python will be installed into the directory 
+<font class="file" face="sans-serif">lib-old/</font> installed as part of the standard library.  To use
+these, the directory must be added to <code>sys.path</code>, possibly using
+<span class='envvar'><a name='l2h-2727'>$PYTHONPATH</a></span>.
+
+<P>
+Obsolete extension modules written in C are not built by default.
+Under Unix, these must be enabled by uncommenting the appropriate
+lines in <font class="file" face="sans-serif">Modules/Setup</font> in the build tree and either rebuilding
+Python if the modules are statically linked, or building and
+installing the shared object if using dynamically-loaded extensions.
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">newdir</tt></STRONG>
+<DD>-- New <tt class="function">dir()</tt> function (the standard <tt class="function">dir()</tt> is
+now just as good)
+
+<P>
+<DT><STRONG><tt class="module">addpack</tt></STRONG>
+<DD>-- alternate approach to packages
+
+<P>
+<DT><STRONG><tt class="module">codehack</tt></STRONG>
+<DD>-- Extract function name or line number from a function
+code object (these are now accessible as attributes:
+<tt class="member">co.co_name</tt>, <tt class="member">func.func_name</tt>,
+<tt class="member">co.co_firstlineno</tt>).
+
+<P>
+<DT><STRONG><tt class="module">dump</tt></STRONG>
+<DD>-- Print python code that reconstructs a variable
+
+<P>
+<DT><STRONG><tt class="module">fmt</tt></STRONG>
+<DD>-- text formatting abstractions (too slow)
+
+<P>
+<DT><STRONG><tt class="module">Para</tt></STRONG>
+<DD>-- helper for fmt.py
+
+<P>
+<DT><STRONG><tt class="module">lockfile</tt></STRONG>
+<DD>-- wrapper around FCNTL file locking (use
+<tt class="function">fcntl.lockf()</tt>/<tt class="function">flock()</tt> intead; see <tt class='module'><a href='module-fcntl.html'>fcntl</a></tt>)
+
+<P>
+<DT><STRONG><tt class="module">poly</tt></STRONG>
+<DD>-- Polynomials
+
+<P>
+<DT><STRONG><tt class="module">tb</tt></STRONG>
+<DD>-- Print tracebacks, with a dump of local variables (use
+<tt class="function">pdb.pm()</tt> or <tt class='module'><a href='module-traceback.html'>traceback</a></tt> instead)
+
+<P>
+<DT><STRONG><tt class="module">timing</tt></STRONG>
+<DD>-- Measure time intervals to high resolution (use
+<tt class="function">time.clock()</tt> instead).  (This is an extension module.)
+
+<P>
+<DT><STRONG><tt class="module">util</tt></STRONG>
+<DD>-- Useful functions that don't fit elsewhere.
+
+<P>
+<DT><STRONG><tt class="module">wdb</tt></STRONG>
+<DD>-- A primitive windowing debugger based on STDWIN.
+
+<P>
+<DT><STRONG><tt class="module">whatsound</tt></STRONG>
+<DD>-- Recognize sound files; use <tt class='module'><a href='module-sndhdr.html'>sndhdr</a></tt> instead.
+
+<P>
+<DT><STRONG><tt class="module">zmod</tt></STRONG>
+<DD>-- Compute properties of mathematical "fields"
+</DL>
+
+<P>
+The following modules are obsolete, but are likely re-surface as tools
+or scripts.
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">find</tt></STRONG>
+<DD>-- find files matching pattern in directory tree
+
+<P>
+<DT><STRONG><tt class="module">grep</tt></STRONG>
+<DD>-- grep
+
+<P>
+<DT><STRONG><tt class="module">packmail</tt></STRONG>
+<DD>-- create a self-unpacking Unix shell archive
+</DL>
+
+<P>
+The following modules were documented in previous versions of this
+manual, but are now considered obsolete.  The source for the
+documentation is still available as part of the documentation source
+archive.
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">ni</tt></STRONG>
+<DD>-- Import modules in ``packages.''  Basic package support is now
+built in.
+
+<P>
+<DT><STRONG><tt class="module">rand</tt></STRONG>
+<DD>-- Old interface to the random number generator.
+
+<P>
+<DT><STRONG><tt class="module">soundex</tt></STRONG>
+<DD>-- Algorithm for collapsing names which sound similar to a shared
+key.  (This is an extension module.)
+</DL>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node347.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="undoc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node345.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node347.html">19.6 Extension modules</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="undoc.html">19. Undocumented Modules</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node345.html">19.4 Multimedia</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

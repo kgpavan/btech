@@ -1,0 +1,28 @@
+Hi,
+Attached is the Demo versio of OSP2 toolkit and also the first 
+coding assignment. Please find a document on system calls attached 
+as well. Deadline for submission of both the assignments is Tue 
+19th August 11:59pm.
+For running the OSP2 toolkit you need to have jdk1.5 or higher 
+version installed. For jdk versions < 1.5 it will give some errors.(Sorry 
+for the confusion in the class).
+The zip file contains a directory OSP2 which has a jar file 
+Demo.jar and a directory Misc which contains some sample parameter files. 
+You can load these parameter files using the load parameter option in the 
+gui. You should play around with the toolkit and try for many more 
+parameters. We are expecting you to give a ONE PAGE WRITEUP on your 
+understanding of the toolkit i.e the analysis of changing different 
+parameters, functionality of toolkit etc.
+To run the toolkit type the following command in OSP2 dir
+'path' represents the path to the bin dir of jdk installed(1.5 or higher)
+
+path/java -classpath .:Demo.jar osp.OSP (on linux)
+path/java -classpath .;Demo.jar osp.OSP (on windows){Please note the 
+difference in : and ;)
+
+The book explaining the OSP2 toolkit can be downloaded from the following 
+link.
+http://www.2shared.com/file/3609474/fe74732f/Introduction_to_Operating_System_Design.html
+
+Thanks
+TAs

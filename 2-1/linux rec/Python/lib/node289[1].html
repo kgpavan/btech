@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.1.1 An example</title>
+<META NAME="description" CONTENT="13.1.1 An example">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-rexec.html">
+<LINK REL="up" href="module-rexec.html">
+<LINK REL="next" href="module-Bastion.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-Bastion.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-rexec.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-rexec.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-Bastion.html">13.2 Bastion  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-rexec.html">13.1 rexec  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-rexec.html">13.1 rexec  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015110000000000000000">
+13.1.1 An example</A>
+</H2>
+
+<P>
+Let us say that we want a slightly more relaxed policy than the
+standard <tt class="class">RExec</tt> class.  For example, if we're willing to allow
+files in <font class="file" face="sans-serif">/tmp</font> to be written, we can subclass the <tt class="class">RExec</tt>
+class:
+
+<P>
+<dl><dd><pre class="verbatim">
+class TmpWriterRExec(rexec.RExec):
+    def r_open(self, file, mode='r', buf=-1):
+        if mode in ('r', 'rb'):
+            pass
+        elif mode in ('w', 'wb', 'a', 'ab'):
+            # check filename : must begin with /tmp/
+            if file[:5]!='/tmp/': 
+                raise IOError, "can't write outside /tmp"
+            elif (string.find(file, '/../') &gt;= 0 or
+                 file[:3] == '../' or file[-3:] == '/..'):
+                raise IOError, "'..' in filename forbidden"
+        else: raise IOError, "Illegal open() mode"
+        return open(file, mode, buf)
+</pre></dl>
+Notice that the above code will occasionally forbid a perfectly valid
+filename; for example, code in the restricted environment won't be
+able to open a file called <font class="file" face="sans-serif">/tmp/foo/../bar</font>.  To fix this, the
+<tt class="method">r_open()</tt> method would have to simplify the filename to
+<font class="file" face="sans-serif">/tmp/bar</font>, which would require splitting apart the filename and
+performing various operations on it.  In cases where security is at
+stake, it may be preferable to write simple code which is sometimes
+overly restrictive, instead of more general code that is also more
+complex and may harbor a subtle security hole.
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-Bastion.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-rexec.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-rexec.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-Bastion.html">13.2 Bastion  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-rexec.html">13.1 rexec  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-rexec.html">13.1 rexec  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

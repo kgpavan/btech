@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>15.2 Window Objects </title>
+<META NAME="description" CONTENT="15.2 Window Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="next" href="controlswindow-object.html">
+<LINK REL="previous" href="application-objects.html">
+<LINK REL="up" href="module-FrameWork.html">
+<LINK REL="next" href="controlswindow-object.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="controlswindow-object.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-FrameWork.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="application-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="controlswindow-object.html">15.3 ControlsWindow Object</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-FrameWork.html">15. FrameWork  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="application-objects.html">15.1 Application Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0021520000000000000000"></A>
+<BR>
+15.2 Window Objects 
+</H2>
+
+<P>
+Window objects have the following methods, among others:
+
+<P>
+
+<P>
+<dl><dt><b><a name='l2h-233'><tt class='method'>open</tt></a></b> ()
+<dd>
+Override this method to open a window. Store the MacOS window-id in
+<tt class="member">self.wid</tt> and call the <tt class="method">do_postopen()</tt> method to
+register the window with the parent application.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-234'><tt class='method'>close</tt></a></b> ()
+<dd>
+Override this method to do any special processing on window
+close. Call the <tt class="method">do_postclose()</tt> method to cleanup the parent
+state.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-235'><tt class='method'>do_postresize</tt></a></b> (<var>width, height, macoswindowid</var>)
+<dd>
+Called after the window is resized. Override if more needs to be done
+than calling <code>InvalRect</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-236'><tt class='method'>do_contentclick</tt></a></b> (<var>local, modifiers, event</var>)
+<dd>
+The user clicked in the content part of a window. The arguments are
+the coordinates (window-relative), the key modifiers and the raw
+event.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-237'><tt class='method'>do_update</tt></a></b> (<var>macoswindowid, event</var>)
+<dd>
+An update event for the window was received. Redraw the window.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-238'><tt class='method'>do_activate</tt></a></b> (<var>activate, event</var>)
+<dd>
+The window was activated (<code><var>activate</var> == 1</code>) or deactivated
+(<code><var>activate</var> == 0</code>). Handle things like focus highlighting,
+etc.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="controlswindow-object.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-FrameWork.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="application-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="controlswindow-object.html">15.3 ControlsWindow Object</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-FrameWork.html">15. FrameWork  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="application-objects.html">15.1 Application Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

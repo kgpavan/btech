@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2 socket -- Low-level networking interface</title>
+<META NAME="description" CONTENT="7.2 socket -- Low-level networking interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-select.html">
+<LINK REL="previous" href="module-signal.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="socket-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="socket-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="someos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="Signal_Example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="socket-objects.html">7.2.1 Socket Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="someos.html">7. Optional Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="Signal_Example.html">7.1.1 Example</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009200000000000000000">
+7.2 <tt class="module">socket</tt> --
+         Low-level networking interface</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides access to the BSD <i>socket</i> interface.
+It is available on all modern Unix systems, Windows, MacOS, BeOS,
+OS/2, and probably additional platforms.
+
+<P>
+For an introduction to socket programming (in C), see the following
+papers: <i>An Introductory 4.3BSD Interprocess Communication
+Tutorial</i>, by Stuart Sechrest and <i>An Advanced 4.3BSD Interprocess
+Communication Tutorial</i>, by Samuel J.  Leffler et al, both in the
+Unix Programmer's Manual, Supplementary Documents 1 (sections PS1:7
+and PS1:8).  The platform-specific reference material for the various
+socket-related system calls are also a valuable source of information
+on the details of socket semantics.  For Unix, refer to the manual
+pages; for Windows, see the WinSock (or Winsock 2) specification.
+
+<P>
+The Python interface is a straightforward transliteration of the
+Unix system call and library interface for sockets to Python's
+object-oriented style: the <tt class="function">socket()</tt> function returns a
+<i class="dfn">socket object</i><a name='l2h-1338'></a> whose methods implement the
+various socket system calls.  Parameter types are somewhat
+higher-level than in the C interface: as with <tt class="method">read()</tt> and
+<tt class="method">write()</tt> operations on Python files, buffer allocation on
+receive operations is automatic, and buffer length is implicit on send
+operations.
+
+<P>
+Socket addresses are represented as a single string for the
+<tt class="constant">AF_UNIX</tt> address family and as a pair
+<code>(<var>host</var>, <var>port</var>)</code> for the <tt class="constant">AF_INET</tt> address
+family, where <var>host</var> is a string representing
+either a hostname in Internet domain notation like
+<code>'daring.cwi.nl'</code> or an IP address like <code>'100.50.200.5'</code>,
+and <var>port</var> is an integral port number.  Other address families are
+currently not supported.  The address format required by a particular
+socket object is automatically selected based on the address family
+specified when the socket object was created.
+
+<P>
+For IP addresses, two special forms are accepted instead of a host
+address: the empty string represents <tt class="constant">INADDR_ANY</tt>, and the string
+<code>'&lt;broadcast&gt;'</code> represents <tt class="constant">INADDR_BROADCAST</tt>.
+
+<P>
+All errors raise exceptions.  The normal exceptions for invalid
+argument types and out-of-memory conditions can be raised; errors
+related to socket or address semantics raise the error
+<tt class="exception">socket.error</tt>.
+
+<P>
+Non-blocking mode is supported through the
+<tt class="method">setblocking()</tt> method.
+
+<P>
+The module <tt class="module">socket</tt> exports the following constants and functions:
+
+<P>
+<dl><dt><b><a name='l2h-1321'><tt class='exception'>error</tt></a></b>
+<dd>
+This exception is raised for socket- or address-related errors.
+The accompanying value is either a string telling what went wrong or a
+pair <code>(<var>errno</var>, <var>string</var>)</code>representing an error returned by a system
+call, similar to the value accompanying <tt class="exception">os.error</tt>.
+See the module <tt class='module'><a href='module-errno.html'>errno</a></tt><a name='l2h-1339'></a>, which contains
+names for the error codes defined by the underlying operating system.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1322'><tt>AF_UNIX</tt></a></b>
+<dd>
+<dt><b><a name='l2h-1340'><tt>AF_INET</tt></a></b><dd>
+These constants represent the address (and protocol) families,
+used for the first argument to <tt class="function">socket()</tt>.  If the
+<tt class="constant">AF_UNIX</tt> constant is not defined then this protocol is
+unsupported.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1323'><tt>SOCK_STREAM</tt></a></b>
+<dd>
+<dt><b><a name='l2h-1341'><tt>SOCK_DGRAM</tt></a></b><dd>
+<dt><b><a name='l2h-1342'><tt>SOCK_RAW</tt></a></b><dd>
+<dt><b><a name='l2h-1343'><tt>SOCK_RDM</tt></a></b><dd>
+<dt><b><a name='l2h-1344'><tt>SOCK_SEQPACKET</tt></a></b><dd>
+These constants represent the socket types,
+used for the second argument to <tt class="function">socket()</tt>.
+(Only <tt class="constant">SOCK_STREAM</tt> and
+<tt class="constant">SOCK_DGRAM</tt> appear to be generally useful.)
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1324'><tt>SO_*</tt></a></b>
+<dd>
+<dt><b><a name='l2h-1345'><tt>SOMAXCONN</tt></a></b><dd>
+<dt><b><a name='l2h-1346'><tt>MSG_*</tt></a></b><dd>
+<dt><b><a name='l2h-1347'><tt>SOL_*</tt></a></b><dd>
+<dt><b><a name='l2h-1348'><tt>IPPROTO_*</tt></a></b><dd>
+<dt><b><a name='l2h-1349'><tt>IPPORT_*</tt></a></b><dd>
+<dt><b><a name='l2h-1350'><tt>INADDR_*</tt></a></b><dd>
+<dt><b><a name='l2h-1351'><tt>IP_*</tt></a></b><dd>
+Many constants of these forms, documented in the Unix documentation on
+sockets and/or the IP protocol, are also defined in the socket module.
+They are generally used in arguments to the <tt class="method">setsockopt()</tt> and
+<tt class="method">getsockopt()</tt> methods of socket objects.  In most cases, only
+those symbols that are defined in the Unix header files are defined;
+for a few symbols, default values are provided.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1325'><tt class='function'>gethostbyname</tt></a></b> (<var>hostname</var>)
+<dd>
+Translate a host name to IP address format.  The IP address is
+returned as a string, e.g.,  <code>'100.50.200.5'</code>.  If the host name
+is an IP address itself it is returned unchanged.  See
+<tt class="function">gethostbyname_ex()</tt> for a more complete interface.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1326'><tt class='function'>gethostbyname_ex</tt></a></b> (<var>hostname</var>)
+<dd>
+Translate a host name to IP address format, extended interface.
+Return a triple <code>(hostname, aliaslist, ipaddrlist)</code> where
+<code>hostname</code> is the primary host name responding to the given
+<var>ip_address</var>, <code>aliaslist</code> is a (possibly empty) list of
+alternative host names for the same address, and <code>ipaddrlist</code> is
+a list of IP addresses for the same interface on the same
+host (often but not always a single address).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1327'><tt class='function'>gethostname</tt></a></b> ()
+<dd>
+Return a string containing the hostname of the machine where 
+the Python interpreter is currently executing.  If you want to know the
+current machine's IP address, use <code>gethostbyname(gethostname())</code>.
+Note: <tt class="function">gethostname()</tt> doesn't always return the fully qualified
+domain name; use <code>gethostbyaddr(gethostname())</code>(see below).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1328'><tt class='function'>gethostbyaddr</tt></a></b> (<var>ip_address</var>)
+<dd>
+Return a triple <code>(<var>hostname</var>, <var>aliaslist</var>,
+<var>ipaddrlist</var>)</code> where <var>hostname</var> is the primary host name
+responding to the given <var>ip_address</var>, <var>aliaslist</var> is a
+(possibly empty) list of alternative host names for the same address,
+and <var>ipaddrlist</var> is a list of IP addresses for the same interface
+on the same host (most likely containing only a single address).
+To find the fully qualified domain name, check <var>hostname</var> and the
+items of <var>aliaslist</var> for an entry containing at least one period.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1329'><tt class='function'>getprotobyname</tt></a></b> (<var>protocolname</var>)
+<dd>
+Translate an Internet protocol name (e.g. <code>'icmp'</code>) to a constant
+suitable for passing as the (optional) third argument to the
+<tt class="function">socket()</tt> function.  This is usually only needed for sockets
+opened in ``raw'' mode (<tt class="constant">SOCK_RAW</tt>); for the normal socket
+modes, the correct protocol is chosen automatically if the protocol is
+omitted or zero.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1330'><tt class='function'>getservbyname</tt></a></b> (<var>servicename, protocolname</var>)
+<dd>
+Translate an Internet service name and protocol name to a port number
+for that service.  The protocol name should be <code>'tcp'</code> or
+<code>'udp'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1331'><tt class='function'>socket</tt></a></b> (<var>family, type</var><big>[</big><var>, proto</var><big>]</big>)
+<dd>
+Create a new socket using the given address family, socket type and
+protocol number.  The address family should be <tt class="constant">AF_INET</tt> or
+<tt class="constant">AF_UNIX</tt>.  The socket type should be <tt class="constant">SOCK_STREAM</tt>,
+<tt class="constant">SOCK_DGRAM</tt> or perhaps one of the other "<tt class="samp">SOCK_</tt>" constants.
+The protocol number is usually zero and may be omitted in that case.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1332'><tt class='function'>fromfd</tt></a></b> (<var>fd, family, type</var><big>[</big><var>, proto</var><big>]</big>)
+<dd>
+Build a socket object from an existing file descriptor (an integer as
+returned by a file object's <tt class="method">fileno()</tt> method).  Address family,
+socket type and protocol number are as for the <tt class="function">socket()</tt> function
+above.  The file descriptor should refer to a socket, but this is not
+checked -- subsequent operations on the object may fail if the file
+descriptor is invalid.  This function is rarely needed, but can be
+used to get or set socket options on a socket passed to a program as
+standard input or output (e.g. a server started by the Unix inet
+daemon).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1333'><tt class='function'>ntohl</tt></a></b> (<var>x</var>)
+<dd>
+Convert 32-bit integers from network to host byte order.  On machines
+where the host byte order is the same as network byte order, this is a
+no-op; otherwise, it performs a 4-byte swap operation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1334'><tt class='function'>ntohs</tt></a></b> (<var>x</var>)
+<dd>
+Convert 16-bit integers from network to host byte order.  On machines
+where the host byte order is the same as network byte order, this is a
+no-op; otherwise, it performs a 2-byte swap operation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1335'><tt class='function'>htonl</tt></a></b> (<var>x</var>)
+<dd>
+Convert 32-bit integers from host to network byte order.  On machines
+where the host byte order is the same as network byte order, this is a
+no-op; otherwise, it performs a 4-byte swap operation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1336'><tt class='function'>htons</tt></a></b> (<var>x</var>)
+<dd>
+Convert 16-bit integers from host to network byte order.  On machines
+where the host byte order is the same as network byte order, this is a
+no-op; otherwise, it performs a 2-byte swap operation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1337'><tt>SocketType</tt></a></b>
+<dd>
+This is a Python type object that represents the socket object type.
+It is the same as <code>type(socket(...))</code>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html2276"
+ href="socket-objects.html">7.2.1 Socket Objects </A>
+<LI><A NAME="tex2html2277"
+ href="Socket_Example.html">7.2.2 Example</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="socket-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="someos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="Signal_Example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="socket-objects.html">7.2.1 Socket Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="someos.html">7. Optional Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="Signal_Example.html">7.1.1 Example</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

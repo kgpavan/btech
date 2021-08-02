@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.11 getpass -- Portable password input</title>
+<META NAME="description" CONTENT="6.11 getpass -- Portable password input">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-curses.html">
+<LINK REL="previous" href="module-sched.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-curses.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="scheduler-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="scheduler-objects.html">6.10.1 Scheduler Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081100000000000000000">
+6.11 <tt class="module">getpass</tt>
+         -- Portable password input</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">getpass</tt> module provides two functions:
+
+<P>
+<dl><dt><b><a name='l2h-1050'><tt class='function'>getpass</tt></a></b> (<big>[</big><var>prompt</var><big>]</big>)
+<dd>
+  Prompt the user for a password without echoing.  The user is
+  prompted using the string <var>prompt</var>, which defaults to
+  <code>'Password: '</code>.
+  Availability: Macintosh, Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1051'><tt class='function'>getuser</tt></a></b> ()
+<dd>
+  Return the ``login name'' of the user.
+  Availability: Unix, Windows.
+
+<P>
+This function checks the environment variables <span class='envvar'><a name='l2h-1052'>$LOGNAME</a></span>,
+  <span class='envvar'><a name='l2h-1053'>$USER</a></span>, <span class='envvar'><a name='l2h-1054'>$LNAME</a></span> and <span class='envvar'><a name='l2h-1055'>$USERNAME</a></span>, in order, and
+  returns the value of the first one which is set to a non-empty
+  string.  If none are set, the login name from the password database
+  is returned on systems which support the <tt class='module'><a href='module-pwd.html'>pwd</a></tt> module,
+  otherwise, an exception is raised.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="scheduler-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="scheduler-objects.html">6.10.1 Scheduler Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

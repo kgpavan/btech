@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.2 pwd -- The password database</title>
+<META NAME="description" CONTENT="8.2 pwd -- The password database">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-grp.html">
+<LINK REL="previous" href="module-posix.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-grp.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-grp.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="posix-contents.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-grp.html">8.3 grp  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="posix-contents.html">8.1.2 Module Contents</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010200000000000000000">
+8.2 <tt class="module">pwd</tt> --
+         The password database</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Unix</span>.</p>
+
+<P>
+This module provides access to the Unix user account and password
+database.  It is available on all Unix versions.
+
+<P>
+Password database entries are reported as 7-tuples containing the
+following items from the password database (see <code>&lt;pwd.h&gt;</code>), in order:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr bgcolor='#99CCFF'>
+      <th align="right"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Field</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+    </thead>
+  <tbody valign='baseline'>
+    <tr><td align="right" valign="baseline">0&nbsp;</td>
+        <td align="left"><code>pw_name</code></td>
+        <td align="left">Login name</td>
+    <tr><td align="right" valign="baseline">1&nbsp;</td>
+        <td align="left"><code>pw_passwd</code></td>
+        <td align="left">Optional encrypted password</td>
+    <tr><td align="right" valign="baseline">2&nbsp;</td>
+        <td align="left"><code>pw_uid</code></td>
+        <td align="left">Numerical user ID</td>
+    <tr><td align="right" valign="baseline">3&nbsp;</td>
+        <td align="left"><code>pw_gid</code></td>
+        <td align="left">Numerical group ID</td>
+    <tr><td align="right" valign="baseline">4&nbsp;</td>
+        <td align="left"><code>pw_gecos</code></td>
+        <td align="left">User name or comment field</td>
+    <tr><td align="right" valign="baseline">5&nbsp;</td>
+        <td align="left"><code>pw_dir</code></td>
+        <td align="left">User home directory</td>
+    <tr><td align="right" valign="baseline">6&nbsp;</td>
+        <td align="left"><code>pw_shell</code></td>
+        <td align="left">User command interpreter</td></tbody>
+</table>
+
+<P>
+The uid and gid items are integers, all others are strings.
+<tt class="exception">KeyError</tt> is raised if the entry asked for cannot be found.
+
+<P>
+<b>Note:</b> In traditional Unix the field <code>pw_passwd</code> usually
+contains a password encrypted with a DES derived algorithm (see module
+<tt class='module'><a href='module-crypt.html'>crypt</a></tt><a name='l2h-1508'></a>).  However most modern unices 
+use a so-called <i>shadow password</i> system.  On those unices the
+field <code>pw_passwd</code> only contains a asterisk (<code>'*'</code>) or the 
+letter "<tt class="character">x</tt>" where the encrypted password is stored in a file
+<font class="file" face="sans-serif">/etc/shadow</font> which is not world readable.
+
+<P>
+It defines the following items:
+
+<P>
+<dl><dt><b><a name='l2h-1505'><tt class='function'>getpwuid</tt></a></b> (<var>uid</var>)
+<dd>
+Return the password database entry for the given numeric user ID.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1506'><tt class='function'>getpwnam</tt></a></b> (<var>name</var>)
+<dd>
+Return the password database entry for the given user name.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1507'><tt class='function'>getpwall</tt></a></b> ()
+<dd>
+Return a list of all available password database entries, in arbitrary order.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-grp.html'>grp</a></tt>:</b>
+    <dd>An interface to the group database, similar to this.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-grp.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="posix-contents.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-grp.html">8.3 grp  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="posix-contents.html">8.1.2 Module Contents</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

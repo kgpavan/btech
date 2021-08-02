@@ -1,0 +1,25 @@
+
+Assignment 1 (Deadline - Friday, 23rd Jan, 5:00pm):
+
+Code an automatic theorem prover for propositional logic using resolution.
+
+Input:
+
+Input from stdin has syntax: LHS => RHS
+Both LHS and RHS are well formed propositional logic formulae:
+
+1. English letters stand for basic propositions.
+2. Letters may be joined using connectives: ~ (not), ^ (and), | (or), -> (conditional), <-> (biconditional)
+3. Brackets may be used for grouping.
+4. If brackets are omitted, precedence is used. Precedence order is as above.
+
+Output: 1 (for Valid) or 0 (for not Valid).
+
+Your code will have 4 modules:
+
+1. A module to parse well formed formulae into internal data structures.
+2. A module to convert a formula into CNF.
+3. A module to apply resolution on a given set of clauses.
+4. A module that takes input and uses above modules to give output.
+
+You may use any programming language other than LISP, Prolog and similar AI languages.

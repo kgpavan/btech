@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2.2 Matching vs. Searching </title>
+<META NAME="description" CONTENT="4.2.2 Matching vs. Searching ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="Contents_of_Module_re.html">
+<LINK REL="previous" href="re-syntax.html">
+<LINK REL="up" href="module-re.html">
+<LINK REL="next" href="Contents_of_Module_re.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="Contents_of_Module_re.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-re.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="re-syntax.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="Contents_of_Module_re.html">4.2.3 Module Contents</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-re.html">4.2 re  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="re-syntax.html">4.2.1 Regular Expression Syntax</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006220000000000000000"></A>
+<BR>
+4.2.2 Matching vs. Searching 
+</H2>
+
+<P>
+Python offers two different primitive operations based on regular
+expressions: match and search.  If you are accustomed to Perl's
+semantics, the search operation is what you're looking for.  See the
+<tt class="function">search()</tt> function and corresponding method of compiled
+regular expression objects.
+
+<P>
+Note that match may differ from search using a regular expression
+beginning with "<tt class="character">^</tt>": "<tt class="character">^</tt>" matches only at the
+start of the string, or in <tt class="constant">MULTILINE</tt> mode also immediately
+following a newline.  The ``match'' operation succeeds only if the
+pattern matches at the start of the string regardless of mode, or at
+the starting position given by the optional <var>pos</var> argument
+regardless of whether a newline precedes it.
+
+<P>
+<dl><dd><pre class="verbatim">
+re.compile("a").match("ba", 1)           # succeeds
+re.compile("^a").search("ba", 1)         # fails; 'a' not at start
+re.compile("^a").search("\na", 1)        # fails; 'a' not at start
+re.compile("^a", re.M).search("\na", 1)  # succeeds
+re.compile("^a", re.M).search("ba", 1)   # fails; no preceding \n
+</pre></dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="Contents_of_Module_re.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-re.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="re-syntax.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="Contents_of_Module_re.html">4.2.3 Module Contents</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-re.html">4.2 re  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="re-syntax.html">4.2.1 Regular Expression Syntax</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

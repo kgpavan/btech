@@ -1,0 +1,79 @@
+  Artificial Intelligence - cs3705   
+
+
+
+	NA3 (Convert Phrase-structure tree to Dependency tree)
+
+				-Deadline 21st March
+
+This assignment is regarding the blocks world. Refer to the description
+of the blocks world given earlier.
+
+
+A Phrase-structure parser gives the phrase-structure analysis of an input
+sentence. Tag the input sentence with the part-of-speech tagger that you
+have created. Then, run the phrase-structure parser on the output of the
+part-of-speech tagger. Download the parser from the following link:
+
+	ftp://ftp.cis.upenn.edu/pub/mcollins/PARSER.tar.gz
+
+A sample input to the parser is (one sentence per line):
+
+13 Put VB the DT red JJ cube NN besides IN the DT yellow JJ sphere NN on IN the DT green JJ cylinder NN . .
+
+A sample output of the parser is (Tree format):
+
+(TOP~Put~1~1 (SG~Put~1~1 (VP~Put~3~1 Put/VB (NP-A~cube~2~1 (NPB~cube~3~3 the/DT red/JJ cube/NN ) (PP~besides~2~1 besides/IN (NPB~sphere~3~3 the/DT yellow/JJ sphere/NN ) ) ) (PP~on~2~1 on/IN (NPB~cylinder~3~3 the/DT green/JJ cylinder/NN ./PUNC. ) ) ) ) 
+
+
+In the above format, each bracket pair represents a subtree of the
+phrase-structure tree (Ignore the numbers associated with the node labels). 
+For example, (NP~cube a/DT red/JJ cube/NN) represents an NP with children
+a, red, cube.
+
+-------------------------------------------------------------------
+
+Q.   Write a program to convert the Phrase-structure tree (given by the 
+      phrase-structure parser) to dependency tree. You can choose to
+	  represent the dependency structure in any format of your choice.
+
+     Your converter should work with the following blocks world vocabulary.
+	 
+	  - Nouns: cube, cuboid, sphere, cone, cylinder, pyramid
+	  - Verbs: put, move
+	  - Adj  : green, red, blue, yellow, brown
+	  
+-------------------------------------------------------------------
+
+
+    	NA4 (Convert Dependency tree to Logic expression
+				- Test your logic expression using prover9)
+					
+	 			- Deadline 26th March
+
+Q.   Write a program to convert the dependency trees (which you created through
+      NA3) to the logic expressions. The logic expressions that you generate
+	  should be in a format that can be accepted by prover9:
+
+		For the input phrase " Red cube on yellow cylinder ", 
+	    the logic expression that you should be getting is:
+
+		x1, x2 ( shape(?x1, cubic) ^ colour(?x1, red) ^ on(?x1,?x2) ^
+		shape(?x2, cylinder) ^colour(?x2, yellow))
+
+	 Then you should use this expression to obtain the referents ie.., if
+	 the block world input state is as follows:
+
+		shape(g35, cubic)
+		colour(g35, red)
+		on(g35, g36)
+		shape(g36, cylinder)
+		colour(g36, yellow)
+		
+      You should obtain the values of x1=g35, x2=g36.
+
+	As prover9 does not return the referents directly. You can iterate over
+	various values of x1 and x2 to obtain the values (x1=g35, x2=g36) for 
+	which the query expression is true. 
+
+---------------------------------------------------------------------

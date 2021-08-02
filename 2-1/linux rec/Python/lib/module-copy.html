@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.12 copy -- Shallow and deep copy operations</title>
+<META NAME="description" CONTENT="3.12 copy -- Shallow and deep copy operations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-marshal.html">
+<LINK REL="previous" href="module-shelve.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-marshal.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-marshal.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-shelve.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-marshal.html">3.13 marshal  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-shelve.html">3.11 shelve  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051200000000000000000">
+3.12 <tt class="module">copy</tt> --
+         Shallow and deep copy operations</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides generic (shallow and deep) copying operations.
+<a name='l2h-360'></a>
+<P>
+Interface summary:
+
+<P>
+<dl><dd><pre class="verbatim">
+import copy
+
+x = copy.copy(y)        # make a shallow copy of y
+x = copy.deepcopy(y)    # make a deep copy of y
+</pre></dl>
+For module specific errors, <tt class="exception">copy.error</tt> is raised.
+
+<P>
+The difference between shallow and deep copying is only relevant for
+compound objects (objects that contain other objects, like lists or
+class instances):
+
+<P>
+
+<UL><LI>A <i>shallow copy</i> constructs a new compound object and then (to the
+extent possible) inserts <i>references</i> into it to the objects found
+in the original.
+
+<P>
+
+<LI>A <i>deep copy</i> constructs a new compound object and then,
+recursively, inserts <i>copies</i> into it of the objects found in the
+original.
+
+<P>
+
+</UL>
+
+<P>
+Two problems often exist with deep copy operations that don't exist
+with shallow copy operations:
+
+<P>
+
+<UL><LI>Recursive objects (compound objects that, directly or indirectly,
+contain a reference to themselves) may cause a recursive loop.
+
+<P>
+
+<LI>Because deep copy copies <i>everything</i> it may copy too much,
+e.g., administrative data structures that should be shared even
+between copies.
+
+<P>
+
+</UL>
+
+<P>
+The <tt class="function">deepcopy()</tt> function avoids these problems by:
+
+<P>
+
+<UL><LI>keeping a ``memo'' dictionary of objects already copied during the current
+copying pass; and
+
+<P>
+
+<LI>letting user-defined classes override the copying operation or the
+set of components copied.
+
+<P>
+
+</UL>
+
+<P>
+This version does not copy types like module, class, function, method,
+stack trace, stack frame, file, socket, window, array, or any similar
+types.
+
+<P>
+Classes can use the same interfaces to control copying that they use
+to control pickling: they can define methods called
+<tt class="method">__getinitargs__()</tt>, <tt class="method">__getstate__()</tt> and
+<tt class="method">__setstate__()</tt>.  See the description of module
+<tt class='module'><a href='module-pickle.html'>pickle</a></tt><a name='l2h-365'></a> for information on these
+methods.  The <tt class="module">copy</tt> module does not use the
+<tt class='module'><a href='module-copyreg.html'>copy_reg</a></tt> registration module.
+<a name='l2h-362'></a>
+<P>
+In order for a class to define its own copy implementation, it can
+define special methods <tt class="method">__copy__()</tt> and
+<tt class="method">__deepcopy__()</tt>.  The former is called to implement the
+shallow copy operation; no additional arguments are passed.  The
+latter is called to implement the deep copy operation; it is passed
+one argument, the memo dictionary.  If the <tt class="method">__deepcopy__()</tt>
+implementation needs to make a deep copy of a component, it should
+call the <tt class="function">deepcopy()</tt> function with the component as first
+argument and the memo dictionary as second argument.
+<a name='l2h-364'></a>
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+<dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-pickle.html'>pickle</a></tt>:</b>
+    <dd>Discussion of the special disciplines used to
+support object state retrieval and restoration.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-marshal.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-shelve.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-marshal.html">3.13 marshal  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-shelve.html">3.11 shelve  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

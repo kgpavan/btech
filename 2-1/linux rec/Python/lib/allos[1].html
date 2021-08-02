@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6. Generic Operating System Services </title>
+<META NAME="description" CONTENT="6. Generic Operating System Services ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="someos.html">
+<LINK REL="previous" href="misc.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-os.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-os.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="shlex-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-os.html">6.1 os  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="shlex-objects.html">5.11.1 shlex Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008000000000000000000"></A>
+<BR>
+6. Generic Operating System Services 
+</H1>
+
+<P>
+The modules described in this chapter provide interfaces to operating
+system features that are available on (almost) all operating systems,
+such as files and a clock.  The interfaces are generally modelled
+after the Unix or C interfaces, but they are available on most
+other systems as well.  Here's an overview:
+
+<P>
+<table class='synopsistable'>
+  <tr><td><b><tt class='module'><a href='module-os.html'>os</a></tt></b></td>
+      <td class='synopsis'>Miscellaneous OS interfaces.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-os.path.html'>os.path</a></tt></b></td>
+      <td class='synopsis'>Common pathname manipulations.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-dircache.html'>dircache</a></tt></b></td>
+      <td class='synopsis'>Return directory listing, with cache mechanism.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-stat.html'>stat</a></tt></b></td>
+      <td class='synopsis'>Utilities for interpreting the results of
+  <tt class="function">os.stat()</tt>, <tt class="function">os.lstat()</tt> and <tt class="function">os.fstat()</tt>.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-statcache.html'>statcache</a></tt></b></td>
+      <td class='synopsis'>Stat files, and remember results.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-statvfs.html'>statvfs</a></tt></b></td>
+      <td class='synopsis'>Constants for interpreting the result of
+                <tt class="function">os.statvfs()</tt>.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-cmp.html'>cmp</a></tt></b></td>
+      <td class='synopsis'>Compare files very efficiently.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-cmpcache.html'>cmpcache</a></tt></b></td>
+      <td class='synopsis'>Compare files very efficiently.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-time.html'>time</a></tt></b></td>
+      <td class='synopsis'>Time access and conversions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-sched.html'>sched</a></tt></b></td>
+      <td class='synopsis'>General purpose event scheduler.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-getpass.html'>getpass</a></tt></b></td>
+      <td class='synopsis'>Portable reading of passwords and retrieval of the userid.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-curses.html'>curses</a></tt></b></td>
+      <td class='synopsis'>An interface to the curses library.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-getopt.html'>getopt</a></tt></b></td>
+      <td class='synopsis'>Parser for command line options.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-tempfile.html'>tempfile</a></tt></b></td>
+      <td class='synopsis'>Generate temporary file names.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-errno.html'>errno</a></tt></b></td>
+      <td class='synopsis'>Standard errno system symbols.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-glob.html'>glob</a></tt></b></td>
+      <td class='synopsis'>Unix shell style pathname pattern expansion.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-fnmatch.html'>fnmatch</a></tt></b></td>
+      <td class='synopsis'>Unix shell style filename pattern matching.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-shutil.html'>shutil</a></tt></b></td>
+      <td class='synopsis'>High-level file operations, including copying.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-locale.html'>locale</a></tt></b></td>
+      <td class='synopsis'>Internationalization services.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mutex.html'>mutex</a></tt></b></td>
+      <td class='synopsis'>Lock and queue for mutual exclusion.</td></tr>
+</table>
+<BR>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-os.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="shlex-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-os.html">6.1 os  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="shlex-objects.html">5.11.1 shlex Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

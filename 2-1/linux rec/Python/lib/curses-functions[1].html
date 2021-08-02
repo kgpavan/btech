@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.12.1 Constants and Functions </title>
+<META NAME="description" CONTENT="6.12.1 Constants and Functions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="curses-window-objects.html">
+<LINK REL="previous" href="module-curses.html">
+<LINK REL="up" href="module-curses.html">
+<LINK REL="next" href="curses-window-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="curses-window-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="curses-window-objects.html">6.12.2 Window Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081210000000000000000"></A>
+<BR>
+6.12.1 Constants and Functions 
+</H2>
+
+<P>
+The <tt class="module">curses</tt> module defines the following data members:
+
+<P>
+<dl><dt><b><a name='l2h-1057'><tt>version</tt></a></b>
+<dd>
+A string representing the current version of the module.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1058'><tt>A_NORMAL</tt></a></b>
+<dd>
+Normal attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1059'><tt>A_STANDOUT</tt></a></b>
+<dd>
+Standout mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1060'><tt>A_UNDERLINE</tt></a></b>
+<dd>
+Underline mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1061'><tt>A_BLINK</tt></a></b>
+<dd>
+Blink mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1062'><tt>A_DIM</tt></a></b>
+<dd>
+Dim mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1063'><tt>A_BOLD</tt></a></b>
+<dd>
+Bold mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1064'><tt>A_ALTCHARSET</tt></a></b>
+<dd>
+Alternate character set mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1065'><tt>KEY_*</tt></a></b>
+<dd>
+Names for various keys. The exact names available are system dependant.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1066'><tt>ACS_*</tt></a></b>
+<dd>
+Names for various characters:
+<tt class="constant">ACS_ULCORNER</tt>, <tt class="constant">ACS_LLCORNER</tt>,
+<tt class="constant">ACS_URCORNER</tt>, <tt class="constant">ACS_LRCORNER</tt>, <tt class="constant">ACS_RTEE</tt>,
+<tt class="constant">ACS_LTEE</tt>, <tt class="constant">ACS_BTEE</tt>, <tt class="constant">ACS_TTEE</tt>,
+<tt class="constant">ACS_HLINE</tt>, <tt class="constant">ACS_VLINE</tt>, <tt class="constant">ACS_PLUS</tt>,
+<tt class="constant">ACS_S1</tt>, <tt class="constant">ACS_S9</tt>, <tt class="constant">ACS_DIAMOND</tt>,
+<tt class="constant">ACS_CKBOARD</tt>, <tt class="constant">ACS_DEGREE</tt>, <tt class="constant">ACS_PLMINUS</tt>,
+<tt class="constant">ACS_BULLET</tt>, <tt class="constant">ACS_LARROW</tt>, <tt class="constant">ACS_RARROW</tt>,
+<tt class="constant">ACS_DARROW</tt>.
+
+<P>
+<b>Note:</b> These are available only after <tt class="function">initscr()</tt> has 
+been called.
+</dl>
+
+<P>
+The module <tt class="module">curses</tt> defines the following exception:
+<dl><dt><b><a name='l2h-1067'><tt class='exception'>error</tt></a></b>
+<dd>
+Curses function returned an error status.
+</dl>
+
+<P>
+<b>Note:</b> Whenever <var>x</var> or <var>y</var> arguments to a function
+or a method are optional, they default to the current cursor location.
+Whenever <var>attr</var> is optional, it defaults to <tt class="constant">A_NORMAL</tt>.
+
+<P>
+The module <tt class="module">curses</tt> defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-1068'><tt class='function'>initscr</tt></a></b> ()
+<dd>
+Initialize the library. Returns a <tt class="class">WindowObject</tt> which represents
+the whole screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1069'><tt class='function'>endwin</tt></a></b> ()
+<dd>
+De-initialize the library, and return terminal to normal status.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1070'><tt class='function'>isendwin</tt></a></b> ()
+<dd>
+Returns true if <tt class="function">endwin()</tt> has been called.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1071'><tt class='function'>doupdate</tt></a></b> ()
+<dd>
+Update the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1072'><tt class='function'>newwin</tt></a></b> (<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_x</var>)
+<dd>
+Return a new window, whose left-upper corner is at 
+<code>(<var>begin_y</var>, <var>begin_x</var>)</code>, and whose height/width is 
+<var>nlines</var>/<var>ncols</var>.  
+
+<P>
+By default, the window will extend from the 
+specified position to the lower right corner of the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1073'><tt class='function'>beep</tt></a></b> ()
+<dd>
+Emit a short sound.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1074'><tt class='function'>flash</tt></a></b> ()
+<dd>
+Flash the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1075'><tt class='function'>ungetch</tt></a></b> (<var>ch</var>)
+<dd>
+Push <var>ch</var> so the next <tt class="method">getch()</tt> will return it; <var>ch</var> is 
+an integer specifying the character to be pushed.
+<b>Note:</b> only one <var>ch</var> can be pushed before <tt class="method">getch()</tt>
+is called.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1076'><tt class='function'>flushinp</tt></a></b> ()
+<dd>
+Flush all input buffers.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1077'><tt class='function'>cbreak</tt></a></b> ()
+<dd>
+Enter cbreak mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1078'><tt class='function'>nocbreak</tt></a></b> ()
+<dd>
+Leave cbreak mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1079'><tt class='function'>echo</tt></a></b> ()
+<dd>
+Enter echo mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1080'><tt class='function'>noecho</tt></a></b> ()
+<dd>
+Leave echo mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1081'><tt class='function'>nl</tt></a></b> ()
+<dd>
+Enter nl mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1082'><tt class='function'>nonl</tt></a></b> ()
+<dd>
+Leave nl mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1083'><tt class='function'>raw</tt></a></b> ()
+<dd>
+Enter raw mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1084'><tt class='function'>noraw</tt></a></b> ()
+<dd>
+Leave raw mode.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1085'><tt class='function'>meta</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, allow 8-bit characters. If <var>yes</var> is 0, 
+allow only 7-bit chars.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1086'><tt class='function'>keyname</tt></a></b> (<var>k</var>)
+<dd>
+Return the name of the key numbered <var>k</var>.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="curses-window-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="curses-window-objects.html">6.12.2 Window Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

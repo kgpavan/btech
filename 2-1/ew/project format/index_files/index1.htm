@@ -1,0 +1,755 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sign Language Coach</title>
+<style type="text/css">
+<!--
+.style4 {
+	font-family: Arial;
+	font-style: italic;
+	font-weight: bold;
+}
+
+A:link { color: #0000C0; cursor: default; font-weight: bold; text-decoration:none;}
+A:visited { color: #0000C0; cursor: default; font-weight: bold; text-decoration:none;}
+A:active { color: #0000C0; cursor: default; font-weight: bold; text-decoration:none;}
+A:hover { color: #C0C0FF; cursor: default; font-weight: bold; border: solid #BD9999; 
+border-bottom-width: 0px; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; text-decoration:none;
+text-decoration:none;}
+.style6 {color: #0033FF}
+.style7 {color: #ECE9D8}
+.style9 {color: #666699}
+.style10 {font-size: 10.5pt}
+
+-->
+
+
+
+</style>
+</head><body topmargin="0" leftmargin="0">
+<table width="100%" border="0" bordercolor="#ffffff" height="500">
+  <tbody><tr bordercolor="#FFFFFF" bgcolor="#ffffff">
+    <th scope="col" width="500" background="index1_data/head.jpg"><a name="Main" id="Main"><img src="index1_data/title1.jpg" width="600" height="136"></a></th>
+  </tr>
+  <tr bordercolor="#FFFFFF" bgcolor="#ffffff">
+    <td width="550" bgcolor="#ffffff"><span id="Intro" name="Intro" a="">
+      <h2 style="margin-right: -6.85pt;">&nbsp;<img src="index1_data/image001.jpg" width="118" height="28">
+	  <p><font size="2" color="#0000c0" face="arial">&nbsp;&nbsp;&nbsp;&nbsp;By Pamela Chuang (plc26), Anita Gajjala (ag277), Kim Truong (ktt6)</font> </p></h2>
+      </span>
+      <table width="300" bgcolor="#ffffff" border="0" bordercolor="#ffffff" height="219">
+        <tbody><tr bordercolor="#FFFFFF" bgcolor="#ffffff">
+          <th scope="col" width="321" height="213"><img src="index1_data/Img_0801.jpg" width="319" height="200"></th>
+          <th scope="col" width="327"><img src="index1_data/Img_0813.jpg" width="319" height="205"></th>
+        </tr>
+      </tbody></table>
+      <span name="Intro" a="">
+      <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="600" height="30"></span></h2>
+      <h2 style="margin-right: -6.85pt;"><a name="Intro" id="Intro"><img src="index1_data/image004.jpg" width="224" height="29"></a></h2>
+      <h2 style="margin-right: -6.85pt;"><span style="color: rgb(102, 102, 153); font-family: Arial;">Objective<o:p></o:p></span></h2>
+      <h2 style="line-height: 10.5pt; margin-right: -6.85pt;"><i style=""><span style="font-weight: normal; font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;">The
+goal of this project is to design a useful and fully functional
+real-world product that efficiently translates the movement of the
+fingers into the American Sign Language. <o:p></o:p></span></i></h2>
+      </span>      <h1 style="margin-right: -6.85pt; font-family: Arial; font-size: 18pt; color: rgb(102, 102, 153);"><span name="Intro" a="A">Background<o:p></o:p></span></h1>
+      <h1 style="margin-right: -6.85pt; font-family: Arial; font-size: 18pt; color: rgb(102, 102, 153); font-weight: normal;"><span name="Intro" a="A"><o:p></o:p></span><span class="style10" name="Intro" a="A"><br>
+      <span class="style9">The
+American Sign Language (ASL) is a visual language based on hand
+gestures. It has been well-developed by the deaf community over the
+past centuries and is the 3rd most used language in the <st1:country-region w:st="on"><st1:place w:st="on">United States</st1:place></st1:country-region> today. <o:p></o:p><o:p></o:p></span><o:p></o:p></span></h1>
+      <span name="Intro" a="">
+      <h2 style="margin-right: -6.85pt;"><span style="color: rgb(102, 102, 153); font-family: Arial;">Summary<o:p></o:p></span></h2>
+      </span>      <p class="MsoNormal" style="line-height: 10.5pt; margin-right: -6.85pt; font-family: Arial; font-size: 10.5pt; color: rgb(102, 102, 153);"><span name="Intro" a="A">Our
+motivation is two-fold. Aside from helping deaf people communicate more
+easily, the SLC also teaches people to learn the ASL. Our product, a
+sign language coach (SLC), has two modes of operation: Teach and Learn.
+The SLC uses a glove to recognize the hand positions and outputs the
+ASL onto an LCD. The glove detects the positions of each finger by
+monitoring the bending of the flex sensor. Below is a summary of what
+we did and why: <o:p></o:p></span></p>
+      <span name="Intro" a="">
+      <p class="MsoNormal" style="line-height: 10.5pt; margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;"><br>
+1) Build flex sensor circuit for each finger. Sew flex sensors and
+accelerometer onto glove to more accurately detect the bending and
+movement of thecomponents.</span></p>
+      <p class="MsoNormal" style="line-height: 10.5pt; margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;"><br>
+        2) Send sensor circuit output to MCU A/D converter to parse the finger positions. <o:p></o:p></span></p>
+      <p class="MsoNormal" style="line-height: 10.5pt; margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;"><br>
+3) Implement Teach mode. In Teach mode, the user &#8220;teaches&#8221; the MCU ASL
+using hand gestures. To prevent data corruption, A/D converter output
+and the associated user specified alphabet are saved to eeprom, which
+can only be reset by reprogramming the chip. <o:p></o:p></span></p>
+      <p class="MsoNormal" style="line-height: 10.5pt; margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;"><br>
+4) Implement LEARN mode. In Learn mode, the MCU randomly chooses a
+letter it has been taught and teaches it to the user. The user &#8221;learns&#8221;
+by matching his hand positions to that which the MCU associated with
+the letter. Using the LCD, he can adjust his finger positions
+appropriately. The finger positions are matched to the appropriate ASL
+using an efficient matching algorithm. <o:p></o:p></span><o:p></o:p></p>
+    </span>
+	      <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="550" height="30"></span></h2>
+      <h2 style="margin-right: -6.85pt;"><a name="HD" id="HD"><img src="index1_data/image006.jpg" width="366" height="37"></a></h2>
+      
+       <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Rationale
+  and Sources of Our Project Idea<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">There is currently an abundance of software
+  in the market that is used to help teach people sign language.<span style=""></span>This software is very effective; however,
+  it is very hard to know if you are doing a sign correctly and the same way
+  every time.<span style=""></span>Current products in the
+  market are not very interactive.<span style=""></span>In
+  order to check yourself, you have to look at a chart of hand positions on the
+  computer screen to check if you have signed a letter correctly.<span style=""></span>We wanted to make a project that would help
+  people practice and learn sign language without having to look at a screen
+  every time to check the sign for precision.<span style="">
+  </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">For our project, we decided to move away
+  from such software and use a glove in order to implement an interactive sign
+  language teaching program.<span style=""></span>Our project
+  is called the &#8220;Sign Language Coach<span style="">
+  </span>We believe that, with the use of a glove, signs can be made with more
+  accuracy and better consistency.<span style="">
+  </span>Having a glove also would enable students to practice sign language
+  without having to be next to a computer.<span style="">
+  </span>Our project would be portable to all those who wanted to practice sign
+  language.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The concept of a sign language glove began
+  with a high school student who won the Intel Competition in 2001.<span style=""></span>His idea spurred so much interest that sign
+  language gloves are still being researched and developed for the purpose of
+  translation.<span style=""></span>The sign language glove
+  seems to be a very useful tool to aid in communication with the deaf.<span style=""></span>A professor at <st1:place w:st="on"><st1:placename w:st="on">George</st1:placename> <st1:placename w:st="on">Washington</st1:placename>
+   <st1:placetype w:st="on">University</st1:placetype></st1:place> has received
+  a grant from the government in order to research the capabilities of the
+  glove.<span style=""></span>We believed that such a
+  promising translator could also be an effective teacher to those who want to
+  learn sign language.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Logical
+  Structure<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Our glove is similar to the other gloves
+  that have been researched and developed.<span style="">
+  </span>We have created a glove that learns different signs and saves these
+  signs into the EEPROM of the microcontroller.<span style="">
+  </span>Our implementation of the glove only deals with the 26 letters of the
+  English alphabet that can be directly translated into American Sign Language
+  (ASL).<span style=""></span>The part of our project that is
+  different from other gloves is that after programming these letters into the
+  microcontroller, letters are chosen at random for the student to practice and
+  learn.<span style=""></span>The LCD display is used as a
+  reference for how much more or less you need to bend each finger to correctly
+  sign a letter.<span style=""></span>The student must then
+  adjust their hand position to match the prompted letter within some specified
+  range in order to be able to move on to the next letter.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">In order to use our product, the user must
+  connect the Atmel 32 Microcontroller to the computer and use Hyper Terminal
+  to program in the different hand positions of the alphabet.<span style=""></span>There is a black flip switch that should be
+  turned on in order to signify TRAIN mode.<span style="">
+  </span>A yellow LED will light up in order to signify that the student is in
+  the right mode.<span style=""></span>In order to input the
+  position, a letter must be pressed on the keyboard followed by the ENTER
+  key.<span style=""></span>Following that, the position of
+  the letter must be held for approximately 10 seconds.<span style=""></span>The user is expected not to know ASL and
+  can use a table of sign language letters for reference (thereby only having
+  to use the computer once) or call in an American Sign Language expert to help
+  the student perfect the letters of the alphabet.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt; text-align: center;" align="center"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><img src="index1_data/image008.jpg" v:shapes="_x0000_i1028" width="576" border="0" height="203"><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">After all the letters are programmed in, the
+  black switch can be flipped and the yellow LED will be off thereby putting
+  the microcontroller into PRACTICE mode.<span style="">
+  </span>At this point in time, the microcontroller can be removed from the
+  computer, and the unit can be taken anywhere.<span style="">
+  </span>The user can then start practicing positions by looking at the LCD
+  display as a reference.<span style=""></span>Using the LCD,
+  the user will be able to adjust his or her fingers in order to try to match
+  the letter that appears on the screen.<span style="">
+  </span>Once the position of the hand matches the letter on the screen,
+  &#8220;MATCH!will appear on the LCD and the next letter will appear on the LCD.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt; text-align: center;" align="center"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><img src="index1_data/image010.jpg" v:shapes="_x0000_i1029" width="576" border="0" height="203"><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Hardware/Software
+  Tradeoffs<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">There were a lot of trade offs between
+  hardware and software.<span style=""></span>One of the
+  major tradeoffs was that software has little portability.<span style=""></span>It is very necessary to have a computer
+  nearby in order to run software.<span style=""></span>We
+  avoided the use of the Hyper Terminal in PRACTICE mode because of the lack of
+  portability.<span style=""></span>Using software can
+  increase a lot of the capabilities of a sign language teacher.<span style=""></span>The software programs currently in the
+  market are easily able to have animations of different words to help teach
+  the student with a multitude of sound capability.<span style=""></span>By using mostly hardware, implementing
+  words and sound into our program proved to be much more difficult.<span style=""></span>With software, a lot more storage capacity
+  is available to program in many different features.<span style=""></span>We were unable to implement sound because
+  of the lack of memory on the Atmel 32 Microcontroller.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Relevant
+  Standards<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">There are very few standards that are
+  related to our project.<span style=""></span>The one more
+  indirect standard related to our project is the RS-232 Serial Standard that
+  we use to program our device with the different letters using the Hyper
+  Terminal.<span style=""></span>The rest of our project is
+  based more upon the flex sensors and accelerometer and their outputs to the
+  analog to digital converter which currently do not have any standards
+  directly related to them.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Relevant
+  Patents<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Jameco has a patent on flex sensors which we
+  used 5 of in our project; however, this does not conflict with the interest
+  of our project.We are simply using their product in order to implement our glove.<o:p></o:p></span></p>
+      <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="550" height="30"></span></h2>
+  <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><a name="PD" id="PD"><img src="index1_data/image012.jpg" width="435" height="34"></a></span></h2>
+      
+       <span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);"><b>Program Details</b></span><span style="font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Tasks</span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+  <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">This is an outline of the important tasks implemented
+  in our code.<o:p></o:p></span><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;;">task1()</span><span style="font-size: 10.5pt; font-family: Arial;"> <o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Runs every 10ms<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Determines mode (Program or Train)<o:p></o:p></span></p>
+  <ul style="margin-top: 0in;" type="disc">
+   <ul style="margin-top: 0in;" type="circle">
+    <ul style="margin-top: 0in;" type="square">
+     <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Program<o:p></o:p></span></li>
+     <ul style="margin-top: 0in;" type="disc">
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">User specifies a letter to be programmed<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Read in flex sensor circuit outputs<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Wait 3 seconds<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Collect 6 samples </span><span style="font-size: 10.5pt; font-family: Wingdings;"><span style=""></span></span><span style="font-size: 10.5pt; font-family: Arial;"> discard first </span><span style="font-size: 10.5pt; font-family: Wingdings;"><span style=""></span></span><span style="font-size: 10.5pt; font-family: Arial;"> average remaining 5 samples <o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Store average of samples into EEPROM for each
+          letter<o:p></o:p></span></li>
+     </ul>
+     <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Train<o:p></o:p></span></li>
+     <ul style="margin-top: 0in;" type="disc">
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Randomly generate a letter to be prompted to LCD<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Read in flex sensor circuit outputs for five
+          fingers<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Read in accelerometer sensor output for movement<o:p></o:p></span></li>
+      <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Try to match hand position to programmed letters<o:p></o:p></span></li>
+      <ul style="margin-top: 0in;" type="circle">
+       <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">If found<o:p></o:p></span></li>
+       <ul style="margin-top: 0in;" type="square">
+        <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Display percentage
+            differences to LCD<o:p></o:p></span></li>
+        <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Display match<o:p></o:p></span></li>
+       </ul>
+       <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">If not found<o:p></o:p></span></li>
+       <ul style="margin-top: 0in;" type="square">
+        <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Display percentages <o:p></o:p></span></li>
+       </ul>
+      </ul>
+     </ul>
+    </ul>
+   </ul>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;;">task2()</span><span style="font-size: 10.5pt; font-family: Arial;"> <o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Runs every 1000ms or 1s<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Used for transmit between MCU and hyperterm<b style=""><o:p></o:p></b></span></p>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;;">task3()</span><span style="font-size: 10.5pt; font-family: Arial;"> <o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Runs every 10ms<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Used for debouncing mode switch<b style=""><o:p></o:p></b></span></p>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;;">task4()</span><span style="font-size: 10.5pt; font-family: Arial;"> <o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Runs every 1000ms or 1s<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 0.0001pt 1in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Used for to delay system by 1s<b style=""><o:p></o:p></b></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Important
+  Functions<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">This is an outline of the important
+  functions implemented in our code.<o:p></o:p></span><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+  <pre style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153);">void gets_int(void) <o:p></o:p></span></pre><pre style="margin: 0in -6.85pt 0.0001pt 0.5in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style="">span
+  style='font:7.0pt "Times New Roman"'&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Receive<o:p></o:p></span></pre><pre style="margin: 0in -6.85pt 0.0001pt 0.5in; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-size: 10.5pt; font-family: Symbol; color: rgb(102, 102, 153);"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><!--[endif]--><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Sets up ISR, which then does all the work of getting a command<o:p></o:p></span></pre>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;; color: rgb(102, 102, 153);">void
+  puts_int(void)<o:p></o:p></span></p>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Transmit<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Sets
+       up ISR, which then sends one character<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">ISR
+       does all the work<o:p></o:p></span></li>
+  </ul>
+  <pre style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153);">void calc_percent(int my_letter, int pos[5])<o:p></o:p></span></pre>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Calculates
+       finger % differences between signed letter and prompted letter<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">% for
+       each finger = ((actual current)/actual) * 100, where &#8220;actual
+       represents the values stored in EEPROM<o:p></o:p></span></li>
+  </ul>
+  <pre style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153);">void plusminus()<o:p></o:p></span></pre>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Displays
+       +/- to LCD to indicate which way to flex each finger<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Negative
+       (-) % means bend fingers to get correct positions<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Positive
+       (+) % means straighten fingers<o:p></o:p></span></li>
+  </ul>
+  <pre style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153);">int match(int pos[])<o:p></o:p></span></pre>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Matches
+       finger positions to appropriate letter in master alpha matrix<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Returns
+       int of letter matched (a=0, z=25) or NOTFOUND (-1) if not found<o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: &quot;Courier New&quot;; color: rgb(102, 102, 153);">void
+  set_values(letter l, int arr[])<o:p></o:p></span></p>
+  <ul style="margin-top: 0in;" type="disc">
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Stores
+       programmed finger positions into master alpha matrix<o:p></o:p></span></li>
+   <li class="MsoNormal" style="color: rgb(102, 102, 153); margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial;">Also
+       records order of letters saved to EEPROM in index_set<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></li>
+  </ul>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Major Issues<o:p></o:p></span></b></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><br>
+    Below are several main issues, which we encountered during the programming of
+    the SLC, and how we resolved them. <br>
+    <br>
+    TEACH mode. Instead of hard-coding the five finger positions for each ASL
+    letter, we implemented a &#8220;Teachmode in which the MCU stores the user&#8217;s
+    finger positions and associate it with the user specified ASL letter. The
+    issue with this mode is that the user&#8217;s finger positions are not perfectly
+    still during the storing process. To resolve this issue, we allow the user 3
+    seconds of preparation time. In addition, we take four consecutive samples of
+    his hand positions and average the values of each finger position to more
+    accurately detect the sign language. <o:p></o:p></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Jameco has a patent on flex sensors which we
+  used 5 of in our project; however, this does not conflict with the interest
+  of our project.<span style=""></span>We are simply using
+  their product in order to implement our glove.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(51, 204, 153);">printf("Set up your hand position...\n\r"); <br>
+printf("You have 3 seconds to prepare your hand...\n\r"); <br>
+task4(); //delay 1 seconds <br>
+task4(); //delay 1 seconds <br>
+task4(); //delay 1 seconds <br>
+<br>
+<br>
+printf("Begin calibrating...\n\r"); <br>
+//parse ADC0-ACD4 <br>
+for (j=0; j &lt; 6; j++) begin <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (i=0;i<br>
+&lt;5;i++)begin &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADMUX=0x60+i; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ain = ADCH; //get the sample <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADCSR.6=1; //start another conversion <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(ADCSR.6==1); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos[j][i]=Ain; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;task4(); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("End Calibrating...\n\r");</span><span class="style9"><o:p></o:p><o:p></o:p></span><o:p></o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p><o:p></o:p></o:p></span></p>  <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Re-TEACH.
+If the user needs to modify the hand position of a certain letter, he
+can overwrite it by re-recording his hand position and the associated
+letter. However, once he finishes teach mode and programmed the chip,
+he cannot re-teach the ASL to the MCU because the data is stored in
+eeprom. This means that the data can only be erased by reprogramming
+the chip, which prevents unintentional data corruption. <br>
+  <br>
+Matching Algorithm. We need an efficient algorithm which parses the
+five finger position and matches each position to the appropriate ASL.
+The finger position for each letter is stored in a 2 dimensional array
+of 26 x 5 because there are 5 finger positions for each of the 26
+letters of the alphabet. We cannot parse through each element of the
+array, which will take a total of 130 parsings per hand position. If we
+analyze this algorithm, it requires, in Big-O notation, O(n) time,
+where n is the number of elements in the 2-Darray. Clearly this is
+inefficient. If we use a hash-table, which require constant time to
+fetch the data, we run into multiple collisions.</span><span style="font-size: 10.5pt; font-family: Garamond; color: rgb(102, 102, 153);"> <o:p></o:p></span></span></p>
+  <h2 style="margin: 0in -6.85pt 0.0001pt 0in;"><span style="font-family: Arial; color: rgb(102, 102, 153);">Hardware Details<o:p></o:p></span></h2>
+  <h2 style="margin: 0in -6.85pt 0.0001pt 0in;"><span style="font-size: 10.5pt; font-family: Arial; font-weight: normal;"><br>
+        <u><span style="color: rgb(102, 102, 153);">Flex Sensor Circuit. </span></u><span style="color: rgb(102, 102, 153);">We
+built the prototype board for the glove-MCU interface. The circuit
+consisted of five modules, one for each finger. Each module (see Figure
+below) contained a flex sensor feed into a LM7111 operational amplifier
+to achieve a desired gain and resolution. We do this by choosing the
+appropriate resistor values. The output of each op amp is the voltage
+divider Vout = Vin(R2/(R1+R2)), which we chose R1 to be 1k and R2 is
+33kohms, the input voltage will be 5V. So the output voltage will range
+from 2.8 to 4V.</span></span><span style=""> <br>
+    <br>
+    </span><u><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153); font-weight: normal;">LCD. </span></u><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153); font-weight: normal;">In
+order to make the product a stand-alone produce, we used an LCD to
+interface with the user. The LCD is displays the teaching status in
+Teach mode and the finger positions of a certain letter in Learn mode. </span><span style="font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></h2>
+  <h2 style="margin-right: -6.85pt;"><span style="font-family: Arial; color: rgb(102, 102, 153);">Things We Tried<o:p></o:p></span></h2>
+  <p class="MsoNormal" style="margin: 0in -6.85pt 12pt 0in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">1. <u>Sound.</u>
+We tried to use speaker to pronounce the sound of each letter. However,
+the sound requires a filtering circuit because the quality is bad.
+Furthermore, using TV as our speakers is a significant memory cost. <br>
+    <br>
+  2. <u>Matching user hand position. </u>In
+addition to matching the user hand position to those of a specified
+letter, we also tried to match the user's hand position to all the
+letters of the ASL. So even if the user does not match the specified
+letter, we also tried to match it with any of the other letters. In
+doing so, the program is slowed because the algorithm is not optimized.
+<br>
+    <br>
+  3. <u>LCD</u> We initially used a small LCD, which
+did not have enough space for our interface. As a result, we upgraded
+to a larger LCD 4x16. <br>
+    <br>
+  4. <u>Movement</u> We need to
+detect the letter &#8216;J' and &#8216;Z', which requires movement in addition to
+hand position. As a result, we added the accelerometer to detect the
+movement of the glove. </span></p>  <p class="MsoNormal" style="margin-right: -6.85pt;">&nbsp;</p>
+        <h2 style="margin-right: -6.85pt;"><img src="index1_data/line.jpg" width="550" height="30"></h2>
+      <h2 style="margin-right: -6.85pt;"><span class="MsoNormal"><a name="Result" id="Result"><img src="index1_data/image014.jpg" v:shapes="_x0000_i1031" width="122" border="0" height="30"></a></span></h2>
+      
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Speed of Execution<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The two modes of operation (<i style="">train</i> and <i style="">practice</i>) vary in execution speed.<span style="">&nbsp; </span>In <i style="">train</i> mode, the system takes roughly ten seconds to properly calibrate each sign.<span style="">&nbsp; </span>In learn/practice mode, the execution speed depends on the user's ability to correctly sign a letter.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Train mode<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">In program mode, the system waits three seconds for the user to adjust their hand to properly program a letter.<span style="">&nbsp; </span>Then, the system collects six samples at a rate of 1 sample/second in order to properly calibrate a sign.<span style="">&nbsp; </span>Programming each letter takes a total of roughly 10 seconds.<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Practice Mode<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The execution speed in practice mode depends on the user's ability.<span style="">&nbsp; </span>Each time a user properly signs the prompted letter, a new letter is displayed on the LCD after two seconds.<span style="">&nbsp; </span>Since
+our code is fairly optimized for speed, the time it takes the system to
+prompt a new sign mostly relies on how fast the user correctly signs
+the current prompted letter.<span style="">&nbsp; </span><o:p></o:p></span><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Issues Resolved to Optimize Code<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Several issues were resolved along the way in order to optimize the performance of the Sign Language Coach.<span style="">&nbsp; </span>These issues were mainly related to the search algorithms we implemented in the code.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">One piece of code we optimized was the search algorithm used to determine the letter that matches the current hand position.<span style="">&nbsp; </span>Instead
+of checking to see that the current finger positions matched each of
+the programmed positions for all letters, we devised an improved scheme.<span style="">&nbsp; </span>First, the current thumb position is checked against all of the stored thumb positions.<span style="">&nbsp; </span>Only the letters with matching thumb positions are stored in an array called alpha_index.<span style="">&nbsp; </span>Next, the index finger positions of the letters in alpha_index are parsed and checked against the current index positions.<span style="">&nbsp; </span>Only the thumb and index finger positions that match are left in alpha_index.<span style="">&nbsp; </span>This is done for all the fingers until the matched letter is found.<span style="">&nbsp; </span>Using this methodology improved the processing speed of the search algorithm.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">In <i style="">train</i> or <i style="">practice</i> mode, the user is prompted with a letter to sign.<span style="">&nbsp; </span>This letter is randomly chosen from the array of letters programmed to the EEPROM.<span style="">&nbsp; </span>The
+initial design of the unit stored each programmed letter to its mapped
+integer location in an array (letter A to 0, letter Z to 25).<span style="">&nbsp; </span>The random letter, my_index, was always randomly generated to be between 0 and 25, inclusive.<span style="">&nbsp; </span>If
+all 26 letters of the alphabet are not programmed, it is possible that
+my_index will correspond to an empty entry in the EEPROM letters array.<span style="">&nbsp; </span>If this is the case, then a new my_index needs to be generated.<span style="">&nbsp; </span>This creates a problem when only few letters are programmed to the EEPROM.<span style="">&nbsp; </span>With few letters in the array, there is a low chance that the <i style="">first</i> generated my_index will correspond to a valid letter in EEPROM.<span style="">&nbsp; </span>Regenerating my_index requires a lot of processing time and slows the execution of <i style="">train</i> mode.<span style="">&nbsp; </span>The code for my_index and writing to EEPROM therefore needed to be modified.<span style="">&nbsp; </span>Now, the programmed letters are stored in an ordered list.<span style="">&nbsp; </span>My_index is randomly generated out of the number of letters written to EEPROM instead of 26.<span style="">&nbsp; </span>This ensures that my_index will only need to be generated once, therefore reducing unnecessary processing time.<o:p></o:p></span><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">We also removed the i style='mso-bidi-font-style:normal'&gt;Looks likefunctionality from our code to enhance speed.<span style="">&nbsp; </span>This functionality displays what letter the current hand position looks like.<span style="">&nbsp; </span>Implementing this feature requires continuous searching and updating to the LCD.<span style="">&nbsp; </span>With
+only a few letters programmed to the EEPROM, the &#8220;looks likefeature is
+doable since only a small matrix of finger positions and letters needs
+to be searched.<span style="">&nbsp; </span>However, when the entire alphabet is programmed, the feature noticeably slows down the execution of practice mode.<span style="">&nbsp; </span>For now, the i style='mso-bidi-font-style:normal'&gt;looks likefunction is removed.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Accuracy<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The
+issue of accuracy came into calibrating hand positions, calculating
+finger percentage differences, and determining hand movement.<span style="">&nbsp; </span>When calibrating hand positions, we needed to account for the time required to set up a sign.<span style="">&nbsp; </span>The user is given three seconds to adjust their hand, and then six samples of finger positions are collected in six seconds.<span style="">&nbsp; </span>The first of these six samples is discarded in case it takes a bit longer for the user to adjust his or her hand.<span style="">&nbsp; </span>The next five samples are averaged in order to eliminate any finger variation during program time. <span style="">&nbsp;</span>The average finger values are what are stored in the EEPROM for each letter.<span style="">&nbsp; </span>This way, all letters need to only be programmed once.<span style="">&nbsp; </span>They can be reprogrammed if the person training has made a mistake.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Since
+it is difficult to sign a letter the exact same way from time to time,
+we specified a range of acceptable values for a match.<span style="">&nbsp; </span>Each finger position can vary anywhere from 10 (almost fully bent) to 65 (almost straight).<span style="">&nbsp; </span>We
+specified our RANGE value to be 5, meaning that if the current finger
+positions for a letter are all within +/- 5 of the programmed
+positions, then a match will be recorded.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The
+percentages comparing the current hand position against the prompted
+letter are also calculated in task1() which runs every 10ms.<span style="">&nbsp; </span>Since
+the percentages are constantly being calculated, the percentages
+updated to the LCD seem reasonable enough to guide the user how to
+adjust his or her hand.<span style="">&nbsp; </span>Any percentage that is calculated to be greater than 100% is written to be a double dash.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">In
+order to distinguish letters with movement (j, z) from similar letters
+without movement (i, d), we checked to see if there was <i style="">any</i> hand movement while signing.<span style="">&nbsp; </span>This limits our device to only be compatible with American Sign Language.<span style="">&nbsp; </span>We did not check for the specific curvy movement required to sign &#8220;jor the zig-zag movement required to sign &#8220;z<span style="">&nbsp; </span>So,
+if the user were to sign the correct hand position for &#8220;jbut were to
+make the zig-zag movement for &#8220;z the sign would still register as a
+match for the letter &#8220;j<span style="">&nbsp; </span>Though we realize that this approach is not very accurate, we were unable to perfect it due to time constraints.<span style="">&nbsp;&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Safety<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">The
+circuitry on the board and the CPU have no possiblity of shocking the
+user. The only safety concern is the glove because it is the only
+component that directly interfaces with the users. The glove has five
+flex sensors attached to each finger. Because the connections are on
+the outside, there is never a direct electrical path that contacts the
+human skin. In a professional application, the glove would be made out
+of special material that insulates and provides electrical resistance
+from the sensors. However, as the project's budget is constrained to
+$50, we could only afford a regular glove. Still, the glove is
+sufficient to isolate the skin from the exterior electronic components,
+thereby preventing a direct electrical path to the human body.</span><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Interference<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">There seems to be no interference of our unit with other designs.<span style="">&nbsp; </span>The hardware does not include any circuitry that would generate interference, and the CPU generates little noise.<span style="">&nbsp; </span>All the communication is done through wires, therefore there is little information that can be lost or corrupted.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Usability<o:p></o:p></span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">The sign language glove is meant for those willing to learn how to sign letters.<span style="">&nbsp; </span>The unit allows the user to program his or her own hand positions for each letter, given a visual sign language chart.<span style="">&nbsp; </span>The unit is simple enough to be used by anyone.<span style="">&nbsp; </span>In
+program mode, the LCD clearly directs the user how to program a letter
+by prompting the user with &#8220;set hand positionand displaying &#8220;donewhen
+programming is complete.<span style="">&nbsp; </span>In train or practice mode, the first line on the LCD displays a random letter for the user to try signing.<span style="">&nbsp; </span>The
+next line displays *T *I *M *R *P, where * is either or representing
+which way the user needs to flex each finger to match the prompted
+letter.<span style="">&nbsp; </span>A indicates that the user should bend the finger, and a indicates the user should straighten the finger to form a match.<span style="">&nbsp; </span>The last line finally displays the word &#8220;MATCH!if the user's hand position matches the prompted letter.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p><!--[if !vml]-->
+        <img src="index1_data/image016.jpg" width="456" border="0" height="235">
+ </span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span>
+  <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Though the unit is simple enough to be used by anyone, there are some limitations to who can use the glove.<span style="">&nbsp; </span>The glove purchased for the project is a women's sized glove.<span style="">&nbsp; </span>We
+wanted a snug fit to prevent the user's hand from moving inside the
+glove and also to keep the sensors directly aligned with the finger
+bones.<span style="">&nbsp; </span>Choosing a tighter-fitting glove restricts our users to those with small hands!<o:p></o:p></span>
+      </p><h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="550" height="30"></span></h2>
+        <h2 style="margin-right: -6.85pt;"><span class="MsoNormal"><a name="Conc" id="Conc"><img src="index1_data/image018.jpg" v:shapes="_x0000_i1031" width="197" border="0" height="36"></a></span></h2>
+      
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Expectations</span></b><b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Our original expectations for the Sign Language Coach unit outlined in our proposal are listed below:<o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 0.5in; text-indent: -0.25in;">
+        <!--[if !supportLists]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">A.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b>
+        <!--[endif]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Basic Functionalities <o:p></o:p></span></b></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Accurately detect finger movements.<o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Recognize sign language of the most frequently used letters of the alphabet such as {a,e,i,o,u,r,s,t,l,n}. <o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Designate a hand position that indicates the transition from end of the current letter to the begining of the next letter. <o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 0.5in; text-indent: -0.25in;">
+        <!--[if !supportLists]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">B.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b>
+        <!--[endif]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Enhancements (Time-Permitting)<o:p></o:p></span></b></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Extend sign language to the entire alphabet.<span style="">&nbsp; </span>This will require the addition of accelerometers. <o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Recognize the transition from the current letter to the next letter without an indicative hand position. <o:p></o:p></span></p>
+      <p style="margin: 5pt -6.85pt 5pt 0.5in; text-indent: -0.25in;">
+        <!--[if !supportLists]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">C.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></b>
+        <!--[endif]-->
+        <b style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">&nbsp;</span>Complex Features (Time-Permitting)<o:p></o:p></span></b></p>
+      <p style="margin: 5pt -6.85pt 5pt 1.05in; text-indent: -0.3in;">
+        <!--[if !supportLists]-->
+        <span style="font-size: 8pt; font-family: Wingdings; color: rgb(102, 102, 153);" lang="ES-PR"><span style="">§<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>
+        <!--[endif]-->
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);" lang="ES-PR">Concatenate sign language letters to speak words and sentences.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">This project met our expectations.<span style="">&nbsp; </span>It
+accomplishes more than what we initially planned for it to do,
+including being able to recognize all the letters of the alphabet.<span style="">&nbsp; </span>Still, there are many add-ons that are possible for our project.<span style="">&nbsp; </span>We could have done many things differently and can do a lot to improve our product.<span style="">&nbsp; </span>Some
+improvements include implementing a free mode in addition to the
+existing train and program modes, where the system will recognize any
+letter being signed.<span style="">&nbsp; </span>We also limited our project to the alphabet; implementing word vocabulary would have been a great addition to the project.<span style="">&nbsp; </span>We could also have improved our unit by adding sound.<span style="">&nbsp; </span>Using a more powerful microcontroller with more memory was required for the system to successfully &#8220;speakthe signed letters.<span style="">&nbsp; </span>Our
+small 16 by 4 LCD also provided some limitations; a larger LCD would
+have been useful for creating a more user-friendly display.<span style="">&nbsp; </span>Another improvement could have been made to the physical connections of the flex sensors to the microcontroller.<span style="">&nbsp; </span>The long wires are very cumbersome, and the use of cable wire would have looked cleaner.<span style="">&nbsp; </span>However, given the time constraint that we had and the limitations of the Atmel 32, we believe our project to be a success.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Intellectual Property Considerations<o:p></o:p></span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Our glove looks very much like other gloves that have been created.<span style="">&nbsp; </span>These gloves serve many different purposes, such as creating <st1:place w:st="on">MIDI</st1:place> music and controlling music generating programs.<span style="">&nbsp; </span>Such gloves use flex sensors that are attached to the glove in the same way as our product.<span style="">&nbsp; </span>We used sewing in order to secure the flex sensors to the fingers.<span style="">&nbsp; </span>There
+does not seem to be much room to patent our product, because there are
+many more sophisticated products that are rumored to be patented very
+soon.<span style="">&nbsp; </span>These gloves have been created by professors for their long-term research.<span style="">&nbsp; </span>Time and money constraints for us, however, have prevented us from further developing our product.<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Ethical Considerations</span></b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Our project follows the entire IEEE Code of Conduct.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">1.
+To accept responsibility in making decisions consistent with the
+safety, health and welfare of the public, and to disclose promptly
+factors that might endanger the public or the environment;<o:p></o:p></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">First and foremost, our project is very safe.<span style="">&nbsp; </span>There are no connections made directly to the person that uses the glove.<span style="">&nbsp; </span>The device operates at a very low voltage and is very unlikely to hurt someone.<span style="">&nbsp; </span>The nature of the device is one such that it is unlikely that the public or the environment could be endangered in any way.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">2.
+To avoid real or perceived conflicts of interest whenever possible, and
+to disclose them to affected parties when they do exist;<o:p></o:p></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">We
+also realize that the sign language glove has been created in many
+different ways and do not intend to pursue any patents as there have
+already been many applications for patents for this product.<span style="">&nbsp; </span><o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">3. To be honest and realistic in stating claims or estimates based on available data;<o:p></o:p></span></i><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">We
+are honest about the set time that we had to do this project and know
+that our glove can not detect motion and the hand position of the user
+as well as many of the gloves being researched.<span style="">&nbsp; </span>This
+is okay, because we declare that we are trying to extend the technology
+that already exists and create a prototype for other applications of
+the same technology.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">5. To improve the understanding of technology, its appropriate application, and potential consequences;<o:p></o:p></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Our
+project has been created so that people will be able to explore
+different ways to learn sign language and hopefully increase the
+development of the sign language glove for education.<span style="">&nbsp; </span>This project helps to increase the understanding of the sign language glove and its capabilities.<span style="">&nbsp; </span><o:p></o:p></span><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">6.
+To seek, accept, and offer honest criticism of technical work, to
+acknowledge and correct errors, and to credit properly the
+contributions of others;<o:p></o:p></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">We could not have done or have thought of this project without the help of <st1:place w:st="on"><st1:placename w:st="on">Professor</st1:placename> <st1:placetype w:st="on">Land</st1:placetype></st1:place> and the TAs.<span style="">&nbsp; </span>We get criticism from <st1:place w:st="on"><st1:placename w:st="on">Professor</st1:placename> <st1:placetype w:st="on">Land</st1:placetype></st1:place> and from the TAs everyday.<span style="">&nbsp; </span>We seek it and embrace it.<o:p></o:p></span><span style="font-size: 10.5pt; font-family: Verdana; color: rgb(129, 126, 162);"><o:p></o:p></span><b style=""><span style="font-size: 10.5pt; font-family: Verdana; color: rgb(129, 126, 162);"><o:p></o:p></span></b></p>
+        <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="550" height="30"></span></h2>
+     <h2 style="margin-right: -6.85pt;"><span class="MsoNormal"><a name="App" id="App"><img src="index1_data/image020.jpg" v:shapes="_x0000_i1034" width="151" border="0" height="29"></a></span></h2>
+      
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix A: Budget<o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <table class="MsoNormalTable" style="width: 165pt; margin-left: 4.65pt; border-collapse: collapse;" width="220" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr style="height: 14.25pt;">
+          <td style="border-style: solid none none solid; border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext; border-width: 1.5pt medium medium 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 14.25pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Item<o:p></o:p></span></b></p></td>
+          <td style="border-style: solid solid none none; border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color; border-width: 1.5pt 1.5pt medium medium; padding: 0in 5.4pt; width: 48pt; height: 14.25pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><b><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Price<o:p></o:p></span></b></p></td>
+        </tr>
+        <tr style="height: 13.5pt;">
+          <td style="border-style: double solid solid; border-color: windowtext; border-width: 2.25pt 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 13.5pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Mega 32<o:p></o:p></span></p></td>
+          <td style="border-style: double solid solid none; border-color: windowtext windowtext windowtext -moz-use-text-color; border-width: 2.25pt 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 13.5pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$8.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Last year's board<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$2.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Glove<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$2.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Accelerometer<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$0.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">LCD<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$0.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 25.5pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 25.5pt;" valign="bottom" width="156">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">MAX233ACPP RS232 <br>
+        driver + RS232 connector<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 25.5pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$8.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Opamps<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$6.55<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Breadboard<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$12.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">9 V <st1:place w:st="on">Battery</st1:place><o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$4.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Flex Sensors<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$0.00<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 12.75pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 12.75pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">&nbsp;<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1pt medium; padding: 0in 5.4pt; width: 48pt; height: 12.75pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">&nbsp;<o:p></o:p></span></p></td>
+        </tr>
+        <tr style="height: 13.5pt;">
+          <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1.5pt 1.5pt; padding: 0in 5.4pt; width: 117pt; height: 13.5pt;" valign="bottom" width="156" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Total<o:p></o:p></span></p></td>
+          <td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1.5pt 1.5pt medium; padding: 0in 5.4pt; width: 48pt; height: 13.5pt;" valign="bottom" width="64" nowrap="nowrap">
+            <p class="MsoNormal" style="margin-right: -6.85pt; text-align: right;" align="right"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">$42.55<o:p></o:p></span></p></td>
+        </tr>
+      </tbody></table>
+      <p class="MsoNormal" style="margin-right: -6.85pt; line-height: 10.5pt;"><span style="font-size: 10.5pt; font-family: Verdana; color: rgb(129, 126, 162);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Thank you to Freescale for its generous donation of an accelerometer.<span style="">&nbsp; </span></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i style=""><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Also, thank you to Spectra Symbol for generously sampling five flex sensors.<o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; line-height: 10.5pt;"><span style="font-size: 10.5pt; font-family: Verdana; color: rgb(129, 126, 162);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; line-height: 10.5pt;"><span style="font-size: 10.5pt; font-family: Verdana; color: rgb(129, 126, 162);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix B: Work Breakdown Structure<o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Theory<o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Pam, Kim, Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Hardware<o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Building/soldering protoboard Pam<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Designing and building flex sensor circuit Pam, Kim, Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Designing of glove Anita, Kim<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Connections between flex sensor circuit, LCD, MCU Pam, Kim, Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Software<o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>General Algorithm Pam, Kim, Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><span style="">&nbsp;</span>Coding Pam, Kim, Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><i><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Website<o:p></o:p></span></i></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Introduction - Kim<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">High Level Design - Pam<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Program/Hardware Design - Kim<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Results - Anita<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Conclusions - Pam<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">Appendices Anita, Pam<o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix C: Microcontroller<o:p></o:p></span></b></p>
+<img src="index1_data/image022.gif">
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;">
+
+        <!--[if !vml]-->
+        <img src="index1_data/image022.gif" width="529" height="572">
+        <!--[endif]-->
+        
+
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix D: Flow Chart for Practice Mode<o:p></o:p></span></b></p>
+  <img src="index1_data/image023.gif">
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;">
+
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">
+
+          <!--[if !vml]-->
+          <img src="index1_data/image024.gif" width="553" height="111">
+          <!--[endif]-->
+          </span>
+
+          <b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix F: Flex Sensor Circuit<o:p></o:p></span></b></p>
+  <img src="index1_data/image025.jpg">
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">
+        <!--[if gte vml 1]><v:shape
+   id="_x0000_i1035" type="#_x0000_t75" style='width:444pt;height:620.25pt'>
+   <v:imagedata src="image025.jpg" o:title="flexsensorcircuit"/>
+  </v:shape><![endif]-->
+        <!--[if !vml]-->
+        <img src="index1_data/image025.jpg" v:shapes="_x0000_i1035" width="522" border="0" height="791">
+        <!--[endif]-->
+        <o:p></o:p></span></b></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt;"><b style=""><span style="font-size: 18pt; font-family: Arial; color: rgb(102, 102, 153);">Appendix G: LCD Connections<o:p></o:p></span></b></p>
+  <img src="index1_data/image026.gif">
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;"><span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="margin-right: -6.85pt; text-indent: 0.5in;">
+
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);">
+   
+        <!--[if !vml]-->
+        <img src="index1_data/image026.gif" width="467" height="233">        <!--[endif]-->
+        </span>
+        <span style="font-size: 10.5pt; font-family: Arial; color: rgb(102, 102, 153);"><o:p></o:p></span></p>
+      
+      <span name="Intro" a="">
+      <h2 style="margin-right: -6.85pt;"><o:p></o:p></h2>
+      <h2 style="margin-right: -6.85pt;"><span name="Intro" a=""><img src="index1_data/line.jpg" width="550" height="30"></span></h2>
+      <h2 style="margin-right: -6.85pt;"><a name="Ref" id="Ref"><img src="index1_data/image030.jpg" width="224" height="29"></a></h2>
+      <h2 style="line-height: 12pt; margin-right: -6.85pt;"><i style=""><span style="font-weight: normal; font-size: 10.5pt; color: rgb(102, 102, 153); font-family: Arial;"><a href="http://instruct1.cit.cornell.edu/courses/ee476/AtmelStuff/full32.pdf">Atmel Mega32 DataSheet </a><p><a href="http://www.imagesco.com/catalog/flex/FlexSensors.html">Bend Sensor Images SI, Inc</a></p><p><a href="http://www1.cs.columbia.edu/%7Eahoward/midiglove.htm">The MIDI Glove Team</a></p><p><a href="http://devices.sapp.org/component/flex/">Electronic Component: The Flex Sensor</a><o:p></o:p></p></span></i></h2>
+
+	</span></td>
+  </tr>
+  <tr style="">
+
+</tr><tr style="">
+<td style="padding: 0in 5.4pt; width: 99.54%;" width="187">&nbsp;</td></tr>
+
+</tbody></table>
+</body></html>

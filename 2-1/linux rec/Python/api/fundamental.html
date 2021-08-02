@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.1.2 The None Object </title>
+<META NAME="description" CONTENT="7.1.2 The None Object ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="previous" href="typeObjects.html">
+<LINK REL="up" href="fundamental.html">
+<LINK REL="next" href="sequenceObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="fundamental.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="typeObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="fundamental.html">7.1 Fundamental Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="typeObjects.html">7.1.1 Type Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009120000000000000000"></A>
+<BR>
+7.1.2 The None Object 
+</H2>
+
+<P>
+<a name='l2h-238'></a>
+Note that the <tt class="ctype">PyTypeObject</tt> for <code>None</code> is not directly
+exposed in the Python/C API.  Since <code>None</code> is a singleton,
+testing for object identity (using "<tt class="samp">==</tt>" in C) is sufficient.
+There is no <tt class="cfunction">PyNone_Check()</tt> function for the same reason.
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-237'><tt class='cdata'>Py_None</tt></a></b>
+<dd>
+The Python <code>None</code> object, denoting lack of value.  This object has
+no methods.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="fundamental.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="typeObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="fundamental.html">7.1 Fundamental Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="typeObjects.html">7.1.1 Type Objects</A></span>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.7 fm -- Font Manager interface</title>
+<META NAME="description" CONTENT="16.7 fm -- Font Manager interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-gl.html">
+<LINK REL="previous" href="module-flp.html">
+<LINK REL="up" href="sgi.html">
+<LINK REL="next" href="module-gl.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-gl.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sgi.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-flp.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-gl.html">16.8 gl  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sgi.html">16. SGI IRIX Specific</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-flp.html">16.6 flp  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0018700000000000000000">
+16.7 <tt class="module">fm</tt> --
+         <i>Font Manager</i> interface</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>IRIX</span>.</p>
+
+<P>
+This module provides access to the IRIS <i>Font Manager</i> library.
+<a name='l2h-2655'></a>
+It is available only on Silicon Graphics machines.
+See also: <i>4Sight User's Guide</i>, section 1, chapter 5: ``Using
+the IRIS Font Manager.''
+
+<P>
+This is not yet a full interface to the IRIS Font Manager.
+Among the unsupported features are: matrix operations; cache
+operations; character operations (use string operations instead); some
+details of font info; individual glyph metrics; and printer matching.
+
+<P>
+It supports the following operations:
+
+<P>
+<dl><dt><b><a name='l2h-2643'><tt class='function'>init</tt></a></b> ()
+<dd>
+Initialization function.
+Calls <tt class="cfunction">fminit()</tt>.
+It is normally not necessary to call this function, since it is called
+automatically the first time the <tt class="module">fm</tt> module is imported.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2644'><tt class='function'>findfont</tt></a></b> (<var>fontname</var>)
+<dd>
+Return a font handle object.
+Calls <code>fmfindfont(<var>fontname</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2645'><tt class='function'>enumerate</tt></a></b> ()
+<dd>
+Returns a list of available font names.
+This is an interface to <tt class="cfunction">fmenumerate()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2646'><tt class='function'>prstr</tt></a></b> (<var>string</var>)
+<dd>
+Render a string using the current font (see the <tt class="function">setfont()</tt> font
+handle method below).
+Calls <code>fmprstr(<var>string</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2647'><tt class='function'>setpath</tt></a></b> (<var>string</var>)
+<dd>
+Sets the font search path.
+Calls <code>fmsetpath(<var>string</var>)</code>.
+(XXX Does not work!?!)
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2648'><tt class='function'>fontpath</tt></a></b> ()
+<dd>
+Returns the current font search path.
+</dl>
+
+<P>
+Font handle objects support the following operations:
+
+<P>
+
+<dl><dt><b><a name='l2h-2649'><tt class='function'>scalefont</tt></a></b> (<var>factor</var>)
+<dd>
+Returns a handle for a scaled version of this font.
+Calls <code>fmscalefont(<var>fh</var>, <var>factor</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2650'><tt class='function'>setfont</tt></a></b> ()
+<dd>
+Makes this font the current font.
+Note: the effect is undone silently when the font handle object is
+deleted.
+Calls <code>fmsetfont(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2651'><tt class='function'>getfontname</tt></a></b> ()
+<dd>
+Returns this font's name.
+Calls <code>fmgetfontname(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2652'><tt class='function'>getcomment</tt></a></b> ()
+<dd>
+Returns the comment string associated with this font.
+Raises an exception if there is none.
+Calls <code>fmgetcomment(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2653'><tt class='function'>getfontinfo</tt></a></b> ()
+<dd>
+Returns a tuple giving some pertinent data about this font.
+This is an interface to <code>fmgetfontinfo()</code>.
+The returned tuple contains the following numbers:
+<code>(</code><var>printermatched</var>, <var>fixed_width</var>, <var>xorig</var>,
+<var>yorig</var>, <var>xsize</var>, <var>ysize</var>, <var>height</var>,
+<var>nglyphs</var><code>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2654'><tt class='function'>getstrwidth</tt></a></b> (<var>string</var>)
+<dd>
+Returns the width, in pixels, of <var>string</var> when drawn in this font.
+Calls <code>fmgetstrwidth(<var>fh</var>, <var>string</var>)</code>.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-gl.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sgi.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-flp.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-gl.html">16.8 gl  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sgi.html">16. SGI IRIX Specific</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-flp.html">16.6 flp  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

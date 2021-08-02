@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.16 nis -- Interface to Sun's NIS (Yellow Pages)</title>
+<META NAME="description" CONTENT="8.16 nis -- Interface to Sun's NIS (Yellow Pages)">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-syslog.html">
+<LINK REL="previous" href="module-resource.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-syslog.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-syslog.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node182.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-syslog.html">8.17 syslog  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node182.html">8.15.2 Resource Usage</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101600000000000000000">
+8.16 <tt class="module">nis</tt> --
+         Interface to Sun's NIS (Yellow Pages)</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>UNIX</span>.</p>
+
+<P>
+The <tt class="module">nis</tt> module gives a thin wrapper around the NIS library, useful
+for central administration of several hosts.
+
+<P>
+Because NIS exists only on Unix systems, this module is
+only available for Unix.
+
+<P>
+The <tt class="module">nis</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-1611'><tt class='function'>match</tt></a></b> (<var>key, mapname</var>)
+<dd>
+Return the match for <var>key</var> in map <var>mapname</var>, or raise an
+error (<tt class="exception">nis.error</tt>) if there is none.
+Both should be strings, <var>key</var> is 8-bit clean.
+Return value is an arbitary array of bytes (i.e., may contain <code>NULL</code>and other joys).
+
+<P>
+Note that <var>mapname</var> is first checked if it is an alias to another name.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1612'><tt class='function'>cat</tt></a></b> (<var>mapname</var>)
+<dd>
+Return a dictionary mapping <var>key</var> to <var>value</var> such that
+<code>match(<var>key</var>, <var>mapname</var>)==<var>value</var></code>.
+Note that both keys and values of the dictionary are arbitary
+arrays of bytes.
+
+<P>
+Note that <var>mapname</var> is first checked if it is an alias to another name.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1613'><tt class='function'>maps</tt></a></b> ()
+<dd>
+Return a list of all valid maps.
+</dl>
+
+<P>
+The <tt class="module">nis</tt> module defines the following exception:
+
+<P>
+<dl><dt><b><a name='l2h-1614'><tt class='exception'>error</tt></a></b>
+<dd>
+An error raised when a NIS function returns an error code.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-syslog.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node182.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-syslog.html">8.17 syslog  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node182.html">8.15.2 Resource Usage</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

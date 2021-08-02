@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.5 Dictionary displays</title>
+<META NAME="description" CONTENT="5.2.5 Dictionary displays">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="string-conversions.html">
+<LINK REL="previous" href="lists.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="string-conversions.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="string-conversions.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="lists.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="string-conversions.html">5.2.6 String conversions</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="lists.html">5.2.4 List displays</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007250000000000000000"></A>
+<BR>
+5.2.5 Dictionary displays
+</H2>
+<a name='l2h-263'></a>
+
+<P>
+A dictionary display is a possibly empty series of key/datum pairs
+enclosed in curly braces:
+<a name='l2h-264'></a>
+
+<P>
+<dl><dd><pre class="verbatim">
+dict_display:   "{" [key_datum_list] "}"
+key_datum_list: key_datum ("," key_datum)* [","]
+key_datum:      expression ":" expression
+</pre></dl>
+
+<P>
+A dictionary display yields a new dictionary object.
+<a name='l2h-265'></a>
+
+<P>
+The key/datum pairs are evaluated from left to right to define the
+entries of the dictionary: each key object is used as a key into the
+dictionary to store the corresponding datum.
+
+<P>
+Restrictions on the types of the key values are listed earlier in
+section <A href="types.html#types">3.2</A>.  (To summarize,the key type should be hashable,
+which excludes all mutable objects.)  Clashes between duplicate keys
+are not detected; the last datum (textually rightmost in the display)
+stored for a given key value prevails.
+<a name='l2h-266'></a>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="string-conversions.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="lists.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="string-conversions.html">5.2.6 String conversions</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="lists.html">5.2.4 List displays</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

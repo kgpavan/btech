@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.3 grp -- The group database</title>
+<META NAME="description" CONTENT="8.3 grp -- The group database">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-crypt.html">
+<LINK REL="previous" href="module-pwd.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-crypt.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-crypt.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-pwd.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-crypt.html">8.4 crypt  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-pwd.html">8.2 pwd  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010300000000000000000">
+8.3 <tt class="module">grp</tt> --
+         The group database</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Unix</span>.</p>
+
+<P>
+This module provides access to the Unix group database.
+It is available on all Unix versions.
+
+<P>
+Group database entries are reported as 4-tuples containing the
+following items from the group database (see <code>&lt;grp.h&gt;</code>), in order:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr bgcolor='#99CCFF'>
+      <th align="right"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Field</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+    </thead>
+  <tbody valign='baseline'>
+    <tr><td align="right" valign="baseline">0&nbsp;</td>
+        <td align="left">gr_name</td>
+        <td align="left">the name of the group</td>
+    <tr><td align="right" valign="baseline">1&nbsp;</td>
+        <td align="left">gr_passwd</td>
+        <td align="left">the (encrypted) group password; often empty</td>
+    <tr><td align="right" valign="baseline">2&nbsp;</td>
+        <td align="left">gr_gid</td>
+        <td align="left">the numerical group ID</td>
+    <tr><td align="right" valign="baseline">3&nbsp;</td>
+        <td align="left">gr_mem</td>
+        <td align="left">all the group member's  user  names</td></tbody>
+</table>
+
+<P>
+The gid is an integer, name and password are strings, and the member
+list is a list of strings.
+(Note that most users are not explicitly listed as members of the
+group they are in according to the password database.)
+<tt class="exception">KeyError</tt> is raised if the entry asked for cannot be found.
+
+<P>
+It defines the following items:
+
+<P>
+<dl><dt><b><a name='l2h-1510'><tt class='function'>getgrgid</tt></a></b> (<var>gid</var>)
+<dd>
+Return the group database entry for the given numeric group ID.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1511'><tt class='function'>getgrnam</tt></a></b> (<var>name</var>)
+<dd>
+Return the group database entry for the given group name.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1512'><tt class='function'>getgrall</tt></a></b> ()
+<dd>
+Return a list of all available group entries, in arbitrary order.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-pwd.html'>pwd</a></tt>:</b>
+    <dd>An interface to the user database, similar to this.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-crypt.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-pwd.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-crypt.html">8.4 crypt  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-pwd.html">8.2 pwd  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

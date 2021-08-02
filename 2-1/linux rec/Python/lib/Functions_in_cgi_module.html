@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.1.4 Functions</title>
+<META NAME="description" CONTENT="11.1.4 Functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" HREF="node209.html">
+<LINK REL="previous" HREF="node207.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node209.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node209.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-cgi.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node207.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node209.html">11.1.5 Caring about security</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-cgi.html">11.1 cgi  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node207.html">11.1.3 Old classes</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013140000000000000000">
+11.1.4 Functions</A>
+</H2>
+
+<P>
+These are useful if you want more control, or if you want to employ
+some of the algorithms implemented in this module in other
+circumstances.
+
+<P>
+<dl><dt><b><a name='l2h-1669'><tt class='function'>parse</tt></a></b> (<var>fp</var>)
+<dd>
+Parse a query in the environment or from a file (default
+<code>sys.stdin</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1670'><tt class='function'>parse_qs</tt></a></b> (<var>qs</var><big>[</big><var>, keep_blank_values, strict_parsing</var><big>]</big>)
+<dd>
+Parse a query string given as a string argument (data of type 
+<span class="mimetype">application/x-www-form-urlencoded</span>).  Data are
+returned as a dictionary.  The dictionary keys are the unique query
+variable names and the values are lists of values for each name.
+
+<P>
+The optional argument <var>keep_blank_values</var> is
+a flag indicating whether blank values in
+URL encoded queries should be treated as blank strings.  
+A true value indicates that blanks should be retained as 
+blank strings.  The default false value indicates that
+blank values are to be ignored and treated as if they were
+not included.
+
+<P>
+The optional argument <var>strict_parsing</var> is a flag indicating what
+to do with parsing errors.  If false (the default), errors
+are silently ignored.  If true, errors raise a ValueError
+exception.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1671'><tt class='function'>parse_qsl</tt></a></b> (<var>qs</var><big>[</big><var>, keep_blank_values, strict_parsing</var><big>]</big>)
+<dd>
+Parse a query string given as a string argument (data of type 
+<span class="mimetype">application/x-www-form-urlencoded</span>).  Data are
+returned as a list of name, value pairs.
+
+<P>
+The optional argument <var>keep_blank_values</var> is
+a flag indicating whether blank values in
+URL encoded queries should be treated as blank strings.  
+A true value indicates that blanks should be retained as 
+blank strings.  The default false value indicates that
+blank values are to be ignored and treated as if they were
+not included.
+
+<P>
+The optional argument <var>strict_parsing</var> is a flag indicating what
+to do with parsing errors.  If false (the default), errors
+are silently ignored.  If true, errors raise a ValueError
+exception.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1672'><tt class='function'>parse_multipart</tt></a></b> (<var>fp, pdict</var>)
+<dd>
+Parse input of type <span class="mimetype">multipart/form-data</span> (for 
+file uploads).  Arguments are <var>fp</var> for the input file and
+<var>pdict</var> for the dictionary containing other parameters of
+<code>content-type</code> header
+
+<P>
+Returns a dictionary just like <tt class="function">parse_qs()</tt> keys are the
+field names, each value is a list of values for that field.  This is
+easy to use but not much good if you are expecting megabytes to be
+uploaded -- in that case, use the <tt class="class">FieldStorage</tt> class instead
+which is much more flexible.  Note that <code>content-type</code> is the
+raw, unparsed contents of the <code>content-type</code> header.
+
+<P>
+Note that this does not parse nested multipart parts -- use
+<tt class="class">FieldStorage</tt> for that.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1673'><tt class='function'>parse_header</tt></a></b> (<var>string</var>)
+<dd>
+Parse a header like <code>content-type</code> into a main
+content-type and a dictionary of parameters.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1674'><tt class='function'>test</tt></a></b> ()
+<dd>
+Robust test CGI script, usable as main program.
+Writes minimal HTTP headers and formats all information provided to
+the script in HTML form.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1675'><tt class='function'>print_environ</tt></a></b> ()
+<dd>
+Format the shell environment in HTML.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1676'><tt class='function'>print_form</tt></a></b> (<var>form</var>)
+<dd>
+Format a form in HTML.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1677'><tt class='function'>print_directory</tt></a></b> ()
+<dd>
+Format the current directory in HTML.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1678'><tt class='function'>print_environ_usage</tt></a></b> ()
+<dd>
+Print a list of useful (used by CGI) environment variables in
+HTML.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1679'><tt class='function'>escape</tt></a></b> (<var>s</var><big>[</big><var>, quote</var><big>]</big>)
+<dd>
+Convert the characters
+"<tt class="character">&amp;</tt>", "<tt class="character">&lt;</tt>" and "<tt class="character">&gt;</tt>" in string <var>s</var> to
+HTML-safe sequences.  Use this if you need to display text that might
+contain such characters in HTML.  If the optional flag <var>quote</var> is
+true, the double quote character ("<tt class="character">"</tt>") is also translated;
+this helps for inclusion in an HTML attribute value, e.g. in <code>&lt;A
+HREF="..."&gt;</code>.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node209.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-cgi.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node207.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node209.html">11.1.5 Caring about security</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-cgi.html">11.1 cgi  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node207.html">11.1.3 Old classes</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

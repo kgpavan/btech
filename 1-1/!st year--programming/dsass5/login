@@ -1,0 +1,254 @@
+<html>
+<head>
+	<script type="text/javascript">
+function setFocus()
+{
+	document.getElementById("f").focus()
+}
+</script>
+<title>
+Data Structures Evaluator Portal
+</title>
+</head>
+<body onload="setFocus()">
+<table	width="100%"
+border="0"
+>
+<tr 	height="40px">
+<td	width="20%" 
+align="right"
+>
+&nbsp;
+</td>
+<td	width="60%" 
+align="center" 
+style="background:#1e272b"
+>
+<strong	style="color:white;font-size:20">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DS Evalutator@IIIT,Hyderabad
+</strong>
+</td>
+<td	width="20%" 
+align="right">
+&nbsp;
+</td>
+</tr>
+</table>
+<table	border="0"
+width="100%"
+>
+<tr>
+<td	width="20%">
+&nbsp;
+</td>
+<td	width="60%"
+style="background:#c1c1b6">
+<table	border="0"
+width="100%"
+>
+<tr>
+<td	align="right">
+<form	method="POST"
+action="login"
+>
+<b	style="font-size:13;">
+<font	color="black">
+Login&nbsp;
+</font>
+</b>
+<input	id="f"
+type="text" 
+size="10" 
+name="loginName"
+/>
+&nbsp;&nbsp;
+<b 	style="font-size:13" >
+<font	color="black">
+Password&nbsp;
+</font>
+</b>
+<input	type="password"
+size="10"
+name="password"
+/>
+&nbsp;
+<input	type="submit" 
+value="Go"
+/>
+</form>
+</td>
+</tr>
+</table>
+</td>
+<td 	width="20%">
+&nbsp;
+</td>
+</tr>
+</table>
+<table	width="100%"
+border="0" 
+height="75%"
+>
+<tr>
+<td	width="20%">
+</td>
+<td	width="60%"
+style="background:#c1c1b6"
+valign="top">
+
+<b	style="font-size:16">
+&nbsp;&nbsp;Instructors &nbsp;&nbsp;:
+<u>
+Prof. Kannan Srinathan
+</u>
+</b>
+<br /><br />
+<table	width="100%"
+border="0"
+>
+<tr>
+<td	align="right">
+<b>
+&nbsp;
+<u>
+Message
+</u>
+</b>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td >
+</td>
+<td >
+<b	style="font-size:12">
+The objectives of this course are to introduce you to several 
+concepts that provide the basis for stuctured 
+programming and to develop your ability to 
+describe and to analyze problems in a precise, 
+	 logical and systematic fashion and to develop 
+	 efficient solutions to them.
+	 </b>
+
+	 </td>
+	 </tr>
+	 <tr>
+	 <td	align="right">
+	 <b>
+	 &nbsp;
+	 <u>
+	 News
+	 </u>
+	 </b>
+	 </td>
+	 <td >
+	 </td>
+	 </tr>
+	 <tr>
+	 <td >
+	 </td>
+	 <td >
+	 <b	style="font-size:12">
+	 The portal is up and working again. It is now working for
+	 the problems 1-4 of Assignment 2. Problems 5,6 will be made 
+	 working soon.
+	 </b>
+	 </td>
+	 </tr>
+	 <tr>
+	 <td	align="left">
+	 <b>
+	 &nbsp;
+	 <u>
+	 Evaluation
+	 </u>
+	 </b>
+	 </td>
+	 <td >
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 </td>
+	 <td >
+	 <b	style="font-size:12">
+	 The deadline for the 2nd assignment is
+	 10th January,2007 : 23:59 hrs
+	 </b>
+	 </td>
+	 </tr>
+	 <tr>
+	 <td	align="right">
+	 <b>
+	 &nbsp;
+	 <u>
+	 Tips
+	 </u>
+	 </b>
+	 </td>
+	 <td >
+	 </td>
+	 </tr>
+	 <tr>
+	 <td>
+	 </td>
+	 <td >
+	 <b	style="font-size:12">
+	Go to Connection settings in your browser and
+put no proxy for 172.16.32.185. ( Takes lesser time )	
+	</b>
+	</td>
+	</tr>
+
+	</table>
+	</td>
+	<td	width="20%">
+	</td>
+	</tr>
+	</table>
+	<table	border="0"
+	width="100%"
+	>
+	<tr>
+	<td	width="20%">
+	&nbsp;
+	</td>
+	<td	width="60%"
+	style="background:#c1c1b6"
+	align="center"
+	>
+	<b	style="font-size:12">
+	Databases by
+	<a 	href="http://students.iiit.ac.in/~ajaysomani"
+	style="text-decoration:none;color:blue;"
+	>
+	Ajay Somani
+	</a>
+	&nbsp;&nbsp;
+	Compilation by
+	<a	href="http://students.iiit.ac.in/~abhilashi"
+	style="text-decoration:none;color:blue;"
+	>
+	Abhilash I
+	</a>
+	&nbsp;&nbsp;
+	Interface by
+	<a	href="http://students.iiit.ac.in/~parminder"
+	style="text-decoration:none;color:blue;"
+	>
+	Parminder Singh
+	</a>
+	</b> 
+
+
+
+	</td>
+	<td	 width="20%">
+	&nbsp;
+	</td>
+	</tr>
+	</table>
+	</body>
+			</html>

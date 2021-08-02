@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Python/C API Reference Manual</title>
+<META NAME="description" CONTENT="Python/C API Reference Manual">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="front.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class='titlepage'><center>
+<h1>Python/C API Reference Manual</h1>
+<p><b><font size='+2'>Guido van Rossum</font></b></p>
+<p>
+	Corporation for National Research Initiatives 
+<BR>
+1895 Preston White Drive, Reston, VA 20191, USA 
+<BR>
+E-mail: <span class="email">guido@python.org</span>
+</p>
+<p><strong>March 22, 2000</strong><br><strong>Release 1.5.2</strong></p>
+<p>
+</center></div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html7"
+ href="front.html">Front Matter</A>
+<LI><A NAME="tex2html8"
+ href="contents.html">Contents</A>
+<LI><A NAME="tex2html9"
+ href="intro.html">1. Introduction </A>
+<UL>
+<LI><A NAME="tex2html10"
+ href="includes.html">1.1 Include Files </A>
+<LI><A NAME="tex2html11"
+ href="objects.html">1.2 Objects, Types and Reference Counts </A>
+<LI><A NAME="tex2html12"
+ href="exceptions.html">1.3 Exceptions </A>
+<LI><A NAME="tex2html13"
+ href="embedding.html">1.4 Embedding Python </A>
+</UL>
+<LI><A NAME="tex2html14"
+ href="veryhigh.html">2. The Very High Level Layer </A>
+<LI><A NAME="tex2html15"
+ href="countingRefs.html">3. Reference Counting </A>
+<LI><A NAME="tex2html16"
+ href="exceptionHandling.html">4. Exception Handling </A>
+<UL>
+<LI><A NAME="tex2html17"
+ href="standardExceptions.html">4.1 Standard Exceptions </A>
+<LI><A NAME="tex2html18"
+ HREF="node14.html">4.2 Deprecation of String Exceptions</A>
+</UL>
+<LI><A NAME="tex2html19"
+ href="utilities.html">5. Utilities </A>
+<UL>
+<LI><A NAME="tex2html20"
+ href="os.html">5.1 OS Utilities </A>
+<LI><A NAME="tex2html21"
+ href="processControl.html">5.2 Process Control </A>
+<LI><A NAME="tex2html22"
+ href="importing.html">5.3 Importing Modules </A>
+</UL>
+<LI><A NAME="tex2html23"
+ href="abstract.html">6. Abstract Objects Layer </A>
+<UL>
+<LI><A NAME="tex2html24"
+ href="object.html">6.1 Object Protocol </A>
+<LI><A NAME="tex2html25"
+ href="number.html">6.2 Number Protocol </A>
+<LI><A NAME="tex2html26"
+ href="sequence.html">6.3 Sequence Protocol </A>
+<LI><A NAME="tex2html27"
+ href="mapping.html">6.4 Mapping Protocol </A>
+</UL>
+<LI><A NAME="tex2html28"
+ href="concrete.html">7. Concrete Objects Layer </A>
+<UL>
+<LI><A NAME="tex2html29"
+ href="fundamental.html">7.1 Fundamental Objects </A>
+<LI><A NAME="tex2html30"
+ href="sequenceObjects.html">7.2 Sequence Objects </A>
+<LI><A NAME="tex2html31"
+ href="mapObjects.html">7.3 Mapping Objects </A>
+<LI><A NAME="tex2html32"
+ href="numericObjects.html">7.4 Numeric Objects </A>
+<LI><A NAME="tex2html33"
+ href="otherObjects.html">7.5 Other Objects </A>
+</UL>
+<LI><A NAME="tex2html34"
+ href="initialization.html">8. Initialization, Finalization, and Threads
+         </A>
+<UL>
+<LI><A NAME="tex2html35"
+ href="threads.html">8.1 Thread State and the Global Interpreter Lock
+         </A>
+</UL>
+<LI><A NAME="tex2html36"
+ href="memory.html">9. Memory Management </A>
+<UL>
+<LI><A NAME="tex2html37"
+ href="memoryOverview.html">9.1 Overview </A>
+<LI><A NAME="tex2html38"
+ href="memoryInterface.html">9.2 Memory Interface </A>
+<LI><A NAME="tex2html39"
+ href="memoryExamples.html">9.3 Examples </A>
+</UL>
+<LI><A NAME="tex2html40"
+ href="newTypes.html">10. Defining New Object Types </A>
+<UL>
+<LI><A NAME="tex2html41"
+ href="common-structs.html">10.1 Common Object Structures </A>
+<LI><A NAME="tex2html42"
+ href="mapping-structs.html">10.2 Mapping Object Structures </A>
+<LI><A NAME="tex2html43"
+ href="number-structs.html">10.3 Number Object Structures </A>
+<LI><A NAME="tex2html44"
+ href="sequence-structs.html">10.4 Sequence Object Structures </A>
+<LI><A NAME="tex2html45"
+ href="buffer-structs.html">10.5 Buffer Object Structures </A>
+</UL>
+<LI><A NAME="tex2html46"
+ href="genindex.html">Index</A>
+<LI><A NAME="tex2html47"
+ href="about.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

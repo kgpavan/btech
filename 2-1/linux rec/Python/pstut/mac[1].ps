@@ -1,0 +1,530 @@
+%!PS-Adobe-1.0
+%%Pages: (atend)
+%%EndComments
+%%BeginProlog
+% This copyright applies to everything between here and the %%EndProlog:
+% Copyright (C) 1997 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
+mark
+/currentglobal { false }
+/setglobal { pop }
+/packedarray { array astore readonly }
+/setcmykcolor {
+1 exch sub
+4 -1 roll 1 exch sub 1 index mul
+4 -1 roll 1 exch sub 2 index mul
+4 -2 roll exch 1 exch sub mul
+setrgbcolor
+}
+/sethalftonephase { pop pop }
+/setpagedevice {
+statusdict /pageparams get exec
+4 index /PageSize .knownget { aload pop 6 -2 roll pop pop 4 2 roll } if
+4 index /Orientation .knownget { 3 -1 roll pop exch } if
+statusdict /setpageparams get exec
+/PageOffset .knownget { aload pop translate } if
+}
+/setoverprint { pop }
+/setstrokeadjust { pop }
+/.copydict { dup 3 -1 roll { put dup } forall pop }
+/.dicttomark {
+counttomark 2 idiv dup dict begin { def } repeat pop currentdict end
+}
+/.knownget { 2 copy known { get true } { pop pop false } ifelse }
+/.setdefaultscreen { }
+counttomark 2 idiv {
+1 index where { pop pop pop } { bind executeonly def } ifelse
+} repeat pop
+currentglobal true setglobal
+systemdict /pdfmark known not
+{ userdict /pdfmark { cleartomark } bind put } if
+userdict /GS_PDF_ProcSet 127 dict dup begin
+/bdef { bind def } bind def
+/numargsdict 100 dict def
+/!		
+{ //numargsdict 3 index 3 -1 roll put def
+} bdef
+/~		
+{ exch cvx 1 packedarray cvx exch !
+} bdef
+/nodict 1 dict def
+nodict /self { //nodict } executeonly put
+nodict readonly pop
+/beginpage
+{ //nodict 20 dict .copydict begin graphicsbeginpage textbeginpage
+} bdef
+/endpage
+{ showpage end
+} bdef
+/graphicsbeginpage { initgraphics  0 g  0 G } bdef
+/gput		
+{ exch currentdict //nodict eq { /self dup load end 5 dict begin def } if
+currentdict length currentdict maxlength ge 
+{ currentdict dup length 3 mul 2 idiv 1 add dict .copydict end begin 
+}
+if def
+} bdef
+/q_
+{ gsave //nodict begin
+} bdef
+/q /q_ load 0 !
+/Q_
+{ currentdict /self .knownget { exec //nodict eq { end grestore } if } if
+} bdef
+/Q /Q_ load 0 !
+/d /setdash 2 ~
+/i /setflat 1 ~
+/j /setlinejoin 1 ~
+/J /setlinecap 1 ~
+/M /setmiterlimit 1 ~
+/w /setlinewidth 1 ~
+/fcput		
+{ /FillColorSpace gput /FillColor gput
+} bdef
+/scput		
+{ /StrokeColorSpace gput /StrokeColor gput
+} bdef
+/csdevgray [/DeviceGray] readonly def
+/csdevrgb [/DeviceRGB] readonly def
+/csdevcmyk [/DeviceCMYK] readonly def
+/cslabinit mark
+/DecodeABC [{16 add 116 div} bind {500 div} bind {200 div} bind]
+/MatrixABC [1 1 1 1 0 0 0 0 -1]
+/DecodeLMN [
+{dup 6 29 div ge {dup dup mul mul} {4 29 div sub 108 841 div mul} ifelse
+0.9505 mul} bind
+{dup 6 29 div ge {dup dup mul mul} {4 29 div sub 108 841 div mul} ifelse
+} bind
+{dup 6 29 div ge {dup dup mul mul} {4 29 div sub 108 841 div mul} ifelse
+1.0890 mul} bind
+]
+.dicttomark readonly def
+/nullpattern1 mark
+/PatternType 1 /PaintType 1 /TilingType 3 /BBox [0 0 0 0]
+/XStep 1 /YStep 1 /PaintProc { }
+.dicttomark readonly def
+/nullpattern2 nullpattern1 dup length dict copy readonly def
+/CSdict 11 dict dup begin
+/DeviceGray { 0 exch } bdef
+/DeviceRGB { [0 0 0] cvx exch } bdef
+/DeviceCMYK { [0 0 0 1] cvx exch } bdef
+/Indexed
+{ dup 1 get csset exch pop
+dup 2 index 1 get eq
+{ pop }
+{ exch 4 array copy dup 1 4 -1 roll put }
+ifelse 0 exch
+} bdef
+/CalGray
+{ systemdict /setcolorrendering known
+{ 1 get dup /Gamma .knownget
+{ dup length 1 add dict .copydict
+dup /DecodeA 4 -1 roll /exp load 2 packedarray cvx put
+}
+if /CIEBasedA exch 2 array astore 0 exch
+}
+{ pop //csdevgray csset
+}
+ifelse
+} bdef
+/CalRGB
+{ systemdict /setcolorrendering known
+{ 1 get dup /Gamma known 1 index /Matrix known or
+{ dup length 2 add dict .copydict
+dup /Matrix .knownget { 1 index /MatrixABC 3 -1 roll put } if
+dup /Gamma .knownget
+{ [ exch { /exp load 2 packedarray cvx } forall
+] 1 index /DecodeABC 3 -1 roll put
+}
+if
+}
+if /CIEBasedABC exch 2 array astore [0 0 0] cvx exch
+}
+{ pop //csdevrgb csset
+}
+ifelse
+} bdef
+/CalCMYK { pop //csdevcmyk csset } bdef	
+/Lab
+{ systemdict /setcolorrendering known
+{ 1 get dup length 3 add dict .copydict
+dup /Range .knownget not { [-100 100 -100 100] } if
+[-100 0 null null null null] dup 2 4 -1 roll putinterval
+1 index /RangeABC 3 -1 roll put
+//cslabinit exch copy
+/CIEBasedABC exch 2 array astore [0 0 0] cvx exch
+}
+{ (****** Lab color space not supported. ******\n) print flush
+/setcolorspace cvx /undefined signalerror
+}
+ifelse
+} bdef
+/Pattern
+{ //nullpattern1 1 index type /nametype ne
+{ 1 index length 0 ne { pop //nullpattern2 } if
+} if
+matrix makepattern exch
+} bdef
+/Separation { 1 exch } bdef
+end def
+/csset			
+{ dup dup type /nametype ne { 0 get } if //CSdict exch get exec
+} bdef
+/g { //csdevgray fcput } 1 !
+/G { //csdevgray scput } 1 !
+/rg { 3 array astore cvx //csdevrgb fcput } 3 !
+/RG { 3 array astore cvx //csdevrgb scput } 3 !
+/k { 4 array astore cvx //csdevcmyk fcput } 4 !
+/K { 4 array astore cvx //csdevcmyk scput } 4 !
+/cs { csset fcput } 1 !
+/CS { csset scput } 1 !
+/sc1 { /FillColor gput } 1 !
+/SC1 { /StrokeColor gput } 1 !
+/sc2 { /FillColor gput } 2 !
+/SC2 { /StrokeColor gput } 2 !
+/sc3 { /FillColor load astore pop } 3 !
+/SC3 { /StrokeColor load astore pop } 3 !
+/sc4 { /FillColor load astore pop } 4 !
+/SC4 { /StrokeColor load astore pop } 4 !
+/sc5 { /FillColor gput } 5 !
+/SC5 { /StrokeColor gput } 5 !
+/setfillcolor { FillColor FillColorSpace setgcolor } def
+/setstrokecolor { StrokeColor StrokeColorSpace setgcolor } def
+/CIdict mark			
+/DeviceGray 1   /DeviceRGB 3   /DeviceCMYK 4
+/CIEBaseA 1   /CIEBaseABC 3   /CIEBasedDEF 3   /CIEBaseDEFG 4
+.dicttomark def
+/Cdict 11 dict dup begin	
+/DeviceGray { pop setgray } bdef
+/DeviceRGB { pop setrgbcolor } bdef
+/DeviceCMYK { pop setcmykcolor } bdef
+/CIEBasedA
+{ dup currentcolorspace eq { pop } { setcolorspace } ifelse setcolor } bdef
+/CIEBasedABC /CIEBasedA load def
+/CIEBasedDEF /CIEBasedA load def
+/CIEBasedDEFG /CIEBasedA load def
+/Indexed /setcolorspace where
+{ pop /CIEBasedA load }
+{ /setindexedcolor cvx }
+ifelse def
+/Pattern
+{ dup currentcolorspace eq { pop } { setcolorspace } ifelse
+dup /Matrix get makepattern setcolor
+} bdef
+/Separation /CIEBasedA load def
+end def
+/setindexedcolor		
+{ mark 3 -1 roll
+2 index 3 get	
+dup type /stringtype eq
+{ //CIdict 4 index 1 get 0 get get		
+dup 4 -1 roll mul exch getinterval { 255 div } forall
+}
+{ exec
+}
+ifelse
+counttomark 2 add -2 roll pop
+1 get setgcolor
+} bdef
+/setgcolor	
+{ 1 index null eq
+{ pop pop }
+{ dup 0 get //Cdict exch get exec }
+ifelse
+} bdef
+/fsexec		
+{		
+{ currentpoint } stopped
+{ $error /newerror false put   cvx exec }
+{ 3 -1 roll cvx exec moveto }
+ifelse
+} bdef
+/cmmatrix matrix def
+/cm { //cmmatrix astore concat } 6 !
+/m /moveto 2 ~
+/l /lineto 2 ~
+/c /curveto 6 ~
+/h /closepath 0 ~
+/v { currentpoint 6 2 roll curveto } 4 !
+/y { 2 copy curveto } 4 !
+/re
+{ 4 2 roll moveto  exch dup 0 rlineto  0 3 -1 roll rlineto  neg 0 rlineto
+closepath
+} 4 !
+/S_ { setstrokecolor /stroke fsexec } bdef
+/S { S_ } 0 !
+/f { setfillcolor /fill fsexec } 0 !
+/f* { setfillcolor /eofill fsexec } 0 !
+/n_ { newpath } bdef		
+/n { n_ } 0 !
+/s { closepath S_ } 0 !
+/B_ { gsave setfillcolor fill grestore S_ } bdef
+/B /B_ load 0 !
+/b { closepath B_ } 0 !
+/B*_ { gsave setfillcolor eofill grestore S_ } bdef
+/B* /B*_ load 0 !
+/b* { closepath B*_ } 0 !
+/Wdict 4 dict dup begin
+/S_ { gsave setstrokecolor stroke grestore n_ } bdef
+/f { gsave setfillcolor fill grestore n_ } 0 !
+/f* { gsave setfillcolor eofill grestore n_ } 0 !
+/n_ { end clip newpath } bdef
+end readonly def
+/W { //Wdict begin } 0 !
+/W*dict 4 dict dup begin
+/S_ { gsave setstrokecolor stroke grestore n_ } bdef
+/f { gsave setfillcolor fill grestore n_ } 0 !
+/f* { gsave setfillcolor eofill grestore n_ } 0 !
+/n_ { end eoclip newpath } bdef
+end readonly def
+/W* { //W*dict begin } 0 !
+/Is		
+{ dup /DataSource get string /readstring cvx /currentfile cvx
+3 index /FilterProc .knownget
+{ dup dup 0 get /ASCIIHexDecode eq exch length 2 eq and
+{ pop exch pop /readhexstring cvx exch }
+{ exch exec exch exec }
+ifelse
+}
+if 3 1 roll /pop cvx 4 packedarray cvx
+} bdef
+/EI { } def	
+/csimage
+{ /setcolorspace where
+{ pop dup /ColorSpace get csset setcolorspace pop image }
+{ .colorspaceimage }
+ifelse
+} def		
+/ID	
+{ Is dup 3 -1 roll dup /ImageMask get
+{ setfillcolor dup /Interpolate .knownget not { false } if
+{ dup /DataSource 4 -1 roll put /imagemask cvx exec
+}
+{  { /Width /Height /Decode /ImageMatrix }
+{ 1 index exch get exch }
+forall pop exch 0 get 0 ne exch
+5 -1 roll imagemask
+}
+ifelse
+}
+{ dup /ColorSpace get /DeviceGray eq
+1 index /BitsPerComponent get 8 le and
+1 index /Decode get dup 1 get 1 eq exch 0 get 0 eq and and
+1 index /Interpolate .knownget not { false } if not and
+{  { /Width /Height /BitsPerComponent /ImageMatrix }
+{ 1 index exch get exch }
+forall pop 5 -1 roll image
+}
+{ dup /DataSource 4 -1 roll put csimage
+}
+ifelse
+}
+ifelse
+dup type /filetype ne		
+{ dup 2 get /readhexstring eq
+{  { dup 0 get exec read pop (>) 0 get eq { exit } if } loop
+}
+if pop
+}
+{ pop
+}
+ifelse EI
+} 1 !
+/IDx	
+{ Is 1 index /DataSource 3 -1 roll put
+csimage EI
+} 1 !
+/textbeginpage
+{ /TextSpacing 0 def		
+/TextLeading 0 def		
+/TextRenderingMode 0 def	
+/TextRise 0 def		
+/WordSpacing 0 def		
+/TextHScaling 1.0 def	
+/TextFont null def
+/Show { showfirst } def
+} bdef
+/settextmatrix
+{ TextMatrix concat
+TextHScaling 1 ne { TextHScaling 1 scale } if
+TextRise 0 ne { 0 TextRise translate } if
+} bdef
+/settextstate { TextSaveMatrix setmatrix settextmatrix } bdef
+/BT
+{ currentdict /TextMatrix .knownget
+{ identmatrix pop }
+{ matrix /TextMatrix gput }
+ifelse
+currentdict /TextOrigin .knownget
+{ dup 0 0 put 1 0 put }
+{ [0 0] cvx /TextOrigin gput }
+ifelse
+{ showfirst } /Show gput
+currentdict /TextSaveMatrix .knownget not
+{ matrix dup /TextSaveMatrix gput }
+if currentmatrix pop settextmatrix 0 0 moveto
+TextFont dup null eq { pop } { setfont } ifelse
+} bind 0 !
+/ET
+{ TextSaveMatrix setmatrix
+} bind 0 !
+/Tc_ { /TextSpacing gput { showfirst } /Show gput } bdef
+/Tc { Tc_ } 1 !
+/TL { /TextLeading gput } bind 1 !
+/Tr { /TextRenderingMode gput { showfirst } /Show gput } bind 1 !
+/Ts { /TextRise gput settextstate } bind 1 !
+/Tw_ { /WordSpacing gput { showfirst } /Show gput } bdef
+/Tw { Tw_ } 1 !
+/Tz { 100 div /TextHScaling gput settextstate } bind 1 !
+/Tf		
+{ dup 1 eq { pop } { scalefont } ifelse
+dup setfont /TextFont gput
+} 2 !
+/FRD		
+{ /FontSetInit /ProcSet findresource begin ReadData
+} 2 !
+/.copyfontdict		
+{ 1 index /FID known
+1 index { 2 index /UniqueID known or 2 index /XUID known or } if
+{		
+exch dup length 1 add dict exch
+{		
+1 index /FID eq 4 index
+{ 2 index /UniqueID eq or 2 index /XUID eq or }
+if not { 3 copy put } if pop pop
+}
+forall exch
+}
+if pop
+} bdef
+/.updatefont		
+{ 2 index 4 1 roll
+dup null ne
+{ 3 -1 roll true .copyfontdict dup /Metrics 4 -1 roll put exch }
+{ pop }
+ifelse
+dup null ne 1 index 3 index /Encoding get ne and
+{ exch false .copyfontdict dup /Encoding 4 -1 roll put }
+{ pop }
+ifelse exch 1 index ne
+} bdef
+/Td_
+{ TextOrigin exch 4 -1 roll add 3 1 roll add
+2 copy /TextOrigin load astore pop moveto
+} bdef
+/Td { Td_ } 2 !
+/TD { dup neg /TextLeading gput Td_ } 2 !
+/T*_ { 0 TextLeading neg Td_ } bdef
+/T* { T*_ } 0 !
+/Tm
+{ TextMatrix astore pop settextstate
+0 0 /TextOrigin load astore pop
+0 0 moveto
+} 6 !
+/textrenderingprocs [		
+{ tf } { tS } { tB } { tn }
+4 copy
+] readonly def
+/setshowstate
+{ WordSpacing 0 eq TextSpacing 0 eq and
+{ TextRenderingMode 0 eq
+{ { setfillcolor show } }
+{ { false charpath textrenderingprocs TextRenderingMode get exec } }
+ifelse
+}
+{ TextRenderingMode 0 eq
+{ WordSpacing 0 eq
+{ { setfillcolor TextSpacing exch 0 exch ashow } }
+{ TextSpacing 0 eq
+{ { setfillcolor WordSpacing exch 0 exch 32 exch widthshow } }
+{ { setfillcolor WordSpacing exch TextSpacing exch 0 32 4 2 roll 0 exch awidthshow } }
+ifelse
+}
+ifelse
+}
+{ { WordSpacing TextSpacing 2 index
+0 1 2 index length 1 sub
+{ 2 copy 1 getinterval false charpath
+4 copy get 32 eq { add } { exch pop } ifelse 0 rmoveto
+pop
+}
+for pop pop pop pop
+textrenderingprocs TextRenderingMode get exec
+}
+}
+ifelse
+}
+ifelse /Show gput
+} bdef
+/showfirst { setshowstate Show } def
+/Tj { Show } 1 !
+/' { T*_ Show } 1 !
+/" { exch Tc_ exch Tw_ T*_ Show } 3 !
+/TJ
+{ counttomark -1 1
+{ -1 roll dup type /stringtype eq
+{ Show
+}
+{ -1000 div
+currentfont /ScaleMatrix .knownget { 0 get mul } if
+0 rmoveto
+}
+ifelse
+}
+for pop
+} ([) cvn !
+/tf { setfillcolor currentpoint fill moveto } bdef
+/tn { currentpoint newpath moveto } bdef
+/Tmatrix matrix def
+/tS
+{ setstrokecolor
+currentpoint //Tmatrix currentmatrix TextSaveMatrix setmatrix stroke
+setmatrix moveto
+} bdef
+/tB { gsave tf grestore tS } bdef
+end readonly put		
+setglobal
+%%EndProlog
+[ /Title (1 Introduction) /OUT pdfmark
+[ /Title (2 mac --- Implementations for the os module) /OUT pdfmark
+[ /Title (3 macpath --- MacOS path manipulation functions) /OUT pdfmark
+[ /Count -1 /Title (4 ctb --- Interface to the Communications Tool Box) /OUT pdfmark
+[ /Title (4.1 Connection Objects ) /OUT pdfmark
+[ /Count -2 /Title (5 macconsole --- Think C's console package) /OUT pdfmark
+[ /Title (5.1 macconsole options object) /OUT pdfmark
+[ /Title (5.2 console window object) /OUT pdfmark
+[ /Count -1 /Title (6 macdnr --- Interface to the Macintosh Domain Name Resolver) /OUT pdfmark
+[ /Title (6.1 DNR Result Objects ) /OUT pdfmark
+[ /Count -3 /Title (7 macfs --- Various file system services) /OUT pdfmark
+[ /Title (7.1 FSSpec objects ) /OUT pdfmark
+[ /Title (7.2 Alias Objects ) /OUT pdfmark
+[ /Title (7.3 FInfo Objects ) /OUT pdfmark
+[ /Count -1 /Title (8 ic --- Access to Internet Config) /OUT pdfmark
+[ /Title (8.1 IC Objects) /OUT pdfmark
+[ /Title (9 MacOS --- Access to MacOS interpreter features) /OUT pdfmark
+[ /Title (10 macostools --- Convenience routines for file manipulation) /OUT pdfmark
+[ /Title (11 findertools --- The finder's Apple Events interface) /OUT pdfmark
+[ /Count -3 /Title (12 mactcp --- The MacTCP interfaces) /OUT pdfmark
+[ /Title (12.1 TCP Stream Objects) /OUT pdfmark
+[ /Title (12.2 TCP Status Objects) /OUT pdfmark
+[ /Title (12.3 UDP Stream Objects) /OUT pdfmark
+[ /Count -2 /Title (13 macspeech --- Interface to the Macintosh Speech Manager) /OUT pdfmark
+[ /Title (13.1 Voice Objects) /OUT pdfmark
+[ /Title (13.2 Speech Channel Objects) /OUT pdfmark
+[ /Title (14 EasyDialogs --- Basic Macintosh dialogs) /OUT pdfmark
+[ /Count -5 /Title (15 FrameWork --- Interactive application framework) /OUT pdfmark
+[ /Title (15.1 Application Objects ) /OUT pdfmark
+[ /Title (15.2 Window Objects ) /OUT pdfmark
+[ /Title (15.3 ControlsWindow Object ) /OUT pdfmark
+[ /Title (15.4 ScrolledWindow Object ) /OUT pdfmark
+[ /Title (15.5 DialogWindow Objects ) /OUT pdfmark
+[ /Count -1 /Title (16 MiniAEFrame --- Open Scripting Architecture server support) /OUT pdfmark
+[ /Title (16.1 AEServer Objects ) /OUT pdfmark
+[ /Title (Module Index) /OUT pdfmark
+[ /Title (Index) /OUT pdfmark
+%%Page: 1 1
+GS_PDF_ProcSet begin
+mark /PageOffset [0
+0]
+/PageSize [612
+792]
+.dicttomark userdict /_48 2 index put setpagedevice

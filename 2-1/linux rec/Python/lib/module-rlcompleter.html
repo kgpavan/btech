@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.14 rlcompleter -- Completion function for readline</title>
+<META NAME="description" CONTENT="7.14 rlcompleter -- Completion function for readline">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-gzip.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="completer-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="completer-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="someos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-gzip.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="completer-objects.html">7.14.1 Completer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="someos.html">7. Optional Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-gzip.html">7.13 gzip  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091400000000000000000">
+7.14 <tt class="module">rlcompleter</tt> --
+         Completion function for readline</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">rlcompleter</tt> module defines a completion function for
+the <tt class="module">readline</tt> module by completing valid Python identifiers and
+keyword.
+
+<P>
+The <tt class="module">rlcompleter</tt> module defines the <tt class="class">Completer</tt> class.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import rlcompleter
+&gt;&gt;&gt; import readline
+&gt;&gt;&gt; readline.parse_and_bind("tab: complete")
+&gt;&gt;&gt; readline. &lt;TAB PRESSED&gt;
+readline.__doc__          readline.get_line_buffer  readline.read_init_file
+readline.__file__         readline.insert_text      readline.set_completer
+readline.__name__         readline.parse_and_bind
+&gt;&gt;&gt; readline.
+</pre></dl>
+
+<P>
+The <tt class="module">rlcompleter</tt> module is designed for use with Python's
+interactive mode.  A user can add the following lines to his or her
+initialization file (identified by the <span class='envvar'><a name='l2h-1498'>$PYTHONSTARTUP</a></span>
+environment variable) to get automatic <kbd>Tab</kbd> completion:
+
+<P>
+<dl><dd><pre class="verbatim">
+try:
+    import readline
+except ImportError:
+    print "Module readline not available."
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html2551"
+ href="completer-objects.html">7.14.1 Completer Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="completer-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="someos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-gzip.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="completer-objects.html">7.14.1 Completer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="someos.html">7. Optional Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-gzip.html">7.13 gzip  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

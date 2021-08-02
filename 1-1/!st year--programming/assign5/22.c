@@ -1,0 +1,95 @@
+#include<stdio.h>
+main()
+{
+	int n,i,j,t,count=0;
+	scanf("%d",&n);
+	int c,d;
+	scanf("%d",&c);
+	int a[c][3];
+	for(i=0;i<c;i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			scanf("%d",&a[i][j]);
+		}
+	}
+	scanf("%d",&d);
+	int b[d][3];
+	for(i=0;i<d;i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			scanf("%d",&b[i][j]);
+		}
+	}
+	int q[c*d][3];
+	for(i=0;i<(c*d);i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			q[i][j]=0;
+		}
+	}
+for(i=0;i<c;i++)
+{
+	for(j=0;j<d;j++)
+	{
+		if(a[i][1]==b[j][0])
+		{
+			q[count][0]=a[i][0];
+			q[count][1]=b[j][1];
+			q[count][2]=(q[i][2]+(a[i][2]*b[j][2]));
+			count++;
+		}
+	}
+}
+for(i=count-1;i>0;i--)
+{
+	for(j=0;j<i;j++)
+	{
+		if(q[j][0]>q[j+1][0])
+		{
+			t=q[j][0];q[j][0]=q[j+1][0];q[j+1][0]=t;
+			t=q[j][1];q[j][1]=q[j+1][1];q[j+1][1]=t;
+			t=q[j][2];q[j][2]=q[j+1][2];q[j+1][2]=t;
+		}
+		else if(q[j][0]==q[j+1][0]&&q[j][1]>q[j+1][1])
+		{
+			t=q[j][0];q[j][0]=q[j+1][0];q[j+1][0]=t;
+			t=q[j][1];q[j][1]=q[j+1][1];q[j+1][1]=t;
+			t=q[j][2];q[j][2]=q[j+1][2];q[j+1][2]=t;
+		}
+	}
+}
+int flag=0;
+for(i=0;i<(count-1);i++)
+{
+	if(q[i][0]==q[i+1][0]&&q[i][1]==q[i+1][1])
+	{
+		q[flag][0]=q[i][0];
+		q[flag][1]=q[i][1];
+		q[flag][2]=q[i][2]+q[i+1][2];
+		flag++;
+	j=i+1;
+	while(j<(count-1))
+	{
+		q[j][0]=q[j+1][0];
+		q[j][1]=q[j+1][1];
+		q[j][2]=q[j+1][2];
+	        j++;
+	}
+	count--;
+	}
+	else
+	{
+		q[flag][0]=q[i][0];
+		q[flag][1]=q[i][1];
+		q[flag][2]=q[i][2];
+		flag++;
+	}
+}
+		for(i=0;i<count;i++)
+{
+	printf("%d %d %d\n",q[i][0],q[i][1],q[i][2]);
+}
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.18 popen2 -- Subprocesses with accessible I/O streams</title>
+<META NAME="description" CONTENT="8.18 popen2 -- Subprocesses with accessible I/O streams">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-commands.html">
+<LINK REL="previous" href="module-syslog.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="popen3-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="popen3-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-syslog.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="popen3-objects.html">8.18.1 Popen3 Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-syslog.html">8.17 syslog  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101800000000000000000">
+8.18 <tt class="module">popen2</tt> --
+         Subprocesses with accessible I/O streams</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Unix</span>.</p>
+
+<P>
+This module allows you to spawn processes and connect their 
+input/output/error pipes and obtain their return codes under Unix.
+Similar functionality exists for Windows platforms using the
+<tt class="module">win32pipe</tt> module provided as part of Mark Hammond's Windows
+extensions.
+
+<P>
+The primary interface offered by this module is a pair of factory
+functions:
+
+<P>
+<dl><dt><b><a name='l2h-1621'><tt class='function'>popen2</tt></a></b> (<var>cmd</var><big>[</big><var>, bufsize</var><big>]</big>)
+<dd>
+Executes <var>cmd</var> as a sub-process.  If <var>bufsize</var> is specified, 
+it specifies the buffer size for the I/O pipes.  Returns the file
+objects <code>(<var>child_stdout</var>, <var>child_stdin</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1622'><tt class='function'>popen3</tt></a></b> (<var>cmd</var><big>[</big><var>, bufsize</var><big>]</big>)
+<dd>
+Executes <var>cmd</var> as a sub-process.  If <var>bufsize</var> is specified, 
+it specifies the buffer size for the I/O pipes.  Returns the file
+objects <code>(<var>child_stdout</var>, <var>child_stdin</var>,
+<var>child_stderr</var>)</code>.
+</dl>
+
+<P>
+The class defining the objects returned by the factory functions is
+also available:
+
+<P>
+<dl><dt><b><a name='l2h-1623'><tt class='class'>Popen3</tt></a></b> (<var>cmd</var><big>[</big><var>, capturestderr</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+This class represents a child process.  Normally, <tt class="class">Popen3</tt>
+instances are created using the factory functions described above.
+
+<P>
+If not using one off the helper functions to create <tt class="class">Popen3</tt>
+objects, the parameter <var>cmd</var> is the shell command to execute in a
+sub-process.  The <var>capturestderr</var> flag, if true, specifies that
+the object should capture standard error output of the child process.
+The default is false.  If the <var>bufsize</var> parameter is specified, it
+specifies the size of the I/O buffers to/from the child process.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html2871"
+ href="popen3-objects.html">8.18.1 Popen3 Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="popen3-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-syslog.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="popen3-objects.html">8.18.1 Popen3 Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-syslog.html">8.17 syslog  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

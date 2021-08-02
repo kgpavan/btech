@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13. macspeech -- Interface to the Macintosh Speech Manager</title>
+<META NAME="description" CONTENT="13. macspeech -- Interface to the Macintosh Speech Manager">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="next" href="module-EasyDialogs.html">
+<LINK REL="previous" href="module-mactcp.html">
+<LINK REL="up" href="contents.html">
+<LINK REL="next" href="voice-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="voice-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node25.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="voice-objects.html">13.1 Voice Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node25.html">12.3 UDP Stream Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021300000000000000000">
+13. <tt class="module">macspeech</tt> --
+         Interface to the Macintosh Speech Manager</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Macintosh</span>.</p>
+
+<P>
+This module provides an interface to the Macintosh Speech Manager,
+<a name='l2h-198'></a>
+allowing you to let the Macintosh utter phrases. You need a version of
+the Speech Manager extension (version 1 and 2 have been tested) in
+your <font class="file" face="sans-serif">Extensions</font> folder for this to work. The module does not
+provide full access to all features of the Speech Manager yet.  It may
+not be available in all Mac Python versions.
+
+<P>
+<dl><dt><b><a name='l2h-192'><tt class='function'>Available</tt></a></b> ()
+<dd>
+Test availability of the Speech Manager extension (and, on the
+PowerPC, the Speech Manager shared library). Return <code>0</code> or
+<code>1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-193'><tt class='function'>Version</tt></a></b> ()
+<dd>
+Return the (integer) version number of the Speech Manager.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-194'><tt class='function'>SpeakString</tt></a></b> (<var>str</var>)
+<dd>
+Utter the string <var>str</var> using the default voice,
+asynchronously. This aborts any speech that may still be active from
+prior <tt class="function">SpeakString()</tt> invocations.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-195'><tt class='function'>Busy</tt></a></b> ()
+<dd>
+Return the number of speech channels busy, system-wide.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-196'><tt class='function'>CountVoices</tt></a></b> ()
+<dd>
+Return the number of different voices available.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-197'><tt class='function'>GetIndVoice</tt></a></b> (<var>num</var>)
+<dd>
+Return a Voice object for voice number <var>num</var>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html393"
+ href="voice-objects.html">13.1 Voice Objects</A>
+<LI><A NAME="tex2html394"
+ href="speech-channel-objects.html">13.2 Speech Channel Objects</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="voice-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node25.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="voice-objects.html">13.1 Voice Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node25.html">12.3 UDP Stream Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.1 Identifiers (Names)</title>
+<META NAME="description" CONTENT="5.2.1 Identifiers (Names)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="atom-literals.html">
+<LINK REL="previous" href="atoms.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="atom-literals.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="atom-literals.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="atom-literals.html">5.2.2 Literals</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007210000000000000000"></A>
+<a name='l2h-251'></a>
+<BR>
+5.2.1 Identifiers (Names)
+</H2>
+
+<P>
+An identifier occurring as an atom is a reference to a local, global
+or built-in name binding.  If a name is assigned to anywhere in a code
+block (even in unreachable code), and is not mentioned in a
+<tt class="keyword">global</tt> statement in that code block, then it refers to a local
+name throughout that code block.  When it is not assigned to anywhere
+in the block, or when it is assigned to but also explicitly listed in
+a <tt class="keyword">global</tt> statement, it refers to a global name if one exists,
+else to a built-in name (and this binding may dynamically change).
+<a name='l2h-252'></a>
+
+<P>
+When the name is bound to an object, evaluation of the atom yields
+that object.  When a name is not bound, an attempt to evaluate it
+raises a <tt class="exception">NameError</tt> exception.
+<a name='l2h-253'></a>
+
+<P>
+<b>Private name mangling:</b>40
+<a name='l2h-254'></a>41
+<a name='l2h-255'></a>42
+when an identifier that textually occurs in a class definition begins
+with two or more underscore characters and does not end in two or more
+underscores, it is considered a <i class="dfn">private name</i> of that class.
+Private names are transformed to a longer form before code is
+generated for them.  The transformation inserts the class name in
+front of the name, with leading underscores removed, and a single
+underscore inserted in front of the class name.  For example, the
+identifier <code>__spam</code> occurring in a class named <code>Ham</code> will be
+transformed to <code>_Ham__spam</code>.  This transformation is independent
+of the syntactical context in which the identifier is used.  If the
+transformed name is extremely long (longer than 255 characters),
+implementation defined truncation may happen.  If the class name
+consists only of underscores, no transformation is done.
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="atom-literals.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="atoms.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="atom-literals.html">5.2.2 Literals</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="atoms.html">5.2 Atoms</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

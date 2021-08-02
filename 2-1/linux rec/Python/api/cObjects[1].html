@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.3 CObjects </title>
+<META NAME="description" CONTENT="7.5.3 CObjects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="previous" href="moduleObjects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="initialization.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="initialization.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="moduleObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="initialization.html">8. Initialization, Finalization, and</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="moduleObjects.html">7.5.2 Module Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009530000000000000000"></A>
+<BR>
+7.5.3 CObjects 
+</H2>
+
+<P>
+<a name='l2h-433'></a>
+Refer to <i>Extending and Embedding the Python Interpreter</i>,
+section 1.12 (``Providing a C API for an Extension Module''), for more 
+information on using these objects.
+
+<P>
+<dl><dt><b><tt class='ctype'><a name='l2h-427'>PyCObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents an opaque value, useful for
+C extension modules who need to pass an opaque value (as a
+<tt class="ctype">void*</tt> pointer) through Python code to other C code.  It is
+often used to make a C function pointer defined in one module
+available to other modules, so the regular import mechanism can be
+used to access C APIs defined in dynamically loaded modules.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-428'><tt class='cfunction'>PyCObject_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns true if its argument is a <tt class="ctype">PyCObject</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-429'><tt class='cfunction'>PyCObject_FromVoidPtr</tt></a></b> (<var>void* cobj, 
+	void (*destr)(void *)</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Creates a <tt class="ctype">PyCObject</tt> from the <code>void *</code> <var>cobj</var>.  The
+<var>destr</var> function will be called when the object is reclaimed, unless
+it is <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-430'><tt class='cfunction'>PyCObject_FromVoidPtrAndDesc</tt></a></b> (<var>void* cobj,
+	void* desc, void (*destr)(void *, void *) </var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Creates a <tt class="ctype">PyCObject</tt> from the <tt class="ctype">void *</tt><var>cobj</var>.  The
+<var>destr</var> function will be called when the object is reclaimed.  The
+<var>desc</var> argument can be used to pass extra callback data for the
+destructor function.
+</dl>
+
+<P>
+<dl><dt>void* <b><a name='l2h-431'><tt class='cfunction'>PyCObject_AsVoidPtr</tt></a></b> (<var>PyObject* self</var>)
+<dd>
+Returns the object <tt class="ctype">void *</tt> that the
+<tt class="ctype">PyCObject</tt> <var>self</var> was created with.
+</dl>
+
+<P>
+<dl><dt>void* <b><a name='l2h-432'><tt class='cfunction'>PyCObject_GetDesc</tt></a></b> (<var>PyObject* self</var>)
+<dd>
+Returns the description <tt class="ctype">void *</tt> that the
+<tt class="ctype">PyCObject</tt> <var>self</var> was created with.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="initialization.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="moduleObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="initialization.html">8. Initialization, Finalization, and</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="moduleObjects.html">7.5.2 Module Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.12.2 Window Objects </title>
+<META NAME="description" CONTENT="6.12.2 Window Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="curses-functions.html">
+<LINK REL="up" href="module-curses.html">
+<LINK REL="next" href="module-getopt.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-getopt.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="curses-functions.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-getopt.html">6.13 getopt  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="curses-functions.html">6.12.1 Constants and Functions</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081220000000000000000"></A>
+<BR>
+6.12.2 Window Objects 
+</H2>
+
+<P>
+Window objects, as returned by <tt class="function">initscr()</tt> and
+<tt class="function">newwin()</tt> above, have the
+following methods:
+
+<P>
+<dl><dt><b><a name='l2h-1087'><tt class='method'>refresh</tt></a></b> ()
+<dd>
+Update the display immediately (sync actual screen with previous
+drawing/deleting methods).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1088'><tt class='method'>nooutrefresh</tt></a></b> ()
+<dd>
+Mark for refresh but wait.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1089'><tt class='method'>mvwin</tt></a></b> (<var>new_y, new_x</var>)
+<dd>
+Move the window so its upper-left corner is at <code>(<var>new_y</var>, <var>new_x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1090'><tt class='method'>move</tt></a></b> (<var>new_y, new_x</var>)
+<dd>
+Move cursor to <code>(<var>new_y</var>, <var>new_x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1091'><tt class='method'>subwin</tt></a></b> (<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_y</var>)
+<dd>
+Return a sub-window, whose upper-left corner is at
+<code>(<var>begin_y</var>, <var>begin_x</var>)</code>, and whose width/height is
+<var>ncols</var>/<var>nlines</var>.
+
+<P>
+By default, the sub-window will extend from the
+specified position to the lower right corner of the window.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1092'><tt class='method'>addch</tt></a></b> (<big>[</big><var>y, x,</var><big>]</big><var> ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+<b>Note:</b> A <i>character</i> means a C character (i.e., an
+ASCII code), rather then a Python character (a string of length 1).
+(This note is true whenever the documentation mentions a character.)
+
+<P>
+Paint character <var>ch</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, overwriting any character previously painter at that
+location.  By default, the character position and attributes are the
+current settings for the window object.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1093'><tt class='method'>insch</tt></a></b> (<big>[</big><var>y, x,</var><big>]</big><var> ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Paint character <var>ch</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, moving the line from position <var>x</var> right by one
+character.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1094'><tt class='method'>delch</tt></a></b> (<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Delete any character at <code>(<var>y</var>, <var>x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1095'><tt class='method'>echochar</tt></a></b> (<var>ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Add character <var>ch</var> with attribute <var>attr</var>, and immediately 
+call <tt class="method">refresh</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1096'><tt class='method'>addstr</tt></a></b> (<big>[</big><var>y, x,</var><big>]</big><var> str</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Paint string <var>str</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, overwriting anything previously on the display.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1097'><tt class='method'>attron</tt></a></b> (<var>attr</var>)
+<dd>
+Turn on attribute <var>attr</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1098'><tt class='method'>attroff</tt></a></b> (<var>attr</var>)
+<dd>
+Turn off attribute <var>attr</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1099'><tt class='method'>setattr</tt></a></b> (<var>attr</var>)
+<dd>
+Set the current attributes to <var>attr</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1100'><tt class='method'>standend</tt></a></b> ()
+<dd>
+Turn off all attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1101'><tt class='method'>standout</tt></a></b> ()
+<dd>
+Turn on attribute <var>A_STANDOUT</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1102'><tt class='method'>border</tt></a></b> (<big>[</big><var>ls</var><big>[</big><var>, rs</var><big>[</big><var>, ts</var><big>[</big><var>,
+                           bs</var><big>[</big><var>, tl</var><big>[</big><var>, tr</var><big>[</big><var>,
+                           bl</var><big>[</big><var>, br</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Draw a border around the edges of the window. Each parameter specifies 
+the character to use for a specific part of the border; see the table
+below for more details.  The characters must be specified as integers;
+using one-character strings will cause <tt class="exception">TypeError</tt> to be
+raised.
+
+<P>
+<b>Note:</b> A <code>0</code> value for any parameter will cause the
+default character to be used for that parameter.  Keyword parameters
+can <i>not</i> be used.  The defaults are listed in this table:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr bgcolor='#99CCFF'>
+      <th align="left"><b>Parameter</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+      <th align="left"><b>Default value</b>&nbsp;</th>
+    </thead>
+  <tbody valign='baseline'>
+    <tr><td align="left" valign="baseline"><var>ls</var></td>
+        <td align="left">Left side</td>
+        <td align="left"><tt class="constant">ACS_VLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>rs</var></td>
+        <td align="left">Right side</td>
+        <td align="left"><tt class="constant">ACS_VLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>ts</var></td>
+        <td align="left">Top</td>
+        <td align="left"><tt class="constant">ACS_HLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>bs</var></td>
+        <td align="left">Bottom</td>
+        <td align="left"><tt class="constant">ACS_HLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>tl</var></td>
+        <td align="left">Upper-left corner</td>
+        <td align="left"><tt class="constant">ACS_ULCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>tr</var></td>
+        <td align="left">Upper-right corner</td>
+        <td align="left"><tt class="constant">ACS_URCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>bl</var></td>
+        <td align="left">Bottom-left corner</td>
+        <td align="left"><tt class="constant">ACS_BLCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>br</var></td>
+        <td align="left">Bottom-right corner</td>
+        <td align="left"><tt class="constant">ACS_BRCORNER</tt></td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1103'><tt class='method'>box</tt></a></b> (<big>[</big><var>vertch, horch</var><big>]</big>)
+<dd>
+Similar to <tt class="method">border()</tt>, but both <var>ls</var> and <var>rs</var> are
+<var>vertch</var> and both <var>ts</var> and bs are <var>horch</var>.  The default
+corner characters are always used by this function.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1104'><tt class='method'>hline</tt></a></b> (<big>[</big><var>y, x,</var><big>]</big><var> ch, n</var>)
+<dd>
+Display a horizontal line starting at <code>(<var>y</var>, <var>x</var>)</code> with
+length <var>n</var> consisting of the character <var>ch</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1105'><tt class='method'>vline</tt></a></b> (<big>[</big><var>y, x,</var><big>]</big><var> ch, n</var>)
+<dd>
+Display a vertical line starting at <code>(<var>y</var>, <var>x</var>)</code> with
+length <var>n</var> consisting of the character <var>ch</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1106'><tt class='method'>erase</tt></a></b> ()
+<dd>
+Clear the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1107'><tt class='method'>deletln</tt></a></b> ()
+<dd>
+Delete the line under the cursor. All following lines are moved up
+by 1 line.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1108'><tt class='method'>insertln</tt></a></b> ()
+<dd>
+Insert a blank line under the cursor. All following lines are moved
+down by 1 line.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1109'><tt class='method'>getyx</tt></a></b> ()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of current cursor position.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1110'><tt class='method'>getbegyx</tt></a></b> ()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of co-ordinates of upper-left
+corner.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1111'><tt class='method'>getmaxyx</tt></a></b> ()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of the height and width of
+the window.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1112'><tt class='method'>clear</tt></a></b> ()
+<dd>
+Like <tt class="method">erase()</tt>, but also causes the whole screen to be repainted
+upon next call to <tt class="method">refresh()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1113'><tt class='method'>clrtobot</tt></a></b> ()
+<dd>
+Erase from cursor to the end of the screen: all lines below the cursor
+are deleted, and then the equivalent of <tt class="method">clrtoeol()</tt> is performed.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1114'><tt class='method'>clrtoeol</tt></a></b> ()
+<dd>
+Erase from cursor to the end of the line.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1115'><tt class='method'>scroll</tt></a></b> (<big>[</big><var>lines<code> = 1</code></var><big>]</big>)
+<dd>
+Scroll the screen upward by <var>lines</var> lines.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1116'><tt class='method'>touchwin</tt></a></b> ()
+<dd>
+Pretend the whole window has been changed, for purposes of drawing
+optimizations.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1117'><tt class='method'>touchline</tt></a></b> (<var>start, count</var>)
+<dd>
+Pretend <var>count</var> lines have been changed, starting with line
+<var>start</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1118'><tt class='method'>getch</tt></a></b> (<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Get a character. Note that the integer returned does <i>not</i> have to
+be in ASCII range: function keys, keypad keys and so on return numbers
+higher then 256. In no-delay mode, an exception is raised if there is 
+no input.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1119'><tt class='method'>getstr</tt></a></b> (<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Read a string from the user, with primitive line editing capacity.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1120'><tt class='method'>inch</tt></a></b> (<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Return the character at the given position in the window. The bottom
+8 bits are the character proper, and upper bits are the attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1121'><tt class='method'>clearok</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, the next call to <tt class="method">refresh()</tt>
+will clear the screen completely.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1122'><tt class='method'>idlok</tt></a></b> (<var>yes</var>)
+<dd>
+If called with <var>yes</var> equal to 1, <tt class="module">curses</tt> will try and use
+hardware line editing facilities. Otherwise, line insertion/deletion
+are disabled.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1123'><tt class='method'>leaveok</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1,
+cursor is left where it is, instead of being at ``cursor position.''
+This reduces cursor movement where possible. If possible it will be made
+invisible.
+
+<P>
+If <var>yes</var> is 0, cursor will always be at
+``cursor position'' after an update.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1124'><tt class='method'>setscrreg</tt></a></b> (<var>top, bottom</var>)
+<dd>
+Set the scrolling region from line <var>top</var> to line <var>bottom</var>. All
+scrolling actions will take place in this region.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1125'><tt class='method'>keypad</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, escape sequences generated by some keys (keypad, 
+function keys) will be interpreted by <tt class="module">curses</tt>.
+
+<P>
+If <var>yes</var> is 0, escape sequences will be left as is in the input
+stream.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1126'><tt class='method'>nodelay</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, <tt class="method">getch()</tt> will be non-blocking.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1127'><tt class='method'>notimeout</tt></a></b> (<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, escape sequences will not be timed out.
+
+<P>
+If <var>yes</var> is 0, after a few milliseconds, an escape sequence will
+not be interpreted, and will be left in the input stream as is.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-getopt.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-curses.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="curses-functions.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-getopt.html">6.13 getopt  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-curses.html">6.12 curses  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="curses-functions.html">6.12.1 Constants and Functions</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

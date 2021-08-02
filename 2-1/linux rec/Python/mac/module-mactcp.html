@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12. mactcp -- The MacTCP interfaces</title>
+<META NAME="description" CONTENT="12. mactcp -- The MacTCP interfaces">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="next" href="module-macspeech.html">
+<LINK REL="previous" href="module-findertools.html">
+<LINK REL="up" href="contents.html">
+<LINK REL="next" HREF="node23.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node23.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-findertools.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node23.html">12.1 TCP Stream Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-findertools.html">11. findertools  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021200000000000000000">
+12. <tt class="module">mactcp</tt> --
+         The MacTCP interfaces</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Macintosh</span>.</p>
+
+<P>
+This module provides an interface to the Macintosh TCP/IP driver<<a name='l2h-162'></a> MacTCP. There is an accompanying module,
+<tt class='module'><a href='module-macdnr.html'>macdnr</a></tt><a name='l2h-163'></a>, which provides an interface
+to the name-server (allowing you to translate hostnames to IP
+addresses), a module <tt class="module">MACTCPconst</tt><a name='l2h-164'></a>
+which has symbolic names for constants constants used by MacTCP. Since
+the built-in module <tt class="module">socket</tt><a name='l2h-165'></a> is also
+available on the Macintosh it is usually easier to use sockets instead
+of the Macintosh-specific MacTCP API.
+
+<P>
+A complete description of the MacTCP interface can be found in the
+Apple MacTCP API documentation.
+
+<P>
+<dl><dt><b><a name='l2h-157'><tt class='function'>MTU</tt></a></b> ()
+<dd>
+Return the Maximum Transmit Unit (the packet size) of the network
+interface.<a name='l2h-166'></a>
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-158'><tt class='function'>IPAddr</tt></a></b> ()
+<dd>
+Return the 32-bit integer IP address of the network interface.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-159'><tt class='function'>NetMask</tt></a></b> ()
+<dd>
+Return the 32-bit integer network mask of the interface.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-160'><tt class='function'>TCPCreate</tt></a></b> (<var>size</var>)
+<dd>
+Create a TCP Stream object. <var>size</var> is the size of the receive
+buffer, <code>4096</code> is suggested by various sources.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-161'><tt class='function'>UDPCreate</tt></a></b> (<var>size, port</var>)
+<dd>
+Create a UDP Stream object. <var>size</var> is the size of the receive
+buffer (and, hence, the size of the biggest datagram you can receive
+on this port). <var>port</var> is the UDP port number you want to receive
+datagrams on, a value of zero will make MacTCP select a free port.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html344"
+ HREF="node23.html">12.1 TCP Stream Objects</A>
+<LI><A NAME="tex2html345"
+ HREF="node24.html">12.2 TCP Status Objects</A>
+<LI><A NAME="tex2html346"
+ HREF="node25.html">12.3 UDP Stream Objects</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node23.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-findertools.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node23.html">12.1 TCP Stream Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-findertools.html">11. findertools  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

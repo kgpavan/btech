@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.5 operator -- Standard operators as functions.</title>
+<META NAME="description" CONTENT="3.5 operator -- Standard operators as functions.">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-traceback.html">
+<LINK REL="previous" href="module-UserList.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-traceback.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-traceback.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-UserList.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-traceback.html">3.6 traceback  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-UserList.html">3.4 UserList  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005500000000000000000">
+3.5 <tt class="module">operator</tt> --
+         Standard operators as functions.</A>
+</H1>
+
+
+<P>
+
+<P>
+The <tt class="module">operator</tt> module exports a set of functions implemented in C
+corresponding to the intrinsic operators of Python.  For example,
+<code>operator.add(x, y)</code> is equivalent to the expression <code>x+y</code>.  The
+function names are those used for special class methods; variants without
+leading and trailing "<tt class="samp">__</tt>" are also provided for convenience.
+
+<P>
+The <tt class="module">operator</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-253'><tt class='function'>add</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__add__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>+</code> <var>b</var>, for <var>a</var> and <var>b</var> numbers.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-254'><tt class='function'>sub</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__sub__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>-</code> <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-255'><tt class='function'>mul</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__mul__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>*</code> <var>b</var>, for <var>a</var> and <var>b</var> numbers.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-256'><tt class='function'>div</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__div__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>/</code> <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-257'><tt class='function'>mod</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__mod__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>%</code> <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-258'><tt class='function'>neg</tt></a></b> (<var>o</var>)
+<dd>
+<dt><b><tt class='function'>__neg__</tt></b> (<var>o</var>)
+<dd>
+Return <var>o</var> negated.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-259'><tt class='function'>pos</tt></a></b> (<var>o</var>)
+<dd>
+<dt><b><tt class='function'>__pos__</tt></b> (<var>o</var>)
+<dd>
+Return <var>o</var> positive.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-260'><tt class='function'>abs</tt></a></b> (<var>o</var>)
+<dd>
+<dt><b><tt class='function'>__abs__</tt></b> (<var>o</var>)
+<dd>
+Return the absolute value of <var>o</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-261'><tt class='function'>inv</tt></a></b> (<var>o</var>)
+<dd>
+<dt><b><tt class='function'>__inv__</tt></b> (<var>o</var>)
+<dd>
+Return the inverse of <var>o</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-262'><tt class='function'>lshift</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__lshift__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> shifted left by <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-263'><tt class='function'>rshift</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__rshift__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> shifted right by <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-264'><tt class='function'>and_</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__and__</tt></b> (<var>a, b</var>)
+<dd>
+Return the bitwise and of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-265'><tt class='function'>or_</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__or__</tt></b> (<var>a, b</var>)
+<dd>
+Return the bitwise or of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-266'><tt class='function'>xor</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__xor__</tt></b> (<var>a, b</var>)
+<dd>
+Return the bitwise exclusive or of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-267'><tt class='function'>not_</tt></a></b> (<var>o</var>)
+<dd>
+<dt><b><tt class='function'>__not__</tt></b> (<var>o</var>)
+<dd>
+Return the outcome of <tt class="keyword">not</tt> <var>o</var>.  (Note that there is no
+<tt class="method">__not__()</tt> discipline for object instances; only the
+interpreter core defines this operation.)
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-268'><tt class='function'>truth</tt></a></b> (<var>o</var>)
+<dd>
+Return <code>1</code> if <var>o</var> is true, and 0 otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-269'><tt class='function'>concat</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__concat__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>+</code> <var>b</var> for <var>a</var> and <var>b</var> sequences.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-270'><tt class='function'>repeat</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__repeat__</tt></b> (<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>*</code> <var>b</var> where <var>a</var> is a sequence and
+<var>b</var> is an integer.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-271'><tt class='function'>contains</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>sequenceIncludes</tt></b> (<var>a, b</var>)
+<dd>
+Return the outcome of the test <var>b</var> <code>in</code> <var>a</var>.
+Note the reversed operands.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-272'><tt class='function'>countOf</tt></a></b> (<var>a, b</var>)
+<dd>
+Return the number of occurrences of <var>b</var> in <var>a</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-273'><tt class='function'>indexOf</tt></a></b> (<var>a, b</var>)
+<dd>
+Return the index of the first of occurrence of <var>b</var> in <var>a</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-274'><tt class='function'>getitem</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__getitem__</tt></b> (<var>a, b</var>)
+<dd>
+Return the value of <var>a</var> at index <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-275'><tt class='function'>setitem</tt></a></b> (<var>a, b, c</var>)
+<dd>
+<dt><b><tt class='function'>__setitem__</tt></b> (<var>a, b, c</var>)
+<dd>
+Set the value of <var>a</var> at index <var>b</var> to <var>c</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-276'><tt class='function'>delitem</tt></a></b> (<var>a, b</var>)
+<dd>
+<dt><b><tt class='function'>__delitem__</tt></b> (<var>a, b</var>)
+<dd>
+Remove the value of <var>a</var> at index <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-277'><tt class='function'>getslice</tt></a></b> (<var>a, b, c</var>)
+<dd>
+<dt><b><tt class='function'>__getslice__</tt></b> (<var>a, b, c</var>)
+<dd>
+Return the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-278'><tt class='function'>setslice</tt></a></b> (<var>a, b, c, v</var>)
+<dd>
+<dt><b><tt class='function'>__setslice__</tt></b> (<var>a, b, c, v</var>)
+<dd>
+Set the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code> to the
+sequence <var>v</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-279'><tt class='function'>delslice</tt></a></b> (<var>a, b, c</var>)
+<dd>
+<dt><b><tt class='function'>__delslice__</tt></b> (<var>a, b, c</var>)
+<dd>
+Delete the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code>.
+</dl>
+
+<P>
+Example: Build a dictionary that maps the ordinals from <code>0</code> to
+<code>256</code> to their character equivalents.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import operator
+&gt;&gt;&gt; d = {}
+&gt;&gt;&gt; keys = range(256)
+&gt;&gt;&gt; vals = map(chr, keys)
+&gt;&gt;&gt; map(operator.setitem, [d]*len(keys), keys, vals)
+</pre></dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-traceback.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-UserList.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-traceback.html">3.6 traceback  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-UserList.html">3.4 UserList  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

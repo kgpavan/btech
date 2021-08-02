@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3 Using DLLs in Practice </title>
+<META NAME="description" CONTENT="3.3 Using DLLs in Practice ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ext.css">
+<LINK REL="previous" href="dynamic-linking.html">
+<LINK REL="up" href="building-on-windows.html">
+<LINK REL="next" href="embedding.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="embedding.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="building-on-windows.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="dynamic-linking.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="embedding.html">4. Embedding Python in</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="building-on-windows.html">3. Building C and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="dynamic-linking.html">3.2 Differences Between Unix</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005300000000000000000"></A>
+<BR>
+3.3 Using DLLs in Practice 
+</H1>
+
+<P>
+Windows Python is built in Microsoft Visual C++; using other
+compilers may or may not work (though Borland seems to).  The rest of
+this section is MSVC++ specific.
+
+<P>
+When creating DLLs in Windows, you must pass <font class="file" face="sans-serif">python15.lib</font> to
+the linker.  To build two DLLs, spam and ni (which uses C functions
+found in spam), you could use these commands:
+
+<P>
+<dl><dd><pre class="verbatim">
+cl /LD /I/python/include spam.c ../libs/python15.lib
+cl /LD /I/python/include ni.c spam.lib ../libs/python15.lib
+</pre></dl>
+
+<P>
+The first command created three files: <font class="file" face="sans-serif">spam.obj</font>,
+<font class="file" face="sans-serif">spam.dll</font> and <font class="file" face="sans-serif">spam.lib</font>.  <font class="file" face="sans-serif">Spam.dll</font> does not contain
+any Python functions (such as <tt class="cfunction">PyArg_ParseTuple()</tt>), but it
+does know how to find the Python code thanks to <font class="file" face="sans-serif">python15.lib</font>.
+
+<P>
+The second command created <font class="file" face="sans-serif">ni.dll</font> (and <font class="file" face="sans-serif">.obj</font> and
+<font class="file" face="sans-serif">.lib</font>), which knows how to find the necessary functions from
+spam, and also from the Python executable.
+
+<P>
+Not every identifier is exported to the lookup table.  If you want any
+other modules (including Python) to be able to see your identifiers,
+you have to say "<tt class="samp">_declspec(dllexport)</tt>", as in "<tt class="samp">void
+_declspec(dllexport) initspam(void)</tt>" or "<tt class="samp">PyObject
+_declspec(dllexport) *NiGetSpamData(void)</tt>".
+
+<P>
+Developer Studio will throw in a lot of import libraries that you do
+not really need, adding about 100K to your executable.  To get rid of
+them, use the Project Settings dialog, Link tab, to specify
+<i>ignore default libraries</i>.  Add the correct
+<font class="file" face="sans-serif">msvcrt<var>xx</var>.lib</font> to the list of libraries.
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="embedding.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="building-on-windows.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="dynamic-linking.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="embedding.html">4. Embedding Python in</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="building-on-windows.html">3. Building C and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="dynamic-linking.html">3.2 Differences Between Unix</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

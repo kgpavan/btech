@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.3 UDP Stream Objects</title>
+<META NAME="description" CONTENT="12.3 UDP Stream Objects">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="previous" HREF="node24.html">
+<LINK REL="up" href="module-mactcp.html">
+<LINK REL="next" href="module-macspeech.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-macspeech.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-mactcp.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node24.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-macspeech.html">13. macspeech  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-mactcp.html">12. mactcp  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node24.html">12.2 TCP Status Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0021230000000000000000">
+12.3 UDP Stream Objects</A>
+</H2>
+
+<P>
+Note that, unlike the name suggests, there is nothing stream-like
+about UDP.
+
+<P>
+<dl><dt><b><a name='l2h-186'><tt class='member'>asr</tt></a></b>
+<dd>
+<a name='l2h-190'></a>
+The asynchronous service routine to be called on events such as
+datagram arrival without outstanding <code>Read</code> call. The <var>asr</var>
+has a single argument, the event code.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-187'><tt class='member'>port</tt></a></b>
+<dd>
+A read-only member giving the port number of this UDP Stream.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-188'><tt class='method'>Read</tt></a></b> (<var>timeout</var>)
+<dd>
+Read a datagram, waiting at most <var>timeout</var> seconds (-1 is
+infinite).  Return the data.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-189'><tt class='method'>Write</tt></a></b> (<var>host, port, buf</var>)
+<dd>
+Send <var>buf</var> as a datagram to IP-address <var>host</var>, port
+<var>port</var>.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-macspeech.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-mactcp.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node24.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-macspeech.html">13. macspeech  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-mactcp.html">12. mactcp  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node24.html">12.2 TCP Status Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

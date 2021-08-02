@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/extensions/activeqt/examples/multiple/multiple.doc:44 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Two simple Qt widgets (in-process)</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>Two simple Qt widgets (in-process)</h1>
+
+ 
+
+The ActiveX controls in this example are simple <a href="qwidget.html">QWidget</a>
+subclasses reimplementing the paintEvent() method.
+<p> It demonstrates the implementation of a <a href="qaxfactory.html">QAxFactory</a> to provide multiple
+ActiveX controls in a single in process ActiveX server, and the use of
+the <a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a> macro.
+<p> The first control draws a filled rectangle. The fill color is exposed
+as a property.
+
+
+<pre>    class QAxWidget1 : public <a href="qwidget.html">QWidget</a>
+    {
+        <a href="metaobjects.html#Q_OBJECT">Q_OBJECT</a>
+        Q_PROPERTY( QColor fillColor READ fillColor WRITE setFillColor )
+    public:
+        QAxWidget1( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0, WFlags f = 0 )
+            : <a href="qwidget.html">QWidget</a>( parent, name, f ), fill_color( red )
+        {
+        }
+
+        <a href="qcolor.html">QColor</a> fillColor() const
+        {
+            return fill_color;
+        }
+        void setFillColor( const <a href="qcolor.html">QColor</a> &amp;fc )
+        {
+            fill_color = fc;
+            repaint();
+        }
+
+    protected:
+        void paintEvent( <a href="qpaintevent.html">QPaintEvent</a> *e )
+        {
+            <a href="qpainter.html">QPainter</a> paint( this );
+            <a href="qrect.html">QRect</a> r = rect();
+    <a name="x2636"></a>        r.<a href="qrect.html#addCoords">addCoords</a>( 10, 10, -10, -10 );
+    <a name="x2635"></a>        paint.<a href="qpainter.html#fillRect">fillRect</a>( r, fill_color );
+        }
+
+    private:
+        <a href="qcolor.html">QColor</a> fill_color;
+    };
+</pre>
+<p> The second control draws a circle. The linewith is exposed as a property.
+
+
+<pre>    class QAxWidget2 : public <a href="qwidget.html">QWidget</a>
+    {
+        Q_OBJECT
+        Q_PROPERTY( int lineWidth READ lineWidth WRITE setLineWidth )
+    public:
+        QAxWidget2( <a href="qwidget.html">QWidget</a> *parent = 0, const char *name = 0, WFlags f = 0 )
+            : <a href="qwidget.html">QWidget</a>( parent, name, f ), line_width( 1 )
+        {
+        }
+
+        int lineWidth() const
+        {
+            return line_width;
+        }
+        void setLineWidth( int lw )
+        {
+            line_width = lw;
+            repaint();
+        }
+
+    protected:
+        void paintEvent( <a href="qpaintevent.html">QPaintEvent</a> *e )
+        {
+            <a href="qpainter.html">QPainter</a> paint( this );
+    <a name="x2638"></a>        <a href="qpen.html">QPen</a> pen = paint.<a href="qpainter.html#pen">pen</a>();
+    <a name="x2640"></a>        pen.<a href="qpen.html#setWidth">setWidth</a>( line_width );
+    <a name="x2639"></a>        paint.<a href="qpainter.html#setPen">setPen</a>( pen );
+
+            <a href="qrect.html">QRect</a> r = rect();
+    <a name="x2641"></a>        r.<a href="qrect.html#addCoords">addCoords</a>( 10, 10, -10, -10 );
+    <a name="x2637"></a>        paint.<a href="qpainter.html#drawEllipse">drawEllipse</a>( r );
+        }
+
+    private:
+        int line_width;
+    };
+</pre>
+<p> The controls are provided by an implementation of the <a href="qaxfactory.html">QAxFactory</a>.
+
+
+
+
+<p> The constructor just propagates the identifiers for the type library and the
+application to the QAxFactory.
+<pre>    class ActiveQtFactory : public <a href="qaxfactory.html">QAxFactory</a>
+    {
+    public:
+        ActiveQtFactory( const <a href="quuid.html">QUuid</a> &amp;lib, const <a href="quuid.html">QUuid</a> &amp;app )
+            : <a href="qaxfactory.html">QAxFactory</a>( lib, app )
+        {}
+</pre>The featureList implementation returns the class names of the controls.
+<pre>        <a href="qstringlist.html">QStringList</a> featureList() const
+        {
+            <a href="qstringlist.html">QStringList</a> list;
+            list &lt;&lt; "QAxWidget1";
+            list &lt;&lt; "QAxWidget2";
+            return list;
+        }
+</pre>The implementations of the factory functions return the value for the requested 
+key.
+<pre>        <a href="qwidget.html">QWidget</a> *create( const <a href="qstring.html">QString</a> &amp;key, QWidget *parent, const char *name )
+        {
+            if ( key == "QAxWidget1" )
+                return new QAxWidget1( parent, name );
+            if ( key == "QAxWidget2" )
+                return new QAxWidget2( parent, name );
+
+            return 0;
+        }
+        <a href="quuid.html">QUuid</a> classID( const <a href="qstring.html">QString</a> &amp;key ) const
+        {
+            if ( key == "QAxWidget1" )
+                return QUuid( "{1D9928BD-4453-4bdd-903D-E525ED17FDE5}" );
+            if ( key == "QAxWidget2" )
+                return QUuid( "{58139D56-6BE9-4b17-937D-1B1EDEDD5B71}" );
+
+            return QUuid();
+        }
+        <a href="quuid.html">QUuid</a> interfaceID( const <a href="qstring.html">QString</a> &amp;key ) const
+        {
+            if ( key == "QAxWidget1" )
+                return QUuid( "{99F6860E-2C5A-42ec-87F2-43396F4BE389}" );
+            if ( key == "QAxWidget2" )
+                return QUuid( "{B66280AB-08CC-4dcc-924F-58E6D7975B7D}" );
+
+            return QUuid();
+        }
+        <a href="quuid.html">QUuid</a> eventsID( const <a href="qstring.html">QString</a> &amp;key ) const
+        {
+            if ( key == "QAxWidget1" )
+                return QUuid( "{0A3E9F27-E4F1-45bb-9E47-63099BCCD0E3}" );
+            if ( key == "QAxWidget2" )
+                return QUuid( "{D72BACBA-03C4-4480-B4BB-DE4FE3AA14A0}" );
+
+            return QUuid();
+        }
+</pre>The <tt>exposeToSuperClass</tt> implementations returns the key for the "QAxWidget2", and
+calls the default implementation otherwise. The QAxWidget2 control will not expose
+properties or methods of any parent class, while QAxWidget1 exposes all properties,
+signals and slots of <a href="qwidget.html">QWidget</a> and <a href="qobject.html">QObject</a>, too.
+<pre>        <a href="qstring.html">QString</a> exposeToSuperClass( const <a href="qstring.html">QString</a> &amp;key ) const
+        {
+            if ( key == "QAxWidget2" )
+                return key;
+            return QAxFactory::exposeToSuperClass( key );
+        }
+</pre>The <tt>hasStockEvents</tt> implementation returns TRUE for the "QAxWidget2", and FALSE
+otherwise. The QAxWidget2 control will fire OLE stock events when the user interacts
+with the control.
+<pre>        bool hasStockEvents( const <a href="qstring.html">QString</a> &amp;key ) const
+        {
+            if ( key == "QAxWidget2" )
+                return TRUE;
+            return FALSE;
+        }
+    };
+</pre>
+<p> The factory is exported from the server using the QAXFACTORY_EXPORT macro.
+The implementation of <tt>main</tt> is just a dummy, but required for the linker.
+<pre>    QAXFACTORY_EXPORT( ActiveQtFactory, "{98DE28B6-6CD3-4e08-B9FA-3D1DB43F1D2F}", "{05828915-AD1C-47ab-AB96-D6AD1E25F0E2}" )
+</pre>
+<p> To build the example you must first build the <a href="qaxserver.html">QAxServer</a> library. Then run qmake and your make tool in 
+<tt>examples/multiple</tt>.
+<p> <hr>
+<p> The <a href="qaxserver-demo-multiple.html">demonstration</a> requires your
+WebBrowser to support ActiveX controls, and scripting to be enabled.
+<p> 
+
+<pre>    &lt;script language=javascript&gt;
+    function setColor( form )
+    {
+        Ax1.fillColor = form.colorEdit.value;
+    }
+
+    function setWidth( form )
+    {
+        Ax2.lineWidth = form.widthEdit.value;
+    }
+    &lt;/script&gt;
+
+    &lt;p&gt;
+    This is one QWidget subclass:&lt;br&gt;
+    &lt;object ID="Ax1" CLASSID="CLSID:1D9928BD-4453-4bdd-903D-E525ED17FDE5"
+    CODEBASE=http://www.trolltech.com/demos/multipleax.cab&gt;
+    [Object not available! Did you forget to build and register the server?]
+    &lt;/object&gt;&lt;br&gt;
+    &lt;form&gt;
+    Fill Color: &lt;input type="edit" ID="colorEdit" value = "red"&gt;
+    &lt;input type="button" value = "Set" onClick="setColor(this.form)"&gt;
+    &lt;input type="button" value = "Hide" onClick="Ax1.hide()"&gt;
+    &lt;input type="button" value = "Show" onClick="Ax1.show()"&gt;
+    &lt;/form&gt;
+
+    &lt;p&gt;
+    This is another QWidget subclass:&lt;br&gt;
+    &lt;object ID="Ax2" CLASSID="CLSID:58139D56-6BE9-4b17-937D-1B1EDEDD5B71"
+    CODEBASE=http://www.trolltech.com/demos/multipleax.cab&gt;
+    [Object not available! Did you forget to build and register the server?]
+    &lt;/object&gt;&lt;br&gt;
+    &lt;form&gt;
+    Line width: &lt;input type="edit" ID="widthEdit" value = "1"&gt;
+    &lt;input type="button" value = "Set" onClick="setWidth(this.form)"&gt;
+    &lt;/form&gt;
+</pre><p>See also <a href="qaxserver-examples.html">The QAxServer Examples</a>.
+
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

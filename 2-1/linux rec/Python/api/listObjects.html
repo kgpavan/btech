@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.4 List Objects </title>
+<META NAME="description" CONTENT="7.2.4 List Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="previous" href="tupleObjects.html">
+<LINK REL="up" href="sequenceObjects.html">
+<LINK REL="next" href="mapObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="tupleObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="tupleObjects.html">7.2.3 Tuple Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009240000000000000000"></A>
+<BR>
+7.2.4 List Objects 
+</H2>
+
+<P>
+<a name='l2h-305'></a>
+<dl><dt><b><tt class='ctype'><a name='l2h-286'>PyListObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents a Python list object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-287'><tt class='cdata'>PyList_Type</tt></a></b>
+<dd>
+This instance of <tt class="ctype">PyTypeObject</tt> represents the Python list
+type.  This is the same object as <code>types.ListType</code>.
+<a name='l2h-289'></a></dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-290'><tt class='cfunction'>PyList_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns true if its argument is a <tt class="ctype">PyListObject</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-291'><tt class='cfunction'>PyList_New</tt></a></b> (<var>int len</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a new list of length <var>len</var> on success, or <tt class="constant">NULL</tt> on
+failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-292'><tt class='cfunction'>PyList_Size</tt></a></b> (<var>PyObject *list</var>)
+<dd>
+Returns the length of the list object in <var>list</var>; this is
+equivalent to "<tt class="samp">len(<var>list</var>)</tt>" on a list object.
+<a name='l2h-306'></a>
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-293'><tt class='cfunction'>PyList_GET_SIZE</tt></a></b> (<var>PyObject *list</var>)
+<dd>
+Macro form of <tt class="cfunction">PyList_GetSize()</tt> without error checking.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-294'><tt class='cfunction'>PyList_GetItem</tt></a></b> (<var>PyObject *list, int index</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Returns the object at position <var>pos</var> in the list pointed
+to by <var>p</var>.  If <var>pos</var> is out of bounds, returns <tt class="constant">NULL</tt> and
+sets an <tt class="exception">IndexError</tt> exception.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-295'><tt class='cfunction'>PyList_GET_ITEM</tt></a></b> (<var>PyObject *list, int i</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Macro form of <tt class="cfunction">PyList_GetItem()</tt> without error checking.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-296'><tt class='cfunction'>PyList_SetItem</tt></a></b> (<var>PyObject *list, int index,
+                                       PyObject *item</var>)
+<dd>
+Sets the item at index <var>index</var> in list to <var>item</var>.
+<b>Note:</b>  This function ``steals'' a reference to <var>item</var>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-297'><tt class='cfunction'>PyList_SET_ITEM</tt></a></b> (<var>PyObject *list, int i,
+                                              PyObject *o</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Macro form of <tt class="cfunction">PyList_SetItem()</tt> without error checking.
+<b>Note:</b>  This function ``steals'' a reference to <var>item</var>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-298'><tt class='cfunction'>PyList_Insert</tt></a></b> (<var>PyObject *list, int index,
+                                      PyObject *item</var>)
+<dd>
+Inserts the item <var>item</var> into list <var>list</var> in front of index
+<var>index</var>.  Returns <code>0</code> if successful; returns <code>-1</code> and
+raises an exception if unsuccessful.  Analogous to
+<code><var>list</var>.insert(<var>index</var>, <var>item</var>)</code>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-299'><tt class='cfunction'>PyList_Append</tt></a></b> (<var>PyObject *list, PyObject *item</var>)
+<dd>
+Appends the object <var>item</var> at the end of list <var>list</var>.  Returns
+<code>0</code> if successful; returns <code>-1</code> and sets an exception if
+unsuccessful.  Analogous to <code><var>list</var>.append(<var>item</var>)</code>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-300'><tt class='cfunction'>PyList_GetSlice</tt></a></b> (<var>PyObject *list,
+                                              int low, int high</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a list of the objects in <var>list</var> containing the objects 
+<i>between</i> <var>low</var> and <var>high</var>.  Returns NULL and sets an
+exception if unsuccessful.
+Analogous to <code><var>list</var>[<var>low</var>:<var>high</var>]</code>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-301'><tt class='cfunction'>PyList_SetSlice</tt></a></b> (<var>PyObject *list,
+                                        int low, int high,
+                                        PyObject *itemlist</var>)
+<dd>
+Sets the slice of <var>list</var> between <var>low</var> and <var>high</var> to the
+contents of <var>itemlist</var>.  Analogous to
+<code><var>list</var>[<var>low</var>:<var>high</var>] = <var>itemlist</var></code>.  Returns
+<code>0</code> on success, <code>-1</code> on failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-302'><tt class='cfunction'>PyList_Sort</tt></a></b> (<var>PyObject *list</var>)
+<dd>
+Sorts the items of <var>list</var> in place.  Returns <code>0</code> on success,
+<code>-1</code> on failure.  This is equivalent to
+"<tt class="samp"><var>list</var>.sort()</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-303'><tt class='cfunction'>PyList_Reverse</tt></a></b> (<var>PyObject *list</var>)
+<dd>
+Reverses the items of <var>list</var> in place.  Returns <code>0</code> on
+success, <code>-1</code> on failure.  This is the equivalent of
+"<tt class="samp"><var>list</var>.reverse()</tt>".
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-304'><tt class='cfunction'>PyList_AsTuple</tt></a></b> (<var>PyObject *list</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a new tuple object containing the contents of <var>list</var>;
+equivalent to "<tt class="samp">tuple(<var>list</var>)</tt>".<a name='l2h-307'></a>
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="tupleObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="tupleObjects.html">7.2.3 Tuple Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

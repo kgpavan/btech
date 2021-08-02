@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.8 pickle -- Python object serialization</title>
+<META NAME="description" CONTENT="3.8 pickle -- Python object serialization">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-cPickle.html">
+<LINK REL="previous" href="module-linecache.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="pickle-example.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="pickle-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-linecache.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="pickle-example.html">3.8.1 Example</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-linecache.html">3.7 linecache  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005800000000000000000">
+3.8 <tt class="module">pickle</tt> --
+         Python object serialization</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name='l2h-340'></a>
+
+<P>
+The <tt class="module">pickle</tt> module implements a basic but powerful algorithm
+for ``pickling'' (a.k.a. serializing, marshalling or flattening)
+nearly arbitrary Python objects.  This is the act of converting
+objects to a stream of bytes (and back: ``unpickling'').  This is a
+more primitive notion than persistency -- although <tt class="module">pickle</tt>
+reads and writes file objects, it does not handle the issue of naming
+persistent objects, nor the (even more complicated) area of concurrent
+access to persistent objects.  The <tt class="module">pickle</tt> module can
+transform a complex object into a byte stream and it can transform the
+byte stream into an object with the same internal structure.  The most
+obvious thing to do with these byte streams is to write them onto a
+file, but it is also conceivable to send them across a network or
+store them in a database.  The module
+<tt class='module'><a href='module-shelve.html'>shelve</a></tt><a name='l2h-341'></a> provides a simple interface
+to pickle and unpickle objects on DBM-style database files.
+
+<P>
+<b>Note:</b> The <tt class="module">pickle</tt> module is rather slow.  A
+reimplementation of the same algorithm in C, which is up to 1000 times
+faster, is available as the
+<tt class='module'><a href='module-cPickle.html'>cPickle</a></tt><a name='l2h-342'></a> module.  This has the same
+interface except that <tt class="class">Pickler</tt> and <tt class="class">Unpickler</tt> are
+factory functions, not classes (so they cannot be used as base classes
+for inheritance).
+
+<P>
+Although the <tt class="module">pickle</tt> module can use the built-in module
+<tt class='module'><a href='module-marshal.html'>marshal</a></tt><a name='l2h-343'></a> internally, it differs from 
+<tt class='module'><a href='module-marshal.html'>marshal</a></tt> in the way it handles certain kinds of data:
+
+<P>
+
+<UL><LI>Recursive objects (objects containing references to themselves): 
+      <tt class="module">pickle</tt> keeps track of the objects it has already
+      serialized, so later references to the same object won't be
+      serialized again.  (The <tt class='module'><a href='module-marshal.html'>marshal</a></tt> module breaks for
+      this.)
+
+<P>
+
+<LI>Object sharing (references to the same object in different
+      places):  This is similar to self-referencing objects;
+      <tt class="module">pickle</tt> stores the object once, and ensures that all
+      other references point to the master copy.  Shared objects
+      remain shared, which can be very important for mutable objects.
+
+<P>
+
+<LI>User-defined classes and their instances:  <tt class='module'><a href='module-marshal.html'>marshal</a></tt>
+      does not support these at all, but <tt class="module">pickle</tt> can save
+      and restore class instances transparently.  The class definition 
+      must be importable and live in the same module as when the
+      object was stored.
+
+<P>
+
+</UL>
+
+<P>
+The data format used by <tt class="module">pickle</tt> is Python-specific.  This has
+the advantage that there are no restrictions imposed by external
+standards such as
+XDR<a name='l2h-344'></a> (which can't
+represent pointer sharing); however it means that non-Python programs
+may not be able to reconstruct pickled Python objects.
+
+<P>
+By default, the <tt class="module">pickle</tt> data format uses a printable ASCII
+representation.  This is slightly more voluminous than a binary
+representation.  The big advantage of using printable ASCII (and of
+some other characteristics of <tt class="module">pickle</tt>'s representation) is that
+for debugging or recovery purposes it is possible for a human to read
+the pickled file with a standard text editor.
+
+<P>
+A binary format, which is slightly more efficient, can be chosen by
+specifying a nonzero (true) value for the <var>bin</var> argument to the
+<tt class="class">Pickler</tt> constructor or the <tt class="function">dump()</tt> and <tt class="function">dumps()</tt>
+functions.  The binary format is not the default because of backwards
+compatibility with the Python 1.4 pickle module.  In a future version,
+the default may change to binary.
+
+<P>
+The <tt class="module">pickle</tt> module doesn't handle code objects, which the
+<tt class='module'><a href='module-marshal.html'>marshal</a></tt><a name='l2h-345'></a> module does.  I suppose
+<tt class="module">pickle</tt> could, and maybe it should, but there's probably no
+great need for it right now (as long as <tt class='module'><a href='module-marshal.html'>marshal</a></tt> continues
+to be used for reading and writing code objects), and at least this
+avoids the possibility of smuggling Trojan horses into a program.
+
+<P>
+For the benefit of persistency modules written using <tt class="module">pickle</tt>, it
+supports the notion of a reference to an object outside the pickled
+data stream.  Such objects are referenced by a name, which is an
+arbitrary string of printable ASCII characters.  The resolution of
+such names is not defined by the <tt class="module">pickle</tt> module -- the
+persistent object module will have to implement a method
+<tt class="method">persistent_load()</tt>.  To write references to persistent objects,
+the persistent module must define a method <tt class="method">persistent_id()</tt> which
+returns either <code>None</code> or the persistent ID of the object.
+
+<P>
+There are some restrictions on the pickling of class instances.
+
+<P>
+First of all, the class must be defined at the top level in a module.
+Furthermore, all its instance variables must be picklable.
+
+<P>
+
+<P>
+When a pickled class instance is unpickled, its <tt class="method">__init__()</tt> method
+is normally <i>not</i> invoked.  <b>Note:</b> This is a deviation
+from previous versions of this module; the change was introduced in
+Python 1.5b2.  The reason for the change is that in many cases it is
+desirable to have a constructor that requires arguments; it is a
+(minor) nuisance to have to provide a <tt class="method">__getinitargs__()</tt> method.
+
+<P>
+If it is desirable that the <tt class="method">__init__()</tt> method be called on
+unpickling, a class can define a method <tt class="method">__getinitargs__()</tt>,
+which should return a <i>tuple</i> containing the arguments to be
+passed to the class constructor (<tt class="method">__init__()</tt>).  This method is
+called at pickle time; the tuple it returns is incorporated in the
+pickle for the instance.
+<a name='l2h-326'></a><a name='l2h-328'></a>
+<P>
+Classes can further influence how their instances are pickled -- if
+the class
+
+  <a name='l2h-330'></a>
+  <a name='l2h-332'></a>defines the method <tt class="method">__getstate__()</tt>, it is called and the return
+state is pickled as the contents for the instance, and if the class
+defines the method <tt class="method">__setstate__()</tt>, it is called with the
+unpickled state.  (Note that these methods can also be used to
+implement copying class instances.)  If there is no
+<tt class="method">__getstate__()</tt> method, the instance's <tt class="member">__dict__</tt> is
+pickled.  If there is no <tt class="method">__setstate__()</tt> method, the pickled
+object must be a dictionary and its items are assigned to the new
+instance's dictionary.  (If a class defines both <tt class="method">__getstate__()</tt>
+and <tt class="method">__setstate__()</tt>, the state object needn't be a dictionary
+-- these methods can do what they want.)  This protocol is also used
+by the shallow and deep copying operations defined in the
+<tt class='module'><a href='module-copy.html'>copy</a></tt><a name='l2h-346'></a> module.
+
+<P>
+Note that when class instances are pickled, their class's code and
+data are not pickled along with them.  Only the instance data are
+pickled.  This is done on purpose, so you can fix bugs in a class or
+add methods and still load objects that were created with an earlier
+version of the class.  If you plan to have long-lived objects that
+will see many versions of a class, it may be worthwhile to put a version
+number in the objects so that suitable conversions can be made by the
+class's <tt class="method">__setstate__()</tt> method.
+
+<P>
+When a class itself is pickled, only its name is pickled -- the class
+definition is not pickled, but re-imported by the unpickling process.
+Therefore, the restriction that the class must be defined at the top
+level in a module applies to pickled classes as well.
+
+<P>
+
+<P>
+The interface can be summarized as follows.
+
+<P>
+To pickle an object <code>x</code> onto a file <code>f</code>, open for writing:
+
+<P>
+<dl><dd><pre class="verbatim">
+p = pickle.Pickler(f)
+p.dump(x)
+</pre></dl>
+
+<P>
+A shorthand for this is:
+
+<P>
+<dl><dd><pre class="verbatim">
+pickle.dump(x, f)
+</pre></dl>
+
+<P>
+To unpickle an object <code>x</code> from a file <code>f</code>, open for reading:
+
+<P>
+<dl><dd><pre class="verbatim">
+u = pickle.Unpickler(f)
+x = u.load()
+</pre></dl>
+
+<P>
+A shorthand is:
+
+<P>
+<dl><dd><pre class="verbatim">
+x = pickle.load(f)
+</pre></dl>
+
+<P>
+The <tt class="class">Pickler</tt> class only calls the method <code>f.write()</code> with a
+<a name='l2h-334'></a>string argument.  The <tt class="class">Unpickler</tt> calls the methods <code>f.read()</code>(with an integer argument) and <code>f.readline()</code> (without argument),
+both returning a string.  It is explicitly allowed to pass non-file
+objects here, as long as they have the right methods.
+
+<P>
+The constructor for the <tt class="class">Pickler</tt> class has an optional second
+argument, <var>bin</var>.  If this is present and true, the binary
+pickle format is used; if it is absent or false, the (less efficient,
+but backwards compatible) text pickle format is used.  The
+<tt class="class">Unpickler</tt> class does not have an argument to distinguish
+between binary and text pickle formats; it accepts either format.
+
+<P>
+The following types can be pickled:
+
+<P>
+
+<UL><LI><code>None</code>
+<P>
+
+<LI>integers, long integers, floating point numbers
+
+<P>
+
+<LI>strings
+
+<P>
+
+<LI>tuples, lists and dictionaries containing only picklable objects
+
+<P>
+
+<LI>functions defined at the top level of a module (by name
+      reference, not storage of the implementation)
+
+<P>
+
+<LI>built-in functions
+
+<P>
+
+<LI>classes that are defined at the top level in a module
+
+<P>
+
+<LI>instances of such classes whose <tt class="member">__dict__</tt> or
+<tt class="method">__setstate__()</tt> is picklable
+
+<P>
+
+</UL>
+
+<P>
+Attempts to pickle unpicklable objects will raise the
+<tt class="exception">PicklingError</tt> exception; when this happens, an unspecified
+number of bytes may have been written to the file.
+
+<P>
+It is possible to make multiple calls to the <tt class="method">dump()</tt> method of
+the same <tt class="class">Pickler</tt> instance.  These must then be matched to the
+same number of calls to the <tt class="method">load()</tt> method of the
+corresponding <tt class="class">Unpickler</tt> instance.  If the same object is
+pickled by multiple <tt class="method">dump()</tt> calls, the <tt class="method">load()</tt> will all
+yield references to the same object.  <i>Warning</i>: this is intended
+for pickling multiple objects without intervening modifications to the
+objects or their parts.  If you modify an object and then pickle it
+again using the same <tt class="class">Pickler</tt> instance, the object is not
+pickled again -- a reference to it is pickled and the
+<tt class="class">Unpickler</tt> will return the old value, not the modified one.
+(There are two problems here: (a) detecting changes, and (b)
+marshalling a minimal set of changes.  I have no answers.  Garbage
+Collection may also become a problem here.)
+
+<P>
+Apart from the <tt class="class">Pickler</tt> and <tt class="class">Unpickler</tt> classes, the
+module defines the following functions, and an exception:
+
+<P>
+<dl><dt><b><a name='l2h-335'><tt class='function'>dump</tt></a></b> (<var>object, file</var><big>[</big><var>, bin</var><big>]</big>)
+<dd>
+Write a pickled representation of <var>obect</var> to the open file object
+<var>file</var>.  This is equivalent to
+"<tt class="samp">Pickler(<var>file</var>, <var>bin</var>).dump(<var>object</var>)</tt>".
+If the optional <var>bin</var> argument is present and nonzero, the binary
+pickle format is used; if it is zero or absent, the (less efficient)
+text pickle format is used.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-336'><tt class='function'>load</tt></a></b> (<var>file</var>)
+<dd>
+Read a pickled object from the open file object <var>file</var>.  This is
+equivalent to "<tt class="samp">Unpickler(<var>file</var>).load()</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-337'><tt class='function'>dumps</tt></a></b> (<var>object</var><big>[</big><var>, bin</var><big>]</big>)
+<dd>
+Return the pickled representation of the object as a string, instead
+of writing it to a file.  If the optional <var>bin</var> argument is
+present and nonzero, the binary pickle format is used; if it is zero
+or absent, the (less efficient) text pickle format is used.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-338'><tt class='function'>loads</tt></a></b> (<var>string</var>)
+<dd>
+Read a pickled object from a string instead of a file.  Characters in
+the string past the pickled object's representation are ignored.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-339'><tt class='exception'>PicklingError</tt></a></b>
+<dd>
+This exception is raised when an unpicklable object is passed to
+<tt class="method">Pickler.dump()</tt>.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-copyreg.html'>copy_reg</a></tt>:</b>
+    <dd>pickle interface constructor
+                                registration.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-shelve.html'>shelve</a></tt>:</b>
+    <dd>indexed databases of objects; uses <tt class="module">pickle</tt>.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-copy.html'>copy</a></tt>:</b>
+    <dd>shallow and deep object copying.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-marshal.html'>marshal</a></tt>:</b>
+    <dd>high-performance serialization of built-in types.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html963"
+ href="pickle-example.html">3.8.1 Example </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="pickle-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-linecache.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="pickle-example.html">3.8.1 Example</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-linecache.html">3.7 linecache  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

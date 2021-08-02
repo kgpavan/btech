@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.4.1 Plain Integer Objects </title>
+<META NAME="description" CONTENT="7.4.1 Plain Integer Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="longObjects.html">
+<LINK REL="previous" href="numericObjects.html">
+<LINK REL="up" href="numericObjects.html">
+<LINK REL="next" href="longObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="longObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="longObjects.html">7.4.2 Long Integer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009410000000000000000"></A>
+<BR>
+7.4.1 Plain Integer Objects 
+</H2>
+
+<P>
+<a name='l2h-340'></a>
+<dl><dt><b><tt class='ctype'><a name='l2h-331'>PyIntObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents a Python integer object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-332'><tt class='cdata'>PyInt_Type</tt></a></b>
+<dd>
+This instance of <tt class="ctype">PyTypeObject</tt> represents the Python plain 
+integer type.  This is the same object as <code>types.IntType</code>.
+<a name='l2h-334'></a></dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-335'><tt class='cfunction'>PyInt_Check</tt></a></b> (<var>PyObject* o</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Returns true if <var>o</var> is of type <tt class="cdata">PyInt_Type</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-336'><tt class='cfunction'>PyInt_FromLong</tt></a></b> (<var>long ival</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Creates a new integer object with a value of <var>ival</var>.
+
+<P>
+The current implementation keeps an array of integer objects for all
+integers between <code>-1</code> and <code>100</code>, when you create an int in
+that range you actually just get back a reference to the existing
+object. So it should be possible to change the value of <code>1</code>. I
+suspect the behaviour of Python in this case is undefined. :-)
+</dl>
+
+<P>
+<dl><dt>long <b><a name='l2h-337'><tt class='cfunction'>PyInt_AsLong</tt></a></b> (<var>PyObject *io</var>)
+<dd>
+Will first attempt to cast the object to a <tt class="ctype">PyIntObject</tt>, if
+it is not already one, and then return its value.
+</dl>
+
+<P>
+<dl><dt>long <b><a name='l2h-338'><tt class='cfunction'>PyInt_AS_LONG</tt></a></b> (<var>PyObject *io</var>)
+<dd>
+Returns the value of the object <var>io</var>.  No error checking is
+performed.
+</dl>
+
+<P>
+<dl><dt>long <b><a name='l2h-339'><tt class='cfunction'>PyInt_GetMax</tt></a></b> ()
+<dd>
+Returns the system's idea of the largest integer it can handle
+(<tt class="constant">LONG_MAX</tt><a name='l2h-341'></a>, as defined in the system
+header files).
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="longObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="longObjects.html">7.4.2 Long Integer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

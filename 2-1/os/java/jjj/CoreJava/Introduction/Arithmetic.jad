@@ -1,0 +1,22 @@
+// Decompiled by DJ v2.8.8.54 Copyright 2000 Atanas Neshkov  Date: 3/18/2008 8:07:24 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   Arithmetic.java
+
+import java.io.PrintStream;
+
+public class Arithmetic
+{
+
+    public Arithmetic()
+    {
+    }
+
+    public static void main(String args[])
+    {
+        System.out.print(2);
+        System.out.print(" 1");
+        System.out.print(" 2");
+        System.out.println(" 0");
+    }
+}

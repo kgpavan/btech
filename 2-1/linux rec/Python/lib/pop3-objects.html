@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.6.1 POP3 Objects </title>
+<META NAME="description" CONTENT="11.6.1 POP3 Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="pop3-example.html">
+<LINK REL="previous" href="module-poplib.html">
+<LINK REL="up" href="module-poplib.html">
+<LINK REL="next" href="pop3-example.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="pop3-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-poplib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-poplib.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="pop3-example.html">11.6.2 POP3 Example</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-poplib.html">11.6 poplib  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-poplib.html">11.6 poplib  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013610000000000000000"></A>
+<BR>
+11.6.1 POP3 Objects 
+</H2>
+
+<P>
+All POP3 commands are represented by methods of the same name,
+in lower-case; most return the response text sent by the server.
+
+<P>
+An <tt class="class">POP3</tt> instance has the following methods:
+
+<P>
+<dl><dt><b><a name='l2h-1769'><tt class='method'>getwelcome</tt></a></b> ()
+<dd>
+Returns the greeting string sent by the POP3 server.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1770'><tt class='method'>user</tt></a></b> (<var>username</var>)
+<dd>
+Send user commad, response should indicate that a password is required.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1771'><tt class='method'>pass_</tt></a></b> (<var>password</var>)
+<dd>
+Send password, response includes message count and mailbox size.
+Note: the mailbox on the server is locked until <tt class="method">quit()</tt> is
+called.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1772'><tt class='method'>apop</tt></a></b> (<var>user, secret</var>)
+<dd>
+Use the more secure APOP authentication to log into the POP3 server.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1773'><tt class='method'>rpop</tt></a></b> (<var>user</var>)
+<dd>
+Use RPOP authentication (similar to UNIX r-commands) to log into POP3 server.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1774'><tt class='method'>stat</tt></a></b> ()
+<dd>
+Get mailbox status.  The result is a tuple of 2 integers:
+<code>(<var>message count</var>, <var>mailbox size</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1775'><tt class='method'>list</tt></a></b> (<big>[</big><var>which</var><big>]</big>)
+<dd>
+Request message list, result is in the form
+<code>(<var>response</var>, ['mesg_num octets', ...])</code>.  If <var>which</var> is
+set, it is the message to list.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1776'><tt class='method'>retr</tt></a></b> (<var>which</var>)
+<dd>
+Retrieve whole message number <var>which</var>.  Result is in form 
+<code>(<var>response</var>, ['line', ...], <var>octets</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1777'><tt class='method'>dele</tt></a></b> (<var>which</var>)
+<dd>
+Delete message number <var>which</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1778'><tt class='method'>rset</tt></a></b> ()
+<dd>
+Remove any deletion marks for the mailbox.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1779'><tt class='method'>noop</tt></a></b> ()
+<dd>
+Do nothing.  Might be used as a keep-alive.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1780'><tt class='method'>quit</tt></a></b> ()
+<dd>
+Signoff:  commit changes, unlock mailbox, drop connection.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1781'><tt class='method'>top</tt></a></b> (<var>which, howmuch</var>)
+<dd>
+Retrieves the message header plus <var>howmuch</var> lines of the message
+after the header of message number <var>which</var>. Result is in form 
+<code>(<var>response</var>, ['line', ...], <var>octets</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1782'><tt class='method'>uidl</tt></a></b> (<big>[</big><var>which</var><big>]</big>)
+<dd>
+Return message digest (unique id) list.
+If <var>which</var> is specified, result contains the unique id for that
+message in the form <code>'<var>response</var> <var>mesgnum</var> <var>uid</var></code>,
+otherwise result is list <code>(<var>response</var>, ['mesgnum uid', ...],
+<var>octets</var>)</code>.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="pop3-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-poplib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-poplib.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="pop3-example.html">11.6.2 POP3 Example</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-poplib.html">11.6 poplib  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-poplib.html">11.6 poplib  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

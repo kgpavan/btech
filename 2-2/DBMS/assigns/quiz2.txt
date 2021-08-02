@@ -1,0 +1,70 @@
+DBMS-QUIZ 2 
+============
+
+Quiz-2 is to be conducted on the 23rd January at 4:30pm in SH2. 
+The questions are predecided and are the ones given below. You need to solve
+the same two questions in class during the quiz slot. You can carry your
+text books. Negative marks will be awarded if you are not present for the
+quiz.
+
+----------------------------------------------------------------------------------
+
+
+1)  Consider the following information about a university database:
+
+  - Professors have an SSN, a name, an age, a rank, and a research
+  specialty.
+  - Projects have a project number, a sponsor name (e.g., NSF), a starting
+  date, an ending date, and a budget.
+  - Graduate students have an SSN, a name, an age, and a degree program
+  (e.g., M.S. or Ph.D.).
+  - Each project is managed by one professor (known as the project's
+  principal investigator).
+  - Each project is worked on by one or more professors (known as the
+  project's co-investigators).
+  - Professors can manage and/or work on multiple projects.
+  - Each project is worked on by one or more graduate students (known as
+  the project's research assistants).
+  - When graduate students work on a project, a professor must supervise
+  their work on the project. Graduate students can work on multiple
+projects,
+  in which case they will have a (potentially different) supervisor for each
+  one.
+  - Departments have a department number, a department name, and a main
+  office.
+  - Departments have a professor (known as the chairman) who runs the
+  department.
+  - Professors work in one or more departments, and for each department
+  that they work in, a time percentage is associated with their job.
+  - Graduate students have one major department in which they are working
+  on their degree.
+  - Each graduate student has another, more senior graduate student (known
+  as a student advisor) who advises him or her on what courses to take.
+
+    Design and draw an ER diagram that captures the information about the
+university. Use only the basic ER model here, that is, entities, relationships, and
+attributes. Be sure to indicate any key and participation constraints.
+
+
+2) Answer each of the following questions briefly. The questions are based
+on the following relational schema:
+
+Emp(eid: integer, ename: string, age: integer, salary: real)
+Works(eid: integer, did: integer, pct time: integer)
+Dept(did: integer, dname: string, budget: real, managerid: integer)
+
+1. Give an example of a foreign key constraint that involves the Dept
+relation. What are the options for enforcing this constraint when a user attempts to delete a
+Dept tuple?
+2. Write the SQL statements required to create the above relations,
+including appropriate versions of all primary and foreign key integrity
+constraints.
+3. De ne the Dept relation in SQL so that every department is guaranteed to
+have a manager.
+4. Write an SQL statement to add `John Doe' as an employee with eid = 101,
+age = 32 and salary = 15000.
+5. Write an SQL statement to give every employee a 10% raise.
+6. Write an SQL statement to delete the `Toy' department. Given the
+referential integrity constraints you chose for this schema, explain what
+happens when this statement is executed.
+

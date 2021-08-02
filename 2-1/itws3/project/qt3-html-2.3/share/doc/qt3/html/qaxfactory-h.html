@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/include/qaxfactory.h:1 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>qaxfactory.h Include File</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>qaxfactory.h</h1>
+
+<p>This is the verbatim text of the qaxfactory.h include file. It is provided only for illustration; the copyright remains with Trolltech.
+<hr>
+<pre>
+/****************************************************************************
+** $Id: qt/qaxfactory.h   3.2.3   edited May 13 09:08 $
+**
+** Declaration of the QAxFactory class
+**
+** Copyright (C) 2001-2002 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Active Qt integration.
+**
+** Licensees holding valid Qt Enterprise Edition
+** licenses for Windows may use this file in accordance with the Qt Commercial
+** License Agreement provided with the Software.
+**
+** This file is not available for use under any other license without
+** express written permission from the copyright holder.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef QAXFACTORY_H
+#define QAXFACTORY_H
+
+#include &lt;quuid.h&gt;
+#include &lt;private/qcom_p.h&gt;
+
+// {22B230F6-8722-4051-ADCB-E7C9CE872EB3}
+#ifndef IID_QAxFactory
+#define IID_QAxFactory QUuid( 0x22b230f6, 0x8722, 0x4051, 0xad, 0xcb, 0xe7, 0xc9, 0xce, 0x87, 0x2e, 0xb3 )
+#endif
+
+class QWidget;
+class QMetaObject;
+class QSettings;
+
+struct QAxFactoryInterface : public QFeatureListInterface
+{
+public:
+#ifndef Q_QDOC
+    virtual QWidget *create( const QString &amp;key, QWidget *parent = 0, const char *name = 0 ) = 0;
+
+    virtual QUuid classID( const QString &amp;key ) const = 0;
+    virtual QUuid interfaceID( const QString &amp;key ) const = 0;
+    virtual QUuid eventsID( const QString &amp;key ) const = 0;    
+    virtual QUuid typeLibID() const = 0;
+    virtual QUuid appID() const = 0;
+
+    virtual void registerClass( const QString &amp;key, QSettings * ) const = 0;
+    virtual void unregisterClass( const QString &amp;key, QSettings * ) const = 0;
+
+    virtual QString exposeToSuperClass( const QString &amp;key ) const = 0;
+    virtual bool stayTopLevel( const QString &amp;key ) const = 0;
+    virtual bool hasStockEvents( const QString &amp;key ) const = 0;
+    virtual bool isService() const = 0;
+#endif
+};
+
+class QAxFactory : public QAxFactoryInterface
+{
+public:
+    QAxFactory( const QUuid &amp;, const QUuid &amp;);
+    virtual ~QAxFactory();
+    Q_REFCOUNT;
+
+    QRESULT queryInterface( const QUuid &amp;iid, QUnknownInterface **iface );
+
+#ifdef Q_QDOC
+    virtual QStringList featureList() const = 0;
+
+    virtual QWidget *create( const QString &amp;key, QWidget *parent = 0, const char *name = 0 ) = 0;
+
+    virtual QUuid classID( const QString &amp;key ) const = 0;
+    virtual QUuid interfaceID( const QString &amp;key ) const = 0;
+    virtual QUuid eventsID( const QString &amp;key ) const = 0;
+#endif
+
+    QUuid typeLibID() const;
+    QUuid appID() const;
+
+    void registerClass( const QString &amp;key, QSettings * ) const;
+    void unregisterClass( const QString &amp;key, QSettings * ) const;
+
+    QString exposeToSuperClass( const QString &amp;key ) const;
+    bool stayTopLevel( const QString &amp;key ) const;
+    bool hasStockEvents( const QString &amp;key ) const;
+    bool isService() const;
+
+    static bool isServer();
+
+private:
+    QUuid typelib;
+    QUuid app;
+};
+
+#define QAXFACTORY_EXPORT( IMPL, TYPELIB, APPID )	\
+    QUnknownInterface *ucm_instantiate()		\
+    {							\
+	IMPL *impl = new IMPL( QUuid(TYPELIB), QUuid(APPID) );	\
+	QUnknownInterface* iface = 0; 			\
+	impl-&gt;queryInterface( IID_QUnknown, &amp;iface );	\
+	return iface;					\
+    }
+
+#define QAXFACTORY_DEFAULT( Class, IIDClass, IIDInterface, IIDEvents, IIDTypeLib, IIDApp ) \
+    class QAxDefaultFactory : public QAxFactory \
+    { \
+    public: \
+	QAxDefaultFactory( const QUuid &amp;app, const QUuid &amp;lib) \
+	: QAxFactory( app, lib ) {} \
+	QStringList featureList() const \
+	{ \
+	    QStringList list; \
+	    list &lt;&lt; #Class; \
+	    return list; \
+	} \
+	QWidget *create( const QString &amp;key, QWidget *parent, const char *name ) \
+	{ \
+	    if ( key == #Class ) \
+		return new Class( parent, name ); \
+	    return 0; \
+	} \
+	QUuid appID() const \
+	{ \
+	    return QUuid( IIDApp ); \
+	} \
+	QUuid typeLibID() const \
+	{ \
+	    return QUuid( IIDTypeLib ); \
+	} \
+	QUuid classID( const QString &amp;key ) const \
+	{ \
+	    if ( key == #Class ) \
+		return QUuid( IIDClass ); \
+	    return QUuid(); \
+	} \
+	QUuid interfaceID( const QString &amp;key ) const \
+	{ \
+	    if ( key == #Class ) \
+		return QUuid( IIDInterface ); \
+	    return QUuid(); \
+	} \
+	QUuid eventsID( const QString &amp;key ) const \
+	{ \
+	    if ( key == #Class ) \
+		return QUuid( IIDEvents ); \
+	    return QUuid(); \
+	} \
+    }; \
+    QAXFACTORY_EXPORT( QAxDefaultFactory, IIDTypeLib, IIDApp ) \
+
+
+#endif // QAXFACTORY_H
+</pre>
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

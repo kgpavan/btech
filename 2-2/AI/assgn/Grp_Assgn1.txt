@@ -1,0 +1,47 @@
+	Assignment HA-N1
+	HMM TRAINING AND TESTING FOR POS TAGGING
+					(Due 1 week , 14th Dec)
+
+Part-of-speech tagging (POS tagging or POS) is the process of marking up each word in a text with a corresponding
+part of speech like noun, verb, adjective ,adverb etc ... , based both on its definition, as well as its context.
+The number of part of speech tags in a tagger may vary depending on the information one wants to capture.
+For example, in the sentence below, the POS tags are appended at the end of each word with an "_".
+
+He_PRP plays_VBZ Shiva_NNP in_IN the_DT next_JJ play_NN 
+
+In the above sentence, notice the pos tag of the word 'play' in the second position and the last position.
+The 'plays' in the second position is a verb and not a plural noun whereas the 'play' at the last position 
+is a singular noun and not a simple present verb. This disambiguation is useful in natural language applications.
+
+The task for HA-1 is to build a POS tagger by training HMMs on the given annotated data. You can use TnT tool
+for training HMMs. 
+
+The annotated training data has two columns separated by a tab. The first column contains the word and the second column contains
+the POS tag. Each word and its POS tag in a sentence is in a new line. A blank line indicates the end of a sentence.
+
+Ex:- 
+
+He	PRP
+plays	VBZ
+Shiva	NNP
+in	IN
+the	DT
+next	JJ
+play	NN
+.	.
+
+The	DT
+Ways	NNP
+and	CC
+Means	NNP
+Committee	NNP
+will	MD
+hold	VB
+a	DT
+hearing	NN
+on	IN
+the	DT
+bill	NN
+next	IN
+Tuesday	NNP
+.	.

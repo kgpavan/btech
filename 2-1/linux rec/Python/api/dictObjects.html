@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.1 Dictionary Objects </title>
+<META NAME="description" CONTENT="7.3.1 Dictionary Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="previous" href="mapObjects.html">
+<LINK REL="up" href="mapObjects.html">
+<LINK REL="next" href="numericObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009310000000000000000"></A>
+<BR>
+7.3.1 Dictionary Objects 
+</H2>
+
+<P>
+<a name='l2h-327'></a>
+<dl><dt><b><tt class='ctype'><a name='l2h-309'>PyDictObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents a Python dictionary object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-310'><tt class='cdata'>PyDict_Type</tt></a></b>
+<dd>
+This instance of <tt class="ctype">PyTypeObject</tt> represents the Python dictionary 
+type.  This is exposed to Python programs as <code>types.DictType</code> and 
+<code>types.DictionaryType</code>.
+<a name='l2h-312'></a></dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-313'><tt class='cfunction'>PyDict_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns true if its argument is a <tt class="ctype">PyDictObject</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-314'><tt class='cfunction'>PyDict_New</tt></a></b> ()
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a new empty dictionary, or <tt class="constant">NULL</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>void <b><a name='l2h-315'><tt class='cfunction'>PyDict_Clear</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Empties an existing dictionary of all key/value pairs.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-316'><tt class='cfunction'>PyDict_SetItem</tt></a></b> (<var>PyObject *p, PyObject *key,
+                                       PyObject *val</var>)
+<dd>
+Inserts <var>value</var> into the dictionary with a key of <var>key</var>.
+<var>key</var> must be hashable; if it isn't, <tt class="exception">TypeError</tt> will be 
+raised.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-317'><tt class='cfunction'>PyDict_SetItemString</tt></a></b> (<var>PyObject *p,
+                                             char *key, PyObject *val</var>)
+<dd>
+Inserts <var>value</var> into the dictionary using <var>key</var> as a key.
+<var>key</var> should be a <tt class="ctype">char*</tt>.  The key object is created using
+<code>PyString_FromString(<var>key</var>)</code>.<a name='l2h-328'></a>
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-318'><tt class='cfunction'>PyDict_DelItem</tt></a></b> (<var>PyObject *p, PyObject *key</var>)
+<dd>
+Removes the entry in dictionary <var>p</var> with key <var>key</var>.
+<var>key</var> must be hashable; if it isn't, <tt class="exception">TypeError</tt> is
+raised.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-319'><tt class='cfunction'>PyDict_DelItemString</tt></a></b> (<var>PyObject *p, char *key</var>)
+<dd>
+Removes the entry in dictionary <var>p</var> which has a key
+specified by the string <var>key</var>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-320'><tt class='cfunction'>PyDict_GetItem</tt></a></b> (<var>PyObject *p, PyObject *key</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Returns the object from dictionary <var>p</var> which has a key
+<var>key</var>.  Returns <tt class="constant">NULL</tt> if the key <var>key</var> is not present, but
+<i>without</i> setting an exception.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-321'><tt class='cfunction'>PyDict_GetItemString</tt></a></b> (<var>PyObject *p, char *key</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+This is the same as <tt class="cfunction">PyDict_GetItem()</tt>, but <var>key</var> is
+specified as a <tt class="ctype">char*</tt>, rather than a <tt class="ctype">PyObject*</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-322'><tt class='cfunction'>PyDict_Items</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a <tt class="ctype">PyListObject</tt> containing all the items 
+from the dictionary, as in the dictinoary method <tt class="method">items()</tt> (see
+the <i>Python Library Reference</i>).
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-323'><tt class='cfunction'>PyDict_Keys</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a <tt class="ctype">PyListObject</tt> containing all the keys 
+from the dictionary, as in the dictionary method <tt class="method">keys()</tt> (see the
+<i>Python Library Reference</i>).
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-324'><tt class='cfunction'>PyDict_Values</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a <tt class="ctype">PyListObject</tt> containing all the values 
+from the dictionary <var>p</var>, as in the dictionary method
+<tt class="method">values()</tt> (see the <i>Python Library Reference</i>).
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-325'><tt class='cfunction'>PyDict_Size</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns the number of items in the dictionary.  This is equivalent to
+"<tt class="samp">len(<var>p</var>)</tt>" on a dictionary.<a name='l2h-329'></a>
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-326'><tt class='cfunction'>PyDict_Next</tt></a></b> (<var>PyDictObject *p,
+            int ppos,
+            PyObject **pkey,
+            PyObject **pvalue</var>)
+<dd>
+
+<P>
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="mapObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="mapObjects.html">7.3 Mapping Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

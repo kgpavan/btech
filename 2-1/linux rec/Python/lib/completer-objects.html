@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.14.1 Completer Objects </title>
+<META NAME="description" CONTENT="7.14.1 Completer Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-rlcompleter.html">
+<LINK REL="up" href="module-rlcompleter.html">
+<LINK REL="next" href="unix.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-rlcompleter.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-rlcompleter.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-rlcompleter.html">7.14 rlcompleter  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-rlcompleter.html">7.14 rlcompleter  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091410000000000000000"></A>
+<BR>
+7.14.1 Completer Objects 
+</H2>
+
+<P>
+Completer objects have the following method:
+
+<P>
+<dl><dt><b><a name='l2h-1499'><tt class='method'>complete</tt></a></b> (<var>text, state</var>)
+<dd>
+Return the <var>state</var>th completion for <var>text</var>.
+
+<P>
+If called for <var>text</var> that doesn't includea period character
+("<tt class="character">.</tt>"), it will complete from names currently defined in
+<tt class='module'><a href='module-main.html'>__main__</a></tt>, <tt class='module'><a href='module-builtin.html'>__builtin__</a></tt> and
+keywords (as defined by the <tt class='module'><a href='module-keyword.html'>keyword</a></tt> module).
+
+<P>
+If called for a dotted name, it will try to evaluate anything without
+obvious side-effects (i.e., functions will not be evaluated, but it
+can generate calls to <tt class="method">__getattr__()</tt>) upto the last part, and
+find matches for the rest via the <tt class="function">dir()</tt> function.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-rlcompleter.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-rlcompleter.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-rlcompleter.html">7.14 rlcompleter  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-rlcompleter.html">7.14 rlcompleter  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/doc/integration.doc:36 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>About the Visual Studio Integration Plugin</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>About the Visual Studio Integration Plugin</h1>
+
+ 
+
+<p> The Visual Studio Integration Plugin is currently available only to users of
+Visual Studio 6, it offers simple ways of doing common tasks when writing a
+Qt application. 
+<p> <h2> How to install the Visual Studio Integration Plugin
+</h2>
+<a name="1"></a><p> When you install Qt, the integration plugin should be installed for you,
+however, sometimes this does  not happen, so to install the integration
+plugin manually just carry out the following steps.
+<p> <ul>
+<li> Close down any instances of Visual Studio.
+<li> Bring up a command prompt.
+<li> Type 'cd %QTDIR%\tools\designer\integration\qmsdev' in that command prompt.
+<li> Type 'nmake' in that command prompt.
+<li> Start up Visual Studio.
+<li> Select Tools | Customize | Add-ins and Macro Files.
+<li> Ensure that there is a tick next to QMsDev Developer Studio Add-In.
+<li> Click Close.
+</ul>
+<p> Now the integration plugin should be installed.  If this did not work for you
+then I suggest you contact your friendly Trolltech Support team giving details
+of what part went wrong.
+<p> <h2> How to uninstall the Visual Studio Integration Plugin
+</h2>
+<a name="2"></a><p> When you want to uninstall the integration plugin, just carry out the
+following steps.
+<p> <ul>
+<li> Close down any instances of Visual Studio.
+<li> Delete the file '%MSDevDir%\addins\qmsdev.dll'
+</ul>
+<p> <h2> What can the Visual Studio Integration Plugin do?
+</h2>
+<a name="3"></a><p> The integration plugin offers a few things that you can do,
+they are as follows.
+<p> <ul>
+<li> New Qt Project
+<li> New Qt Dialog
+<li> Qt Designer
+<li> Open Qt Project
+<li> Write Qt Project
+<li> Use Qt In Current Project
+<li> Add MOC
+</ul>
+<p> <h2> Using the 'New Qt Project' button
+</h2>
+<a name="4"></a><p> The 'New Qt Project' button allows you to create a simple Qt project ready
+for extending.  All you need to do is fill in the form and if you select
+'Dialog' or 'Main Window' without MDI support then it will start up
+Qt Designer for you.  When you have finished with the form in Qt Designer
+just save it and it will appear in a ready made Qt project for you.
+<p> If you select 'Main Window' with 'MDI Support' then it will simply give you
+a code skeleton in a project which you will need to populate with your code.
+<p> <h2> Using the 'New Qt Dialog' button
+</h2>
+<a name="5"></a><p> The 'New Qt Dialog' button works in two ways, you can use it to create a new
+dialog for your project, or you can  use it to insert an already existing
+dialog into your project.
+<p> If you want to create a new dialog then all you need to do is specify where
+the dialog file should be saved and give it a name.  This will start up
+Qt Designer to allow you to edit your newly created dialog and add it to
+the existing  project for you.
+<p> If you want to add an existing dialog to your project, then just select the
+relevant ui file.  This will then add it to your existing project and add
+the relevant steps to create the generated code for you.
+<p> <h2> Using the 'Qt Designer' button
+</h2>
+<a name="6"></a><p> The 'Qt Designer' button simply starts up Qt Designer, it has no ties to
+your existing project so whatever you do with it will not effect your
+existing projects.  It can also be started up by using the Ctrl+Shift+D key
+combination in Visual Studio.
+<p> <h2> Using the 'Open Qt Project' button
+</h2>
+<a name="7"></a><p> The 'Open Qt Project' button will allow you to easily convert an existing
+qmake project file into a .dsp file which you can insert into your existing
+workspace.  When you click the 'Open Qt Project' button, just select an
+existing qmake project file (.pro) and then click OK.  You will get a message
+box when it has done which tells you to insert the newly created .dsp file
+into your existing workspace.
+<p> <h2> Using the 'Write Qt Project' button
+</h2>
+<a name="8"></a><p> The 'Write Qt Project' button will create a qmake project (.pro) file for
+your current project so that you can easily copy  the files onto another
+platform and be able to use qmake to create a Makefile on that other
+platform.  All you need to do is make the project you wish to write a
+project for the current project and click on the button.  Just name your
+qmake project file and click Save.
+<p> <h2> Using the 'Use Qt In Current Project' button
+</h2>
+<a name="9"></a><p> The 'Use Qt In Current Project' button simply adds in the necessary
+information for the current project so that it links against Qt and
+sets any other settings needed to use Qt in that project.
+<p> <h2> Using the 'Add MOC' button
+</h2>
+<a name="10"></a><p> The 'Add MOC' button will add in the custom build step for the selected file
+so that it creates any needed MOC files and it will  add these generated
+files to the project.  All you need to do to use it is click on a file that
+has <a href="metaobjects.html#Q_OBJECT">Q_OBJECT</a> and click the button.  
+<p> You only need to use this button if you added a file that has Q_OBJECT in
+it by hand, you don't need to use this if you used any of the previously
+mentioned buttons.  It can also be invoked by using the Ctrl+Shift+M key
+combination in Visual Studio.
+<p> 
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2. Building C and C++ Extensions on Unix </title>
+<META NAME="description" CONTENT="2. Building C and C++ Extensions on Unix ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ext.css">
+<LINK REL="next" href="building-on-windows.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" HREF="ext.html">
+<LINK REL="next" href="custom-interps.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="custom-interps.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="ext.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="using-cobjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="custom-interps.html">2.1 Building Custom Interpreters</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="ext.html">Extending and Embedding the</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="using-cobjects.html">1.12 Providing a C</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004000000000000000000"></A>
+<BR>
+2. Building C and C++ Extensions on Unix
+         
+</H1>
+
+<P>
+
+<P>
+Starting in Python 1.4, Python provides a special make file for
+building make files for building dynamically-linked extensions and
+custom interpreters.  The make file make file builds a make file
+that reflects various system variables determined by configure when
+the Python interpreter was built, so people building module's don't
+have to resupply these settings.  This vastly simplifies the process
+of building extensions and custom interpreters on Unix systems.
+
+<P>
+The make file make file is distributed as the file
+<font class="file" face="sans-serif">Misc/Makefile.pre.in</font> in the Python source distribution.  The
+first step in building extensions or custom interpreters is to copy
+this make file to a development directory containing extension module
+source.
+
+<P>
+The make file make file, <font class="file" face="sans-serif">Makefile.pre.in</font> uses metadata
+provided in a file named <font class="file" face="sans-serif">Setup</font>.  The format of the <font class="file" face="sans-serif">Setup</font>
+file is the same as the <font class="file" face="sans-serif">Setup</font> (or <font class="file" face="sans-serif">Setup.in</font>) file
+provided in the <font class="file" face="sans-serif">Modules/</font> directory of the Python source
+distribution.  The <font class="file" face="sans-serif">Setup</font> file contains variable definitions:
+
+<P>
+<dl><dd><pre class="verbatim">
+EC=/projects/ExtensionClass
+</pre></dl>
+
+<P>
+and module description lines.  It can also contain blank lines and
+comment lines that start with "<tt class="character">#</tt>".
+
+<P>
+A module description line includes a module name, source files,
+options, variable references, and other input files, such
+as libraries or object files.  Consider a simple example:
+
+<P>
+<dl><dd><pre class="verbatim">
+ExtensionClass ExtensionClass.c
+</pre></dl>
+
+<P>
+This is the simplest form of a module definition line.  It defines a
+module, <tt class="module">ExtensionClass</tt>, which has a single source file,
+<font class="file" face="sans-serif">ExtensionClass.c</font>.
+
+<P>
+This slightly more complex example uses an <b>-I</b> option to
+specify an include directory:
+
+<P>
+<dl><dd><pre class="verbatim">
+EC=/projects/ExtensionClass
+cPersistence cPersistence.c -I$(EC)
+</pre></dl> 
+<P>
+This example also illustrates the format for variable references.
+
+<P>
+For systems that support dynamic linking, the <font class="file" face="sans-serif">Setup</font> file should 
+begin:
+
+<P>
+<dl><dd><pre class="verbatim">
+*shared*
+</pre></dl>
+
+<P>
+to indicate that the modules defined in <font class="file" face="sans-serif">Setup</font> are to be built
+as dynamically linked modules.  A line containing only "<tt class="samp">*static*</tt>"can be used to indicate the subsequently listed modules should be
+statically linked.
+
+<P>
+Here is a complete <font class="file" face="sans-serif">Setup</font> file for building a
+<tt class="module">cPersistent</tt> module:
+
+<P>
+<dl><dd><pre class="verbatim">
+# Set-up file to build the cPersistence module. 
+# Note that the text should begin in the first column.
+*shared*
+
+# We need the path to the directory containing the ExtensionClass
+# include file.
+EC=/projects/ExtensionClass
+cPersistence cPersistence.c -I$(EC)
+</pre></dl> 
+<P>
+After the <font class="file" face="sans-serif">Setup</font> file has been created, <font class="file" face="sans-serif">Makefile.pre.in</font>
+is run with the "<tt class="samp">boot</tt>" target to create a make file:
+
+<P>
+<dl><dd><pre class="verbatim">
+make -f Makefile.pre.in boot
+</pre></dl>
+
+<P>
+This creates the file, Makefile.  To build the extensions, simply
+run the created make file:
+
+<P>
+<dl><dd><pre class="verbatim">
+make
+</pre></dl>
+
+<P>
+It's not necessary to re-run <font class="file" face="sans-serif">Makefile.pre.in</font> if the
+<font class="file" face="sans-serif">Setup</font> file is changed.  The make file automatically rebuilds
+itself if the <font class="file" face="sans-serif">Setup</font> file changes.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html301"
+ href="custom-interps.html">2.1 Building Custom Interpreters </A>
+<LI><A NAME="tex2html302"
+ href="module-defn-options.html">2.2 Module Definition Options </A>
+<LI><A NAME="tex2html303"
+ href="module-defn-example.html">2.3 Example </A>
+<LI><A NAME="tex2html304"
+ href="distributing.html">2.4 Distributing your extension modules
+         </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="custom-interps.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="ext.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="using-cobjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="custom-interps.html">2.1 Building Custom Interpreters</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="ext.html">Extending and Embedding the</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="using-cobjects.html">1.12 Providing a C</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

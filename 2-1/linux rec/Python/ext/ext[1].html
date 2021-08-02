@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Extending and Embedding the Python Interpreter</title>
+<META NAME="description" CONTENT="Extending and Embedding the Python Interpreter">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ext.css">
+<LINK REL="next" href="front.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class='titlepage'><center>
+<h1>Extending and Embedding the Python Interpreter</h1>
+<p><b><font size='+2'>Guido van Rossum</font></b></p>
+<p>
+	Corporation for National Research Initiatives 
+<BR>
+1895 Preston White Drive, Reston, VA 20191, USA 
+<BR>
+E-mail: <span class="email">guido@python.org</span>
+</p>
+<p><strong>March 22, 2000</strong><br><strong>Release 1.5.2</strong></p>
+<p>
+</center></div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html10"
+ href="front.html">Front Matter</A>
+<LI><A NAME="tex2html11"
+ href="contents.html">Contents</A>
+<LI><A NAME="tex2html12"
+ href="intro.html">1. Extending Python with C or C++ </A>
+<UL>
+<LI><A NAME="tex2html13"
+ href="simpleExample.html">1.1 A Simple Example
+         </A>
+<LI><A NAME="tex2html14"
+ href="errors.html">1.2 Intermezzo: Errors and Exceptions
+         </A>
+<LI><A NAME="tex2html15"
+ href="backToExample.html">1.3 Back to the Example
+         </A>
+<LI><A NAME="tex2html16"
+ href="methodTable.html">1.4 The Module's Method Table and Initialization Function
+         </A>
+<LI><A NAME="tex2html17"
+ href="compilation.html">1.5 Compilation and Linkage
+         </A>
+<LI><A NAME="tex2html18"
+ href="callingPython.html">1.6 Calling Python Functions from C
+         </A>
+<LI><A NAME="tex2html19"
+ href="parseTuple.html">1.7 Format Strings for <tt class="cfunction">PyArg_ParseTuple()</tt>
+         </A>
+<LI><A NAME="tex2html20"
+ href="parseTupleAndKeywords.html">1.8 Keyword Parsing with <tt class="cfunction">PyArg_ParseTupleAndKeywords()</tt>
+         </A>
+<LI><A NAME="tex2html21"
+ href="buildValue.html">1.9 The <tt class="cfunction">Py_BuildValue()</tt> Function
+         </A>
+<LI><A NAME="tex2html22"
+ href="refcounts.html">1.10 Reference Counts
+         </A>
+<LI><A NAME="tex2html23"
+ href="cplusplus.html">1.11 Writing Extensions in C++
+         </A>
+<LI><A NAME="tex2html24"
+ href="using-cobjects.html">1.12 Providing a C API for an Extension Module
+         </A>
+</UL>
+<LI><A NAME="tex2html25"
+ href="building-on-unix.html">2. Building C and C++ Extensions on Unix
+         </A>
+<UL>
+<LI><A NAME="tex2html26"
+ href="custom-interps.html">2.1 Building Custom Interpreters </A>
+<LI><A NAME="tex2html27"
+ href="module-defn-options.html">2.2 Module Definition Options </A>
+<LI><A NAME="tex2html28"
+ href="module-defn-example.html">2.3 Example </A>
+<LI><A NAME="tex2html29"
+ href="distributing.html">2.4 Distributing your extension modules
+         </A>
+</UL>
+<LI><A NAME="tex2html30"
+ href="building-on-windows.html">3. Building C and C++ Extensions on Windows
+         </A>
+<UL>
+<LI><A NAME="tex2html31"
+ href="win-cookbook.html">3.1 A Cookbook Approach </A>
+<LI><A NAME="tex2html32"
+ href="dynamic-linking.html">3.2 Differences Between Unix and Windows
+         </A>
+<LI><A NAME="tex2html33"
+ href="win-dlls.html">3.3 Using DLLs in Practice </A>
+</UL>
+<LI><A NAME="tex2html34"
+ href="embedding.html">4. Embedding Python in Another Application
+         </A>
+<UL>
+<LI><A NAME="tex2html35"
+ href="embeddingInCplusplus.html">4.1 Embedding Python in C++
+         </A>
+</UL>
+<LI><A NAME="tex2html36"
+ href="about.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Extending and Embedding the Python Interpreter</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

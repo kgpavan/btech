@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.16 glob -- Unix style pathname pattern expansion</title>
+<META NAME="description" CONTENT="6.16 glob -- Unix style pathname pattern expansion">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-fnmatch.html">
+<LINK REL="previous" href="module-errno.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-fnmatch.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-fnmatch.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-errno.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-fnmatch.html">6.17 fnmatch  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-errno.html">6.15 errno  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081600000000000000000">
+6.16 <tt class="module">glob</tt> --
+         Unix style pathname pattern expansion</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">glob</tt> module finds all the pathnames matching a specified
+pattern according to the rules used by the Unix shell.  No tilde
+expansion is done, but <code>*</code>, <code>?</code>, and character ranges
+expressed with <code>[]</code> will be correctly matched.  This is done by
+using the <tt class="function">os.listdir()</tt> and <tt class="function">fnmatch.fnmatch()</tt>
+functions in concert, and not by actually invoking a subshell.  (For
+tilde and shell variable expansion, use <tt class="function">os.path.expanduser()</tt>
+and <tt class="function">os.path.expandvars()</tt>.)
+<a name='l2h-1263'></a>
+
+<P>
+<dl><dt><b><a name='l2h-1262'><tt class='function'>glob</tt></a></b> (<var>pathname</var>)
+<dd>
+Returns a possibly-empty list of path names that match <var>pathname</var>,
+which must be a string containing a path specification.
+<var>pathname</var> can be either absolute (like
+<font class="file" face="sans-serif">/usr/src/Python-1.5/Makefile</font>) or relative (like
+<font class="file" face="sans-serif">../../Tools/*/*.gif</font>), and can contain shell-style wildcards.
+</dl>
+
+<P>
+For example, consider a directory containing only the following files:
+<font class="file" face="sans-serif">1.gif</font>, <font class="file" face="sans-serif">2.txt</font>, and <font class="file" face="sans-serif">card.gif</font>.  <tt class="function">glob()</tt>
+will produce the following results.  Notice how any leading components
+of the path are preserved.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import glob
+&gt;&gt;&gt; glob.glob('./[0-9].*')
+['./1.gif', './2.txt']
+&gt;&gt;&gt; glob.glob('*.gif')
+['1.gif', 'card.gif']
+&gt;&gt;&gt; glob.glob('?.gif')
+['1.gif']
+</pre></dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-fnmatch.html'>fnmatch</a></tt>:</b>
+    <dd>Shell-style filename (not path) expansion.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-fnmatch.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-errno.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-fnmatch.html">6.17 fnmatch  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-errno.html">6.15 errno  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

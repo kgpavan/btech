@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9.2 Memory Interface </title>
+<META NAME="description" CONTENT="9.2 Memory Interface ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="memoryExamples.html">
+<LINK REL="previous" href="memoryOverview.html">
+<LINK REL="up" href="memory.html">
+<LINK REL="next" href="memoryExamples.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="memoryExamples.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="memory.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="memoryOverview.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="memoryExamples.html">9.3 Examples</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="memory.html">9. Memory Management</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="memoryOverview.html">9.1 Overview</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011200000000000000000"></A>
+<BR>
+9.2 Memory Interface 
+</H1>
+
+<P>
+The following function sets, modeled after the ANSI C standard, are
+available for allocating and releasing memory from the Python heap:
+
+<P>
+<dl><dt><b><tt class='ctype'><a name='l2h-542'>ANY*</a></tt></b>
+<dd>
+The type used to represent arbitrary blocks of memory.  Values of this 
+type should be cast to the specific type that is needed.
+</dl>
+
+<P>
+<dl><dt>ANY* <b><a name='l2h-543'><tt class='cfunction'>PyMem_Malloc</tt></a></b> (<var>size_t n</var>)
+<dd>
+Allocates <var>n</var> bytes and returns a pointer of type <tt class="ctype">ANY*</tt> to
+the allocated memory, or <tt class="constant">NULL</tt> if the request fails. Requesting zero
+bytes returns a non-<tt class="constant">NULL</tt> pointer.
+</dl>
+
+<P>
+<dl><dt>ANY* <b><a name='l2h-544'><tt class='cfunction'>PyMem_Realloc</tt></a></b> (<var>ANY *p, size_t n</var>)
+<dd>
+Resizes the memory block pointed to by <var>p</var> to <var>n</var> bytes. The
+contents will be unchanged to the minimum of the old and the new
+sizes. If <var>p</var> is <tt class="constant">NULL</tt>, the call is equivalent to
+<tt class="cfunction">PyMem_Malloc(<var>n</var>)</tt>; if <var>n</var> is equal to zero, the memory block
+is resized but is not freed, and the returned pointer is non-<tt class="constant">NULL</tt>.
+Unless <var>p</var> is <tt class="constant">NULL</tt>, it must have been returned by a previous
+call to <tt class="cfunction">PyMem_Malloc()</tt> or <tt class="cfunction">PyMem_Realloc()</tt>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name='l2h-545'><tt class='cfunction'>PyMem_Free</tt></a></b> (<var>ANY *p</var>)
+<dd>
+Frees the memory block pointed to by <var>p</var>, which must have been
+returned by a previous call to <tt class="cfunction">PyMem_Malloc()</tt> or
+<tt class="cfunction">PyMem_Realloc()</tt>.  Otherwise, or if
+<tt class="cfunction">PyMem_Free(p)</tt> has been called before, undefined behaviour
+occurs. If <var>p</var> is <tt class="constant">NULL</tt>, no operation is performed.
+</dl>
+
+<P>
+<dl><dt>ANY* <b><a name='l2h-546'><tt class='cfunction'>Py_Malloc</tt></a></b> (<var>size_t n</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Malloc()</tt>, but calls
+<tt class="cfunction">PyErr_NoMemory()</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>ANY* <b><a name='l2h-547'><tt class='cfunction'>Py_Realloc</tt></a></b> (<var>ANY *p, size_t n</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Realloc()</tt>, but calls
+<tt class="cfunction">PyErr_NoMemory()</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>void <b><a name='l2h-548'><tt class='cfunction'>Py_Free</tt></a></b> (<var>ANY *p</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Free()</tt>.
+</dl>
+
+<P>
+The following type-oriented macros are provided for convenience.  Note 
+that <var>TYPE</var> refers to any C type.
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name='l2h-549'><tt class='cfunction'>PyMem_NEW</tt></a></b> (<var>TYPE, size_t n</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Malloc()</tt>, but allocates <code>(<var>n</var> *
+sizeof(<var>TYPE</var>))</code> bytes of memory.  Returns a pointer cast to
+<tt class="ctype"><var>TYPE</var>*</tt>.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name='l2h-550'><tt class='cfunction'>PyMem_RESIZE</tt></a></b> (<var>ANY *p, TYPE, size_t n</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Realloc()</tt>, but the memory block is resized
+to <code>(<var>n</var> * sizeof(<var>TYPE</var>))</code> bytes.  Returns a pointer
+cast to <tt class="ctype"><var>TYPE</var>*</tt>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name='l2h-551'><tt class='cfunction'>PyMem_DEL</tt></a></b> (<var>ANY *p</var>)
+<dd>
+Same as <tt class="cfunction">PyMem_Free()</tt>.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="memoryExamples.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="memory.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="memoryOverview.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="memoryExamples.html">9.3 Examples</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="memory.html">9. Memory Management</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="memoryOverview.html">9.1 Overview</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

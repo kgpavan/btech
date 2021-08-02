@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.5 Process Management </title>
+<META NAME="description" CONTENT="6.1.5 Process Management ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="os-path.html">
+<LINK REL="previous" href="os-file-dir.html">
+<LINK REL="up" href="module-os.html">
+<LINK REL="next" href="os-path.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="os-path.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-os.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="os-file-dir.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="os-path.html">6.1.6 Miscellanenous System Data</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-os.html">6.1 os  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="os-file-dir.html">6.1.4 Files and Directories</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008150000000000000000"></A>
+<BR>
+6.1.5 Process Management 
+</H2>
+
+<P>
+These functions may be used to create and manage additional
+processes.
+
+<P>
+<dl><dt><b><a name='l2h-900'><tt class='function'>execl</tt></a></b> (<var>path, arg0, arg1, ...</var>)
+<dd>
+This is equivalent to
+"<tt class="samp">execv(<var>path</var>, (<var>arg0</var>, <var>arg1</var>, ...))</tt>".
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-901'><tt class='function'>execle</tt></a></b> (<var>path, arg0, arg1, ..., env</var>)
+<dd>
+This is equivalent to
+"<tt class="samp">execve(<var>path</var>, (<var>arg0</var>, <var>arg1</var>, ...), <var>env</var>)</tt>".
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-902'><tt class='function'>execlp</tt></a></b> (<var>path, arg0, arg1, ...</var>)
+<dd>
+This is equivalent to
+"<tt class="samp">execvp(<var>path</var>, (<var>arg0</var>, <var>arg1</var>, ...))</tt>".
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-903'><tt class='function'>execv</tt></a></b> (<var>path, args</var>)
+<dd>
+Execute the executable <var>path</var> with argument list <var>args</var>,
+replacing the current process (i.e., the Python interpreter).
+The argument list may be a tuple or list of strings.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-904'><tt class='function'>execve</tt></a></b> (<var>path, args, env</var>)
+<dd>
+Execute the executable <var>path</var> with argument list <var>args</var>,
+and environment <var>env</var>,
+replacing the current process (i.e., the Python interpreter).
+The argument list may be a tuple or list of strings.
+The environment must be a dictionary mapping strings to strings.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-905'><tt class='function'>execvp</tt></a></b> (<var>path, args</var>)
+<dd>
+This is like "<tt class="samp">execv(<var>path</var>, <var>args</var>)</tt>" but duplicates
+the shell's actions in searching for an executable file in a list of
+directories.  The directory list is obtained from
+<code>environ['PATH']</code>.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-906'><tt class='function'>execvpe</tt></a></b> (<var>path, args, env</var>)
+<dd>
+This is a cross between <tt class="function">execve()</tt> and <tt class="function">execvp()</tt>.
+The directory list is obtained from <code><var>env</var>['PATH']</code>.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-907'><tt class='function'>_exit</tt></a></b> (<var>n</var>)
+<dd>
+Exit to the system with status <var>n</var>, without calling cleanup
+handlers, flushing stdio buffers, etc.
+Availability: Unix, Windows.
+
+<P>
+Note: the standard way to exit is <code>sys.exit(<var>n</var>)</code>.
+<tt class="function">_exit()</tt> should normally only be used in the child process
+after a <tt class="function">fork()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-908'><tt class='function'>fork</tt></a></b> ()
+<dd>
+Fork a child process.  Return <code>0</code> in the child, the child's
+process id in the parent.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-909'><tt class='function'>kill</tt></a></b> (<var>pid, sig</var>)
+<dd>
+<a name='l2h-926'></a>
+Kill the process <var>pid</var> with signal <var>sig</var>.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-910'><tt class='function'>nice</tt></a></b> (<var>increment</var>)
+<dd>
+Add <var>increment</var> to the process's ``niceness''.  Return the new
+niceness.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-911'><tt class='function'>plock</tt></a></b> (<var>op</var>)
+<dd>
+Lock program segments into memory.  The value of <var>op</var>
+(defined in <code>&lt;sys/lock.h&gt;</code>) determines which segments are locked.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-912'><tt class='function'>spawnv</tt></a></b> (<var>mode, path, args</var>)
+<dd>
+Execute the program <var>path</var> in a new process, passing the arguments 
+specified in <var>args</var> as command-line parameters.  <var>args</var> may be 
+a list or a tuple.  <var>mode</var> is a magic operational constant.  See
+the Visual C++ Runtime Library documentation for further
+information; the constants are exposed to the Python programmer as
+listed below.
+Availability: Windows.
+
+New in version 1.5.2.
+
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-913'><tt class='function'>spawnve</tt></a></b> (<var>mode, path, args, env</var>)
+<dd>
+Execute the program <var>path</var> in a new process, passing the arguments 
+specified in <var>args</var> as command-line parameters and the contents of 
+the mapping <var>env</var> as the environment.  <var>args</var> may be a list or
+a tuple.  <var>mode</var> is a magic operational constant.  See the Visual
+C++ Runtime Library documentation for further information; the
+constants are exposed to the Python programmer as listed below.
+Availability: Windows.
+
+New in version 1.5.2.
+
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-914'><tt>P_WAIT</tt></a></b>
+<dd>
+<dt><b><a name='l2h-927'><tt>P_NOWAIT</tt></a></b><dd>
+<dt><b><a name='l2h-928'><tt>P_NOWAITO</tt></a></b><dd>
+<dt><b><a name='l2h-929'><tt>P_OVERLAY</tt></a></b><dd>
+<dt><b><a name='l2h-930'><tt>P_DETACH</tt></a></b><dd>
+Possible values for the <var>mode</var> parameter to <tt class="function">spawnv()</tt>
+and <tt class="function">spawnve()</tt>.
+Availability: Windows.
+
+New in version 1.5.2.
+
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-915'><tt class='function'>system</tt></a></b> (<var>command</var>)
+<dd>
+Execute the command (a string) in a subshell.  This is implemented by
+calling the Standard C function <tt class="cfunction">system()</tt>, and has the
+same limitations.  Changes to <code>posix.environ</code>, <code>sys.stdin</code>,
+etc. are not reflected in the environment of the executed command.
+The return value is the exit status of the process encoded in the
+format specified for <tt class="function">wait()</tt>, except on Windows 95 and 98,
+where it is always <code>0</code>.  Note that POSIX does not specify the
+meaning of the return value of the C <tt class="cfunction">system()</tt> function,
+so the return value of the Python function is system-dependent.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-916'><tt class='function'>times</tt></a></b> ()
+<dd>
+Return a 5-tuple of floating point numbers indicating accumulated (CPU
+or other)
+times, in seconds.  The items are: user time, system time, children's
+user time, children's system time, and elapsed real time since a fixed
+point in the past, in that order.  See the Unix manual page
+<span class='manpage'><i>times</i>(2)</span> or the corresponding Windows Platform API
+documentation.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-917'><tt class='function'>wait</tt></a></b> ()
+<dd>
+Wait for completion of a child process, and return a tuple containing
+its pid and exit status indication: a 16-bit number, whose low byte is
+the signal number that killed the process, and whose high byte is the
+exit status (if the signal number is zero); the high bit of the low
+byte is set if a core file was produced.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-918'><tt class='function'>waitpid</tt></a></b> (<var>pid, options</var>)
+<dd>
+Wait for completion of a child process given by process id <var>pid</var>,
+and return a tuple containing its process id and exit status
+indication (encoded as for <tt class="function">wait()</tt>).  The semantics of the
+call are affected by the value of the integer <var>options</var>, which
+should be <code>0</code> for normal operation.
+Availability: Unix.
+
+<P>
+If <var>pid</var> is greater than <code>0</code>, <tt class="function">waitpid()</tt> requests
+status information for that specific process.  If <var>pid</var> is
+<code>0</code>, the request is for the status of any child in the process
+group of the current process.  If <var>pid</var> is <code>-1</code>, the request
+pertains to any child of the current process.  If <var>pid</var> is less
+than <code>-1</code>, status is requested for any process in the process
+group <code>-<var>pid</var></code> (the absolute value of <var>pid</var>).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-919'><tt>WNOHANG</tt></a></b>
+<dd>
+The option for <tt class="function">waitpid()</tt> to avoid hanging if no child
+process status is available immediately.
+Availability: Unix.
+</dl>
+
+<P>
+The following functions take a process status code as returned by
+<tt class="function">system()</tt>, <tt class="function">wait()</tt>, or <tt class="function">waitpid()</tt> as a
+parameter.  They may be used to determine the disposition of a
+process.
+
+<P>
+<dl><dt><b><a name='l2h-920'><tt class='function'>WIFSTOPPED</tt></a></b> (<var>status</var>)
+<dd>
+Return true if the process has been stopped.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-921'><tt class='function'>WIFSIGNALED</tt></a></b> (<var>status</var>)
+<dd>
+Return true if the process exited due to a signal.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-922'><tt class='function'>WIFEXITED</tt></a></b> (<var>status</var>)
+<dd>
+Return true if the process exited using the <span class='manpage'><i>exit</i>(2)</span> system
+call.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-923'><tt class='function'>WEXITSTATUS</tt></a></b> (<var>status</var>)
+<dd>
+If <code>WIFEXITED(<var>status</var>)</code> is true, return the integer
+parameter to the <span class='manpage'><i>exit</i>(2)</span> system call.  Otherwise, the return 
+value is meaningless.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-924'><tt class='function'>WSTOPSIG</tt></a></b> (<var>status</var>)
+<dd>
+Return the signal which caused the process to stop.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-925'><tt class='function'>WTERMSIG</tt></a></b> (<var>status</var>)
+<dd>
+Return the signal which caused the process to exit.
+Availability: Unix.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="os-path.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-os.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="os-file-dir.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="os-path.html">6.1.6 Miscellanenous System Data</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-os.html">6.1 os  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="os-file-dir.html">6.1.4 Files and Directories</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

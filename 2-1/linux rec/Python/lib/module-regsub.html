@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.4 regsub -- String operations using regular expressions</title>
+<META NAME="description" CONTENT="4.4 regsub -- String operations using regular expressions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-struct.html">
+<LINK REL="previous" href="module-regex.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="module-struct.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-struct.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="strings.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="Contents_of_Module_regex.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-struct.html">4.5 struct  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="strings.html">4. String Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="Contents_of_Module_regex.html">4.3.2 Module Contents</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006400000000000000000">
+4.4 <tt class="module">regsub</tt> --
+         String operations using regular expressions</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a number of functions useful for working with
+regular expressions (see built-in module <tt class='module'><a href='module-regex.html'>regex</a></tt>).
+
+<P>
+Warning: these functions are not thread-safe.
+
+<P>
+<b>Obsolescence note:</b>
+This module is obsolete as of Python version 1.5; it is still being
+maintained because much existing code still uses it.  All new code in
+need of regular expressions should use the new <tt class='module'><a href='module-re.html'>re</a></tt> module, which
+supports the more powerful and regular Perl-style regular expressions.
+Existing code should be converted.  The standard library module
+<tt class="module">reconvert</tt> helps in converting <tt class='module'><a href='module-regex.html'>regex</a></tt> style regular
+expressions to <tt class='module'><a href='module-re.html'>re</a></tt> style regular expressions.  (For more
+conversion help, see Andrew Kuchling's<a name='l2h-636'></a>
+``regex-to-re HOWTO'' at
+<a class='url' href='http://www.python.org/doc/howto/regex-to-re/'>http://www.python.org/doc/howto/regex-to-re/</a>.)
+
+<P>
+<dl><dt><b><a name='l2h-630'><tt class='function'>sub</tt></a></b> (<var>pat, repl, str</var>)
+<dd>
+Replace the first occurrence of pattern <var>pat</var> in string
+<var>str</var> by replacement <var>repl</var>.  If the pattern isn't found,
+the string is returned unchanged.  The pattern may be a string or an
+already compiled pattern.  The replacement may contain references
+"<tt class="samp">&#92;<var>digit</var></tt>" to subpatterns and escaped backslashes.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-631'><tt class='function'>gsub</tt></a></b> (<var>pat, repl, str</var>)
+<dd>
+Replace all (non-overlapping) occurrences of pattern <var>pat</var> in
+string <var>str</var> by replacement <var>repl</var>.  The same rules as for
+<code>sub()</code> apply.  Empty matches for the pattern are replaced only
+when not adjacent to a previous match, so e.g.
+<code>gsub('', '-', 'abc')</code> returns <code>'-a-b-c-'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-632'><tt class='function'>split</tt></a></b> (<var>str, pat</var><big>[</big><var>, maxsplit</var><big>]</big>)
+<dd>
+Split the string <var>str</var> in fields separated by delimiters matching
+the pattern <var>pat</var>, and return a list containing the fields.  Only
+non-empty matches for the pattern are considered, so e.g.
+<code>split('a:b', ':*')</code> returns <code>['a', 'b']</code> and
+<code>split('abc', '')</code> returns <code>['abc']</code>.  The <var>maxsplit</var>
+defaults to 0. If it is nonzero, only <var>maxsplit</var> number of splits
+occur, and the remainder of the string is returned as the final
+element of the list.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-633'><tt class='function'>splitx</tt></a></b> (<var>str, pat</var><big>[</big><var>, maxsplit</var><big>]</big>)
+<dd>
+Split the string <var>str</var> in fields separated by delimiters matching
+the pattern <var>pat</var>, and return a list containing the fields as well
+as the separators.  For example, <code>splitx('a:::b', ':*')</code> returns
+<code>['a', ':::', 'b']</code>.  Otherwise, this function behaves the same
+as <code>split</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-634'><tt class='function'>capwords</tt></a></b> (<var>s</var><big>[</big><var>, pat</var><big>]</big>)
+<dd>
+Capitalize words separated by optional pattern <var>pat</var>.  The default
+pattern uses any characters except letters, digits and underscores as
+word delimiters.  Capitalization is done by changing the first
+character of each word to upper case.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-635'><tt class='function'>clear_cache</tt></a></b> ()
+<dd>
+The regsub module maintains a cache of compiled regular expressions,
+keyed on the regular expression string and the syntax of the regex
+module at the time the expression was compiled.  This function clears
+that cache.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-struct.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="strings.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="Contents_of_Module_regex.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-struct.html">4.5 struct  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="strings.html">4. String Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="Contents_of_Module_regex.html">4.3.2 Module Contents</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

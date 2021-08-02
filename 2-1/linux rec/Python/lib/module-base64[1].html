@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.16 base64 -- Encode and decode MIME base64 data</title>
+<META NAME="description" CONTENT="12.16 base64 -- Encode and decode MIME base64 data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-quopri.html">
+<LINK REL="previous" href="module-mimetypes.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="module-quopri.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-quopri.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="netdata.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-mimetypes.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-quopri.html">12.17 quopri  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="netdata.html">12. Internet Data Handling</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-mimetypes.html">12.15 mimetypes  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141600000000000000000">
+12.16 <tt class="module">base64</tt> --
+         Encode and decode MIME base64 data</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name='l2h-2214'></a>
+
+<P>
+This module performs base64 encoding and decoding of arbitrary binary
+strings into text strings that can be safely emailed or posted.  The
+encoding scheme is defined in <a class='rfc' name='rfcref-48592'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc1521.txt'>RFC 1521</a> (<i>MIME
+(Multipurpose Internet Mail Extensions) Part One: Mechanisms for
+Specifying and Describing the Format of Internet Message Bodies</i>,
+section 5.2, ``Base64 Content-Transfer-Encoding'') and is used for
+MIME email and various other Internet-related applications; it is not
+the same as the output produced by the <b class="program">uuencode</b> program.
+For example, the string <code>'www.python.org'</code> is encoded as the
+string <code>'d3d3LnB5dGhvbi5vcmc=&#92;n'</code>.  
+
+<P>
+<dl><dt><b><a name='l2h-2210'><tt class='function'>decode</tt></a></b> (<var>input, output</var>)
+<dd>
+Decode the contents of the <var>input</var> file and write the resulting
+binary data to the <var>output</var> file.
+<var>input</var> and <var>output</var> must either be file objects or objects that
+mimic the file object interface. <var>input</var> will be read until
+<code><var>input</var>.read()</code> returns an empty string.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2211'><tt class='function'>decodestring</tt></a></b> (<var>s</var>)
+<dd>
+Decode the string <var>s</var>, which must contain one or more lines of
+base64 encoded data, and return a string containing the resulting
+binary data.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2212'><tt class='function'>encode</tt></a></b> (<var>input, output</var>)
+<dd>
+Encode the contents of the <var>input</var> file and write the resulting
+base64 encoded data to the <var>output</var> file.
+<var>input</var> and <var>output</var> must either be file objects or objects that
+mimic the file object interface. <var>input</var> will be read until
+<code><var>input</var>.read()</code> returns an empty string.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2213'><tt class='function'>encodestring</tt></a></b> (<var>s</var>)
+<dd>
+Encode the string <var>s</var>, which can contain arbitrary binary data,
+and return a string containing one or more lines of
+base64 encoded data.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-binascii.html'>binascii</a></tt>:</b>
+    <dd>support module containing ASCII-to-binary
+                       and binary-to-ASCII conversions.
+  </dl>
+  <div class="seetext"><p>Internet <a class='rfc' name='rfcref-48587'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc1521.txt'>RFC 1521</a>, <i>MIME (Multipurpose Internet
+           Mail Extensions) Part One: Mechanisms for Specifying and
+           Describing the Format of Internet Message Bodies</i>, section
+           5.2, ``Base64 Content-Transfer-Encoding,'' provides the
+           definition of the base64 encoding.</div>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-quopri.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="netdata.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-mimetypes.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-quopri.html">12.17 quopri  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="netdata.html">12. Internet Data Handling</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-mimetypes.html">12.15 mimetypes  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

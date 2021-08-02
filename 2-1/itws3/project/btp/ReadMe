@@ -1,0 +1,11 @@
+Running the Omega Torsion Tool
+
+1. Press Alt+F2. A run terminal will come. Write konsole in it.
+2. Command line will appear. Write `cd Desktop/btp'
+3. Give the command 'service mysqld start'
+4. Give command 'mysql'
+5. On the Mysql prompt write 'use RRBPF'
+6. Then type the command 'delete from base_pairs;'
+7. Type exit
+8. Run the tool with the command './BTP'
+

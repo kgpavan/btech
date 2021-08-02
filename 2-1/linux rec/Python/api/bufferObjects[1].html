@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.2 Buffer Objects </title>
+<META NAME="description" CONTENT="7.2.2 Buffer Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="tupleObjects.html">
+<LINK REL="previous" href="stringObjects.html">
+<LINK REL="up" href="sequenceObjects.html">
+<LINK REL="next" href="tupleObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="tupleObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="stringObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="tupleObjects.html">7.2.3 Tuple Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="stringObjects.html">7.2.1 String Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009220000000000000000"></A>
+<BR>
+7.2.2 Buffer Objects 
+</H2>
+
+<P>
+<a name='l2h-269'></a>
+Python objects implemented in C can export a group of functions called
+the ``buffer<a name='l2h-270'></a> interface.''  These functions can
+be used by an object to expose its data in a raw, byte-oriented
+format. Clients of the object can use the buffer interface to access
+the object data directly, without needing to copy it first.
+
+<P>
+Two examples of objects that support 
+the buffer interface are strings and arrays. The string object exposes 
+the character contents in the buffer interface's byte-oriented
+form. An array can also expose its contents, but it should be noted
+that array elements may be multi-byte values.
+
+<P>
+An example user of the buffer interface is the file object's
+<tt class="method">write()</tt> method. Any object that can export a series of bytes
+through the buffer interface can be written to a file. There are a
+number of format codes to <tt class="cfunction">PyArgs_ParseTuple()</tt> that operate 
+against an object's buffer interface, returning data from the target
+object.
+
+<P>
+More information on the buffer interface is provided in the section
+``Buffer Object Structures'' (section <A href="buffer-structs.html#buffer-structs">10.5</A>), under
+the description for <tt class="ctype">PyBufferProcs</tt><a name='l2h-271'></a>.
+
+<P>
+A ``buffer object'' is defined in the <font class="file" face="sans-serif">bufferobject.h</font> header
+(included by <font class="file" face="sans-serif">Python.h</font>). These objects look very similar to
+string objects at the Python programming level: they support slicing,
+indexing, concatenation, and some other standard string
+operations. However, their data can come from one of two sources: from
+a block of memory, or from another object which exports the buffer
+interface.
+
+<P>
+Buffer objects are useful as a way to expose the data from another
+object's buffer interface to the Python programmer. They can also be
+used as a zero-copy slicing mechanism. Using their ability to
+reference a block of memory, it is possible to expose any data to the
+Python programmer quite easily. The memory could be a large, constant
+array in a C extension, it could be a raw block of memory for
+manipulation before passing to an operating system library, or it
+could be used to pass around structured data in its native, in-memory
+format.
+
+<P>
+<dl><dt><b><tt class='ctype'><a name='l2h-258'>PyBufferObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents a buffer object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-259'><tt class='cdata'>PyBuffer_Type</tt></a></b>
+<dd>
+The instance of <tt class="ctype">PyTypeObject</tt> which represents the Python
+buffer type; it is the same object as <code>types.BufferType</code> in the
+Python layer.<a name='l2h-261'></a>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-262'><tt class='cdata'>Py_END_OF_BUFFER</tt></a></b>
+<dd>
+This constant may be passed as the <var>size</var> parameter to
+<tt class="cfunction">PyBuffer_FromObject()</tt> or
+<tt class="cfunction">PyBuffer_FromReadWriteObject()</tt>. It indicates that the new
+<tt class="ctype">PyBufferObject</tt> should refer to <var>base</var> object from the
+specified <var>offset</var> to the end of its exported buffer. Using this
+enables the caller to avoid querying the <var>base</var> object for its
+length.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-263'><tt class='cfunction'>PyBuffer_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Return true if the argument has type <tt class="cdata">PyBuffer_Type</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-264'><tt class='cfunction'>PyBuffer_FromObject</tt></a></b> (<var>PyObject *base,
+                                                  int offset, int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Return a new read-only buffer object.  This raises
+<tt class="exception">TypeError</tt> if <var>base</var> doesn't support the read-only
+buffer protocol or doesn't provide exactly one buffer segment, or it
+raises <tt class="exception">ValueError</tt> if <var>offset</var> is less than zero. The
+buffer will hold a reference to the <var>base</var> object, and the
+buffer's contents will refer to the <var>base</var> object's buffer
+interface, starting as position <var>offset</var> and extending for
+<var>size</var> bytes. If <var>size</var> is <tt class="constant">Py_END_OF_BUFFER</tt>, then
+the new buffer's contents extend to the length of the
+<var>base</var> object's exported buffer data.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-265'><tt class='cfunction'>PyBuffer_FromReadWriteObject</tt></a></b> (<var>PyObject *base,
+                                                           int offset,
+                                                           int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Return a new writable buffer object.  Parameters and exceptions are
+similar to those for <tt class="cfunction">PyBuffer_FromObject()</tt>.
+If the <var>base</var> object does not export the writeable buffer
+protocol, then <tt class="exception">TypeError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-266'><tt class='cfunction'>PyBuffer_FromMemory</tt></a></b> (<var>void *ptr, int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Return a new read-only buffer object that reads from a specified
+location in memory, with a specified size.
+The caller is responsible for ensuring that the memory buffer, passed
+in as <var>ptr</var>, is not deallocated while the returned buffer object
+exists.  Raises <tt class="exception">ValueError</tt> if <var>size</var> is less than
+zero.  Note that <tt class="constant">Py_END_OF_BUFFER</tt> may <i>not</i> be passed
+for the <var>size</var> parameter; <tt class="exception">ValueError</tt> will be raised in 
+that case.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-267'><tt class='cfunction'>PyBuffer_FromReadWriteMemory</tt></a></b> (<var>void *ptr, int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Similar to <tt class="cfunction">PyBuffer_FromMemory()</tt>, but the returned buffer
+is writable.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-268'><tt class='cfunction'>PyBuffer_New</tt></a></b> (<var>int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a new writable buffer object that maintains its own memory
+buffer of <var>size</var> bytes.  <tt class="exception">ValueError</tt> is returned if
+<var>size</var> is not zero or positive.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="tupleObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="sequenceObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="stringObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="tupleObjects.html">7.2.3 Tuple Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="sequenceObjects.html">7.2 Sequence Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="stringObjects.html">7.2.1 String Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

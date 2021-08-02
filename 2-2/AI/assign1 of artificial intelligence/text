@@ -1,0 +1,608 @@
+marquee handler deals with mouse events, and allows additional painting and overlaying of the
+marquee . (The marquee is a rectangle that constitutes the to-be selected region.)
+   isForceMarqueeEvent checks to see if whatever mechanism there is in the current
+marquee handler is enabled to force handling of the mouse event to be passed onto the marquee
+handler. In the case of BasicMarqueeHandler this is caused by pressing and holding the 'alt'
+key during the mouse operation.
+5.2.4 HANDLES
+   We mentioned handles in Chapter 3, it is within the BasicGraphUI we actually direct
+   mouse events to the handles. The BasicGraphUI stores the current CellHandle in the
+Page 97
+JGraph User Manual
+  handle variable. This is updated in the updateHandle() method which creates cell
+  handles depending on the current selection state of the graph.
+  For moving operations the mouse event will be passed to RootHandle, which is another
+  inner class of BasicGraphUI. For resizing operations on vertices the mouse event will be
+  passed to SizeHandle, which is an inner class of VertexView. And for edge moving and
+  resizing functions the mouse event will be passed to EdgeHandle, which is an inner class of
+  EdgeView.
+Page 98
+JGraph User Manual
+6 Input and Output
+6.1 XML Persistence
+   Java 1.4 and later provides the XMLEncoder and XMLDecoder mechanisms to serialize the
+objects of your application in a standard manner. An example of what your encoding phase might
+look like is shown below:
+XMLEncoder enc = new XMLEncoder(out);
+enc.setExceptionListener(new ExceptionListener() {
+        public void exceptionThrown(Exception e) {
+                // Dealt with exception
+        }
+});
+// Configure persistence delegates here
+enc.writeObject(object);
+enc.close();
+   Java uses the mechanism of persistence delegates to identify what data from certain
+classes needs to be serialized. Note that it is not necessary to persist the JGraph object
+using the writeObject method, most application need only persist their
+GraphLayoutCache. This contains all the graph model and view geometry information:
+enc.writeObject(graphLayoutCache);
+   If you are not familiar with the use of XML encoding and how to use persistence delegates, it is
+worth reading the Sun article on Using XMLEncoder. Obviously, to write the correct persistence
+delegates for a custom application you need to understand the mechanism. The basic idea is that
+you create persistence delegates corresponding to class constructors that you wish to be called when
+the XML is decoded later on. The classes described by the delegates must not be private, nor must
+the constructors be. The class itself must not be an inner class, it needs to be static or exist in its
+own file. Also, the class member variables must follow the Bean properties design where
+setXXX() and getXXX() methods exist for each variable XXX that is to be persisted.
+   As a general guide below are shown the typical delegates that will enable you to persist a simple
+JGraph base application:
+XMLEncoder encoder;
+Warning: There is known activity by an “Intellectual Property” company named Forgent,
+Page 101
+JGraph User Manual
+whereby they are requesting companies to license their patent in order to use the JPEG format.
+Please note that by providing the facility to export to the JPEG format JGraph is not actively
+suggesting you do so. If in doubt, use the PNG format.
+   Using the various image processing functionality available in Java, it is relatively simple to
+produce an image of your graph in JPEG, bitmap (.bmp) or Portable Network Graphics (.png)
+format. A utility method, getImage() is provided in the JGraph class to make exporting a
+simple task. getImage() takes two parameters, the first is the background color of the output
+image and the second is any inset to be use around every side of image produced.
+   The background color, you may wish to simply be the background color of the graph, but for the
+PNG output format there is the option of a transparent background. In the example below you
+need to use your own graph, your own output stream and select an appropriate background, but
+otherwise this code should work for all cases:
+JGraph graph = getGraph(); // Replace with your own graph instance
+OutputStream out = getOutputStream(); // Replace with your output stream
+Color bg = null; // Use this to make the background transparent
+bg = graph.getBackground(); // Use this to use the graph background
+color
+BufferedImage img = graph.getImage(bg, inset);
+ImageIO.write(img, ext, out);
+out.flush();
+out.close();
+6.3 SVG Export
+   There are two methods that may be used to export a JGraph to SVG format. The first is to use
+the Apache Batik library to perform the export, the second is to natively produce the SVG mark-up
+within your application. The second method is employed in the mxGraph product. Natively
+writing the SVG output provides large performance improvements over the Batik library. The
+Batik library produces output that only uses very primitive graphics elements and so post-
+processing of the SVG output is not possible since the graph context is not discernible from the
+output. The Batik library, at the time of writing, also is missing certain useful features, such as the
+association of a Hyperlink with a cell or text element.
+   The first method is the one currently most often used and the one that will be described here.
+The Batik library may be downloaded from its home page, which also provides a number of useful
+tutorials regarding the use of the library. The basic principle is to create a SVGGraphics2D
+object and paint the graph to that, the best explanation of how to do this is the code itself, shown
+below:
+public static void writeSVG(JGraph graph, OutputStream out, int inset)
+Page 102
+JGraph User Manual
+                throws UnsupportedEncodingException, SVGGraphics2DIOException
+{
+       Object[] cells = graph.getRoots();
+       Rectangle2D bounds = graph.toScreen(graph.getCellBounds(cells));
+       if (bounds != null) {
+                // Constructs the svg generator used for painting the graph to
+                DOMImplementation domImpl = GenericDOMImplementation
+                               .getDOMImplementation();
+                Document document = domImpl.createDocument(null, "svg", null);
+                SVGGraphics2D svgGenerator = new SVGGraphics2D(document);
+                svgGenerator.translate(-bounds.getX() + inset, -bounds.getY()
+                               + inset);
+                // Paints the graph to the svg generator with no double
+                // buffering enabled to make sure we get a vector image.
+                RepaintManager currentManager = RepaintManager
+                               .currentManager(graph);
+                currentManager.setDoubleBufferingEnabled(false);
+                graph.paint(svgGenerator);
+                // Writes the graph to the specified file as an SVG stream
+                Writer writer = new OutputStreamWriter(out, "UTF-8");
+                svgGenerator.stream(writer, false);
+                currentManager.setDoubleBufferingEnabled(true);
+       }
+}
+   Viewing the output may be performed using the Squiggle browser produced by Apache,
+Internet Explorer with the Adobe SVG plug-in or Firefox 1.5 or greater. In the author's experience
+Internet Explorer with the Adobe plug-in produces the best quality output at the time of writing.
+6.4 Exporting in a Headless Environment
+   On *nix systems the architecture of the X Windows system means that Swing requires some
+kind of graphics buffer to write to. When using a 1.3 version of the Java Virtual Machine (JVM) in
+order to produce exported images on such systems a framebuffer is required, the absence of a buffer
+to write to would cause a headless exception to be fired. Note that Windows systems do not have
+have this issue since they do not have the same client/server separation. With the popularity of *nix
+on the server-side, the common requirement of producing graph images on a server and then
+streaming those images to a client side browser could be non-trivial.
+   Previously, on *nix systems you would generally either set-up a VNC server or run a virtual
+framebuffer if there was no X Windows server available. Having to change the server environment
+was often not acceptable and so from JVM 1.4 the concept of a headless mode was introduced to
+work around this issue. By setting the -Djava.awt.headless=true option in the JVM
+arguments it is possible to create instances of lightweight components. However, to display
+lightweight components it is necessary to add them to a heavyweight component such as a
+Window or a Frame, which cannot be used in a headless environment. Instead of creating a
+Page 103
+JGraph User Manual
+Frame and calling pack() there is a workaround where you may create a JPanel and call
+addNotify() to achieve the same effect. Although, addNotify() is not strictly meant to be
+called by developers, this is a widely accepted workaround:
+            JGraph graph = getGraph(); // Replace with your graph instance
+            JPanel panel = new JPanel();
+            panel.setDoubleBuffered(false); // Always turn double buffering
+off when exporting
+            panel.add( graph );
+            panel.setVisible( true );
+            panel.setEnabled( true );
+            panel.addNotify();             // workaround to pack() on a JFrame
+            panel.validate();
+            Color bg = null; // Use this to make the background transparent
+            bg = graph.getBackground(); // Use this to use the graph
+background color
+            BufferedImage img = graph.getImage ( bg, 0 );
+6.5 Printing
+   Printing in built into Swing and with JDK 1.4 the javax.print package provides detailed
+control over the printing process. This package contains the PrinterJob class which is the
+main printing control class. The basic mechanism to print is implemented using the following
+code:
+PrinterJob printJob = PrinterJob.getPrinterJob();
+printJob.setPrintable(graphPane); // where graphPane is a JScrollPane
+with a graph in it, for example
+if (printJob.printDialog()) {
+      printJob.print();
+}
+   You require a Swing container that implements the Printable interface. This container
+needs to implement a print() method that is called when a print job is invoked. This is the only
+method the interface defines and it takes three parameters: graphics – the graphics context to
+paint the page on, pageFormat – a description of the size and orientation of the page and
+pageIndex – the index of the page to be drawn (starts from zero).
+   So you use the standard Swing printing functionality to set which Printable element is to
+be printed and to start the print:
+public int print(Graphics g, PageFormat printFormat, int page) {
+      Dimension pSize = graph.getPreferredSize(); // graph is a JGraph
+      int w = (int) (printFormat.getWidth() * pageScale);
+      int h = (int) (printFormat.getHeight() * pageScale);
+      int cols = (int) Math.max(Math.ceil((double) (pSize.width - 5)
+                 / (double) w), 1);
+      int rows = (int) Math.max(Math.ceil((double) (pSize.height - 5)
+                 / (double) h), 1);
+Page 104
+JGraph User Manual
+      if (page < cols * rows) {
+          // Configures graph for printing
+          RepaintManager currentManager =
+RepaintManager.currentManager(this);
+          currentManager.setDoubleBufferingEnabled(false);
+          double oldScale = getGraph().getScale();
+          getGraph().setScale(1 / pageScale);
+          int dx = (int) ((page % cols) * printFormat.getWidth());
+          int dy = (int) ((page % rows) * printFormat.getHeight());
+          g.translate(-dx, -dy);
+          g.setClip(dx, dy, (int) (dx + printFormat.getWidth()),
+                   (int) (dy + printFormat.getHeight()));
+          // Prints the graph on the graphics.
+          getGraph().paint(g);
+          // Restores graph
+          g.translate(dx, dy);
+          graph.setScale(oldScale);
+          currentManager.setDoubleBufferingEnabled(true);
+          return PAGE_EXISTS;
+      } else {
+          return NO_SUCH_PAGE;
+      }
+}
+Page 105
+JGraph User Manual
+7 Layouts
+7.1 Introduction
+   JGraph Layout Pro can be run on any system supporting a Java Runtime Environment version
+1.4 or later. Since version 1.2.1 of JGraph Layout Pro this software has included a license to JGraph
+and a complete JGraph distribution with source code and documentation at the appropriate
+revision. Please note that JGraph Layout Pro is not stand alone software and that an understanding
+of the use of JGraph is required in order to use JGraph Layout Pro.
+7.2 Installation and compilation
+   This version of JGraph Layout Pro is designed for use with version JGraph version 5.8.3.2, this
+version is supplied with JGraph Layout Pro. Use with later versions of JGraph should always be
+possible. If you would like more information about compatibility for a specific combination of
+product versions, please email JGraph support.
+7.2.1 REQUIREMENTS
+      Java 1.4 or later compatible virtual machine for your operating system. (Java 1.4.2 is
+   •
+      recommended.) Java 1.5.x is known to work correctly.
+      Compiling JGraph Layout Pro requires Apache Ant, a platform independent build tool that
+   •
+      uses Java for its command implementation.
+7.2.2 INSTALLATION
+   JGraph Layout Pro comes as a self-extracting java file. If the .jar file association for .jar files is
+setup correctly, opening the file in a window manager should start the installation. Otherwise, on
+the command line type:
+java -jar jgraphlayout-1.3.0.9-src.jar
+   and the installation process will begI in. You will be required to agree to the license under which
+the software is provided and to then select where to install the package.
+Page 106
+JGraph User Manual
+7.2.2.1 Project structure and build options
+   Once Java and Ant are installed launch the command prompt on windows, or shell terminal on
+*nix or Mac, navigate to the root folder where you installed JGraph Layout Pro. Typing ant
+command, where command is one of the targets in the ant build file, will perform the function of
+that command, as described below. Missing out the command will build the default target, all.
+Page 107
+JGraph User Manual
+   src/                 Source root
+   examples/            Examples root
+   build/               Build environment
+                              Table 1. Project Directory Structure
+   all                  Clean up and produce all distributions ( *the default target )
+   apidoc               Generate the API specification (javadoc)
+   build                Run all tasks to completely populate the build directory
+   clean                Delete all generated files and directories
+   compile              Compile the build tree
+   dist                 Produce fresh distributions
+   distclean            Clean up the distribution files only
+   doc                  Generate all documentation
+   init                 Initialize the build
+   jar                  Build all Java archives (JARs)
+   compile-example      Compile the main example
+   generate             Generate the build tree
+   example              Run the main example
+                                 Table 2. Ant command options
+  For example, to compile and run the example UI type the following:
+ant example
+Page 108
+JGraph User Manual
+7.3 The Design of JGraph Layout Pro
+7.3.1 WHAT DOES JGRAPH LAYOUT PRO DO?
+    JGraph Layout Pro takes graph structures defined using the JGraph library and performs either
+or both of two specific functions on that graph structure:
+     1. Position the vertices of that graph using an algorithm(s) that attempts to fulfil certain
+        aesthetic requirements,
+     2. Add and remove control points of edges in the graph using an algorithm(s) that attempts to
+        fulfil certain aesthetic requirements.
+    Exact what these aesthetic criteria are depend upon individual application or layouts
+requirements. Generally, these might involve spreading out vertices evenly without them
+overlapping each other, avoiding edges overlapping vertices and crossing other edges, clustering
+connected vertex neighbours and ordering vertices to reflect overall graph direction.
+    The standard facade in JGraph Layout Pro requires a JGraph instance in order to operate. The
+facade in JGraph Layout Pro extracts information from the GraphLayoutCache and graph model
+attached to this graph instances and stores it for processing by the layouts. The facade can then be
+passed to one or more layouts and store the compound result within forcing the result to be applied
+back to the graph.
+    From JGraph Layout Pro 1.3 a new version of the facade, JGraphModelFacade, was introduced.
+This facade does not have any dependency on a JGraph object, instead the constructors take a
+GraphModel as a parameter. This means you are able to create a graph and apply a layout to it
+without having to instantiate a JGraph, ideal for server-side layouting.
+7.4 Running a layout
+    There are two important classes required for configuring and running a layout,
+JGraphLayout and JGraphFacade. Classes inheriting from JGraphLayout perform
+the mathematical operations of producing the layout, whereas, JGraphFacade performs
+filtering on the graph and provides various utility methods for the layout to extract information
+about the graph. The advantage of this mechanism is that the exact data transferred to the layout is
+de-coupled from the layout algorithm itself, providing a more stable API during the lifetime of the
+package as new layouts are introduced. It also means that layout algorithm is able to use the output
+of any other layout as its input, i.e. the facade is manipulated by one by layout and then passed to
+another.
+    The first thing to be done when running a layout is to create the facade object that stores
+information about the graph to be acted upon and its configuration. The constructors require an
+instance of JGraph so the facade knows which graph is being referenced in the layout. If a tree
+layout is being used, the constructor must also be passed the root node(s) of the trees.
+Page 109
+JGraph User Manual
+JGraphFacade has a number of switches also that enable the layout to act upon the correct
+cells in the graph. By setting these switches, the facade configures what it returns from certain
+utility methods, again encapsulating the configuration of the layout in the facade. For example, by
+default the getNeighbours() method on the facade returns neighbour cells regardless of
+their visibility, whereas with the ignoresHiddenCells flag set to true, only cells visible in
+the current graph view will be returned. The layouts are designed to access information through
+such methods in the facade, performing stateful filtering. The switches on the facade are:
+       ignoresHiddenCells - Stores whether or not the layout is to act on only visible cells
+   •
+       i.e. true means only act on visible cells, false act on cells regardless of their visibility. The
+       default value is true.
+       ignoresUnconnectedCells - Stores whether or not the layout is to act on only cells
+   •
+       that have at least one connected edge. true means only act on connected cells, false act
+       on cells regardless of their connections. The default value is true.
+       ignoresCellsInGroups - Stores whether or not the layout is to only act on root cells
+   •
+       in the model. true means only act on root cells, false means act upon roots and their
+       children. The default value is false.
+       directed - Stores whether or not the graph is to be treated as a directed graph. true
+   •
+       means follow edges in target to source direction, false means treat edges as directionless.
+       The default value is true.
+   The facade object not only stores the input to the layout, but also the output. The result of a
+layout is not automatically applied to a graph in case the developer wishes to check the result or
+perform another algorithm. To enable this the result of the layout is stored as a nested map of the
+attributes where the graph cell is the key to each pair, and an attribute map, detailing the changes
+made to that cell by the layout, is the value. This map may be obtained by a call to
+getNestedMap() on the facade and is suitable for sending directly to the edit() method on
+the GraphLayoutCache or GraphModel. Below is a simple example showing the steps of
+setting the objects up, executing the layout and applying the layout back to the graph:
+          JGraphFacade facade = new JGraphFacade(graph); // Pass the facade
+the JGraph instance
+          JGraphLayout layout = new JGraphSpringLayout(); // Create an
+instance of the appropriate layout
+          layout.run(facade); // Run the layout on the facade. Note that
+layouts do not implement the Runnable interface, to avoid confusion
+          Map nested = facade.createNestedMap(true, true); // Obtain a map
+of the resulting attribute changes from the facade
+          graph.getGraphLayoutCache().edit(nested); // Apply the results to
+the actual graph
+   The method to obtain a nested map of the results of the layout, createNestedMap, takes
+two parameters:
+Page 110
+JGraph User Manual
+      ignoreGrid - whether or not the map returned is snapped to the current grid
+   •
+      flushOrigin - whether or not the bounds of the resulting graph should be moved to
+   •
+      (0,0)
+7.4.1 EDGE CONTROL POINTS
+   Some of the layout algorithms are designed specifically to manipulate and insert/remove edge
+control points in order to provide better edge routing in the end result. Because routing algorithms
+may be defined on a per edge basis, the layout algorithms only alters the control points of edges is
+required by that algorithm. Therefore, if one algorithm changes an edge's control points and
+another layout is immediately applied then the control points will probably look incorrect in the
+new layout. Rather than try to second-guess whether or not inserted control point were added
+purposefully or accidentally it is left to the developer to deal with the state of control points prior
+to a layout being applied. The utility method resetControlPoints() on
+JGraphFacade is available to clear all control points should you require this to be done before
+any layout is run.
+Page 111
+JGraph User Manual
+7.5 Using the layouts
+7.5.1 THE TREE LAYOUTS
+   The tree layout classes currently available in the JGraph Layout Pro package are:
+      com.jgraph.layout.tree.JGraphTreeLayout
+   •
+      com.jgraph.layout.tree.JGraphCompact TreeLayout
+   •
+      com.jgraph.tree.JGraphRadialTreeLayout.
+   •
+   Note that at least one root must be specified for all tree layouts using the roots parameter of
+the facade constructors. Note that these are the roots of the tree, not the roots of the graph model.
+Tree layouts will follow edges from the root node(s) to determine the structure of the tree(s),
+taking into account the settings of the facade.
+   Layout Pro also supports the concept of laying out sub-trees as show in the example application.
+Selection of any node and the execution of a tree layout will result in only the child tree nodes
+being laid out as a tree with the selected node as root. Note that the facade needs to be set to
+directed ( the default value ), otherwise the algorithm determining the tree structure will process
+the parents of the sub-node. However, this technique can be used to change the root node of an
+entire tree.
+   Here is how you might set up the facade to process a tree layout:
+         Object roots = getRoots(); // replace getRoots with your own
+Object array of the cell tree roots. NOTE: these are the root cell(s) of
+the tree(s), not the roots of the graph model.
+         JGraphFacade facade = new JGraphFacade(graph, roots); // Pass the
+facade the JGraph instance
+         JGraphLayout layout = new JGraphTreeLayout(); // Create an
+instance of the appropriate layout
+         layout.run(facade); // Run the layout on the facade.
+         Map nested = facade.createNestedMap(true, true); // Obtain a map
+of the resulting attribute changes from the facade
+         graph.getGraphLayoutCache().edit(nested); // Apply the results to
+the actual graph
+7.5.1.1 Tree Layout
+   The tree layout arranges the nodes, starting from a specified node(s), into a tree-like structure.
+The tree may by oriented in the four cardinal compass points options on the layout include
+alignment of same-level nodes selection, setting the minimum distance between nodes on adjacent
+levels of the tree and setting the minimum distance between nodes on the same levels. The
+performance of the tree layout is O(|V|), i.e. proportional to number of nodes in the layout.
+Page 112
+JGraph User Manual
+7.5.1.1.1 Alignment
+    Alignment refers to which part of vertices will be aligned for all vertices on a given level. Using
+the setAlignment() method you can set the alignment of the graph to
+SwingConstants.TOP,                                 SwingConstants.CENTER                            or
+SwingConstants.BOTTOM. The literal values of these constants are 1, 0 and 3 respectively at
+the time of writing, but the variable names should always be used.
+                              Illustration 52 : SwingConstants.TOP
+                              Illustration 53 : SwingConstants.CENTER
+Page 113
+JGraph User Manual
+                               Illustration 54 : SwingConstants.BOTTOM
+7.5.1.1.2 Orientation
+    Orientation refers to the compass direction in which the root node(s) of the tree will be located
+relative to the rest of the tree. Using the setOrientation() method you can set the
+                              SwingConstants.NORTH,                    SwingConstants.EAST,
+orientation          to
+SwingConstants.SOUTH or SwingConstants.WEST. The literal values of these
+constants are 1, 3, 5 and 7 at the time of writing, but the variable names should always be used.
+                                     Illustration 55 :
+                                     SwingConstants.NORTH
+Page 114
+JGraph User Manual
+                   Illustration 56 : SwingConstants.EAST
+                   Illustration 57 :
+                   SwingConstants.SOUTH
+Page 115
+JGraph User Manual
+                                       Illustration 58 :
+                                       SwingConstants.WEST
+7.5.1.1.3 levelDistance and nodeDistance
+    levelDistance is the distance between the lowest point of any vertex on one level to the
+highest point of any vertex on the next level down. nodeDistance is the minimum distance
+between any two vertices on the same level. Note that levels closer to the root tend to be spaced a
+further apart than this, assuming the density of nodes is lower towards the start of the tree.
+    .
+                                Illustration 59 : levelDistance and nodeDistance
+                                definitions
+Page 116
+JGraph User Manual
+7.5.1.1.4 combineLevelNodes
+    The combineLevelNodes flag specifies whether or not to ensure that nodes on the same
+tree level are aligned across the entire tree. When nodes vary in size it is possible to save space on
+sub-trees with smaller nodes by setting this flag to false. However, this can make it difficult to
+determine visually which nodes occupy the same level on the tree. If this flag is set to true, the
+alignment variable determines exactly which part of nodes of the same level are aligned.
+Page 117
+JGraph User Manual
+ Illustration 60 : combineLevelNodes = false
+ Illustration 61 : combineLevelNodes = true
+Page 118
+JGraph User Manual
+7.5.1.1.5 positionMultipleTrees and treeDistance
+    positionMultipleTrees determines whether or not to separate distinct trees so there is
+no overlap between the trees. Each of the distinct trees to be separated would have to be specified
+in the roots parameter of JGraphFacade. The distance between each of the trees is defined
+by the treeDistance variable.
+                                           Illustration 62 :
+                                           positionMultipleTrees =
+                                           false
+Page 119
+JGraph User Manual
+                                   Illustration 63 : positionMultipleTrees =
+                                   true , treeDistance = 30
+7.5.1.2 Compact Tree Layout
+   The Compact Tree Layout (formerly called the Moen) is another layout in the tree-family, it
+makes some improvements over standard tree layouts. The Compact Tree takes cell shapes into
+account and concentrates on producing as compact a result as possible. The Compact Tree also
+describes mechanisms to compute deltas of the layout, so the entire computation does not have to
+be performed on every layout. The exact mechanism for how to do this depends upon the
+application. If you require this performance advantage, contact JGraph support for information on
+how to apply it in your application. The Compact Tree manages to compact more tightly than the
+standard tree by storing sub-trees as polygons. In terms of performance the time to lay out using
+the layout is O(|V|), i.e. proportion to the number of vertices.
+7.5.1.3 Radial Tree Layout
+Page 120
+JGraph User Manual
+ Illustration 64 : A Radial Tree Layout
+    The Radial Tree Layout draws the root node of the tree in the centre of the layout and lays out
+the other nodes in concentric rings around the focus node. Each node lies on the ring
+corresponding to its shortest network distance from the root node. Immediate neighbours of the
+root node lie on the smallest inner ring, their neighbours lie on the second smallest ring until the
+most distance nodes form the outermost rings. The angular position of a node on its ring is
+determined by the sector of the ring allocated to it. Each node is allocated a sector within the sector
+assigned to its parent, with size proportional to the angular width of that node's subtree. The
+performance of the radial tree is O(|V|), i.e. proportion to the number of vertices.
+Page 121
+JGraph User Manual
+7.5.2 ORGANIC LAYOUTS
+7.5.2.1 Spring Embedded
+                   Illustration 65 : A tree laid out by the Spring Layout
+   The Spring Layout is a force-directed layout algorithm designed to simulate a system of particles
+each with some mass. The vertices simulate mass points repelling each other and the edges simulate
+springs with attracting forces. The algorithm moves through a number of iteration trying to
+minimize the energy of this physical system. This means a certain number of iterations are required
+to bring the system close to equilibrium, however, further iterations will perform very small
+changes and simply waste CPU time.
+   The performance of the Spring layout is O(|V| 2), i.e. proportional to the number of vertices
+squared. This time also needs to be multiplied by the number of iterations in the layout to get the
+full time worst-case. Generally, the spring is best applied to smaller graphs with a more regular
+structure.
+   The springs have a natural length, if compressed to less than this length they repulse the
+attached nodes, if extended to more than this length they attract the attached nodes. The force
+with which they act upon the attached nodes is proportional to the difference between the current
+Page 122
+JGraph User Manual
+spring length and its natural spring length. The force with which each pair of nodes repulse each
+other is proportional to the inverse of the distance between the nodes squared.
+   The key values in the spring layout are the spring length, the spring force and the repulsive force.
+The default values of the layout are set to behave well for a general graph. Increasing or decreasing
+the repulsive force only tends to affect local clusters shapes. Higher values for the spring force tends
+to lead to instability and oscillation of clusters and even the whole graph. Spring length tends to
+only affect the density of the graph, not the actual layout formed.
+   The Spring layout acts fairly slowly and so many iterations are required before an equilibrium
+between the nodes is found, the number of iterations tends to increase with the number of nodes in
+the layout. The spring layout constructor takes the number of iterations to be performed as a
+parameter.
+   The speed with which the spring layout produces a pleasing result can depend upon the input
+graph. Sometimes it is worth placing the nodes in random positions before applying the spring
+layout, or possibly applying the circle layout first. The tilt() method on JGraphFacade
+provide random placements of specified nodes. The example that ships with Layout Pro applies
+snap to grid to the cells. If the spring layout has short spring lengths and high spring forces, this can
+result in cells being overlaid. The spring layout might be used without snap to grid in this case.
+7.5.2.2 Fast Organic Layout
+   The two aesthetic aims of the Fast Organic (FO) layout are that vertices connected by edges
+should be drawn close to one another and that vertices should not be drawn to close to one
+another. The attractive and repulsive forces are simply variations on those used in the spring
+embedded layout. Their formulae are intended to be easier to compute and better at overcoming
+local minima positions. The FO layout adds the concept of temperature, whereby the maximum
+distance that nodes can move decreases over between each iteration. This is intended to reduce
+instability in the layout and force the layout to settle in its later stages.
+   The performance of the FO layout is O(|V| 2 +|E|) per iteration, i.e. proportional to the number
+of vertices squared. This time also needs to be multiplied by the number of iterations in the layout
+to get the full time worst-case. Generally, the FO is best applied to smaller graphs with a more
+regular structure.
+   The FO layout is much like the Spring Embedded in that it is a force directed layout with the
+same top level algorithm. Each iteration consists of taking each vertex in turn and calculating a
+force upon it based on connected edge and their distance to all other vertices. The FO layout also
+introduced the idea of temperature, whereby the maximum move of any vertex decreasing with
+each iteration, assisting the layout to 'settle'.
+   The force repulsing vertices in the FO is proportional to inverse of the distance between the
+nodes and the attractive forces between connected nodes are proportionals to the square of the
+distance between them. The constant, k, also used in both equations is the distance at which
+connected vertices are at equilibrium. The lack of a logarithmic calculation, as required in the
+Page 123
+JGraph User Manual
+Spring Embedded algorithm, make the FO one of the faster force directed layouts. The number of
+iterations required to produce a pleasing result cannot be determined in advance, but the number
+of nodes in the graph will affect this number.
+7.5.2.3 Inverted Self Organising Map
+   Although not strictly a force-directed layout, the ISOM layout uses the idea of filling the space
+evenly with vertices and of causing connected vertices to attract each other. Rather actually
+calculating forces to be applied to vertices, the ISOM layout uses an heuristic to achieve its aim.
+The algorithm involves selecting a random point in the graph area and picking the vertex closest to
+that point. This vertex is moved towards that points as well as all vertices connected to that initial
+vertex by up to a set number of edge steps. The amount by which the vertices are moved decreases
+the greater the number of edges in the shortest path between the current and initial vertex. The
+initial number of edge steps is decreased during the layout so that the later steps form local clusters
+of connected vertices.
+   The computational effort per iteration is linear, O(|N|). This comes from the effort of finding
+the closest node to the random point. When JGraph implements a spatial index structure this will
+improve to O(log|N|). Only a selection of nodes are moved per iteration and so a greater number
+of iterations are required for larger graphs. Generally, the number of iterations required is
+proportional to the number of vertices and so the computational effort, including the number of
+iterations, will always be O(|V|). The paper describes 500 iterations as being enough for 25 nodes,
+thus maxIterationsMultiple, which defines the vertices to number of iterations factor, defaults to
+20. The ISOM is the fastest of the force-directed family of layouts in this package.
+   The two important data to setup in an ISOM layout are the radius and the bounds of graph.
+The bounds determines within which area the random positions will be located and so the area
+within which the nodes will be distributed. If you prefer to just specify an average density of nodes,
+use densityFactor to do this. The moveRadius field determines the number of neighbour
+nodes, in addition to the closest node to the random position, that are moved towards that point.
+It defines the actual number of edges limit that will be traversed to find node to move. Changing
+this value affects the clustering behaviour of the layout.
+Page 124
+JGraph User Manual
+7.5.2.4 Organic Layout
+   This layout is an implementation of a simulated annealing layout, which describes the following
+criteria as being favourable in a graph layout: (1) distributing nodes evenly, (2) making edge-
+lengths uniform, (3) minimizing cross-crossings, and (4) keeping nodes from coming too close to
+edges. These criteria are translated into energy cost functions in the layout. Nodes or edges
+Page 140
+JGraph User Manual
+the same result for a given input graph and settings. The hierarchical layout does not assure that
+layer will be ordered in the order as provided by the graph model unless this flag is set. Setting
+isDeterministic to true may degrade the output somewhat for larger graphs, since it
+introduces a component with performance somewhere between linear and square.
+Page 141
+JGraph User Manual
+7.5.3 EDGE ROUTING
+7.5.3.1 Orthogonal Edge Routing
+   OrthogonalLinkRouter is a global edge router designed to avoid the overlap of edges with
+vertices by constructing the edges in vertical and horizontal segments. The router is run like any
+standard layout, its performance means it is not a good candidate for displaying during a preview.
+                Illustration 79: The Orthogonal Edge Router
+Page 142
+JGraph User Manual
+7.5.4 SIMPLE LAYOUTS
+7.5.4.1 Circle Layout
+   The circle layout arranges all the node into a circle, with constant spacing between each
+neighbour node. The performance of this layout is proportional to the number of vertices in the
+circle. Although, circle layouts are not commonly used by themselves, it has been noted that some
+non-deterministic layouts ( force-directed mainly ) produce a better result if separated out by a
+circle layout first. If a better result is not produce, often the same quality of result can be obtained
+quicker ( through less iterations of a force-directed layout ) then without the initial circle applied.
+There isn't a separate class for this layout as it is a trivial implementation. Instead, the method,
+circle(List vertices), is part of the facade. Below is an example of using the circle
+layout:

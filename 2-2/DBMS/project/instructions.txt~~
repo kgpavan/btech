@@ -1,0 +1,33 @@
+This is your second Project.It is a programming assignment with application of database concepts.
+
+The details of the project is provided in Description.pdf.
+
+Steps:
+1) Find out the Project you have to work on and read about it.
+	- If you have any query about the project mail to the ta incharge of the project only.
+2) Go through the standard classes available on page.cpp
+3) Develop a psuedo code.
+4) Code and test your algorithm properly.
+
+Phase 1 
+-------
+Phase 1 involves first 3 steps. 
+You need to submit a soft copy of pseudo code of the algorithm you are going to develop on 10th April, 5 pm.
+
+Submission Details : Upload a file RollNo_Project2_Phase1.doc/pdf
+
+Phase 2
+-------
+You are provided with a part of code i.e. page.cpp which has basic class declarations which you need to use 
+in your actual code.
+The deliverables will be :
+upload RollNo_Project2_Phase1.tgz :
+	Real code
+	Readme
+	Executable
+Submission Deadline : 20th April , 5 pm
+
+What is in page.cpp ?
+It contains basic class declarations and functions to use it.
+
+Note : For any clarifications mailto the concerned ta only.(Not to all ta's)

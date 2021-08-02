@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.7 ConfigParser -- Configuration file parser</title>
+<META NAME="description" CONTENT="5.7 ConfigParser -- Configuration file parser">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-fileinput.html">
+<LINK REL="previous" href="module-array.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="ConfigParser-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="ConfigParser-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="misc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-array.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="ConfigParser-objects.html">5.7.1 ConfigParser Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="misc.html">5. Miscellaneous Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-array.html">5.6 array  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007700000000000000000">
+5.7 <tt class="module">ConfigParser</tt> --
+         Configuration file parser</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines the class <tt class="class">ConfigParser</tt>.
+<a name='l2h-747'></a>
+The <tt class="class">ConfigParser</tt> class implements a basic configuration file
+parser language which provides a structure similar to what you would
+find on Microsoft Windows INI files.  You can use this to write Python
+programs which can be customized by end users easily.
+
+<P>
+The configuration file consists of sections, lead by a
+"<tt class="samp">[section]</tt>" header and followed by "<tt class="samp">name: value</tt>" entries,
+with continuations in the style of <a class='rfc' name='rfcref-46703'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc822.txt'>RFC 822</a>; "<tt class="samp">name=value</tt>" is
+also accepted.  Note that leading whitespace is removed from values.
+The optional values can contain format strings which refer to other
+values in the same section, or values in a special
+<code>DEFAULT</code> section.  Additional defaults can be provided upon
+initialization and retrieval.  Lines beginning with "<tt class="character">#</tt>" or
+"<tt class="character">;</tt>" are ignored and may be used to provide comments.
+
+<P>
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+foodir: %(dir)s/whatever
+dir=frob
+</pre></dl>
+
+<P>
+would resolve the "<tt class="samp">%(dir)s</tt>" to the value of
+"<tt class="samp">dir</tt>" ("<tt class="samp">frob</tt>" in this case).  All reference expansions are
+done on demand.
+
+<P>
+Default values can be specified by passing them into the
+<tt class="class">ConfigParser</tt> constructor as a dictionary.  Additional defaults 
+may be passed into the <tt class="method">get()</tt> method which will override all
+others.
+
+<P>
+<dl><dt><b><a name='l2h-740'><tt class='class'>ConfigParser</tt></a></b> (<big>[</big><var>defaults</var><big>]</big>)
+<dd>
+Return a new instance of the <tt class="class">ConfigParser</tt> class.  When
+<var>defaults</var> is given, it is initialized into the dictionairy of
+intrinsic defaults.  They keys must be strings, and the values must be 
+appropriate for the "<tt class="samp">%()s</tt>" string interpolation.  Note that
+<var>__name__</var> is always an intrinsic default; its value is the 
+section name.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-741'><tt class='exception'>NoSectionError</tt></a></b>
+<dd>
+Exception raised when a specified section is not found.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-742'><tt class='exception'>DuplicateSectionError</tt></a></b>
+<dd>
+Exception raised when mutliple sections with the same name are found,
+or if <tt class="method">add_section()</tt> is called with the name of a section that 
+is already present.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-743'><tt class='exception'>NoOptionError</tt></a></b>
+<dd>
+Exception raised when a specified option is not found in the specified 
+section.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-744'><tt class='exception'>InterpolationError</tt></a></b>
+<dd>
+Exception raised when problems occur performing string interpolation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-745'><tt class='exception'>MissingSectionHeaderError</tt></a></b>
+<dd>
+Exception raised when attempting to parse a file which has no section
+headers.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-746'><tt class='exception'>ParsingError</tt></a></b>
+<dd>
+Exception raised when errors occur attempting to parse a file.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-shlex.html'>shlex</a></tt>:</b>
+    <dd>Support for a creating Unix shell-like
+                    minilanguages which can be used as an alternate format
+                    for application configuration files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html1743"
+ href="ConfigParser-objects.html">5.7.1 ConfigParser Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="ConfigParser-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="misc.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-array.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="ConfigParser-objects.html">5.7.1 ConfigParser Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="misc.html">5. Miscellaneous Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-array.html">5.6 array  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

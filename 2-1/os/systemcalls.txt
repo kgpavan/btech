@@ -1,0 +1,49 @@
+
+System Calls
+
+A ``kernel'' is the core of any Operating System. The kernel interacts with hardware, allocates resources, manages memory and schedules processes waiting for CPU time.
+
+User programs can request kernel services through ``system calls''. For example, the write() system call is used to perform any output. The standard library routine printf() may be using this write() to do the actual output. Similarly, all other user applications can access kernel features through these system calls.
+
+The purpose of system calls is to provide user with an interface to access the hardware system without effecting the integrity of the system. So, while you can access the hardware using system calls, it is hard to do something malicious.
+
+All system calls are executed in the kernel space. That is, when you use a system call in your program, the program requests the Operating System to perform the required action. So, the execution of your program is stopped, the Operating System takes over and services the system call. The execution then returns to your program. This is referred to as a ``context switch''. You'll learn more about context switches, user space and kernel space shortly.
+
+There is no definite way to differentiate between a normal function call and a system call. You'll have to remember which is which. But, the man pages for systems calls are *always* in the section 2. So, ``man 2 open'' gives you the man page for system call open().
+
+Simple I/O operations like printing to the standard output and reading from standard input can be done with library functions (printf() and scanf()) but system calls are required if you want to write low-level system programs that perform advanced actions like memory management and inter-process communication (IPC).
+
+Here's a small example of the use of system calls. This program takes a file name as argument and prints that file.
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h> // needed for open()
+#include <sys/stat.h>    // needed for open()
+#include <fcntl.h>       // needed for open()
+
+int
+main( int argc, char *argv[] )
+{
+       int fd;
+       int n_char=0, buffer[10];
+
+       fd = open( argv[1], O_RDONLY );
+
+       if( fd < 0 )
+       {
+               printf( "cannot open file %s for reading\n", argv[1] );
+               exit(1);
+       }
+
+       while( ( n_char = read( fd, buffer, 10 ) ) != 0 )
+               n_char = write( 1, buffer, n_char );
+       return 0;
+}
+
+To observe the effect of a context switch, write a similar program using standard C I/O functions like fopen() etc. and test on a very very very large file.
+
+References:
+
+  1. Advanced Programming in the Unix Environment, W. Richard Stevens
+  2. The Design of the Unix Operating Systems, Maurice J Bach
+  3. The Unix Programming Environment, Brian Kernighan, Rob Pike

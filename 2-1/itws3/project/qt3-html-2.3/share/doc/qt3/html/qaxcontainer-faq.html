@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/extensions/activeqt/doc/faq.doc:1 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QAxContainer FAQ</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>QAxContainer FAQ</h1>
+
+ 
+<p> <!-- toc -->
+<ul>
+<li><a href="#1"> The QAxContainer build system
+</a>
+<li><a href="#2"> Accessing the object API
+</a>
+<ul>
+<li><a href="#2-1"> Typical error messages
+</a>
+<ul>
+<li><a href="#2-1-1"> Requested control could not be instantiated
+</a>
+<li><a href="#2-1-2"> QAxBase::internalInvoke: No such method
+</a>
+<li><a href="#2-1-3"> Error calling IDispatch member: Non-optional parameter 
+missing
+</a>
+<li><a href="#2-1-4"> Error calling IDispatch member: Type mismatch in 
+parameter \c n
+</a>
+</ul>
+</ul>
+<li><a href="#3"> Distributing QAxContainer applications
+</a>
+</ul>
+<!-- endtoc -->
+
+<p> <h2> The QAxContainer build system
+</h2>
+<a name="1"></a><p> To build Qt applications that can host ActiveX controls, simply
+link the application against the qaxcontainer library by adding
+<pre>
+    LIBS += qaxcontainer.lib
+    </pre>
+ 
+to the application's <tt>.pro</tt> file.
+<p> <h2> Accessing the object API
+</h2>
+<a name="2"></a><p> <a href="activeqt.html#ActiveQt">ActiveQt</a> provides a Qt API to the COM object, and replaces COM
+datatypes with Qt equivalents. Use the <tt>dumpdoc</tt> example program
+to get the documentation of the Qt API for any COM object and it's
+subobjects.
+<p> <h3> Typical error messages
+</h3>
+<a name="2-1"></a><p> ActiveQt prints error messages to the debug output when it
+encounters error situations at runtime. Usually you must run 
+your program in the debugger to see these messages (e.g. in Visual
+Studio's Debug output).
+<p> <h4> Requested control could not be instantiated
+</h4>
+<a name="2-1-1"></a><p> The control requested in <a href="qaxbase.html#setControl">QAxBase::setControl</a>() is not installed
+on this system, or is not accessible for the current user.
+<p> The control might require administrator rights, or a license key.
+If the control is licensed, reimplement initialize() and use the
+COM APIs to call the IClassFactory2 interface functions.
+<p> <h4> QAxBase::internalInvoke: No such method
+</h4>
+<a name="2-1-2"></a><p> A <tt>dynamicCall()</tt> failed - the function prototype did not
+match any function available in the object's API.
+<p> <h4> Error calling IDispatch member: Non-optional parameter 
+missing
+</h4>
+<a name="2-1-3"></a><p> A <tt>dynamicCall()</tt> failed - the function prototype was correct,
+but too few parameters were provided.
+<p> <h4> Error calling IDispatch member: Type mismatch in 
+parameter <tt>n</tt>
+</h4>
+<a name="2-1-4"></a><p> A <tt>dynamicCall()</tt> failed - the function prototype was correct,
+but the paramter at index <tt>n</tt> was of the wrong type and could 
+not be coerced to the correct type.
+<p> <h2> Distributing QAxContainer applications
+</h2>
+<a name="3"></a><p> If the Qt library is build statically the QAxContainer library
+will also be static, and you don't need to redistribute any
+binaries except the application executable.
+<p> To distribute your application when Qt and QAxContainer are
+shared DLLs provide both DLLs either in the system path, or
+in the same directory as the application's executable.
+
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

@@ -1,0 +1,14 @@
+for join 
+join 3rd attrb in relation2 with 2nd attrb of relation1 
+
+
+
+for Secondary Index on Non-Primary Key 
+use relation1 for this where you can use attributes other than first for secondary index.
+
+
+
+NOTE:
+These datasets have been provided for your convineance to test your code.
+Your project will be tested against several such datasets with huge amount of data.
+So, make your code as generic as possible, dont try hardcoding anything.

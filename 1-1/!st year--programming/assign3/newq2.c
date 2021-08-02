@@ -1,0 +1,32 @@
+#include<stdio.h>
+main()
+{
+	int n,i,t,k,j;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&t);
+	k=1;
+	j=1;
+	while(j<=t)
+	{
+		if(t%j==0)
+		{
+			k=k+1;
+		}
+		else
+		{
+			k=k;
+		}
+		j++;
+	}
+	if(k%2==0)
+	{
+		printf("Yes\n");
+	}
+	else
+	{
+		printf("No\n");
+	}
+	}
+}

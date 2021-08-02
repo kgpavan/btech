@@ -1,0 +1,75 @@
+#include<stdio.h>
+main()
+{
+	int a[1000];
+	scanf("%s",a);
+	int count;
+	int i=0;
+	while(a[i]!='\0')
+	{
+		count++;
+		i++;
+	}
+	int b[count],j;
+	for(i=0;i<count;i++)
+	{
+		int flag=0,my=0,max=0,pos=0;
+		if(a[i]='(')
+		{
+			for(j=i;j<count;j++)
+			{
+				if(a[j]=='(')
+				{
+					flag++;
+					my++;
+				}
+				if(a[j]==')')
+				{
+					flag--;
+					my++;
+				}
+				if(flag==0)
+				{
+					b[i]=my;
+					
+					break;
+				}
+			}}
+			if(max<my)
+			{
+				max=my;
+				pos=i;
+			}
+		
+	}
+/*	int x=0,max=0;
+
+for(i=0;i<count;i++)
+{
+	for(j=0;j<count;j++)
+	{
+		if(b[j]>b[i])
+		{
+			max=b[j];
+		x=j;
+		}
+	}
+}*/
+if(max!=0)
+{
+for(i=pos;i<my;i++)
+printf("%c\n",a[i]);
+}
+if(max==0)
+{
+	printf("empty\n");
+}
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.1 Include Files </title>
+<META NAME="description" CONTENT="1.1 Include Files ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="objects.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="intro.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="intro.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="objects.html">1.2 Objects, Types and</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="intro.html">1. Introduction</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="intro.html">1. Introduction</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003100000000000000000"></A>
+<BR>
+1.1 Include Files 
+</H1>
+
+<P>
+All function, type and macro definitions needed to use the Python/C
+API are included in your code by the following line:
+
+<P>
+<dl><dd><pre class="verbatim">
+#include "Python.h"
+</pre></dl>
+
+<P>
+This implies inclusion of the following standard headers:
+<code>&lt;stdio.h&gt;</code>, <code>&lt;string.h&gt;</code>, <code>&lt;errno.h&gt;</code>, and
+<code>&lt;stdlib.h&gt;</code> (if available).
+
+<P>
+All user visible names defined by Python.h (except those defined by
+the included standard headers) have one of the prefixes "<tt class="samp">Py</tt>" or
+"<tt class="samp">_Py</tt>".  Names beginning with "<tt class="samp">_Py</tt>" are for internal use by
+the Python implementation and should not be used by extension writers.
+Structure member names do not have a reserved prefix.
+
+<P>
+<b>Important:</b> user code should never define names that begin
+with "<tt class="samp">Py</tt>" or "<tt class="samp">_Py</tt>".  This confuses the reader, and
+jeopardizes the portability of the user code to future Python
+versions, which may define additional names beginning with one of
+these prefixes.
+
+<P>
+The header files are typically installed with Python.  On Unix, these 
+are located in the directories
+<font class="file" face="sans-serif"><span class='envvar'><a name='l2h-1'>$prefix</a></span>/include/python<var>version</var>/</font> and
+<font class="file" face="sans-serif"><span class='envvar'><a name='l2h-2'>$exec_prefix</a></span>/include/python<var>version</var>/</font>, where
+<span class='envvar'><a name='l2h-4'>$prefix</a></span> and <span class='envvar'><a name='l2h-5'>$exec_prefix</a></span> are defined by the
+corresponding parameters to Python's <b class="program">configure</b> script and
+<var>version</var> is <code>sys.version[:3]</code>.  On Windows, the headers are
+installed in <font class="file" face="sans-serif"><span class='envvar'><a name='l2h-3'>$prefix</a></span>/include</font>, where <span class='envvar'><a name='l2h-6'>$prefix</a></span> is
+the installation directory specified to the installer.
+
+<P>
+To include the headers, place both directories (if different) on your
+compiler's search path for includes.  Do <i>not</i> place the parent
+directories on the search path and then use
+"<tt class="samp">#include &lt;python1.5/Python.h&gt;</tt>"; this will break on
+multi-platform builds since the platform independent headers under
+<span class='envvar'><a name='l2h-7'>$prefix</a></span> include the platform specific headers from
+<span class='envvar'><a name='l2h-8'>$exec_prefix</a></span>.
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="intro.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="intro.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="objects.html">1.2 Objects, Types and</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="intro.html">1. Introduction</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="intro.html">1. Introduction</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

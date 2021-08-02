@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12. Internet Data Handling </title>
+<META NAME="description" CONTENT="12. Internet Data Handling ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="restricted.html">
+<LINK REL="previous" href="internet.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-sgmllib.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-sgmllib.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="asyncore-example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-sgmllib.html">12.1 sgmllib  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="asyncore-example.html">11.16.1 Example basic HTTP</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014000000000000000000"></A>
+<BR>
+12. Internet Data Handling 
+</H1>
+
+<P>
+This chapter describes modules which support handling data formats
+commonly used on the internet.  Some, like SGML and XML, may be useful 
+for other applications as well.
+
+<P>
+<table class='synopsistable'>
+  <tr><td><b><tt class='module'><a href='module-sgmllib.html'>sgmllib</a></tt></b></td>
+      <td class='synopsis'>Only as much of an SGML parser as needed to parse HTML.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-htmllib.html'>htmllib</a></tt></b></td>
+      <td class='synopsis'>A parser for HTML documents.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-htmlentitydefs.html'>htmlentitydefs</a></tt></b></td>
+      <td class='synopsis'>Definitions of HTML general entities.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-xmllib.html'>xmllib</a></tt></b></td>
+      <td class='synopsis'>A parser for XML documents.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-formatter.html'>formatter</a></tt></b></td>
+      <td class='synopsis'>Generic output formatter and device interface.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-rfc822.html'>rfc822</a></tt></b></td>
+      <td class='synopsis'>Parse <a class='rfc' name='rfcref-48402'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc822.txt'>RFC 822</a> style mail headers.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mimetools.html'>mimetools</a></tt></b></td>
+      <td class='synopsis'>Tools for parsing MIME-style message bodies.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-MimeWriter.html'>MimeWriter</a></tt></b></td>
+      <td class='synopsis'>Generic MIME file writer.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-multifile.html'>multifile</a></tt></b></td>
+      <td class='synopsis'>Support for reading files which contain distinct
+                parts, such as some MIME data.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-binhex.html'>binhex</a></tt></b></td>
+      <td class='synopsis'>Encode and decode files in binhex4 format.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-uu.html'>uu</a></tt></b></td>
+      <td class='synopsis'>Encode and decode files in uuencode format.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-binascii.html'>binascii</a></tt></b></td>
+      <td class='synopsis'>Tools for converting between binary and various
+                ASCII-encoded binary representations.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-xdrlib.html'>xdrlib</a></tt></b></td>
+      <td class='synopsis'>Encoders and decoders for the External Data
+Representation (XDR).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mailcap.html'>mailcap</a></tt></b></td>
+      <td class='synopsis'>Mailcap file handling.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mimetypes.html'>mimetypes</a></tt></b></td>
+      <td class='synopsis'>Mapping of filename extensions to MIME types.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-base64.html'>base64</a></tt></b></td>
+      <td class='synopsis'>Encode and decode files using the MIME base64 data.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-quopri.html'>quopri</a></tt></b></td>
+      <td class='synopsis'>Encode and decode files using the MIME
+                quoted-printable encoding.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mailbox.html'>mailbox</a></tt></b></td>
+      <td class='synopsis'>Read various mailbox formats.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mhlib.html'>mhlib</a></tt></b></td>
+      <td class='synopsis'>Manipulate MH mailboxes from Python.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mimify.html'>mimify</a></tt></b></td>
+      <td class='synopsis'>Mimification and unmimification of mail messages.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-netrc.html'>netrc</a></tt></b></td>
+      <td class='synopsis'>Loading of <font class="file" face="sans-serif">.netrc</font> files.</td></tr>
+</table>
+<BR>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-sgmllib.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="asyncore-example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-sgmllib.html">12.1 sgmllib  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="asyncore-example.html">11.16.1 Example basic HTTP</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.22 codeop -- Compile Python code</title>
+<META NAME="description" CONTENT="3.22 codeop -- Compile Python code">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-pprint.html">
+<LINK REL="previous" href="module-code.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-pprint.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-pprint.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="console-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-pprint.html">3.23 pprint  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="console-objects.html">3.21.2 Interactive Console Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052200000000000000000">
+3.22 <tt class="module">codeop</tt> --
+         Compile Python code</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">codeop</tt> module provides a function to compile Python code
+with hints on whether it is certainly complete, possibly complete or
+definitely incomplete.  This is used by the <tt class='module'><a href='module-code.html'>code</a></tt> module
+and should not normally be used directly.
+
+<P>
+The <tt class="module">codeop</tt> module defines the following function:
+
+<P>
+<dl><dt><b><a name='l2h-456'><tt class='function'>compile_command</tt></a></b> (<var>source</var><big>[</big><var>, filename</var><big>[</big><var>, symbol</var><big>]</big><big>]</big>)
+<dd>
+Tries to compile <var>source</var>, which should be a string of Python
+code and return a code object if <var>source</var> is valid
+Python code. In that case, the filename attribute of the code object
+will be <var>filename</var>, which defaults to <code>'&lt;input&gt;'</code>.
+Returns <code>None</code> if <var>source</var> is <i>not</i> valid Python
+code, but is a prefix of valid Python code.
+
+<P>
+If there is a problem with <var>source</var>, an exception will be raised.
+<tt class="exception">SyntaxError</tt> is raised if there is invalid Python syntax,
+and <tt class="exception">OverflowError</tt> if there is an invalid numeric
+constant.
+
+<P>
+The <var>symbol</var> argument determines whether <var>source</var> is compiled
+as a statement (<code>'single'</code>, the default) or as an expression
+(<code>'eval'</code>).  Any other value will cause <tt class="exception">ValueError</tt> to 
+be raised.
+
+<P>
+<b>Caveat:</b>
+It is possible (but not likely) that the parser stops parsing
+with a successful outcome before reaching the end of the source;
+in this case, trailing symbols may be ignored instead of causing an
+error.  For example, a backslash followed by two newlines may be
+followed by arbitrary garbage.  This will be fixed once the API
+for the parser is better.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-pprint.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="console-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-pprint.html">3.23 pprint  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="console-objects.html">3.21.2 Interactive Console Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

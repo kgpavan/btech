@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.9.2 SMTP Example </title>
+<META NAME="description" CONTENT="11.9.2 SMTP Example ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="SMTP-objects.html">
+<LINK REL="up" href="module-smtplib.html">
+<LINK REL="next" href="module-telnetlib.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-telnetlib.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-smtplib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="SMTP-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-telnetlib.html">11.10 telnetlib  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-smtplib.html">11.9 smtplib  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="SMTP-objects.html">11.9.1 SMTP Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013920000000000000000"></A>
+<BR>
+11.9.2 SMTP Example 
+</H2>
+
+<P>
+This example prompts the user for addresses needed in the message
+envelope (`To' and `From' addresses), and the message to be
+delivered.  Note that the headers to be included with the message must 
+be included in the message as entered; this example doesn't do any
+processing of the <a class='rfc' name='rfcref-48146'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc822.txt'>RFC 822</a> headers.  In particular, the `To' and
+`From' addresses must be included in the message headers explicitly.
+
+<P>
+<dl><dd><pre class="verbatim">
+import smtplib
+import string
+
+def prompt(prompt):
+    return string.strip(raw_input(prompt))
+
+fromaddr = prompt("From: ")
+toaddrs  = string.split(prompt("To: "))
+print "Enter message, end with ^D:"
+
+# Add the From: and To: headers at the start!
+msg = ("From: %s\r\nTo: %s\r\n\r\n"
+% (fromaddr, string.join(toaddrs, ", ")))
+while 1:
+    line = raw_input()
+    if not line:
+        break
+    msg = msg + line
+
+print "Message length is " + `len(msg)`
+
+server = smtplib.SMTP('localhost')
+server.set_debuglevel(1)
+server.connect()
+server.sendmail(fromaddr, toaddrs, msg)
+server.quit()
+</pre></dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-telnetlib.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-smtplib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="SMTP-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-telnetlib.html">11.10 telnetlib  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-smtplib.html">11.9 smtplib  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="SMTP-objects.html">11.9.1 SMTP Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

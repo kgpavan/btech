@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.18.1 Popen3 Objects </title>
+<META NAME="description" CONTENT="8.18.1 Popen3 Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-popen2.html">
+<LINK REL="up" href="module-popen2.html">
+<LINK REL="next" href="module-commands.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-commands.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-popen2.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-popen2.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-commands.html">8.19 commands  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-popen2.html">8.18 popen2  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-popen2.html">8.18 popen2  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00101810000000000000000"></A>
+<BR>
+8.18.1 Popen3 Objects 
+</H2>
+
+<P>
+Instances of the <tt class="class">Popen3</tt> class have the following methods:
+
+<P>
+<dl><dt><b><a name='l2h-1624'><tt class='method'>poll</tt></a></b> ()
+<dd>
+Returns <code>-1</code> if child process hasn't completed yet, or its return 
+code otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1625'><tt class='method'>wait</tt></a></b> ()
+<dd>
+Waits for and returns the return code of the child process.
+</dl>
+
+<P>
+The following attributes of <tt class="class">Popen3</tt> objects are also available: 
+
+<P>
+<dl><dt><b><a name='l2h-1626'><tt class='member'>fromchild</tt></a></b>
+<dd>
+A file object that provides output from the child process.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1627'><tt class='member'>tochild</tt></a></b>
+<dd>
+A file object that provides input to the child process.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1628'><tt class='member'>childerr</tt></a></b>
+<dd>
+Where the standard error from the child process goes is
+<var>capturestderr</var> was true for the constructor, or <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1629'><tt class='member'>pid</tt></a></b>
+<dd>
+The process ID of the child process.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-commands.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-popen2.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-popen2.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-commands.html">8.19 commands  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-popen2.html">8.18 popen2  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-popen2.html">8.18 popen2  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

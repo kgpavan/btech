@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/extensions/activeqt/doc/faq.doc:67 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QAxServer FAQ</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>QAxServer FAQ</h1>
+
+ 
+<p> <!-- toc -->
+<ul>
+<li><a href="#1"> The QAxServer build system
+</a>
+<li><a href="#2"> Typical build problems
+</a>
+<ul>
+<li><a href="#2-1"> Compiler errors
+</a>
+<ul>
+<li><a href="#2-1-1"> "No overloaded function takes 2 parameters"
+</a>
+<li><a href="#2-1-2"> "syntax error: bad suffix on number"
+</a>
+</ul>
+<li><a href="#2-2"> Linker errors
+</a>
+<ul>
+<li><a href="#2-2-1"> "unresolved external symbol _ucm_instantiate"
+</a>
+<li><a href="#2-2-2"> "_ucm_initialize already defined in ..."
+</a>
+<li><a href="#2-2-3"> "unresolved external symbol _main"
+</a>
+<li><a href="#2-2-4"> "cannot open file ... "
+</a>
+</ul>
+<li><a href="#2-3"> Postprocessing and runtime errors
+</a>
+<ul>
+<li><a href="#2-3-1"> The server executable is not a valid Win32 application
+</a>
+<li><a href="#2-3-2"> "Unable to Locate DLL"
+</a>
+<li><a href="#2-3-3"> The Server does not respond
+</a>
+<li><a href="#2-3-4"> The Object cannot be created
+</a>
+</ul>
+</ul>
+<li><a href="#3"> Debugging runtime errors
+</a>
+<li><a href="#4"> Distributing QAxServer binaries
+</a>
+<ul>
+<li><a href="#4-1"> Installing stand-alone Servers
+</a>
+<li><a href="#4-2"> Installing In-process Servers
+</a>
+<li><a href="#4-3"> Distributing Servers over the Internet
+</a>
+</ul>
+<li><a href="#5"> Supported and Unsupported ActiveX clients
+</a>
+<ul>
+<li><a href="#5-1"> Supported Clients
+</a>
+<li><a href="#5-2"> Unsupported Clients
+</a>
+</ul>
+</ul>
+<!-- endtoc -->
+
+<p> <h2> The QAxServer build system
+</h2>
+<a name="1"></a><p> To be able to build ActiveX controls with Qt, the build system
+must be extended to include some additional build steps that are
+used when the <tt>.pro</tt> file includes <tt>activeqt</tt> in the <tt>CONFIG</tt>
+settings. The resulting makefile will:
+<p> <ul>
+<li> Link the executable against <tt>qaxserver.lib</tt> instead of <tt>qtmain.lib</tt>
+<li> Call the resulting executable with the <tt>-dumpidl</tt> parameter to
+generate an IDL description of the ActiveX controls provided by
+the server.
+<li> Compile the IDL into a type library using the MIDL tool
+<li> Attach the resulting type library as a binary resource to the server
+executable
+</ul>
+<p> Attaching resources to an executable is not supported by
+Windows&nbsp;95/98/ME, but a server built on
+Windows&nbsp;NT/2000/XP will work on those versions.
+<p> <h2> Typical build problems
+</h2>
+<a name="2"></a><p> The compiler/linker errors listed are based on those issued by the 
+Microsoft Visual C++ 6.0 compiler.
+<p> <h3> Compiler errors
+</h3>
+<a name="2-1"></a><p> <h4> "No overloaded function takes 2 parameters"
+</h4>
+<a name="2-1-1"></a><p> When the error occurs in code that uses the <a href="qaxfactory.html#QAXFACTORY_DEFAULT">QAXFACTORY_DEFAULT</a>
+macro, the widget class had no constructor that can be used by the
+default factory. Either add a standard widget constructor or
+implement a custom factory that doesn't require one.
+<p> When the error occurs in code that uses the <a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a>
+macro, the <a href="qaxfactory.html">QAxFactory</a> subclass had no appropriate constructor.
+Provide a public class constructor like
+<pre>
+    MyFactory( const <a href="quuid.html">QUuid</a> &amp;, const <a href="quuid.html">QUuid</a> &amp; );
+    </pre>
+ 
+for your factory class.
+<p> <h4> "syntax error: bad suffix on number"
+</h4>
+<a name="2-1-2"></a><p> The unique identifiers have not been passed as strings into the 
+<a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a> or <a href="qaxfactory.html#QAXFACTORY_DEFAULT">QAXFACTORY_DEFAULT</a> macro.
+<p> <h3> Linker errors
+</h3>
+<a name="2-2"></a><p> <h4> "unresolved external symbol _ucm_instantiate"
+</h4>
+<a name="2-2-1"></a><p> The server does not export an implementation of a QAxFactory. Use
+the <a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a> macro in one of the project's
+implementation files to instantiate and export a factory, or use
+the <a href="qaxfactory.html#QAXFACTORY_DEFAULT">QAXFACTORY_DEFAULT</a> macro to use the default factory.
+<p> <h4> "_ucm_initialize already defined in ..."
+</h4>
+<a name="2-2-2"></a><p> The server exports more than one implementation of a <a href="qaxfactory.html">QAxFactory</a>,
+or exports the same implementation twice. If you use the default
+factory, the <a href="qaxfactory.html#QAXFACTORY_DEFAULT">QAXFACTORY_DEFAULT</a> macro must only be used once in
+the project. Use a custom QAxFactory implementation and the <a href="qaxfactory.html#QAXFACTORY_EXPORT">QAXFACTORY_EXPORT</a> macro if the server provides multiple ActiveX
+controls.
+<p> <h4> "unresolved external symbol _main"
+</h4>
+<a name="2-2-3"></a><p> The application does not provide an entry point function <tt>main()</tt>. Implement a standard Qt main function, and use
+<a href="qaxfactory.html#isServer">QAxFactory::isServer</a>() to prevent or control stand-alone execution
+of the application.
+<pre>
+    int main( int argc, char **argv )
+    {
+        <a href="qapplication.html">QApplication</a> app( argc, argv );
+
+        if ( !QAxFactory::isServer() ) {
+            QMessageBox::<a href="qmessagebox.html#critical">critical</a>( 0, "Cannot run stand-alone!",
+                                      "This executable is a server for ActiveX controls." );
+            return -1;
+        }
+
+        return app.<a href="qapplication.html#exec">exec</a>();
+    }
+    </pre>
+ 
+<p> Note that even in-process servers must implement a <tt>main()</tt>
+function to satisfy the linker, although they can use a dummy
+implementation because it will never be called.
+<pre>
+    void main() 
+    {}
+    </pre>
+ 
+<p> <h4> "cannot open file ... "
+</h4>
+<a name="2-2-4"></a><p> The ActiveX server could not shut down properly when the last
+client stopped using it. It usually takes about two seconds for
+the application to terminate, but you might have to use the task
+manager to kill the process (e.g. when a client doesn't release
+the controls properly).
+<p> <h3> Postprocessing and runtime errors
+</h3>
+<a name="2-3"></a><p> <h4> The server executable is not a valid Win32 application
+</h4>
+<a name="2-3-1"></a><p> Attaching the type library corrupted the server binary. This is a
+bug in Windows and happens only with release builds.
+<p> The first linking step has to link a dummy type library into the
+executable that can later be replaced by idc. Add a resource file
+with a type library to your project as demonstrated in the examples.
+<p> <h4> "Unable to Locate DLL"
+</h4>
+<a name="2-3-2"></a><p> The build system needs to run the server executable to generate
+the interface definition, and to register the server. If a dynamic
+link library the server links against is not in the path this
+might fail (e.g. Visual Studio calls the server using the
+enivronment settings specified in the "Directories" option). Make
+sure that all DLLs required by your server are located in a
+directory that is listed in the path as printed in the error
+message box.
+<p> <h4> The Server does not respond
+</h4>
+<a name="2-3-3"></a><p> If the system is unable to start the server (check with the task
+manager whether the server runs a process), make sure that no DLL
+the server depends on is missing from the system path (e.g. the Qt 
+DLL!). Use a dependency walker to view all dependencies of the server 
+binary.
+<p> If the server runs (e.g. the task manager lists a process), see
+the following section for information on debugging your server.
+<p> <h4> The Object cannot be created
+</h4>
+<a name="2-3-4"></a><p> If the server could be built and registered correctly during the build
+process, but the object cannot be initiliazed e.g. by the OLE/COM Object 
+Viewer application, make sure that no DLL the server depends on is
+missing from the system path (e.g. the Qt DLL). Use a dependency walker
+to view all dependencies of the server binary.
+<p> If the server runs, see the following section for information on
+debugging your server.
+<p> <h2> Debugging runtime errors
+</h2>
+<a name="3"></a><p> To debug an in-process server in Visual Studio, set the server project 
+as the active project, and specify a client "executable for debug
+session" in the project settings (e.g. use the ActiveX Test Container). 
+You can set breakpoints in your code, and also step into <a href="activeqt.html#ActiveQt">ActiveQt</a> and 
+Qt code if you installed the debug version.
+<p> To debug an executable server, run the application in a debugger
+and start with the command line parameter "-activex". Then start
+your client and create an instance of your ActiveX control. COM 
+will use the existing process for the next client trying to create 
+an ActiveX control.
+<p> <h2> Distributing QAxServer binaries
+</h2>
+<a name="4"></a><p> ActiveX servers written with Qt can use Qt either as a shared
+library, or have Qt linked statically into the binary. Both ways
+will produce rather large packages (either the server binary
+itself becomes large, or you have to ship the Qt DLL).
+<p> <h3> Installing stand-alone Servers
+</h3>
+<a name="4-1"></a><p> When your ActiveX server can also run as a stand-alone application,
+run the server executable with the <tt>-regserver</tt> command line
+parameter after installing the executable on the target system.
+After that the controls provided by the server will be available to
+ActiveX clients.
+<p> <h3> Installing In-process Servers
+</h3>
+<a name="4-2"></a><p> When your ActiveX server is part of an installation package, use the
+<tt>regsvr32</tt> tool provided by Microsoft to register the controls on
+the target system. If this tool is not present, load the DLL into
+your installer process, resolve the <tt>DllRegisterServer</tt> symbol and
+call the function:
+<p> <pre>
+    HMODULE dll = LoadLibrary( "myserver.dll" );
+    typedef HRESULT(__stdcall *DllRegisterServerProc)();
+    DllRegisterServerProc DllRegisterServer = 
+        (DllRegisterServerProc)GetProcAddress( dll, "DllRegisterServer" );
+
+    HRESULT res = E_FAIL;
+    if ( DllRegisterServer )
+        res = DllRegisterServer();
+    if ( res != S_OK )
+        // error handling
+    </pre>
+ 
+<p> <h3> Distributing Servers over the Internet
+</h3>
+<a name="4-3"></a><p> If you want to use controls in your server in web-pages you need to
+make the server available to the browser used to view your page, and
+you need to specify the location of the server package in your page.
+<p> To specify the location of a server, use the CODEBASE attribute in
+the OBJECT tag of your web-site. The value can point to the server
+file itself, to an <tt>INF</tt> file listing other files the server requires
+(e.g. the Qt DLL), or a compressed <tt>CAB</tt> archive.
+<p> INF and CAB files are documented in almost every book available about
+ActiveX and COM programming as well as in the MSDN library and various
+other Online resources. The examples include INF files that can be used
+to build CAB archives:
+<p> 
+
+<pre>    [version]
+        signature="$CHICAGO$"
+        AdvancedINF=2.0
+     [Add.Code]
+        simpleax.exe=simpleax.exe
+     [simpleax.exe]
+        file-win32-x86=thiscab
+        clsid={DF16845C-92CD-4AAB-A982-EB9840E74669}
+        RegisterServer=yes
+</pre>
+<p> The CABARC tool from Microsoft can easily generate CAB archives:
+<pre> cabarc N simpleax.cab simpleax.exe simple.inf </pre>
+ 
+<p> The INF files assume a static build of Qt, so no dependencies to other DLLs
+are listed in the INF files. To distribute an ActiveX server depending on
+DLLs you must add the dependencies, and provide the library files
+with the archive.
+<p> <h2> Supported and Unsupported ActiveX clients
+</h2>
+<a name="5"></a><p> The following sections list standard applications that have been reported
+to work or not work with ActiveX controls developed with ActiveQt.
+<p> <h3> Supported Clients
+</h3>
+<a name="5-1"></a><p> <ul>
+<li> Internet Explorer
+<li> Microsoft ActiveX Control Test Container
+<li> Microsoft Visual Studio 6.0 (dialog editor)
+<li> Microsoft Visual Basic 6.0 (only in-process controls)
+<li> MFC- and ATL-based containers
+<li> Sybase PowerBuilder
+<li> ActiveQt based containers
+</ul>
+<p> <h3> Unsupported Clients
+</h3>
+<a name="5-2"></a><p> <ul>
+<li> Visual Studio.NET - Microsoft's unmanged code wrapper is reported
+to be buggy for C++ controls that don't expose a dual interface.
+<li> Borland Builder, Delphi - don't support C++ COM objects that don't 
+expose a dual interface.
+<li> Microsoft Office Applications - these require aggregation
+support
+</ul>
+
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

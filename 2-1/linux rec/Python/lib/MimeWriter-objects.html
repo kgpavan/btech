@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.8.1 MimeWriter Objects </title>
+<META NAME="description" CONTENT="12.8.1 MimeWriter Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-MimeWriter.html">
+<LINK REL="up" href="module-MimeWriter.html">
+<LINK REL="next" href="module-multifile.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-multifile.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-MimeWriter.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-MimeWriter.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-multifile.html">12.9 multifile  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-MimeWriter.html">12.8 MimeWriter  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-MimeWriter.html">12.8 MimeWriter  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014810000000000000000"></A>
+<BR>
+12.8.1 MimeWriter Objects 
+</H2>
+
+<P>
+<tt class="class">MimeWriter</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name='l2h-2118'><tt class='method'>addheader</tt></a></b> (<var>key, value</var><big>[</big><var>, prefix</var><big>]</big>)
+<dd>
+Add a header line to the MIME message. The <var>key</var> is the name of
+the header, where the <var>value</var> obviously provides the value of the
+header. The optional argument <var>prefix</var> determines where the header 
+is inserted; "<tt class="samp">0</tt>" means append at the end, "<tt class="samp">1</tt>" is insert at
+the start. The default is to append.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2119'><tt class='method'>flushheaders</tt></a></b> ()
+<dd>
+Causes all headers accumulated so far to be written out (and
+forgotten). This is useful if you don't need a body part at all,
+e.g. for a subpart of type <span class="mimetype">message/rfc822</span> that's (mis)used
+to store some header-like information.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2120'><tt class='method'>startbody</tt></a></b> (<var>ctype</var><big>[</big><var>, plist</var><big>[</big><var>, prefix</var><big>]</big><big>]</big>)
+<dd>
+Returns a file-like object which can be used to write to the
+body of the message.  The content-type is set to the provided
+<var>ctype</var>, and the optional parameter <var>plist</var> provides
+additional parameters for the content-type declaration. <var>prefix</var>
+functions as in <tt class="method">addheader()</tt> except that the default is to
+insert at the start.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2121'><tt class='method'>startmultipartbody</tt></a></b> (<var>subtype</var><big>[</big><var>,
+                   boundary</var><big>[</big><var>, plist</var><big>[</big><var>, prefix</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Returns a file-like object which can be used to write to the
+body of the message.  Additionally, this method initializes the
+multi-part code, where <var>subtype</var> provides the multipart subtype,
+<var>boundary</var> may provide a user-defined boundary specification, and
+<var>plist</var> provides optional parameters for the subtype.
+<var>prefix</var> functions as in <tt class="method">startbody()</tt>.  Subparts should be
+created using <tt class="method">nextpart()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2122'><tt class='method'>nextpart</tt></a></b> ()
+<dd>
+Returns a new instance of <tt class="class">MimeWriter</tt> which represents an
+individual part in a multipart message.  This may be used to write the 
+part as well as used for creating recursively complex multipart
+messages. The message must first be initialized with
+<tt class="method">startmultipartbody()</tt> before using <tt class="method">nextpart()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2123'><tt class='method'>lastpart</tt></a></b> ()
+<dd>
+This is used to designate the last part of a multipart message, and
+should <i>always</i> be used when writing multipart messages.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-multifile.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-MimeWriter.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-MimeWriter.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-multifile.html">12.9 multifile  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-MimeWriter.html">12.8 MimeWriter  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-MimeWriter.html">12.8 MimeWriter  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

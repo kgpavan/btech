@@ -1,0 +1,61 @@
+----> system calls ----must read....before going to interview.
+	 
+	what happens when a system call is executed ? how the OS switches between user n kernel mode....
+	Abt interrupts? how they r handled? 
+
+----> scheduling of process (chapter 4)
+	
+	Inter process communication.
+	
+	Client-server system.
+
+---->Threads 
+
+	when a thread is created how the memory or address space is allocated to the thread?? must read****
+
+	compare with process..?
+
+	pthreads must read only syntax and functionalities
+		pthread_create(),pthread_join(),pthread_exit()...like this
+
+	How priority is given among threads..?
+
+---->CPU scheduling
+
+	definitions of long term n short term schedulers
+	different algos for scheduling.(ex:- FCFS,round robin(used in linux),....)
+
+	Multilevel Feedback Queue Scheduling.
+
+
+----> Process synchronization (must read ******* )
+	defintions of semaphores,mutex
+	classic problems of synchronizations ex:- read-write,dining philosophers 	prob,bounded buffer probs.
+
+----> deadlocks(must read ****)
+	prevention,avoidance,detection....
+
+
+----> Paging,segmentation
+
+---->virtual memory.
+
+	what is virtual memory?
+	how mapping of logical memory to physical memory is done...?
+
+---->file systems
+
+	what is virtual file system?
+	vnode numbers
+
+
+
+
+
+
+
+
+
+
+
+

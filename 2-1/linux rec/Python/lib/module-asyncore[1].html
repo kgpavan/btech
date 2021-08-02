@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.16 asyncore -- Asynchronous socket handler</title>
+<META NAME="description" CONTENT="11.16 asyncore -- Asynchronous socket handler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="previous" href="module-CGIHTTPServer.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="asyncore-example.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="asyncore-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="internet.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-CGIHTTPServer.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="asyncore-example.html">11.16.1 Example basic HTTP</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="internet.html">11. Internet Protocols and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-CGIHTTPServer.html">11.15 CGIHTTPServer  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131600000000000000000">
+11.16 <tt class="module">asyncore</tt> --
+         Asynchronous socket handler</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides the basic infrastructure for writing asynchronous 
+socket service clients and servers.
+
+<P>
+There are only two ways to have a program on a single processor do 
+``more than one thing at a time.'' Multi-threaded programming is the 
+simplest and most popular way to do it, but there is another very 
+different technique, that lets you have nearly all the advantages of 
+multi-threading, without actually using multiple threads.  It's really 
+only practical if your program is largely I/O bound.  If your program 
+is CPU bound, then pre-emptive scheduled threads are probably what 
+you really need. Network servers are rarely CPU-bound, however.
+
+<P>
+If your operating system supports the <tt class="cfunction">select()</tt> system call 
+in its I/O library (and nearly all do), then you can use it to juggle 
+multiple communication channels at once; doing other work while your 
+I/O is taking place in the ``background.''  Although this strategy can 
+seem strange and complex, especially at first, it is in many ways 
+easier to understand and control than multi-threaded programming.  
+The module documented here solves many of the difficult problems for 
+you, making the task of building sophisticated high-performance 
+network servers and clients a snap.
+
+<P>
+<dl><dt><b><a name='l2h-1955'><tt class='class'>dispatcher</tt></a></b> ()
+<dd>
+  The first class we will introduce is the <tt class="class">dispatcher</tt> class. 
+  This is a thin wrapper around a low-level socket object.  To make 
+  it more useful, it has a few methods for event-handling on it.  
+  Otherwise, it can be treated as a normal non-blocking socket object.
+
+<P>
+The direct interface between the select loop and the socket object
+  are the <tt class="method">handle_read_event()</tt> and 
+  <tt class="method">handle_write_event()</tt> methods. These are called whenever an 
+  object `fires' that event.
+
+<P>
+The firing of these low-level events can tell us whether certain 
+  higher-level events have taken place, depending on the timing and 
+  the state of the connection.  For example, if we have asked for a 
+  socket to connect to another host, we know that the connection has 
+  been made when the socket fires a write event (at this point you 
+  know that you may write to it with the expectation of success).  
+  The implied higher-level events are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr bgcolor='#99CCFF'>
+      <th align="left"><b>Event</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+    </thead>
+  <tbody valign='baseline'>
+    <tr><td align="left" valign="baseline"><code>handle_connect()</code></td>
+        <td align="left">Implied by a write event</td>
+    <tr><td align="left" valign="baseline"><code>handle_close()</code></td>
+        <td align="left">Implied by a read event with no data available</td>
+    <tr><td align="left" valign="baseline"><code>handle_accept()</code></td>
+        <td align="left">Implied by a read event on a listening socket</td></tbody>
+</table>
+</dl>
+
+<P>
+This set of user-level events is larger than the basics.  The 
+full set of methods that can be overridden in your subclass are:
+
+<P>
+<dl><dt><b><a name='l2h-1956'><tt class='method'>handle_read</tt></a></b> ()
+<dd>
+  Called when there is new data to be read from a socket.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1957'><tt class='method'>handle_write</tt></a></b> ()
+<dd>
+  Called when there is an attempt to write data to the object.  
+  Often this method will implement the necessary buffering for 
+  performance.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+def handle_write(self):
+    sent = self.send(self.buffer)
+    self.buffer = self.buffer[sent:]
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1958'><tt class='method'>handle_expt</tt></a></b> ()
+<dd>
+  Called when there is out of band (OOB) data for a socket 
+  connection.  This will almost never happen, as OOB is 
+  tenuously supported and rarely used.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1959'><tt class='method'>handle_connect</tt></a></b> ()
+<dd>
+  Called when the socket actually makes a connection.  This 
+  might be used to send a ``welcome'' banner, or something 
+  similar.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1960'><tt class='method'>handle_close</tt></a></b> ()
+<dd>
+  Called when the socket is closed.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1961'><tt class='method'>handle_accept</tt></a></b> ()
+<dd>
+  Called on listening sockets when they actually accept a new 
+  connection.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1962'><tt class='method'>readable</tt></a></b> ()
+<dd>
+  Each time through the <tt class="method">select()</tt> loop, the set of sockets 
+  is scanned, and this method is called to see if there is any 
+  interest in reading.  The default method simply returns <code>1</code>, 
+  indicating that by default, all channels will be interested.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1963'><tt class='method'>writeable</tt></a></b> ()
+<dd>
+  Each time through the <tt class="method">select()</tt> loop, the set of sockets 
+  is scanned, and this method is called to see if there is any 
+  interest in writing.  The default method simply returns <code>1</code>, 
+  indiciating that by default, all channels will be interested.
+</dl>
+
+<P>
+In addition, there are the basic methods needed to construct and
+manipulate ``channels,'' which are what we will call the socket
+connections in this context. Note that most of these are nearly 
+identical to their socket partners.
+
+<P>
+<dl><dt><b><a name='l2h-1964'><tt class='method'>create_socket</tt></a></b> (<var>family, type</var>)
+<dd>
+  This is identical to the creation of a normal socket, and 
+  will use the same options for creation.  Refer to the
+  <tt class='module'><a href='module-socket.html'>socket</a></tt> documentation for information on creating
+  sockets.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1965'><tt class='method'>connect</tt></a></b> (<var>address</var>)
+<dd>
+  As with the normal socket object, <var>address</var> is a 
+  tuple with the first element the host to connect to, and the 
+  second the port.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1966'><tt class='method'>send</tt></a></b> (<var>data</var>)
+<dd>
+  Send <var>data</var> out the socket.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1967'><tt class='method'>recv</tt></a></b> (<var>buffer_size</var>)
+<dd>
+  Read at most <var>buffer_size</var> bytes from the socket.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1968'><tt class='method'>listen</tt></a></b> (<big>[</big><var>backlog</var><big>]</big>)
+<dd>
+  Listen for connections made to the socket.  The <var>backlog</var>
+  argument specifies the maximum number of queued connections
+  and should be at least 1; the maximum value is
+  system-dependent (usually 5).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1969'><tt class='method'>bind</tt></a></b> (<var>address</var>)
+<dd>
+  Bind the socket to <var>address</var>.  The socket must not already
+  be bound.  (The format of <var>address</var> depends on the address
+  family -- see above.)
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1970'><tt class='method'>accept</tt></a></b> ()
+<dd>
+  Accept a connection.  The socket must be bound to an address
+  and listening for connections.  The return value is a pair
+  <code>(<var>conn</var>, <var>address</var>)</code> where <var>conn</var> is a
+  <i>new</i> socket object usable to send and receive data on
+  the connection, and <var>address</var> is the address bound to the
+  socket on the other end of the connection.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1971'><tt class='method'>close</tt></a></b> ()
+<dd>
+  Close the socket.  All future operations on the socket object
+  will fail.  The remote end will receive no more data (after
+  queued data is flushed).  Sockets are automatically closed
+  when they are garbage-collected.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html3563"
+ href="asyncore-example.html">11.16.1 Example basic HTTP client </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="asyncore-example.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="internet.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-CGIHTTPServer.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="asyncore-example.html">11.16.1 Example basic HTTP</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="internet.html">11. Internet Protocols and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-CGIHTTPServer.html">11.15 CGIHTTPServer  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

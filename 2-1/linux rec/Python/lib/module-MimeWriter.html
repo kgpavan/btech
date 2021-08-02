@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.8 MimeWriter -- Generic MIME file writer</title>
+<META NAME="description" CONTENT="12.8 MimeWriter -- Generic MIME file writer">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-multifile.html">
+<LINK REL="previous" href="module-mimetools.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="MimeWriter-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="MimeWriter-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="netdata.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="mimetools.Message_Methods.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="MimeWriter-objects.html">12.8.1 MimeWriter Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="netdata.html">12. Internet Data Handling</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="mimetools.Message_Methods.html">12.7.1 Additional Methods of</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014800000000000000000">
+12.8 <tt class="module">MimeWriter</tt> --
+         Generic MIME file writer</A>
+</H1>
+
+<P>
+
+<P>
+
+<P>
+This module defines the class <tt class="class">MimeWriter</tt>.  The
+<tt class="class">MimeWriter</tt> class implements a basic formatter for creating
+MIME multi-part files.  It doesn't seek around the output file nor
+does it use large amounts of buffer space. You must write the parts
+out in the order that they should occur in the final
+file. <tt class="class">MimeWriter</tt> does buffer the headers you add, allowing you 
+to rearrange their order.
+
+<P>
+<dl><dt><b><a name='l2h-2117'><tt class='class'>MimeWriter</tt></a></b> (<var>fp</var>)
+<dd>
+Return a new instance of the <tt class="class">MimeWriter</tt> class.  The only
+argument passed, <var>fp</var>, is a file object to be used for
+writing. Note that a <tt class="class">StringIO</tt> object could also be used.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html3789"
+ href="MimeWriter-objects.html">12.8.1 MimeWriter Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="MimeWriter-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="netdata.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="mimetools.Message_Methods.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="MimeWriter-objects.html">12.8.1 MimeWriter Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="netdata.html">12. Internet Data Handling</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="mimetools.Message_Methods.html">12.7.1 Additional Methods of</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

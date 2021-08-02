@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6. macdnr -- Interface to the Macintosh Domain Name Resolver</title>
+<META NAME="description" CONTENT="6. macdnr -- Interface to the Macintosh Domain Name Resolver">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="next" href="module-macfs.html">
+<LINK REL="previous" href="module-macconsole.html">
+<LINK REL="up" href="contents.html">
+<LINK REL="next" href="dnr-result-object.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="dnr-result-object.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node10.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="dnr-result-object.html">6.1 DNR Result Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node10.html">5.2 console window object</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION002600000000000000000">
+6. <tt class="module">macdnr</tt> --
+         Interface to the Macintosh Domain Name Resolver</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Macintosh</span>.</p>
+
+<P>
+This module provides an interface to the Macintosh Domain Name
+Resolver.  It is usually used in conjunction with the <tt class='module'><a href='module-mactcp.html'>mactcp</a></tt>
+module, to map hostnames to IP addresses.  It may not be available in
+all Mac Python versions.
+<a name='l2h-67'></a>
+
+<P>
+The <tt class="module">macdnr</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-60'><tt class='function'>Open</tt></a></b> (<big>[</big><var>filename</var><big>]</big>)
+<dd>
+Open the domain name resolver extension.  If <var>filename</var> is given it
+should be the pathname of the extension, otherwise a default is
+used.  Normally, this call is not needed since the other calls will
+open the extension automatically.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-61'><tt class='function'>Close</tt></a></b> ()
+<dd>
+Close the resolver extension.  Again, not needed for normal use.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-62'><tt class='function'>StrToAddr</tt></a></b> (<var>hostname</var>)
+<dd>
+Look up the IP address for <var>hostname</var>.  This call returns a dnr
+result object of the ``address'' variation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-63'><tt class='function'>AddrToName</tt></a></b> (<var>addr</var>)
+<dd>
+Do a reverse lookup on the 32-bit integer IP-address
+<var>addr</var>.  Returns a dnr result object of the ``address'' variation.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-64'><tt class='function'>AddrToStr</tt></a></b> (<var>addr</var>)
+<dd>
+Convert the 32-bit integer IP-address <var>addr</var> to a dotted-decimal
+string.  Returns the string.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-65'><tt class='function'>HInfo</tt></a></b> (<var>hostname</var>)
+<dd>
+Query the nameservers for a <code>HInfo</code> record for host
+<var>hostname</var>.  These records contain hardware and software
+information about the machine in question (if they are available in
+the first place).  Returns a dnr result object of the ``hinfo''
+variety.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-66'><tt class='function'>MXInfo</tt></a></b> (<var>domain</var>)
+<dd>
+Query the nameservers for a mail exchanger for <var>domain</var>.  This is
+the hostname of a host willing to accept SMTP<a name='l2h-68'></a> mail for the
+given domain.  Returns a dnr result object of the ``mx'' variety.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html213"
+ href="dnr-result-object.html">6.1 DNR Result Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="dnr-result-object.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node10.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="dnr-result-object.html">6.1 DNR Result Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node10.html">5.2 console window object</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,21 @@
+% kb.txt: This simple program is for demonstration.
+% To run, type: prover9 < kb.txt > proof.txt
+
+assign(max_proofs, -1). % Allow more than 1 proof to be output.
+                        % Required to output multiple substitutions.
+set(reuse_denials). % Again required for multiple substitutions.
+set(restrict_denials). % Needed to eliminate redundant proofs.
+
+formulas(assumptions). % This section contains rules and goals.
+        all x (fighter(x) -> strong(x)).
+        -strong(x)  # answer(x). % Negation of conclusion; implicit 'all'
+                                 % 'answer' indicates that substitution
+                                 % for x is required output.
+                                 % If output contains more than 1 variable,
+                                 % syntax is: answer([x,y,z]).
+end_of_list.
+
+formulas(usable). % This section contains data.
+        fighter("shyam").
+        fighter("mohan").
+end_of_list.

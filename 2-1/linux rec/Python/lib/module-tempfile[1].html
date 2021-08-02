@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.14 tempfile -- Generate temporary file names</title>
+<META NAME="description" CONTENT="6.14 tempfile -- Generate temporary file names">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-errno.html">
+<LINK REL="previous" href="module-getopt.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-errno.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-errno.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-getopt.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-errno.html">6.15 errno  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-getopt.html">6.13 getopt  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081400000000000000000">
+6.14 <tt class="module">tempfile</tt> --
+         Generate temporary file names</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name='l2h-1135'></a>
+
+<P>
+This module generates temporary file names.  It is not Unix specific,
+but it may require some help on non-Unix systems.
+
+<P>
+Note: the modules does not create temporary files, nor does it
+automatically remove them when the current process exits or dies.
+
+<P>
+The module defines a single user-callable function:
+
+<P>
+<dl><dt><b><a name='l2h-1132'><tt class='function'>mktemp</tt></a></b> ()
+<dd>
+Return a unique temporary filename.  This is an absolute pathname of a
+file that does not exist at the time the call is made.  No two calls
+will return the same filename.
+</dl>
+
+<P>
+The module uses two global variables that tell it how to construct a
+temporary name.  The caller may assign values to them; by default they
+are initialized at the first call to <tt class="function">mktemp()</tt>.
+
+<P>
+<dl><dt><b><a name='l2h-1133'><tt>tempdir</tt></a></b>
+<dd>
+When set to a value other than <code>None</code>, this variable defines the
+directory in which filenames returned by <tt class="function">mktemp()</tt> reside.
+The default is taken from the environment variable <span class='envvar'><a name='l2h-1136'>$TMPDIR</a></span>; if
+this is not set, either <font class="file" face="sans-serif">/usr/tmp</font> is used (on Unix), or the
+current working directory (all other systems).  No check is made to
+see whether its value is valid.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1134'><tt>template</tt></a></b>
+<dd>
+When set to a value other than <code>None</code>, this variable defines the
+prefix of the final component of the filenames returned by
+<tt class="function">mktemp()</tt>.  A string of decimal digits is added to generate
+unique filenames.  The default is either <font class="file" face="sans-serif">@<var>pid</var>.</font> where
+<var>pid</var> is the current process ID (on Unix), or <font class="file" face="sans-serif">tmp</font> (all
+other systems).
+</dl>
+
+<P>
+<b>Warning:</b> if a Unix process uses <code>mktemp()</code>, then
+calls <tt class="function">fork()</tt> and both parent and child continue to use
+<tt class="function">mktemp()</tt>, the processes will generate conflicting temporary
+names.  To resolve this, the child process should assign <code>None</code> to
+<code>template</code>, to force recomputing the default on the next call
+to <tt class="function">mktemp()</tt>.
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-errno.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="allos.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-getopt.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-errno.html">6.15 errno  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="allos.html">6. Generic Operating System</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-getopt.html">6.13 getopt  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

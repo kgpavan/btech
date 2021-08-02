@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.28 new -- Runtime implementation object creation</title>
+<META NAME="description" CONTENT="3.28 new -- Runtime implementation object creation">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-site.html">
+<LINK REL="previous" href="module-dis.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-site.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-site.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="bytecodes.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-site.html">3.29 site  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="bytecodes.html">3.27.1 Python Byte Code</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052800000000000000000">
+3.28 <tt class="module">new</tt> --
+         Runtime implementation object creation</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">new</tt> module allows an interface to the interpreter object
+creation functions. This is for use primarily in marshal-type functions,
+when a new object needs to be created ``magically'' and not by using the
+regular creation functions. This module provides a low-level interface
+to the interpreter, so care must be exercised when using this module.
+
+<P>
+The <tt class="module">new</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-504'><tt class='function'>instance</tt></a></b> (<var>class, dict</var>)
+<dd>
+This function creates an instance of <var>class</var> with dictionary
+<var>dict</var> without calling the <tt class="method">__init__()</tt> constructor. Note that
+there are no guarantees that the object will be in a consistent state.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-505'><tt class='function'>instancemethod</tt></a></b> (<var>function, instance, class</var>)
+<dd>
+This function will return a method object, bound to <var>instance</var>, or
+unbound if <var>instance</var> is <code>None</code>.  <var>function</var> must be
+callable, and <var>instance</var> must be an instance object or
+<code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-506'><tt class='function'>function</tt></a></b> (<var>code, globals</var><big>[</big><var>, name</var><big>[</big><var>argdefs</var><big>]</big><big>]</big>)
+<dd>
+Returns a (Python) function with the given code and globals. If
+<var>name</var> is given, it must be a string or <code>None</code>.  If it is a
+string, the function will have the given name, otherwise the function
+name will be taken from <code><var>code</var>.co_name</code>.  If
+<var>argdefs</var> is given, it must be a tuple and will be used to the
+determine the default values of parameters.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-507'><tt class='function'>code</tt></a></b> (<var>argcount, nlocals, stacksize, flags, codestring,
+                       constants, names, varnames, filename, name, firstlineno,
+                       lnotab</var>)
+<dd>
+This function is an interface to the <tt class="cfunction">PyCode_New()</tt> C
+function.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-508'><tt class='function'>module</tt></a></b> (<var>name</var>)
+<dd>
+This function returns a new module object with name <var>name</var>.
+<var>name</var> must be a string.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-509'><tt class='function'>classobj</tt></a></b> (<var>name, baseclasses, dict</var>)
+<dd>
+This function returns a new class object, with name <var>name</var>, derived
+from <var>baseclasses</var> (which should be a tuple of classes) and with
+namespace <var>dict</var>.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-site.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="bytecodes.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-site.html">3.29 site  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="bytecodes.html">3.27.1 Python Byte Code</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

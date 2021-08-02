@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.11 urlparse -- Parse URLs into components.</title>
+<META NAME="description" CONTENT="11.11 urlparse -- Parse URLs into components.">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-SocketServer.html">
+<LINK REL="previous" href="module-telnetlib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="module-SocketServer.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-SocketServer.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="internet.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="telnet-example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-SocketServer.html">11.12 SocketServer  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="internet.html">11. Internet Protocols and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="telnet-example.html">11.10.2 Telnet Example</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131100000000000000000">
+11.11 <tt class="module">urlparse</tt> --
+         Parse URLs into components.</A>
+</H1>
+
+<P>
+
+<P>
+<a name='l2h-1890'></a>
+
+<P>
+This module defines a standard interface to break URL strings up in
+components (addessing scheme, network location, path etc.), to combine
+the components back into a URL string, and to convert a ``relative
+URL'' to an absolute URL given a ``base URL.''
+
+<P>
+The module has been designed to match the Internet RFC on Relative
+Uniform Resource Locators (and discovered a bug in an earlier
+draft!).  Refer to <a class='rfc' name='rfcref-48184'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc1808.txt'>RFC 1808</a> for details on relative
+URLs and <a class='rfc' name='rfcref-48186'
+href='http://info.internet.isi.edu/in-notes/rfc/files/rfc1738.txt'>RFC 1738</a> for information on basic URL syntax.
+
+<P>
+It defines the following functions:
+
+<P>
+<dl><dt><b><a name='l2h-1887'><tt class='function'>urlparse</tt></a></b> (<var>urlstring</var><big>[</big><var>, default_scheme</var><big>[</big><var>, allow_fragments</var><big>]</big><big>]</big>)
+<dd>
+Parse a URL into 6 components, returning a 6-tuple: (addressing
+scheme, network location, path, parameters, query, fragment
+identifier).  This corresponds to the general structure of a URL:
+<code><var>scheme</var>://<var>netloc</var>/<var>path</var>;<var>parameters</var>?<var>query</var>#<var>fragment</var></code>.
+Each tuple item is a string, possibly empty.
+The components are not broken up in smaller parts (e.g. the network
+location is a single string), and % escapes are not expanded.
+The delimiters as shown above are not part of the tuple items,
+except for a leading slash in the <var>path</var> component, which is
+retained if present.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+urlparse('http://www.cwi.nl:80/%7Eguido/Python.html')
+</pre></dl>
+yields the tuple
+
+<P>
+<dl><dd><pre class="verbatim">
+('http', 'www.cwi.nl:80', '/%7Eguido/Python.html', '', '', '')
+</pre></dl>
+If the <var>default_scheme</var> argument is specified, it gives the
+default addressing scheme, to be used only if the URL string does not
+specify one.  The default value for this argument is the empty string.
+
+<P>
+If the <var>allow_fragments</var> argument is zero, fragment identifiers
+are not allowed, even if the URL's addressing scheme normally does
+support them.  The default value for this argument is <code>1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1888'><tt class='function'>urlunparse</tt></a></b> (<var>tuple</var>)
+<dd>
+Construct a URL string from a tuple as returned by <code>urlparse()</code>.
+This may result in a slightly different, but equivalent URL, if the
+URL that was parsed originally had redundant delimiters, e.g. a ? with
+an empty query (the draft states that these are equivalent).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1889'><tt class='function'>urljoin</tt></a></b> (<var>base, url</var><big>[</big><var>, allow_fragments</var><big>]</big>)
+<dd>
+Construct a full (``absolute'') URL by combining a ``base URL''
+(<var>base</var>) with a ``relative URL'' (<var>url</var>).  Informally, this
+uses components of the base URL, in particular the addressing scheme,
+the network location and (part of) the path, to provide missing
+components in the relative URL.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+urljoin('http://www.cwi.nl/%7Eguido/Python.html', 'FAQ.html')
+</pre></dl>
+yields the string
+
+<P>
+<dl><dd><pre class="verbatim">
+'http://www.cwi.nl/%7Eguido/FAQ.html'
+</pre></dl>
+The <var>allow_fragments</var> argument has the same meaning as for
+<code>urlparse()</code>.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-SocketServer.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="internet.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="telnet-example.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-SocketServer.html">11.12 SocketServer  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="internet.html">11. Internet Protocols and</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="telnet-example.html">11.10.2 Telnet Example</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

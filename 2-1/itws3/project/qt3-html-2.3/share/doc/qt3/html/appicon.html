@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/espenr/tmp/qt-3.2-espenr-29145/qt-x11-free-3.2.3/doc/appicon.doc:36 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Setting the Application Icon</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+ <a href="index.html">
+<font color="#004faf">Home</font></a>
+ | <a href="classes.html">
+<font color="#004faf">All&nbsp;Classes</font></a>
+ | <a href="mainclasses.html">
+<font color="#004faf">Main&nbsp;Classes</font></a>
+ | <a href="annotated.html">
+<font color="#004faf">Annotated</font></a>
+ | <a href="groups.html">
+<font color="#004faf">Grouped&nbsp;Classes</font></a>
+ | <a href="functions.html">
+<font color="#004faf">Functions</font></a>
+</td>
+<td align="right" valign="center"><img src="logo32.png" align="right" width="64" height="32" border="0"></td></tr></table><h1 align=center>Setting the Application Icon</h1>
+
+
+
+<p> The application icon, typically displayed in the top-left corner of an
+application's top-level windows, is set by calling the
+<a href="qwidget.html#setIcon">QWidget::setIcon</a>() method on top-level widgets.
+<p> In order to change the icon of the executable application file
+itself, as it is presented on the desktop (i.e. prior to application
+execution), it is necessary to employ another, platform-dependent
+technique.
+<p> <!-- toc -->
+<ul>
+<li><a href="#1"> Setting the Application Icon on Windows
+</a>
+<li><a href="#2"> Setting the Application Icon on Mac OS X
+</a>
+</ul>
+<!-- endtoc -->
+
+<p> <h2> Setting the Application Icon on Windows
+</h2>
+<a name="1"></a><p> First, create an ICO format bitmap file that contains the icon image. This
+can be done with e.g. Microsoft Visual C++: Select "File|New...", then
+select the "File" tab in the dialog that appears, and choose "Icon". (Note
+that you do not need to load your application into Visual C++; here we are
+only using the icon editor).
+<p> Store the ICO file in your application's source code directory, for
+example, with the name, "myappico.ico". Then, create a text file
+called e.g. "myapp.rc" in which you put a single line of text:
+<pre>
+IDI_ICON1               ICON    DISCARDABLE     "myappico.ico"
+</pre>
+ 
+<p> Finally, assuming you are using <a href="qmake-manual.html">qmake</a>
+to generate your makefiles, add this line to your "myapp.pro" file:
+<p> <pre>
+RC_FILE = myapp.rc
+</pre>
+ 
+<p> Regenerate your makefile and your application. The .exe file will now be
+represented with your icon e.g. in Explorer.
+<p> If you do not use <a href="qmake-manual.html">qmake</a>, the necessary
+steps are: first, run the "rc" program on the .rc file, then link your
+application with the resulting .res file.
+<p> <h2> Setting the Application Icon on Mac OS X
+</h2>
+<a name="2"></a><p> The application icon, typically displayed in the application dock
+area, is set by calling <a href="qwidget.html#setIcon">QWidget::setIcon</a>() on a top-level widget. It
+is possible that the program could appear in the application dock area
+before the function call, in which case a default icon will appear
+during the bouncing animation. 
+<p> To ensure that the correct icon appears, both when the application is
+being launched, and in the Finder, it is necessary to employ a
+platform-dependent technique.
+<p> Although many programs can create icon files (<tt>.icns</tt>), the recommended
+approach is to use the <em>Icon Composer</em> program supplied by Apple (in the
+Developer/Application folder). <em>Icon Composer</em> allows you to import several
+different sized icons (for use in different contexts) as well as the masks
+that go with them. Save the set of icons to a file in your project
+directory.
+<p> If you are using <a href="qmake-manual.html">qmake</a> to generate
+your make files, you only need to add a single line to your <tt>.pro</tt>
+project file. For example, if the name of your icon file is
+<tt>myapp.icns</tt>, and your project file is <tt>myapp.pro</tt>, add this line
+to <tt>myapp.pro</tt>:
+<pre>
+RC_FILE = myapp.icns
+</pre>
+ 
+This will ensure that <a href="qmake-manual.html">qmake</a> puts your
+icons in the proper place and creates an <tt>Info.plist</tt> entry for the
+icon.
+<p> If you do not use <a href="qmake-manual.html">qmake</a>, you must do
+the following manually:
+<ol type=1>
+<li> Create an Info.plist file for your application (using the
+PropertyListEditor, found in Developer/Applications).
+<li> Associate your .icns record with the CFBundleIconFile record in the
+Info.plist file (again, using the PropertyListEditor).
+<li> Copy both the icns and your Info.plist into your application bundle
+Resource directory.
+</ol>
+<p> 
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2003
+<a href="troll.html">Trolltech</a><td align=center><a href="trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt 3.2.3</div>
+</table></div></address></body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.21.1 Interactive Interpreter Objects </title>
+<META NAME="description" CONTENT="3.21.1 Interactive Interpreter Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="console-objects.html">
+<LINK REL="previous" href="module-code.html">
+<LINK REL="up" href="module-code.html">
+<LINK REL="next" href="console-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="console-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-code.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-code.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="console-objects.html">3.21.2 Interactive Console Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-code.html">3.21 code  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-code.html">3.21 code  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052110000000000000000"></A>
+<BR>
+3.21.1 Interactive Interpreter Objects
+            
+</H2>
+
+<P>
+<dl><dt><b><a name='l2h-446'><tt class='method'>runsource</tt></a></b> (<var>source</var><big>[</big><var>, filename</var><big>[</big><var>, symbol</var><big>]</big><big>]</big>)
+<dd>
+Compile and run some source in the interpreter.
+Arguments are the same as for <tt class="function">compile_command()</tt>; the
+default for <var>filename</var> is <code>'&lt;input&gt;'</code>, and for
+<var>symbol</var> is <code>'single'</code>.  One several things can happen:
+
+<P>
+
+<UL><LI>The input is incorrect; <tt class="function">compile_command()</tt> raised an
+exception (<tt class="exception">SyntaxError</tt> or <tt class="exception">OverflowError</tt>).  A
+syntax traceback will be printed by calling the
+<tt class="method">showsyntaxerror()</tt> method.  <tt class="method">runsource()</tt> returns
+<code>0</code>.
+
+<P>
+
+<LI>The input is incomplete, and more input is required;
+<tt class="function">compile_command()</tt> returned <code>None</code>.
+<tt class="method">runsource()</tt> returns <code>1</code>.
+
+<P>
+
+<LI>The input is complete; <tt class="function">compile_command()</tt> returned a code
+object.  The code is executed by calling the <tt class="method">runcode()</tt> (which
+also handles run-time exceptions, except for <tt class="exception">SystemExit</tt>).
+<tt class="method">runsource()</tt> returns <code>0</code>.
+
+</UL>
+
+<P>
+The return value can be used to decide whether to use
+<code>sys.ps1</code> or <code>sys.ps2</code> to prompt the next line.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-447'><tt class='method'>runcode</tt></a></b> (<var>code</var>)
+<dd>
+Execute a code object.
+When an exception occurs, <tt class="method">showtraceback()</tt> is called to
+display a traceback.  All exceptions are caught except
+<tt class="exception">SystemExit</tt>, which is allowed to propogate.
+
+<P>
+A note about <tt class="exception">KeyboardInterrupt</tt>: this exception may occur
+elsewhere in this code, and may not always be caught.  The caller
+should be prepared to deal with it.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-448'><tt class='method'>showsyntaxerror</tt></a></b> (<big>[</big><var>filename</var><big>]</big>)
+<dd>
+Display the syntax error that just occurred.  This does not display
+a stack trace because there isn't one for syntax errors.
+If <var>filename</var> is given, it is stuffed into the exception instead
+of the default filename provided by Python's parser, because it
+always uses <code>'&lt;string&gt;'</code> when reading from a string.
+The output is written by the <tt class="method">write()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-449'><tt class='method'>showtraceback</tt></a></b> ()
+<dd>
+Display the exception that just occurred.  We remove the first stack
+item because it is within the interpreter object implementation.
+The output is written by the <tt class="method">write()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-450'><tt class='method'>write</tt></a></b> (<var>data</var>)
+<dd>
+Write a string to standard output.  Derived classes should override
+this to provide the appropriate output handling as needed.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="console-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-code.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-code.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="console-objects.html">3.21.2 Interactive Console Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-code.html">3.21 code  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-code.html">3.21 code  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

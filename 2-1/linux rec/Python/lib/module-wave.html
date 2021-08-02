@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.5 wave -- Read and write WAV files</title>
+<META NAME="description" CONTENT="14.5 wave -- Read and write WAV files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-chunk.html">
+<LINK REL="previous" href="module-sunau.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="Wave-read-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="Wave-read-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="mmedia.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="au-write-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="Wave-read-objects.html">14.5.1 Wave_read Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="mmedia.html">14. Multimedia Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="au-write-objects.html">14.4.2 AU_write Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016500000000000000000">
+14.5 <tt class="module">wave</tt> --
+         Read and write WAV files</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">wave</tt> module provides a convenient interface to the WAV sound
+format. It does not support compression/decompression, but it does support
+mono/stereo.
+
+<P>
+The <tt class="module">wave</tt> module defines the following function and exception:
+
+<P>
+<dl><dt><b><a name='l2h-2397'><tt class='function'>open</tt></a></b> (<var>file, mode</var>)
+<dd>
+If <var>file</var> is a string, open the file by that name, other treat it
+as a seekable file-like object. <var>mode</var> can be any of
+<DL>
+<DT><STRONG><code>'r'</code>, <code>'rb'</code></STRONG>
+<DD>Read only mode.
+        <DT><STRONG><code>'w'</code>, <code>'wb'</code></STRONG>
+<DD>Write only mode.
+</DL>
+Note that it does not allow read/write WAV files.
+
+<P>
+A <var>mode</var> of <code>'r'</code> or <code>'rb'</code> returns a <tt class="class">Wave_read</tt>
+object, while a <var>mode</var> of <code>'w'</code> or <code>'wb'</code> returns
+a <tt class="class">Wave_write</tt> object.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2398'><tt class='function'>openfp</tt></a></b> (<var>file, mode</var>)
+<dd>
+A synonym for <tt class="function">open()</tt>, maintained for backwards compatibility.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2399'><tt class='exception'>Error</tt></a></b>
+<dd>
+An error raised when something is impossible because it violates the
+WAV specification or hits an implementation deficiency.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html4226"
+ href="Wave-read-objects.html">14.5.1 Wave_read Objects </A>
+<LI><A NAME="tex2html4227"
+ href="Wave-write-objects.html">14.5.2 Wave_write Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="Wave-read-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="mmedia.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="au-write-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="Wave-read-objects.html">14.5.1 Wave_read Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="mmedia.html">14. Multimedia Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="au-write-objects.html">14.4.2 AU_write Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

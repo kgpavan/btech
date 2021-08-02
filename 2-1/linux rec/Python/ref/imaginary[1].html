@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.6 Imaginary literals</title>
+<META NAME="description" CONTENT="2.4.6 Imaginary literals">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="previous" href="floating.html">
+<LINK REL="up" href="literals.html">
+<LINK REL="next" href="operators.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="operators.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="literals.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="floating.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="operators.html">2.5 Operators</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="literals.html">2.4 Literals</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="floating.html">2.4.5 Floating point literals</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004460000000000000000"></A>
+<BR>
+2.4.6 Imaginary literals
+</H2>
+
+<P>
+Imaginary literals are described by the following lexical definitions:
+
+<P>
+<dl><dd><pre class="verbatim">
+imagnumber:     (floatnumber | intpart) ("j"|"J")
+</pre></dl>
+
+<P>
+An imaginary literal yields a complex number with a real part of
+0.0.  Complex numbers are represented as a pair of floating point
+numbers and have the same restrictions on their range.  To create a
+complex number with a nonzero real part, add a floating point number
+to it, e.g., <code>(3+4j)</code>.  Some examples of imaginary literals:
+
+<P>
+<dl><dd><pre class="verbatim">
+3.14j   10.j    10j     .001j   1e100j  3.14e-10j
+</pre></dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="operators.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="literals.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="floating.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="operators.html">2.5 Operators</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="literals.html">2.4 Literals</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="floating.html">2.4.5 Floating point literals</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

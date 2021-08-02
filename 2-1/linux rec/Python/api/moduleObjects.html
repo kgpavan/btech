@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.2 Module Objects </title>
+<META NAME="description" CONTENT="7.5.2 Module Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="next" href="cObjects.html">
+<LINK REL="previous" href="fileObjects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="cObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="cObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="fileObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="cObjects.html">7.5.3 CObjects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="fileObjects.html">7.5.1 File Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009520000000000000000"></A>
+<BR>
+7.5.2 Module Objects 
+</H2>
+
+<P>
+<a name='l2h-426'></a>
+There are only a few functions special to module objects.
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-406'><tt class='cdata'>PyModule_Type</tt></a></b>
+<dd>
+This instance of <tt class="ctype">PyTypeObject</tt> represents the Python module
+type.  This is exposed to Python programs as <code>types.ModuleType</code>.
+<a name='l2h-408'></a></dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-409'><tt class='cfunction'>PyModule_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns true if its argument is a module object.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-410'><tt class='cfunction'>PyModule_New</tt></a></b> (<var>char *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Return a new module object with the <tt class="member">__name__</tt> attribute set to
+<var>name</var>.  Only the module's <tt class="member">__doc__</tt> and
+<tt class="member">__name__</tt> attributes are filled in; the caller is responsible
+for providing a <tt class="member">__file__</tt> attribute.
+
+  <a name='l2h-412'></a></dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-413'><tt class='cfunction'>PyModule_GetDict</tt></a></b> (<var>PyObject *module</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+Return the dictionary object that implements <var>module</var>'s namespace; 
+this object is the same as the <tt class="member">__dict__</tt> attribute of the
+module object.  This function never fails.
+<a name='l2h-415'></a></dl>
+
+<P>
+<dl><dt>char* <b><a name='l2h-416'><tt class='cfunction'>PyModule_GetName</tt></a></b> (<var>PyObject *module</var>)
+<dd>
+Return <var>module</var>'s <tt class="member">__name__</tt> value.  If the module does not 
+provide one, or if it is not a string, <tt class="exception">SystemError</tt> is
+raised and <tt class="constant">NULL</tt> is returned.
+<a name='l2h-418'></a><a name='l2h-420'></a></dl>
+
+<P>
+<dl><dt>char* <b><a name='l2h-421'><tt class='cfunction'>PyModule_GetFilename</tt></a></b> (<var>PyObject *module</var>)
+<dd>
+Return the name of the file from which <var>module</var> was loaded using
+<var>module</var>'s <tt class="member">__file__</tt> attribute.  If this is not defined,
+or if it is not a string, raise <tt class="exception">SystemError</tt> and return
+<tt class="constant">NULL</tt>.
+<a name='l2h-423'></a><a name='l2h-425'></a></dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="cObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="fileObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="cObjects.html">7.5.3 CObjects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="fileObjects.html">7.5.1 File Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,22 @@
+                    HA (ngrams -- computing counts)   (Due: 1 week,
+                                                       7 Dec. 6 pm)
+
+1. Randomly select a text of about 5000 words from the internet.
+
+2. Ignore all punctuation marks except sentence boundary. ().
+   (a) Prepare a unigram count table. Compute % of coverage, and 
+       probabilities of each unigram. Find the number of types and 
+       tokens.
+   (b) Prepare a bigram count table and bigram probability table. Compute
+       unigram counts from the bigram count table and verify 
+       that the counts are same as in (a)
+
+3. Select 5 sentences (of length 6- 10 words) at random from the internet.
+   (Do not select from the same text used for computing the matrices.)
+   For all the selected sentences S,
+
+   Find P(S) using (a) Unigram counts.
+                   (b) Bigram counts.
+
+   (Hint: If you are using matrix representation, use sparse representation
+   otherwise you would run out of memory!)

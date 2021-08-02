@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16. MiniAEFrame -- Open Scripting Architecture server support</title>
+<META NAME="description" CONTENT="16. MiniAEFrame -- Open Scripting Architecture server support">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="previous" href="module-FrameWork.html">
+<LINK REL="up" href="contents.html">
+<LINK REL="next" href="aeserver-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="aeserver-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="dialogwindow-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="aeserver-objects.html">16.1 AEServer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="dialogwindow-objects.html">15.5 DialogWindow Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021600000000000000000">
+16. <tt class="module">MiniAEFrame</tt> --
+         Open Scripting Architecture server support</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Macintosh</span>.</p>
+
+<P>
+The module <tt class="module">MiniAEFrame</tt> provides a framework for an application
+that can function as an Open Scripting Architecture
+<a name='l2h-253'></a>
+(OSA) server, i.e. receive and process
+AppleEvents<a name='l2h-254'></a>. It can be used in conjunction with
+<tt class='module'><a href='module-FrameWork.html'>FrameWork</a></tt><a name='l2h-255'></a> or standalone.
+
+<P>
+This module is temporary, it will eventually be replaced by a module
+that handles argument names better and possibly automates making your
+application scriptable.
+
+<P>
+The <tt class="module">MiniAEFrame</tt> module defines the following classes:
+
+<P>
+<dl><dt><b><a name='l2h-251'><tt class='class'>AEServer</tt></a></b> ()
+<dd>
+A class that handles AppleEvent dispatch. Your application should
+subclass this class together with either
+<tt class="class">MiniApplication</tt> or
+<tt class="class">FrameWork.Application</tt>. Your <tt class="method">__init__()</tt> method should
+call the <tt class="method">__init__()</tt> method for both classes.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-252'><tt class='class'>MiniApplication</tt></a></b> ()
+<dd>
+A class that is more or less compatible with
+<tt class="class">FrameWork.Application</tt> but with less functionality. Its
+event loop supports the apple menu, command-dot and AppleEvents; other
+events are passed on to the Python interpreter and/or Sioux.
+Useful if your application wants to use <tt class="class">AEServer</tt> but does not
+provide its own windows, etc.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html514"
+ href="aeserver-objects.html">16.1 AEServer Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="aeserver-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="dialogwindow-objects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="aeserver-objects.html">16.1 AEServer Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="dialogwindow-objects.html">15.5 DialogWindow Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

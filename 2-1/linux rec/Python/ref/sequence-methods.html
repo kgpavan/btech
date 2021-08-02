@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3.5 Additional methods for emulation of sequence types </title>
+<META NAME="description" CONTENT="3.3.5 Additional methods for emulation of sequence types ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="numeric-types.html">
+<LINK REL="previous" href="sequence-types.html">
+<LINK REL="up" href="specialnames.html">
+<LINK REL="next" href="numeric-types.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="numeric-types.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="specialnames.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="sequence-types.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="numeric-types.html">3.3.6 Emulating numeric types</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="specialnames.html">3.3 Special method names</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="sequence-types.html">3.3.4 Emulating sequence and</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005350000000000000000"></A>
+<BR>
+3.3.5 Additional methods for emulation of sequence types
+  
+</H2>
+
+<P>
+The following methods can be defined to further emulate sequence
+objects.  Immutable sequences methods should only define
+<tt class="method">__getslice__()</tt>; mutable sequences, should define all three
+three methods.
+
+<P>
+<dl><dt><b><a name='l2h-169'><tt class='method'>__getslice__</tt></a></b> (<var>self, i, j</var>)
+<dd>
+Called to implement evaluation of <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+The returned object should be of the same type as <var>self</var>.  Note
+that missing <var>i</var> or <var>j</var> in the slice expression are replaced
+by zero or <code>sys.maxint</code>, respectively.  If negative indexes are
+used in the slice, the length of the sequence is added to that index.
+If the instance does not implement the <tt class="method">__len__()</tt> method, an
+<tt class="exception">AttributeError</tt> is raised.
+No guarantee is made that indexes adjusted this way are not still
+negative.  Indexes which are greater than the length of the sequence
+are not modified.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-170'><tt class='method'>__setslice__</tt></a></b> (<var>self, i, j, sequence</var>)
+<dd>
+Called to implement assignment to <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+Same notes for <var>i</var> and <var>j</var> as for <tt class="method">__getslice__()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-171'><tt class='method'>__delslice__</tt></a></b> (<var>self, i, j</var>)
+<dd>
+Called to implement deletion of <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+Same notes for <var>i</var> and <var>j</var> as for <tt class="method">__getslice__()</tt>.
+</dl>
+
+<P>
+Notice that these methods are only invoked when a single slice with a
+single colon is used.  For slice operations involving extended slice
+notation, <tt class="method">__getitem__()</tt>, <tt class="method">__setitem__()</tt>
+or<tt class="method">__delitem__()</tt> is called.
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="numeric-types.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="specialnames.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="sequence-types.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="numeric-types.html">3.3.6 Emulating numeric types</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="specialnames.html">3.3 Special method names</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="sequence-types.html">3.3.4 Emulating sequence and</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

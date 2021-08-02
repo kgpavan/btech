@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2 console window object</title>
+<META NAME="description" CONTENT="5.2 console window object">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" href="module-macconsole.html">
+<LINK REL="next" href="module-macdnr.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-macdnr.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-macconsole.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node9.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-macdnr.html">6. macdnr  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-macconsole.html">5. macconsole  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node9.html">5.1 macconsole options object</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION002520000000000000000">
+5.2 console window object</A>
+</H2>
+
+<P>
+
+<P>
+<dl><dt><b><a name='l2h-49'><tt>file</tt></a></b>
+<dd>
+The file object corresponding to this console window. If the file is
+buffered, you should call <code><var>file</var>.flush()</code> between
+<code>write()</code> and <code>read()</code> calls.
+</dl>
+
+<P>
+
+<P>
+<dl><dt><b><a name='l2h-50'><tt class='function'>setmode</tt></a></b> (<var>mode</var>)
+<dd>
+Set the input mode of the console to <tt class="constant">C_ECHO</tt>, etc.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-51'><tt class='function'>settabs</tt></a></b> (<var>n</var>)
+<dd>
+Set the tabsize to <var>n</var> spaces.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-52'><tt class='function'>cleos</tt></a></b> ()
+<dd>
+Clear to end-of-screen.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-53'><tt class='function'>cleol</tt></a></b> ()
+<dd>
+Clear to end-of-line.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-54'><tt class='function'>inverse</tt></a></b> (<var>onoff</var>)
+<dd>
+Enable inverse-video mode: characters with the high bit set are
+displayed in inverse video (this disables the upper half of a
+non-ASCII character set).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-55'><tt class='function'>gotoxy</tt></a></b> (<var>x, y</var>)
+<dd>
+Set the cursor to position <code>(<var>x</var>, <var>y</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-56'><tt class='function'>hide</tt></a></b> ()
+<dd>
+Hide the window, remembering the contents.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-57'><tt class='function'>show</tt></a></b> ()
+<dd>
+Show the window again.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-58'><tt class='function'>echo2printer</tt></a></b> ()
+<dd>
+Copy everything written to the window to the printer as well.
+</dl><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-macdnr.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="module-macconsole.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A HREF="node9.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-macdnr.html">6. macdnr  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="module-macconsole.html">5. macconsole  </A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A HREF="node9.html">5.1 macconsole options object</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

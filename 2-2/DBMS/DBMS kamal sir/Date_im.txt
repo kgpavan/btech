@@ -1,0 +1,1891 @@
+
+
+
+Instructor's Manual for An Introduction to Database
+Systems
+ by C.J. Date
+ISBN:  0-201-54329-X
+Addison-Wesley Publishing Company
+Copyright 1995
+
+Roger King, University of Colorado at Boulder
+            (roger@cs.colorado.edu)
+
+This instructor's manual is a little different from
+other instructor's manuals.  I do not try to
+summarize or clarify each chapter.  I find Date's
+book very crisply and clearly written.
+He also has done a very nice job of summarizing
+each chapter, 
+right in the book.  
+
+So, I have written "intuitive overviews".   My goal
+is to tell the
+instructor what general concepts  a student should
+take away
+after reading each chapter.
+Database management systems are large, complex
+systems, and
+there is a lot of material in Date's book.  Students
+can always return
+to the book to find details, but it is important that
+instructors give
+them a solid foundation of intuitive principles. 
+Otherwise, in future
+months and years, students won't know how to find
+the answer to 
+specific technical questions.  I would suggest that
+as each lecture is
+prepared, the instructor consider using the
+intuitive overview for the
+appropriate chapter as a starting place.
+
+With each overview, I have provided two questions.
+When a question isn't too open-ended, I also have
+provided an answer.  In
+general, I tried to take the same approach with the
+questions that I have
+taken with the overviews; they are meant to
+reinforce the  principle
+intuitions behind the book.
+
+I would like to thank Chris Date for carefully
+reviewing (twice) each
+overview and question set.
+Also, I would like to thank Rick Hull for the 
+example used in the overview
+for chapter 11.  It was  designed for my class
+notes, and I later discovered
+that it would work well in the overview.
+
+Chapter 1 Intuitive Overview:
+
+Before the age of database systems, computerized
+systems which were
+data-intensive, such as systems that process
+checks and insurance
+claims, were often a maze of countless, unrelated
+files.  Consider an
+insurance company.  One division might be
+processing insurance claims,
+and there could be many thousands of claims
+processed every day.  Another
+might be keeping track of hundreds of thousands of
+subscriber accounts, 
+as it processes premium payments and maintains
+personal data.  The
+actuarial division might be in charge of
+maintaining statistics on the
+relative risks of various sorts of insurance
+subscribers.  The underwriting
+division develops group insurance plans and
+calculates appropriate
+premium charges.  You can see that the actuaries
+may need access to years
+worth of old claim data in order to calculate their
+statistics; the
+underwriters need access to subscriber 
+information; the claim division
+needs access to underwriting data and subscriber
+information, in order to
+know who is covered and how they are covered. 
+Thus, a large company
+creates massive amounts of data, and its many
+employees must share this
+data - and share it simultaneously.
+
+This identifies the two key properties of a
+database system.
+It allows a company to integrate many forms of
+data, and provide
+effective sharing for that data.  Of course, not all
+database systems serve
+large organizations with many simultaneous users,
+but these sorts of
+applications were the primary motivation for
+modern database systems.  
+
+What is the secret to building an effective
+database system?
+To integrate large amounts of data, an otherwise
+overly-complex array of
+underlying files must be organized in some way
+that provides data
+independence.  The term  data independence refers
+to the separation of
+physical and conceptual issues; in other words,
+users of the database
+system do not have to know how the data is  stored,
+and they are not
+affected when that implementation is changed.  The
+user only has to focus
+on the high level representation of the data, not on
+any low level issues.
+
+Later in this book, we will see that our second key
+property, sharing, is a
+demanding requirement.  The database system must
+support a language for
+accessing the database system.  It must also
+support protocols that allow
+many people to access the database at once,
+without interfering with each
+other.  
+
+In sum, a database system is often large in two
+respects.  First, it
+contains vast amounts of data.  Second, it is in
+itself a large, complex
+software system, providing mechanisms for
+modeling the integration of
+diverse sorts of data, for storing this data, and for
+accessing this data in
+a shared environment.
+
+Chapter 2 Intuitive Overview:
+
+Students should come away from Chapter 2 with an
+appreciation for the
+complexity of both the data management problem
+and of database
+management systems.  Developing and using
+database systems also calls
+for people with highly specialized and diverse
+skills.
+
+A database system allows data to be shared
+simultaneously by many
+users; the data might be large in volume and highly
+diverse in structure.  A
+database management system (DBMS) supports the
+development of
+individual databases.  It provides tools for defining
+the conceptual,
+external, and internal levels of the database
+system.  Frequently, it allows
+the database system to be separated into a client
+(the application) and a
+server (the
+DBMS), and it sometimes supports physical
+distribution of data, as well.
+
+Many people are usually involved in the
+development, maintenance, and use
+of a database system.
+Often, a DBMS is large and complex, involving many
+tools.  A DBMS is
+highly non-trivial to apply to an application. 
+Therefore, the person who
+uses the DBMS to develop a specific application
+must be familiar with
+both the DBMS and the application environment. 
+This person is called the
+database administrator (DBA), and in fact, there is
+often a database
+administration team consisting of several people. 
+This same team must
+maintain the database system, evolving it as the
+needs of the application
+evolve.
+
+The person who manipulates data with a database
+system built by a DBA
+(with a DBMS) is called a user or an end user.
+This person is most likely much less knowledgeable
+about the DBMS itself,
+but must be an expert in some aspect of the
+application.
+Like the DBA, the "user" is typically a group of
+people.
+These users might have diverse technical skills.
+Some are skilled programmers who produce
+database programs in the DML
+for other, less computer-skilled  users to simply
+execute; these users
+might be clerks or managers in the application
+environment.
+
+Chapter 3 Intuitive Overview:
+
+The key to understanding the intuition behind the
+relational model lies in
+how a relational database is manipulated.  All data
+is stored  as values
+structured into rows.  A set of rows forms a 
+relation (table).  And there
+are no pointers interconnecting related tables.  So,
+how do we traverse
+from one table to another?
+
+Consider a table that represents insurance claims,
+and another that
+represents policies.  Suppose each claim is 
+represented as a single row,
+and that each policy is  represented as a single
+row.  To process a claim,
+we  must find the policy row that relates to the
+claim under
+consideration, to see what insurance coverage
+applies.
+How do we do this if the claim does not "point" to
+the policy?  In theory,
+the relational operator Join would be used to derive
+this relationship;
+Select and Project would be used to find the rows
+and columns of interest.
+
+The most popular commercial relational data
+manipulation language is
+called SQL, and like the pure algebraic  operators,
+it relates data by
+comparing values, not by following pointers.  The
+row in the claims
+relation that represents the claim under
+consideration might contain a
+value that represents a policy number.  This number
+might be used to find
+the policy row that represents the relevant
+insurance policy.  Thus, we
+tell SQL to find the policy row that contains this
+number, and it is not
+necessary to explicitly "navigate" from one table to
+the other.
+We use SQL to specify what row to find, not how to
+find it.
+SQL is thus an example of a "non-procedural"
+language.
+We should point out that the Catalog tells the
+system about the
+relationships between the schema, the access
+methods, and the raw data
+when a query is being processed.
+
+This non-procedural approach has another benefit. 
+Suppose we want to
+find all the claim rows such that they relate to a
+particular policy.  They
+might be all the claims submitted by the employees
+of one company, and
+we might want to see them when we are
+negotiating a new insurance
+contract with the company.  There might be a need
+to see this "derived"
+data repeatedly over a period of time.
+We could use SQL to isolate this set of claim rows.  
+We could make this
+derived relation a view.  This view would be a
+virtual relation,
+represented by its definition.
+The relational approach thus gives us a convenient
+way of conceptually
+extending our database.  
+
+Chapter 4 Intuitive Overview:
+
+When they are first introduced to it, many students
+consider the
+structural part of the relational model to be
+nothing more than a renaming
+of the principal components of the old fashioned
+file model.  This is more
+or less true - but it is also a dangerous
+simplification.  
+
+Indeed, a relation corresponds to a file; a tuple
+corresponds to a record; an
+attribute corresponds to a field in a record.  The
+critical thing is what's
+missing.  The relational model captures the core
+concepts of the file
+model, but is not cluttered up with extra
+constructs, like repeating fields
+or duplicate records.  It does not reflect the
+idiosyncrasies  of any
+particular operating system implementation.
+
+The relational model therefore gives us a simple,
+mathematically clean
+language for specifying the logical structure of
+databases.
+It is easy to understand and implement, and users
+generally find the
+relational model to be intuitively straight forward
+to apply.
+And, because the model has a sound mathematical
+foundation, it
+incorporates highly intuitive access  or
+"manipulation" primitives; 
+commercial realizations of these primitives will
+be covered later in the
+text (chapter 8).  We will also see later  that this
+foundation has provided
+a firm basis for developing  effective techniques
+for optimizing programs
+(or "queries")  that manipulate the database
+(chapter 18), and for defining
+integrity constraints (chapter 16) and views
+(chapter 17).  
+
+In sum, the relational model takes the file model -
+a proven mechanism
+for representing computerized data - and gives it a
+critical property.  This
+is abstraction, or the ability to cleanly separate
+high level logical
+functionality from arbitrary and often complex
+implementation
+considerations.
+
+One complaint often raised about the relational
+model is that it is still
+too low level, that it does not provide the
+abstractions necessary to
+represent complex objects in the real world (such
+as aircraft designs). 
+This concern will be covered in Part VI; we will
+see that  in fact the
+relational model can deal with such complex
+objects, but not without
+some loss of mathematical simplicity, something
+that has made the
+relational model so successful.
+
+We end by noting that users of relational database
+management systems
+do not have to rely totally on names to ensure  a
+proper interpretation of
+queries.  Indeed, it is necessary for users to have
+knowledge of the
+intended interpretation of a relation, but the
+system supports integrity
+constraints that help in the enforcement of logical
+interpretations.
+
+Chapter 5 Intuitive Overview:
+
+In Chapter 4, we saw that the relational model
+separates the conceptual
+and physical view of data.  This property, called
+data independence, can be
+further appreciated by looking at how uniqueness
+and integrity are handled
+in the relational model.  In a relational database,
+correctness is enforced
+simply by controlling values; certain combinations 
+of values makes sense,
+and others do not.   It is not necessary to control
+pointers or indices or
+any other physical structure.  The key to the
+enforcement of uniqueness
+and integrity lies in the use of keys.
+
+In a relational database, the data associated with
+an application is
+represented as a set of tables.
+Rows in a relational database consist only of
+values.
+An attribute may not contain a pointer, another
+row, or any other data
+type.  So accessing rows in a relation, or relating a
+row in one table with
+a row in another table must be done simply by
+examining values.  
+
+A candidate key is used to uniquely identify rows in
+one relation.  This
+gives us a simple way to identify rows in a relation
+with specific objects
+in the real world.
+For example, each insurance claim row might be
+identified by a unique
+number.
+And, foreign keys are used to locate a row in one
+relation that is related
+to a row in second relation.  This allows us to
+create a correspondence 
+between two differently structured objects in the
+real world.
+Further, by requiring that a referential constraint
+be enforced, we can be
+assured that there are no "dangling" rows.  A
+referential constraint, for
+example, allows us to enforce the real world
+constraint that all claims
+must have been submitted by some subscriber of
+insurance.
+Finally, we note that one of the candidate keys is
+normally defined as the
+primary key, and that every attribute in a primary
+key is defined as not
+allowing a null value.
+
+So, in sum, why is the representation of uniqueness
+and integrity in a
+relational database further evidence of data
+independence?
+Because only values are involved; we do not use
+pointers to identify the
+location of rows or to imply a dependency between
+two rows from
+different tables.
+
+Chapter 6 Intuitive Overview:
+
+To a student unfamiliar with database technology,
+it may not be obvious
+why data independence is a strong point of the
+relational model.  We have
+seen that rows in a relational table cannot contain
+pointers, that (at least
+in the "pure" relational model) the order of rows in
+a table is irrelevant,
+that all integrity constraints are defined entirely
+in terms of values in
+rows.  But to truly appreciate the level of data
+independence in the
+relational model, we have to look at how data is
+manipulated.
+
+Consider the operators selection, projection, and
+join.
+They allow us to isolate horizontal segments of
+relations, isolate vertical
+segments of relations, and locate rows in one
+relation that correspond to
+rows in another relation.  And the definitions of
+these operators are not
+dependent on any  storage mechanisms.  It doesn't
+matter how the
+relations are mapped into files. 
+
+It might well be that certain storage mechanisms
+are used to speed up
+these operators, but the operators themselves are
+not defined in terms of
+these mechanisms.
+As we will see later in the book, we might use
+pointer-based structures
+to facilitate selections and joins, so that all the
+rows that contain a
+specific value in a specific attribute can be located
+quickly.
+This is in stark contrast to older data models, like
+the hierarchical and
+network models, where the operations that can be
+performed on a database
+are limited by such mechanisms.  In these models,
+the user of the database
+explicitly traverses pointers that are embedded in
+the conceptual level of
+the database.
+
+Also, since the relational model is manipulated in
+an algebraic, not a
+physical manner, the output of one operation is a
+set of rows - in other
+words, a relation.  This property, called closure is
+very powerful in that it
+allows us to nest relational operations.
+
+Chapters 7 and 8 Intuitive Overview:
+
+These two chapters are included in one overview
+because together, they
+represent a common transition in
+Computer Science - the transition of a
+mathematically defined language 
+to a real-life programming language.  Chapter 7
+discusses the family of
+relational calculus languages.  It is argued (if not
+formally proven) that a
+calculus is functionally equivalent to a relational
+algebra, and is thus
+"relationally complete".  And, like an algebra, it is
+a specialized
+programming language, one that is not suited to
+general-purpose
+programming tasks.  
+
+It is interesting to note that a relational calculus,
+like a relational
+algebra, does not contain any looping constructs.  It
+is a fairly simple
+language, one whose purpose is to support the
+programming of the
+definition of the desired result relation. 
+(Remember that the algebra is
+used to specify the exact means by which this
+result relation can be
+computed.)
+What makes the calculus difficult for  database
+users is its highly
+mathematical notation.
+
+Chapter 8 introduces SQL, which is an attempt to
+provide the power of a
+tuple calculus, but in a form that is more
+digestible by  the average
+database user.  (SQL actually seems to be a hybrid
+of a calculus and an
+algebra.)  Chapter 8 also  argues that SQL is
+relationally complete.   It is
+also somewhat larger than a pure calculus.
+To transform mathematical concepts into a real
+language, it was
+necessary for the language to grow.  (Perhaps it
+grew a bit too much.)
+SQL has a number of constructs that, while they are
+not necessary for
+relational completeness, are necessary in order to
+make the language
+usable in a practical environment; these include
+Group and Order.
+
+Chapter 9 Intuitive Overview:
+
+Chapters 9 through 12 survey the concepts
+typically used as a basis for
+relational database design.
+These chapters are arranged in a bottom-up order:
+we begin with a
+definition of the basic dependencies that are often
+used to control
+correctness in relations and across relations. 
+Later, the actual process of
+schema design, of translating high-level, real
+world constructs into
+relations will be discussed.  
+
+Conceptual design, the process of isolating the
+entities that must be
+modeled by  the relations that make up the schema,
+is an inherently
+subjective process.
+So, conceptual design is much less precisely
+defined than the process of
+specifying the constraints that control updates
+against the relations.  And
+it is the mathematical elegance of the relational
+model that allows the
+material in chapter 9 to be fairly formal.
+
+Chapter 9 covers the definition of a functional
+dependency, which states
+that given a relation R, A --> B (where A and B are
+subsets of the
+attributes of R), if and only if, whenever two
+tuples of R have the same
+value for A, they also have the same value for B. 
+The chapter goes on to
+describe the means by which some functional
+dependencies can be shown
+to imply others.  And this process of deducing
+dependencies can be used to
+form a closed set of dependencies.   While this does
+not by any means give
+us a way to specify all imaginable integrity
+constraints, it does give us a
+highly formal and understandable means of
+specifying many crucial, real
+world constraints.
+
+The reason a functional dependency is essentially
+an integrity constraint
+is simple: Consider a relation with two attributes,
+SSN and AGE.  Suppose
+that SSN --> AGE.
+This means that given a specific value of SSN,
+there can only be one
+specific value of AGE.  If we look at a tuple with
+any other value for AGE,
+SSN must be different.  So, a functional dependency
+defines a
+correspondence between SSN and AGE, forcing them
+to remain in concert
+as updates are made.
+
+Chapter 10 Intuitive Overview:
+
+We see further evidence that the mathematical
+elegance of the relational
+model aids in the specification of relational
+schemas.  In chapter 9, we
+saw that functional dependencies can be used to
+model certain kinds of
+integrity constraints.  In chapter 10, we see that
+these integrity
+constraints are the driving force in the process of
+relational
+normalization - the process by which the relations
+that define the schema
+are decomposed into some number of smaller (more
+narrow) relations.  
+
+There are two critical facts about relational
+normalization.  First, it is a
+lossless process.
+The newer, smaller relations contain the same
+information; the original
+relations can be reconstructed with a series of
+joins.  And second,
+normalization reduces redundancy and makes the
+database more
+predictable in the way it is updated.  Essentially, a
+normalized database is
+more space efficient (at least at the conceptual
+level) because an
+association between two attributes is in general
+only recorded once. 
+Consider a relation with SSN, Street Address, and
+Zip.  Suppose that SSN -
+-> Street Address and Street Address --> Zip. 
+Suppose that six different
+SSN's are associated with one specific address.  If
+the schema is not
+normalized, then there will be six tuples, each with
+the same address and
+zip.  If we normalize it,  then the relationship
+between this address and
+its zip is only specified once - in a separate
+relation.  Now consider
+deleting these six people from the database.
+With the original relation, we have to be careful
+when we delete the last
+person; do we really want to delete the last
+remaining tuple that specifies
+what zip is associated with this address?
+
+These are of course only two examples of how
+normalization can improve
+a relational schema, and the chapter gives a
+thorough description of these
+"update anomalies".  The  essential idea, though, is
+that normalization is a
+cleanly defined mechanism that may be used as
+part of the schema design
+process.  And, a relation that has been put in BCNF
+is is almost always
+going to be much easier to understand.
+
+Chapter 11 Intuitive Overview:
+
+Although the material in chapter 11 might seem at
+first read to be tedious
+and of only academic interest, there is a specific,
+practical motivation
+behind the study of normal forms.  Normal forms
+give us a rigorous means
+by which we can guarantee the elimination of
+certain kinds of update
+anomalies.  In chapter
+10, we looked at functional dependencies and
+associated normal forms.
+In chapter 11, we look at multi-valued
+dependencies and a generalization
+of them called join dependencies.  In a nutshell,
+putting a relation in fifth
+normal form assures the designer that all update
+anomalies that can be
+removed by taking projections have been removed.
+
+Consider the relation below:
+
+A  B  C
+1  2  3
+4  2  5
+1  6  5
+1  2  5
+
+There are three attributes, A, B, and C, and four
+tuples.
+Assume the following join dependency:
+*{AB,BC,CA}.
+
+First, notice that there are no MVD's in this
+example.
+It is not true, for example, that A ->> B.  The set of
+B values matching a
+give (A,C) pair does not depend only on the A value.
+Consider (1,6,5) and (1,2,5).  For the A,C pair 1,5, B
+may have the values 6
+and 2.  So  far, it seems to work.  But now consider
+(1,2,3).  The A,C pair is
+1,3.  The only legal value of B is 2.  But, if A ->> B
+were true, then (1,6,3)
+would be a tuple in this relation.  It is not.  Since
+there are no trivial
+MVD's, the above relation is already in fourth
+normal form.
+
+Now, notice that the AB pair (1,2), the BC pair
+(2,5), and the CA pair (5,1)
+are duplicated.
+The only way to remove this logical duplication,
+and thus the likelihood of
+update anomalies, is to break the relation down
+into a set of relations
+that are in fifth normal form:
+
+A B    B C    A C
+1 2    2 3    1 3
+4 2    2 5    4 5
+1 6    6 5    1 5
+
+Chapter 12 Intuitive Overview:
+
+The so-called "semantic" models arose, not so much
+as an alternative to
+the relational model, but as a tool for schema
+design.  The name arose
+because a semantic model was supposed to give the
+designer a way of
+capturing the "semantics" of an application.  The
+E/R model is perhaps the
+best known semantic model, but the phrase
+"semantic model" is a bit like
+the word Kleenex; it is actually the name of one
+specific model, a
+prominent model due to Hammer and McLeod.  These
+models were heavily
+influenced  by knowledge representation techniques
+in AI, the essential 
+difference being that while AI researchers were
+only concerned with
+representing real world constructs, data modelers
+were also concerned
+with managing large volumes of structured data. 
+Thus, in a semantic
+model, unlike in a knowledge representation
+language, the designer
+explicitly separates the schema from instances of
+the schema.
+
+To be honest, developing semantic models was
+quite a fad in the late
+seventies and early eighties, and a large number of
+- largely forgotten -
+semantic models filled the database research
+literature of this period.
+Many of them were simply specialized variations of
+the E/R and
+Hammer/McLeod model.  They were all similar in 
+that they forced the
+designer to make decisions about what concepts  in
+the real world should
+translate to objects (or entities) in the  database,
+and what concepts
+should translate to relationships.
+But these models varied significantly in their
+individual constructs and
+the exact semantics associated with those
+constructs.  Another
+complication is that none of these models had a
+simple, elegant
+mathematical representation like that of the
+relational model.  How can
+you build a DBMS based on a model when you have no
+precise definition of
+it?  In the end, no one semantic model came out as
+the leader and set any
+sort of  a standard, and so the impact of these
+models was limited.  The 
+E/R perhaps had the biggest impact, due to the
+influence it has had  on
+database design tools.  
+
+However, the E/R model and other semantic models
+did impact a broad
+spectrum of database systems research.  They were
+used as the basis of
+design techniques, as a convenient way of
+producing visual syntaxes for
+graphical interfaces to database systems, and as
+the basis for
+constructing user-oriented data dictionaries. 
+Perhaps the biggest
+negative lesson of the semantic models is that they
+required designers to
+make many highly subjective design decisions. 
+While a model like the E/R
+model certainly offers a richer supply of language
+constructs with which
+to model, it also provides a more complex design
+language than the
+relational model.
+
+Chapter 13 Intuitive Overview:
+
+If you ask someone what a database management
+system is, they're likely
+to tell you that it is a general purpose toolkit that
+allows developers to
+build applications with  persistent data, and that a
+DBMS also supports a
+structured way of manipulating persistent data. 
+This is of course
+basically correct, but misses some of the
+important capabilities of
+DBMS's.  Interestingly, these other capabilities are
+often called database
+"amenities", a term that does not do them justice.
+One of the most powerful so-called database
+amenities is that of
+transaction specification and recovery.  A
+transaction allows a series of
+database commands to be defined as a unit of
+processing.
+We will see in chapter 14 that a companion, yet
+orthogonal capability  is
+that of allowing multiple transactions to be
+executed simultaneously.  
+
+There are four essential properties that define a
+transaction; these are
+called the ACID properties.  A transaction  must be
+Atomic (all or
+nothing),
+Consistent (always transforming the database from
+one  consistent state
+to another), Isolated (two transactions are always 
+independent of each
+other), and Durable (when a transaction complete,
+its updates always
+survive).  
+
+A transaction is also a unit of recovery; thus, with
+respect to the property
+of atomicity, we usually do better than making sure
+that a transaction
+happens in its entirety or not at all.  If a
+transaction or a set of
+transactions are disrupted by a system or a media
+failure, the system can
+be restored to a consistent state, and all
+transactions that had not
+completed when that state was created can be
+rerun from scratch.  
+
+We see that the notion of a transaction is very
+powerful.  And, it is  also a
+very simple concept, easy to define, and therefore
+implementable in a
+fairly straight forward fashion.  This is exactly
+what we want in any
+software technique, and accounts for the
+universality of the transaction
+notion.
+
+Chapter 14 Intuitive Overview:
+
+When any protocol is proposed for a computer
+system, we generally look
+for the following two critical  properties (among
+others) -  the ability to
+implement the protocol  easily and the ability to
+easily understand what
+the protocol does.  Two phase locking meets both
+these requirements.  But
+to see why, it is important to look closely at what
+the protocol actually
+provides for us - and what it does not provide.
+
+What is "correct" in a database system?  In the
+general sense, this is a
+very open-ended question.  We might want two
+transactions to
+"cooperate",  in the sense that one transaction (TA)
+passes a result to
+another transaction (TB), without other
+transactions being aware of this
+result, and to do it before either TA or TB commits. 
+These two
+transactions might be solving a joint task,
+independent of what other
+transactions are doing.
+But if the first transaction were to abort, it would
+be difficult for us to
+know how to handle the second transaction. 
+Suppose it has already
+committed?  It might have passed on a "bad" value
+to other transactions,
+merely by updating an attribute value in some
+tuple.
+
+Thus, two phase locking is a compromise.  It does
+not support many
+complex interactions we might want from a group
+of concurrent
+transactions.  The key simplification is the
+assumption that any two
+transactions are mutually independent; so, any two
+transactions executing
+at the same time
+(when both have begun, but neither has committed), 
+might appear to have
+executed in either order.   Thus, if transaction TA
+adds 1 to C and
+transaction TB  divides C by 6, the arbitrary
+effective ordering of these
+two  transactions by the protocol would result in
+one of two probably-
+different mathematical results.  The protocol
+assumes that either of
+these outcomes must be okay.  
+
+We see, therefore, that the two phase locking
+protocol is intuitively
+ingenious.  It is easy to define and implement.  It
+enforces logical
+constraints that we can easily understand.  If n
+transactions are  running
+concurrently, we will intermix their primitive
+operations in such a way as
+to make effective use of resources.  We will also
+be able to guarantee that
+no two transactions will get tangled up, with one
+causing the other to do
+something illogical.   But, do not support any
+complex criteria for the
+interaction of multiple transactions.  This would be
+difficult to define and
+to enforce.
+
+Chapter 15 Intuitive Overview:
+
+Interest in computer security is rapidly growing as 
+access to high speed
+computer networks becomes more prevalent.  While
+many sorts of
+software systems support security measures,
+database systems are in a
+unique position to provide powerful security
+mechanisms.  This is because
+access to data in a database can be filtered by
+using the information
+contained in the schema.  This allows us to restrict
+access to data in a
+very refined, semantically-meaningful way.
+
+There are two common approaches to providing
+database security.  Under
+the first approach, called Discretionary,  different
+users are given
+different access rights to various objects in the
+database.  We do this by
+defining security rules.  Within one named rule, we
+might use SQL to
+specify the scope of the data object (as a view),
+and then associate with
+this view such privileges as retrieve or update.  We
+would also be able to
+specify a list of users who have access to the
+privileges associated with
+this rule, and what violation response should be
+given if an unauthorized
+access is attempted.
+
+The other common approach is called Mandatory
+access control.
+Under this scheme, each object in the database can
+have associated with
+it a classification level.  Users are then given
+clearance levels.  A user
+can only retrieve an object if the user's clearance
+level is equal to or
+greater than the classification level of the desired
+object.  The user can
+modify the  object if and only if the user's
+clearance level is equal to the 
+classification level of the object.  And, as in a
+Discretionary  scheme, an
+object can be defined as a view.
+
+Under either of the above security approaches,
+database management
+systems are vulnerable to one form of unauthorized
+access; this occurs
+when a user attempts to circumvent the
+DBMS and access the data directly, either at the
+file level or during data
+transmission.  To prevent this sort of access,
+encryption schemes can be
+used.  The chapter summarizes the very popular
+public-key encryption
+technique.
+
+Chapter 16 Intuitive Overview:
+
+Conventional databases have no notion of time or
+history.
+A database has at all times a single state. 
+Integrity rules are used to
+constrain the way in which this state is updated. 
+There are two general
+kinds of integrity rules.  The first, and the most
+common, is rules that put
+restrictions on the content of legal database
+states; how those states are 
+obtained is not relevant.  The second kind is rules 
+that control the manner
+in which the database is allowed to  change states.  
+
+Rules that control legal database states might
+define the set of legal
+values that make up a domain or define the domain
+from which an
+attribute value must be chosen.  These rules can
+also span a relation; for
+example, the value of one attribute in a given row
+might be defined in
+terms of the value of another attribute in the same
+row.  Or, a rule might
+span multiple relations; for example, a referential
+constraint might be
+used to ensure that a specific attribute value does
+not exist in one
+relation unless another specific attribute value
+exists in a second
+relation.
+
+One question is that of enforcement.  When is an
+integrity rule checked? 
+For most rules, like attribute rules, it makes sense
+to check them
+immediately upon an update attempt.
+It doesn't make any sense to allow a social security
+number to even
+briefly have the value "purple".  But when a rule
+spans multiple relations,
+it typically does not make sense to enforce the
+constraint until the
+commit point of the transaction.  This is because
+there will necessarily be
+multiple primitive updates required to bring the
+database into a totally
+consistent state.  To ensure the enforcement of a
+referential constraint,
+we might have to add an employee row to the
+Employee relation in the
+same transaction in which we add a row to the
+Insurance-Plan relation.
+
+Transition rules act in a completely different way. 
+They limit the
+operations that may be performed on certain
+objects.
+For example, a row in the Employee relation might
+have a attribute called
+Status.  A state rule might be used to limit the
+values of this attribute to
+"alive" or "dead".  It might not make sense to allow
+an employee to go from
+being "dead" to being "alive", and a transition rule
+could be used to enforce
+this constraint.
+Another question concerns violation responses. 
+What does the DBMS do if
+a user attempts to violate a state or a transition
+rule?  Typically, the
+update is simply rejected, but more advanced
+mechanisms are actively
+under development.  One could imagine an arbitrary
+procedure being
+invoked if an attempted violation is detected.  
+
+This leads us to an interesting research area called
+active databases, 
+where a (possibly large) set of rules could be
+associated with the
+detection  of a specific database state or the
+detection of a specific
+database state  transition.  If a constraint were
+violated, a series of rule
+chainings could be triggered.  Thus, we see that the
+issues surrounding
+database integrity are causing an interesting
+merger of database and rule
+base technology.
+
+Chapter 17 Intuitive Overview:
+
+The capability to define views in a relational
+database system is the
+result of one simple, powerful property of
+relational databases: the
+closure property.  Whenever a relational name is
+permitted within an
+expression, a relational expression may be provided
+instead.  In other
+words, relations are closed under the relational
+algebra.
+This provides a very powerful capability; a
+database can  be conceptually
+extended by taking whatever expressions define 
+useful derived relations
+and storing those expressions in the catalog.   The
+relations computed by
+these expressions are not stored explicitly *, but it
+is not necessary for
+the user to be aware of this.
+In fact, to the user, it shouldn't matter which
+relations are considered 
+base relations and which are considered views.  
+
+Perhaps the biggest technical problem associated
+with any view
+mechanism is that of updating base relations via
+conceptual updates to
+views.  In other words, if the user requests an
+update to a relation that is
+actually a view, how do we know what
+corresponding updates must
+performed against the base relations?  The key to
+the answer has to do
+with a notion called information equivalence.  If
+the mapping from the
+base relations to the view relation is reversible,
+then appropriate updates
+can be made.  This is not always the case, and so
+most commercial
+products only support read-only views.
+It should be noted, however, that these commercial
+products are much
+more conservative than they really need to be in
+their support for updating
+views.  The problem is that they do not support the
+critical concept of
+relation "predicate", which represents the meaning
+of the relation in
+question.
+
+Interestingly, a view mechanism provides more
+than just a means of
+conceptually extending the database with derived
+relations that are of
+interest.  Views allow different users to have
+different ways of seeing
+the same database.
+Views also provide a form of security.  A user can
+be allowed access to a
+view, but not to the base relations upon which it is
+derived.  
+
+A mechanism related to a view is called a snapshot. 
+The essential
+difference is that a snapshot is not virtual, it is
+maintained in a
+materialized form.  A snapshot is the result of an
+executed query.  It has a
+name, and is refreshed periodically.
+It is read-only.
+
+* Of course, base relations are not stored
+explicitly either, at least in
+principle.
+
+Chapter 18 Intuitive Overview:
+
+Query optimization in database systems is of
+extreme significance for
+two reasons.  First, it is assumed that many
+transactions are written and
+compiled once, but executed over and over in a data
+processing
+environment.  (Consider a transaction that
+processes an insurance claim or
+a check.)  Therefore, it is worth a  significant
+effort to optimize a query
+before it is ever executed.  The second issue has to
+do with the very large
+size of many databases.  When a freshman
+computing student is asked to
+write a program that performs a manipulation of a
+graph, if that student
+can find a linear algorithm, then this is usually a
+very good result.  But
+imagine a database query that must look at every
+single insurance claim -
+in a database of five million claims!  It is critical
+that most database
+operations be highly sub-linear (with respect to
+the overall size of the
+database), and this is a significant technical
+challenge.
+
+Automatic query optimization in a relational
+system is much more critical
+than in a network or hierarchical system.  The
+reason has to do with the
+extra level of data independence in a relational
+database; the user does
+not provide an optimization strategy along with
+each query.
+Interestingly, while query optimization is a
+necessity in relational
+systems, it is, in part, the mathematical elegance
+of  the relational
+approach that allows query optimization to be
+performed.
+
+Relational optimization usually consists of a four
+stage  process (although
+these stages are highly inter-related, and
+optimization is an iterative
+process).  In the first stage, the query is
+transformed into an internal
+form.  This is often an abstract syntax tree.  In the
+second stage, the
+beauty of the relational model shines through. 
+Well-defined algebraic
+transformations can be used to transform the query
+into a canonical form,
+a form that is easier to analyze and optimize.  In
+stages three and four,
+first low-level access procedures, and then query
+plans are selected.
+In these two stages, statistics about the size and
+distribution of the data
+and the indices are used.  It is interesting to note
+that the number of
+possible query plans is typically enormous, and
+heuristics must be used to
+limit the search space.
+
+Another powerful property of the relational
+approach is that it leads
+naturally to a divide and conquer optimization
+strategy.  This is because
+relational expressions are defined recursively.  The
+result is that the
+complex problem of optimizing large queries can to
+a large degree be
+simplified.
+
+Chapter 19 Intuitive Overview:
+
+Chapter 19 focuses on a subtle, yet critical theme:
+what to do about the
+problem of type compatibility in relational
+database systems.  Consider
+two relations A and B.   The heading of a relation is
+a composite type, and
+so at first glance, it may seem reasonable to insist
+upon a very rigid
+definition - A and B are compatible if and only if
+they have the same
+heading, that is, they have the same number of
+attributes, they have the
+same set of attribute names, and attributes with
+identical names have
+identical domains.  But, as chapter 19 points out,
+this definition, in
+practice, is often too restrictive.  A more useful
+definition is that two
+relations are type-compatible if and only if they
+have the same number of
+attributes, the relations have the same set of
+attribute names, and
+attributes with identical names are "type-
+compatible" in turn.
+What then do we mean by type-compatible?  
+
+It is often necessary to perform some logical or
+numeric operation
+between two attributes which are actually of
+different domains.  (Note
+that "domain" is just the relational term for a
+scalar or non-composite
+type.)
+The Age attribute of an Employee row might be
+compared to an integer. 
+Or, we might want to multiply an amount expressed
+in US dollars by a
+conversion factor and add it to an amount
+expressed in British pounds.  
+These are examples of implicit conversions. 
+Explicit conversions might
+also be used.  We might to compare the character
+value of the name of the
+author of this Instructors
+Manual to the character value of the name of every
+federal prison in the
+US, to see if a prison has perhaps been named after
+him (presumably
+because of the low quality of the manual).  In
+general, we want
+comparisons to be made between operands which
+are type-compatible, not
+necessarily identical.  Of course, there is a risk. 
+We might add the
+Age of an Employee to the value of a British bank
+account.
+
+This brings up an interesting question.  We can add
+(with an appropriate
+conversion factor) US dollars to British pounds
+because they are both
+integers.  But suppose there were a type called
+Money.  US dollars and
+British pounds would be "subtypes" of Money, and
+Integers would be a
+"type" of Money.  This might make the manipulation
+of US dollars and
+British  pounds more secure; the system could be
+aware that they are both
+sorts of Money, and the system might even be
+capable of automatically
+applying the conversion factor if we were to add
+them.  In fact, the
+database user could think of Money as a primitive
+or "scalar" type,  and
+forget that US dollars and British pounds are both
+sorts of integers.   The
+ability to define new scalar types can remove a lot
+of the danger
+associated with implicit type-compatibility.  And,
+since domains are
+scalar types, the relational model provides a nice
+foundation for
+supporting user-defined scalar types.  
+
+It is also critical to distinguish between type and
+representation.  Two
+types can be compatible but have very different
+representations.  Consider
+Roman numerals and Arabic numerals; 11 and XI are
+identical in value, but
+have very different representations.  And, even
+when two representations
+are identical, the corresponding types might not be
+compatible.  US dollars
+might be represented as integers, but we would
+typically not define a
+multiply operator on the type US dollars, the way
+we would for integers.
+
+The chapter ends with remarks about relation-
+valued attributes, and
+labels this discussion a "digression".
+But the topic is actually highly relevant.  A domain
+could contain
+relations.  A relational system supporting this
+capability would allow
+DBA's to construct very complex scalar types.
+
+Chapter 20 Intuitive Overview:
+
+Chapter 20 discusses an important issue - whether
+to allow an attribute
+value to be null.  Superficially, it seems like a good
+idea.  After all, we
+might enter an employee (say Jim) into a company
+database; we might
+know Jim's name,  ID number, and address, but not
+Jim's manager, because
+Jim has not been assigned to a work unit yet.  The
+point of chapter
+20 is simply this: we have seen over and over in
+this book that the beauty
+and power of the relational model lies in its
+mathematical elegance.  It
+gives us a firm foundation upon which to
+understand database systems.
+This helps us in many ways; for instance, it makes
+relational  database
+management systems easier to implement and
+greatly enhances  our
+ability to perform query optimization.  The problem
+is that nulls clearly
+do some damage to this elegant mathematical
+model.
+
+The standard approach to incorporating nulls into
+the relational model
+consists of changing the relational logic system
+from being two valued to
+being three valued.
+A comparison might evaluate to true, false, or
+unknown.
+If A = 1 and B = UNK, then A > B evaluates to
+unknown.  
+
+And, to support this 3 valued logic, we have to
+redefine the notion  of
+when two rows are duplicates.  Now, this occurs
+when they  are type-
+compatible, and when, for every pair of
+corresponding  attributes in the
+two rows, either they are both non-UNK and  are
+identical, or they are both
+UNK.  This all seems simple enough.  But quickly,
+problems arise.
+
+Consider a relation R that contains at least one
+UNK.
+Since domains do not in themselves contain the
+value UNK,
+R is no longer a subset of the cartesian product of
+its underlying domains
+- a fact that is supposed to be at the core of the
+relational model.
+
+The problem get messier.  a=a, where (the
+comparison operand) a is a
+variable, is  not always true anymore.  Let p be a
+conditional expression. p
+OR NOT (p) is not always true anymore.  R JOIN R
+does not necessarily
+produce R.  The list goes on and on.  The result is
+that the relational model
+no longer seem elegant.  It starts appearing
+arbitrary and very, very
+messy.  We've damaged something that seemed
+crisp and clean and pure.
+
+As an aside, nulls have been used to try and attack
+one thorny issue in
+relational databases.  Joins can be information
+losing, in the following
+sense:
+Suppose that EMP is a relation with attributes
+EMPNAME and AGE.
+Suppose that MANAGER is a relation with attributes
+MGRNAME, EMPNAME, and DEPT.  Suppose MANAGER
+has one row and EMP has
+three rows.  Suppose that EMP and MANAGER are
+joined, and the result is
+that two of the rows in EMP do not "join up" with
+the row in MANAGER,
+meaning that these employees do not seem to have
+managers (at least not
+yet).  The result is that the  information in those
+two rows is in a sense
+"lost".  If we allow UNK to be used, then we could
+put these "lost" rows in
+the join result, using UNK for the values of
+MGRNAME and DEPT.  As the
+chapter points out, this idea produces more
+problems, and again, we see
+the same lesson.  Don't mess with something that
+is elegant and works.
+
+As a last point, we note that SQL does support
+limited use of nulls.  The
+result happens to be rather inelegant...
+
+Chapter 21 Intuitive Overview:
+
+The idea of supporting a distributed database
+system seems very natural. 
+After all, many medium and large businesses are
+naturally distributed.  It
+is often impractical to expect a corporation to
+manage all its data from a
+central site.  This is likely to be inefficient; does
+the New York City office
+of an insurance company want to ship all its
+queries to the home office in
+San Francisco?  Also, individuals generally feel a
+sense of ownership over
+their local data, and do not want to surrender
+control over it; and, under
+certain circumstances it can violate privacy and
+even legal requirements.
+
+So, what is a distributed database system?  The
+traditional definition is
+that a distributed database system consists of
+some number of local
+systems, each of which is a full fledged database
+system in itself, and
+which acts as one large, conceptual database
+system.  Users at any of the
+local sites can access the distributed system in a
+completely transparent
+way; they do not have to be aware that some of the
+data is not local, and
+that some of the transaction processing is not
+performed locally.  There is
+no particular requirement that these local database
+systems be physically
+distributed; they could exist in the same city or
+building or even in the
+same computer.
+
+Chapter 21 lists a number of objectives of
+distributed database
+technology.  There should be no dependence on a
+central site.  Local
+databases should be able to operate independently. 
+Portions of an
+individual relation should be able to be distributed
+across multiple local
+database systems.  In order to improve availability
+and performance, it
+might be required that replication of data across
+local database systems
+be supported.  (But, of course, this replication
+should be transparent to the
+user.)  And, the distributed database system would
+typically have to
+operate on a diverse hardware, operating system,
+and network platform.
+
+As the reader can easily imagine, there are a
+number of very tough
+problems that face developers of distributed
+database management
+systems.  How is a query submitted at one local
+site broken up into
+distributed queries, and shipped to local database
+systems, and then how
+are the partial results integrated?  How do we
+optimize all this?
+How do we propagate updates to a number of
+databases, especially if there
+might be replicated copies of some data items?
+This complicates
+concurrency control protocols.
+How do we manage a distributed catalog?  Is it
+actually stored in one
+site?  Is it partitioned among different sites?
+Is it fully replicated at different sites?  
+
+There is another problem with distributed database
+technology.  All of the
+above seems to imply that all the local database
+management systems are
+compatible and were designed to operate in an
+integrated, distributed
+database environment.  But large organizations,
+when it comes to
+software platforms, are very, very heterogeneous. 
+A quick look at the
+data processing systems of almost any large bank,
+insurance company, or
+telecommunications company will reveal a wide
+variety of database
+management systems.
+Further, it is common for a large company to have
+hundreds of legacy
+databases, built on different DBMS products at
+different times by
+different people.  These legacy database systems
+are often highly inter-
+related  conceptually.  Often, data about customers
+or products is
+distributed across many isolated database
+systems, and only human
+experts know the inter-relationships.
+There is thus a desperate need for effective
+gateways that connect Oracle,
+Ingres, and other database management products;
+and, there is a
+corresponding need to take existing, legacy
+database systems and connect
+them into functioning distributed database
+systems.
+
+There is a relationship between the concepts of
+distributed databases and
+client/server architectures.
+Often, it is said that a client/server based
+database system is a special
+case of a distributed database system.
+This is essentially true.  In a typical client/server
+system, the server is
+the backend and holds all the data, and the client
+holds the entire
+application.  It might be that multiple clients can
+use one server, or even
+that multiple servers can serve one client.  An
+important distinction is
+that neither the client nor the server is typically a 
+full database system.
+
+Chapter 22 and 23 Intuitive Overview:
+
+Chapters 22 and 23 are companion chapters.  The
+first covers, from an
+abstract point of view, the basics of object-
+orientation as it relates to
+database systems; the second chapter gives a
+detailed example, using the
+Opal language.
+
+Simply put, object-orientation in databases is a
+smart idea that - like
+many ideas in Computer Science - has been over-
+sold.   Essentially,
+concepts that started in programming languages
+have migrated to the
+database world, resulting in the development of a
+number of object-
+oriented database management systems. 
+Interestingly, and perhaps not
+surprisingly (given the roots of these concepts),
+many of these systems
+look more like persistent object-oriented
+programming languages than
+object-oriented database management systems. 
+The typical approach is to
+take an object-oriented programming language
+(C++ is popular), allow objects to be stored in a
+persistent manner, and
+support a sort of "object" SQL so that relational-
+like queries can be
+supported.  Typical database "amenities" are added,
+such as transactions,
+concurrency control, and recovery.
+In general, objects are interrelated via path
+expressions, instead of joins. 
+In the end, what the programmer is given is a full 
+object-oriented
+programming language that has been extended with
+persistence  and other
+database features.
+
+The most common sales theme for this new
+technology is that it
+accommodates applications where complex objects
+must be manipulated
+and stored.  CAD/CAM is perhaps the most
+frequently mentioned example. 
+If you're designing an airplane, you might want to
+retrieve the design of a
+jet engine from the database, simulate the
+operation of the engine, and
+then make a subtle change to a deeply embedded
+component of the engine. 
+So, which would  you rather do?  Store the design
+of a jet engine as a
+large number of rows in a relational system, then
+materialize the more
+complex object in memory at run-time, and then
+decompose the processes
+of simulating the engine operation and altering a
+sub-component into  a
+large number of primitive relational operations? 
+Or would you rather the
+data model be capable of directly representing an
+object with many
+embedded sub-components, along with procedures
+that manipulate this
+complex object?
+
+This argument is not without merit.  Objects,
+instance variables, methods,
+messages, class hierarchies, inheritance, and
+encapsulation  provide some
+powerful modeling capabilities.  Encapsulation
+supports  strong data
+independence.  Objects and instance variables give
+us the  ability to
+represent multi-dimensional objects.  Class
+hierarchies and inheritance
+support re-use.  Methods and messages allow us to
+embed procedures
+within the structural definition of an object.
+
+But there are problems.  First of all, at least at
+this time, the object-
+oriented model isn't really a model at all.  It's a
+semi-formal collection of
+concepts that vary significantly from
+implementation to implementation. 
+These concepts do not have the highly-useful
+elegance of  the relational
+model.  
+
+The object-oriented approach, at least as it exists
+in most  current
+implementations, also forces a different style of
+programming  on the
+database user, one that is based around
+encapsulation,  message passing,
+and pointer chasing.  Retrievals have a very object-
+at-a-time feel to
+them.  And objects of various classes may
+generally be created with a NEW
+operator of some sort, but properties which amount
+to referential
+constraints must often be maintained with user-
+defined procedural
+methods; this clearly is less elegant than the
+declarative mechanism
+supported in relational database management
+systems.  Another problem
+is that instance variables handle one-to-many
+relationships just fine,  but
+not many-to-many.
+
+Perhaps the most significant change that faces
+relational users who
+switch to an object-oriented system is that
+encapsulation often leaves us
+not knowing where to define  certain methods. 
+Suppose there are two
+types, Husbands and Wives,  each with an instance
+variable named Spouse. 
+Suppose we want to  know how long Fred and Linda
+have been married; do
+we define the method on Fred or on Linda or on
+both?  Or do we create a
+class called Marriages?
+
+Chapter 24 Intuitive Overview:
+
+This chapter covers a number of largely unrelated,
+but very important
+topics.
+
+There is an impedance mismatch between the most
+widely used
+programming languages, which are  record-at-a-
+time, and relational
+languages, which are set-at-a-time.  In object-
+oriented systems, there is
+one combined host and database language, and it is
+typically record-at-a-
+time.  Many people feel that this is exactly the
+wrong solution.
+There is a clear benefit to combining the two
+languages; there is one less
+language for the programmer to learn.
+But record-at-a-time processing is not effective
+for many database
+queries.  Interestingly, to compensate for the lack
+of relational-like query
+capabilities in current object-oriented languages,
+many object-oriented
+database management systems provide a second
+"object
+SQL" language that is used for performing
+interactive  queries (and not for
+programming applications).  So, in the end, the
+programmer must learn two
+languages anyway.
+
+Data clustering produces a challenge in object-
+oriented databases.  Do you
+cluster all the Airplane objects together, or do you
+cluster each Airplane
+object with all of its complex components?  If you
+do the first thing, then
+set retrievals will be cheaper.  But if you do the
+second, it will be cheaper
+to retrieve one complex object from disk and
+swizzle its pointers.
+
+In the overview of chapters 22 and 23, it was
+pointed out that in some
+cases, constraints that are essentially referential
+in nature must be
+enforced procedurally with programmer-defined
+methods.  But, clearly,
+there are opportunities to do better.  For instance,
+the system could keep
+track of dangling pointers when objects are
+deleted.
+
+In Computer Science, there are fashions.  Chapter
+24 covers a handful of
+topics which in a pure sense, have nothing to do
+with the object-oriented
+approach.
+But largely because object databases have been "in"
+for several years,
+much recent database research has been done in the
+context of these
+systems.  Versioning has been studied extensively
+in object-oriented
+programming.
+The essential idea is to allow versions to be
+checked out, checked in, and
+deleted.  The programmer must also be able to
+query the version history. 
+There is one obvious relationship between
+versioning and object-oriented
+databases; if they are indeed useful for
+applications like
+CAD/CAM (see the overview of chapters 22 and 23),
+then it would make
+sense to augment object-oriented database
+management systems with
+versioning capabilities.
+
+Long and nested transactions have also been
+studied in the context of
+object-oriented database systems.  Essentially,
+these techniques are
+meant to attack the problem associated with
+complex database operations
+that might last for hours rather than milliseconds. 
+Again, there is an
+almost incidental relationship to object-oriented
+databases; CAD/CAM and
+other engineering applications are likely to involve
+long design
+transactions and the manipulation of complex
+versions.
+
+Advanced applications might also make use of
+schema evolution
+capabilities, something that is typically supported
+in only very simple
+ways in relational systems.  When designing
+airplanes or cars, a user
+might well want to make changes not just to data,
+but to classes,
+methods, and the inheritance hierarchy.
+
+Chapter 25 Intuitive Overview:
+
+Currently, there is a tremendous amount of interest
+in hybrid
+relational/object-oriented technology.  The
+overviews for chapters 22,
+23, and 24 point out many of the tradeoffs between
+relational and object-
+oriented database management systems.  Chapter
+25 suggest a specific
+approach toward integrating the two technologies,
+one that is based on the
+assumption that the relational approach is the
+proven approach, and should
+serve as the basis for any hybrid technology.  
+
+So, what's good about object-oriented systems, and
+how can these
+advantages be taken care of within a relational
+foundation?  Date's
+approach has one overriding principle: domains and
+object classes should
+be considered the same thing.
+Note that this is different from what a lot of other
+researchers and
+developers are suggesting, that object classes and
+relations are
+essentially the same thing.  In Date's approach, the
+data model is
+relational, but domains can be constructed as
+complex types.  The idea is
+to keep the elegance of the relational model, but to
+take advantage of the
+powerful data independence supported in object-
+oriented systems.  
+
+The net result under this approach would be a
+relational system
+augmented with extensibility (the ability to add
+data types and functions);
+inheritance, which enhances reuse; strong typing,
+which is good for
+catching type violations; client/server technology,
+which enhances
+efficiency by supporting server-executed
+procedures; and object-level
+recovery, concurrency, and security,  all of which
+are more naturally
+modeled at this level.
+

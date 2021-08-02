@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.5 dl -- Call C functions in shared objects</title>
+<META NAME="description" CONTENT="8.5 dl -- Call C functions in shared objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-dbm.html">
+<LINK REL="previous" href="module-crypt.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="dl-objects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="dl-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-crypt.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="dl-objects.html">8.5.1 Dl Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-crypt.html">8.4 crypt  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010500000000000000000">
+8.5 <tt class="module">dl</tt> --
+         Call C functions in shared objects</A>
+</H1>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Unix</span>.</p>
+ 
+<P>
+The <tt class="module">dl</tt> module defines an interface to the
+<tt class="cfunction">dlopen()</tt> function, which is the most common interface on
+Unix platforms for handling dynamically linked libraries. It allows
+the program to call arbitary functions in such a library.
+
+<P>
+<b>Note:</b> This module will not work unless
+<dl><dd><pre class="verbatim">
+sizeof(int) == sizeof(long) == sizeof(char *)
+</pre></dl>
+If this is not the case, <tt class="exception">SystemError</tt> will be raised on
+import.
+
+<P>
+The <tt class="module">dl</tt> module defines the following function:
+
+<P>
+<dl><dt><b><a name='l2h-1518'><tt class='function'>open</tt></a></b> (<var>name</var><big>[</big><var>, mode<code> = RTLD_LAZY</code></var><big>]</big>)
+<dd>
+Open a shared object file, and return a handle. Mode
+signifies late binding (<tt class="constant">RTLD_LAZY</tt>) or immediate binding
+(<tt class="constant">RTLD_NOW</tt>). Default is <tt class="constant">RTLD_LAZY</tt>. Note that some
+sytems do not support <tt class="constant">RTLD_NOW</tt>.
+
+<P>
+Return value is a dlobject.
+</dl>
+
+<P>
+The <tt class="module">dl</tt> module defines the following constants:
+
+<P>
+<dl><dt><b><a name='l2h-1519'><tt>RTLD_LAZY</tt></a></b>
+<dd>
+Useful as an argument to <tt class="function">open()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-1520'><tt>RTLD_NOW</tt></a></b>
+<dd>
+Useful as an argument to <tt class="function">open()</tt>.  Note that on systems
+which do not support immediate binding, this constant will not appear
+in the module. For maximum portability, use <tt class="function">hasattr()</tt> to
+determine if the system supports immediate binding.
+</dl>
+
+<P>
+The <tt class="module">dl</tt> module defines the following exception:
+
+<P>
+<dl><dt><b><a name='l2h-1521'><tt class='exception'>error</tt></a></b>
+<dd>
+Exception raised when an error has occured inside the dynamic loading
+and linking routines.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import dl, time
+&gt;&gt;&gt; a=dl.open('/lib/libc.so.6')
+&gt;&gt;&gt; a.call('time'), time.time()
+(929723914, 929723914.498)
+</pre></dl>
+
+<P>
+This example was tried on a Debian GNU/Linux system, and is a good
+example of the fact that using this module is usually a bad alternative.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html2658"
+ href="dl-objects.html">8.5.1 Dl Objects </A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="dl-objects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="unix.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-crypt.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="dl-objects.html">8.5.1 Dl Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="unix.html">8. Unix Specific Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-crypt.html">8.4 crypt  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

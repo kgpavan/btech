@@ -1,0 +1,33 @@
+Given a file name as argument, your program should reverse the contents of the file.
+For example, if the contents of a file are 'abc', the contents of output should be 'cba'.
+
+
+INPUT: The name of input file given as argument to the program
+
+OUTPUT: The contents of input file reversed. The name of output file should be
+"reverse_" appended to name of the input file. So, if your input file is called
+"input.txt", the output should be in "reverse_input.txt".
+
+You should use system calls to achieve this. See the man pages of open(2), read(2), write(2), 
+close(2) and lseek(2). Please don't use file-handling functions like fopen and fseek.
+
+open(2) means that the man page of ``open'' is in section 2 of man pages. So "man 2 open" brings
+up the required man page. 
+
+
+
+TESTING CORRECTNESS OF OUTPUT: Please go through the man page of ``diff'' command.
+If an input file is reversed twice, the output should be the original input file.
+So, the contents of "input.txt" and "reverse_reverse_input.txt" should be
+identical and this will be checked with diff command.
+
+
+GENERAL GUIDELINES: Indent the code properly. Comment the code properly.
+Your name and roll number should be included as comments.
+
+
+NOTE: Section 2 of man pages contain help for system calls. If a function's man page is found in
+section 2, then the function is a system call.(for eg man 2 read)
+
+
+

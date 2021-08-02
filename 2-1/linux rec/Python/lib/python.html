@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3. Python Services</title>
+<META NAME="description" CONTENT="3. Python Services">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="strings.html">
+<LINK REL="previous" href="builtin.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-sys.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-sys.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="built-in-funcs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-sys.html">3.1 sys  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="built-in-funcs.html">2.3 Built-in Functions</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005000000000000000000"></A>
+<BR>
+3. Python Services
+</H1>
+
+<P>
+The modules described in this chapter provide a wide range of services
+related to the Python interpreter and its interaction with its
+environment.  Here's an overview:
+
+<P>
+<table class='synopsistable'>
+  <tr><td><b><tt class='module'><a href='module-sys.html'>sys</a></tt></b></td>
+      <td class='synopsis'>Access system-specific parameters and functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-types.html'>types</a></tt></b></td>
+      <td class='synopsis'>Names for all built-in types.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-UserDict.html'>UserDict</a></tt></b></td>
+      <td class='synopsis'>Class wrapper for dictionary objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-UserList.html'>UserList</a></tt></b></td>
+      <td class='synopsis'>Class wrapper for list objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-operator.html'>operator</a></tt></b></td>
+      <td class='synopsis'>All Python's standard operators as built-in functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-traceback.html'>traceback</a></tt></b></td>
+      <td class='synopsis'>Print or retrieve a stack traceback.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-linecache.html'>linecache</a></tt></b></td>
+      <td class='synopsis'>This module provides random access to individual lines
+                from text files.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pickle.html'>pickle</a></tt></b></td>
+      <td class='synopsis'>Convert Python objects to streams of bytes and back.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-cPickle.html'>cPickle</a></tt></b></td>
+      <td class='synopsis'>Faster version of <tt class='module'><a href='module-pickle.html'>pickle</a></tt>, but not subclassable.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-copyreg.html'>copy_reg</a></tt></b></td>
+      <td class='synopsis'>Register <tt class="module">pickle</tt> support functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-shelve.html'>shelve</a></tt></b></td>
+      <td class='synopsis'>Python object persistency.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-copy.html'>copy</a></tt></b></td>
+      <td class='synopsis'>Shallow and deep copy operations.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-marshal.html'>marshal</a></tt></b></td>
+      <td class='synopsis'>Convert Python objects to streams of bytes and back
+                (with different constraints).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-imp.html'>imp</a></tt></b></td>
+      <td class='synopsis'>Access the implementation of the <tt class="keyword">import</tt> statement.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-parser.html'>parser</a></tt></b></td>
+      <td class='synopsis'>Access parse trees for Python source code.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-symbol.html'>symbol</a></tt></b></td>
+      <td class='synopsis'>Constants representing internal nodes of the parse tree.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-token.html'>token</a></tt></b></td>
+      <td class='synopsis'>Constants representing terminal nodes of the parse tree.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-keyword.html'>keyword</a></tt></b></td>
+      <td class='synopsis'>Test whether a string is a keyword in Python.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-tokenize.html'>tokenize</a></tt></b></td>
+      <td class='synopsis'>Lexical scanner for Python source code.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pyclbr.html'>pyclbr</a></tt></b></td>
+      <td class='synopsis'>Supports information extraction for a Python class
+                browser.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-code.html'>code</a></tt></b></td>
+      <td class='synopsis'>Base classes for interactive Python interpreters.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-codeop.html'>codeop</a></tt></b></td>
+      <td class='synopsis'>Compile (possibly incomplete) Python code.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pprint.html'>pprint</a></tt></b></td>
+      <td class='synopsis'>Data pretty printer.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-repr.html'>repr</a></tt></b></td>
+      <td class='synopsis'>Alternate <tt class="function">repr()</tt> implementation with size limits.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pycompile.html'>py_compile</a></tt></b></td>
+      <td class='synopsis'>Compile Python source files to byte-code files.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-compileall.html'>compileall</a></tt></b></td>
+      <td class='synopsis'>Tools for byte-compiling all Python source files in a
+                directory tree.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-dis.html'>dis</a></tt></b></td>
+      <td class='synopsis'>Disassembler.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-new.html'>new</a></tt></b></td>
+      <td class='synopsis'>Interface to the creation of runtime implementation objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-site.html'>site</a></tt></b></td>
+      <td class='synopsis'>A standard way to reference site-specific modules.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-user.html'>user</a></tt></b></td>
+      <td class='synopsis'>A standard way to reference user-specific modules.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-builtin.html'>__builtin__</a></tt></b></td>
+      <td class='synopsis'>The set of built-in functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-main.html'>__main__</a></tt></b></td>
+      <td class='synopsis'>The environment where the top-level script is run.</td></tr>
+</table>
+<BR>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-sys.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="lib.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="built-in-funcs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-sys.html">3.1 sys  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="lib.html">Python Library Reference</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="built-in-funcs.html">2.3 Built-in Functions</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.25 py_compile -- Compile Python source files</title>
+<META NAME="description" CONTENT="3.25 py_compile -- Compile Python source files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-compileall.html">
+<LINK REL="previous" href="module-repr.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-compileall.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-compileall.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="subclassing-reprs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-compileall.html">3.26 compileall  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="subclassing-reprs.html">3.24.2 Subclassing Repr Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052500000000000000000">
+3.25 <tt class="module">py_compile</tt> --
+         Compile Python source files</A>
+</H1>
+
+<P>
+
+<P>
+
+<P>
+<a name='l2h-485'></a>
+The <tt class="module">py_compile</tt> module provides a single function to generate
+a byte-code file from a source file.
+
+<P>
+Though not often needed, this function can be useful when installing
+modules for shared use, especially if some of the users may not have
+permission to write the byte-code cache files in the directory
+containing the source code.
+
+<P>
+<dl><dt><b><a name='l2h-484'><tt class='function'>compile</tt></a></b> (<var>file</var><big>[</big><var>, cfile</var><big>[</big><var>, dfile</var><big>]</big><big>]</big>)
+<dd>
+  Compile a source file to byte-code and write out the byte-code cache 
+  file.  The source code is loaded from the file name <var>file</var>.  The 
+  byte-code is written to <var>cfile</var>, which defaults to <var>file</var>
+  <code>+</code> <code>'c'</code> (<code>'o'</code> if optimization is enabled in the
+  current interpreter).  If <var>dfile</var> is specified, it is used as
+  the name of the source file in error messages instead of <var>file</var>. 
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class='module'><a href='module-compileall.html'>compileall</a></tt>:</b>
+    <dd>Utilities to compile all Python source files
+                         in a directory tree.
+  </dl>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-compileall.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="subclassing-reprs.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-compileall.html">3.26 compileall  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="subclassing-reprs.html">3.24.2 Subclassing Repr Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

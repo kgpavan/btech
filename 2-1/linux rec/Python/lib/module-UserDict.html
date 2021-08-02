@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3 UserDict -- Class wrapper for dictionary objects</title>
+<META NAME="description" CONTENT="3.3 UserDict -- Class wrapper for dictionary objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-UserList.html">
+<LINK REL="previous" href="module-types.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-UserList.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-UserList.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-types.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-UserList.html">3.4 UserList  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-types.html">3.2 types  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005300000000000000000">
+3.3 <tt class="module">UserDict</tt> --
+         Class wrapper for dictionary objects</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a class that acts as a wrapper around
+dictionary objects.  It is a useful base class for
+your own dictionary-like classes, which can inherit from
+them and override existing methods or add new ones.  In this way one
+can add new behaviours to dictionaries.
+
+<P>
+The <tt class="module">UserDict</tt> module defines the <tt class="class">UserDict</tt> class:
+
+<P>
+<dl><dt><b><a name='l2h-247'><tt class='class'>UserDict</tt></a></b> (<big>[</big><var>intialdata</var><big>]</big>)
+<dd>
+Return a class instance that simulates a dictionary.  The instance's
+contents are kept in a regular dictionary, which is accessible via the
+<tt class="member">data</tt> attribute of <tt class="class">UserDict</tt> instances.  If
+<var>initialdata</var> is provided, <tt class="member">data</tt> is initialized with its
+contents; note that a reference to <var>initialdata</var> will not be kept, 
+allowing it be used used for other purposes.
+</dl>
+
+<P>
+In addition to supporting the methods and operations of mappings (see
+section <A href="typesmapping.html#typesmapping">2.1.6</A>), <tt class="class">UserDict</tt> instances provide the
+following attribute:
+
+<P>
+<dl><dt><b><a name='l2h-248'><tt class='member'>data</tt></a></b>
+<dd>
+A real dictionary used to store the contents of the <tt class="class">UserDict</tt>
+class.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-UserList.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="python.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-types.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-UserList.html">3.4 UserList  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="python.html">3. Python Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-types.html">3.2 types  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

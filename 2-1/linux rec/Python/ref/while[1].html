@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2 The while statement</title>
+<META NAME="description" CONTENT="7.2 The while statement">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="for.html">
+<LINK REL="previous" href="if.html">
+<LINK REL="up" href="compound.html">
+<LINK REL="next" href="for.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="for.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="compound.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="if.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="for.html">7.3 The for statement</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="compound.html">7. Compound statements</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="if.html">7.1 The if statement</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009200000000000000000"></A>
+<BR>
+7.2 The <tt class="keyword">while</tt> statement
+</H1>
+<a name='l2h-395'></a>
+
+<P>
+The <tt class="keyword">while</tt> statement is used for repeated execution as long
+as an expression is true:
+
+<P>
+<dl><dd><pre class="verbatim">
+while_stmt:     "while" expression ":" suite
+               ["else" ":" suite]
+</pre></dl>
+
+<P>
+This repeatedly tests the expression and, if it is true, executes the
+first suite; if the expression is false (which may be the first time it
+is tested) the suite of the <tt class="keyword">else</tt> clause, if present, is
+executed and the loop terminates.
+<a name='l2h-396'></a>
+
+<P>
+A <tt class="keyword">break</tt> statement executed in the first suite terminates the
+loop without executing the <tt class="keyword">else</tt> clause's suite.  A
+<tt class="keyword">continue</tt> statement executed in the first suite skips the rest
+of the suite and goes back to testing the expression.
+<a name='l2h-397'></a>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="for.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="compound.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="if.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="for.html">7.3 The for statement</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="compound.html">7. Compound statements</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="if.html">7.1 The if statement</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

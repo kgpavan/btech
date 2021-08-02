@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.4.4 Complex Number Objects </title>
+<META NAME="description" CONTENT="7.4.4 Complex Number Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="api.css">
+<LINK REL="previous" href="floatObjects.html">
+<LINK REL="up" href="numericObjects.html">
+<LINK REL="next" href="otherObjects.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="floatObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="floatObjects.html">7.4.3 Floating Point Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html603"
+ href="complexObjects.html#SECTION009441000000000000000">7.4.4.1 Complex Numbers as C Structures</A>
+<LI><A NAME="tex2html604"
+ href="complexObjects.html#SECTION009442000000000000000">7.4.4.2 Complex Numbers as Python Objects</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION009440000000000000000"></A>
+<BR>
+7.4.4 Complex Number Objects 
+</H2>
+
+<P>
+<a name='l2h-368'></a>
+Python's complex number objects are implemented as two distinct types
+when viewed from the C API:  one is the Python object exposed to
+Python programs, and the other is a C structure which represents the
+actual complex number value.  The API provides functions for working
+with both.
+
+<P>
+
+<H3><A NAME="SECTION009441000000000000000">
+7.4.4.1 Complex Numbers as C Structures</A>
+</H3>
+
+<P>
+Note that the functions which accept these structures as parameters
+and return them as results do so <i>by value</i> rather than
+dereferencing them through pointers.  This is consistent throughout
+the API.
+
+<P>
+<dl><dt><b><tt class='ctype'><a name='l2h-369'>Py_complex</a></tt></b>
+<dd>
+The C structure which corresponds to the value portion of a Python
+complex number object.  Most of the functions for dealing with complex
+number objects use structures of this type as input or output values,
+as appropriate.  It is defined as:
+
+<P>
+<dl><dd><pre class="verbatim">
+typedef struct {
+   double real;
+   double imag;
+} Py_complex;
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-370'><tt class='cfunction'>_Py_c_sum</tt></a></b> (<var>Py_complex left, Py_complex right</var>)
+<dd>
+Return the sum of two complex numbers, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-371'><tt class='cfunction'>_Py_c_diff</tt></a></b> (<var>Py_complex left, Py_complex right</var>)
+<dd>
+Return the difference between two complex numbers, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-372'><tt class='cfunction'>_Py_c_neg</tt></a></b> (<var>Py_complex complex</var>)
+<dd>
+Return the negation of the complex number <var>complex</var>, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-373'><tt class='cfunction'>_Py_c_prod</tt></a></b> (<var>Py_complex left, Py_complex right</var>)
+<dd>
+Return the product of two complex numbers, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-374'><tt class='cfunction'>_Py_c_quot</tt></a></b> (<var>Py_complex dividend,
+                                          Py_complex divisor</var>)
+<dd>
+Return the quotient of two complex numbers, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-375'><tt class='cfunction'>_Py_c_pow</tt></a></b> (<var>Py_complex num, Py_complex exp</var>)
+<dd>
+Return the exponentiation of <var>num</var> by <var>exp</var>, using the C
+<tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+
+<H3><A NAME="SECTION009442000000000000000">
+7.4.4.2 Complex Numbers as Python Objects</A>
+</H3>
+
+<P>
+<dl><dt><b><tt class='ctype'><a name='l2h-376'>PyComplexObject</a></tt></b>
+<dd>
+This subtype of <tt class="ctype">PyObject</tt> represents a Python complex number object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name='l2h-377'><tt class='cdata'>PyComplex_Type</tt></a></b>
+<dd>
+This instance of <tt class="ctype">PyTypeObject</tt> represents the Python complex 
+number type.
+</dl>
+
+<P>
+<dl><dt>int <b><a name='l2h-378'><tt class='cfunction'>PyComplex_Check</tt></a></b> (<var>PyObject *p</var>)
+<dd>
+Returns true if its argument is a <tt class="ctype">PyComplexObject</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-379'><tt class='cfunction'>PyComplex_FromCComplex</tt></a></b> (<var>Py_complex v</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Create a new Python complex number object from a C
+<tt class="ctype">Py_complex</tt> value.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name='l2h-380'><tt class='cfunction'>PyComplex_FromDoubles</tt></a></b> (<var>double real, double imag</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+Returns a new <tt class="ctype">PyComplexObject</tt> object from <var>real</var> and <var>imag</var>.
+</dl>
+
+<P>
+<dl><dt>double <b><a name='l2h-381'><tt class='cfunction'>PyComplex_RealAsDouble</tt></a></b> (<var>PyObject *op</var>)
+<dd>
+Returns the real part of <var>op</var> as a C <tt class="ctype">double</tt>.
+</dl>
+
+<P>
+<dl><dt>double <b><a name='l2h-382'><tt class='cfunction'>PyComplex_ImagAsDouble</tt></a></b> (<var>PyObject *op</var>)
+<dd>
+Returns the imaginary part of <var>op</var> as a C <tt class="ctype">double</tt>.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name='l2h-383'><tt class='cfunction'>PyComplex_AsCComplex</tt></a></b> (<var>PyObject *op</var>)
+<dd>
+Returns the <tt class="ctype">Py_complex</tt> value of the complex number <var>op</var>.
+</dl>
+
+<P>
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="otherObjects.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="numericObjects.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="floatObjects.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python/C API Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="otherObjects.html">7.5 Other Objects</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="numericObjects.html">7.4 Numeric Objects</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="floatObjects.html">7.4.3 Floating Point Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

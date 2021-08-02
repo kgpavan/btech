@@ -1,0 +1,25 @@
+			Solutions to Assignment 1
+		
+
+3 a. A weak entity type must have at least one attribute. If so, justify this statement. If not, why not.
+
+No, it is not necessary for a weak entity to have an attribute always. A weak entity has a partial key, which is a set of attributes which uniquely identifies weak entries that are related to the same owner id. But there need not be any partial key and the identifying entity key can also identify weak entities. In this case, the entities of weak entity type are subset of entities of identifying entity type.
+
+
+b. Any n-ary relationship type can be modeled as n binary relationship types. If so, how? If not, why not?
+
+Yes, any n-ary relationship type can be modeled as n binary relationship.
+It can be done with the help of an Weak Entity.
+Example given in the text book. 
+Chapter 4  Section 4.7  Pg 95 of Third Edition
+
+
+c. Key attribute of an entity type can be NULL. If so, why? If not why not?
+
+Yes, a key key attribute of an entity type can be NULL. In the conceptual model of E-R Diagram there is no such constraint that tells that a key attribute cannot be NULL. At conceptual level notion of a key is important but about its value no decision is taken. Relational data model is implementation data model and hence the constraint for it.
+
+
+d. A multivalued attribute cannot be composite. Is this true? If no, give counter example.
+
+No, a mutivalued attribute can be composite.
+Eg, A person can have multiple phone no on which he can be contacted, a mobile no, a residence no, an office no. Hence Phone no is a multivalued attributed. Again each no is composed of std code and area code , hence it is composite even.

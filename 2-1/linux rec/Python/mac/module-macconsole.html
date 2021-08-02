@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5. macconsole -- Think C's console package</title>
+<META NAME="description" CONTENT="5. macconsole -- Think C's console package">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="mac.css">
+<LINK REL="next" href="module-macdnr.html">
+<LINK REL="previous" href="module-ctb.html">
+<LINK REL="up" href="contents.html">
+<LINK REL="next" HREF="node9.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node9.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="connection-object.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node9.html">5.1 macconsole options object</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="connection-object.html">4.1 Connection Objects</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION002500000000000000000">
+5. <tt class="module">macconsole</tt> --
+         Think C's console package</A>
+</H1>
+
+<P>
+  
+<p class='availability'>Availability: <span
+ class='platform'>Macintosh</span>.</p>
+
+<P>
+This module is available on the Macintosh, provided Python has been
+built using the Think C compiler. It provides an interface to the
+Think console package, with which basic text windows can be created.
+
+<P>
+<dl><dt><b><a name='l2h-33'><tt>options</tt></a></b>
+<dd>
+An object allowing you to set various options when creating windows,
+see below.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-34'><tt>C_ECHO</tt></a></b>
+<dd>
+<dt><b><a name='l2h-37'><tt>C_NOECHO</tt></a></b><dd>
+<dt><b><a name='l2h-38'><tt>C_CBREAK</tt></a></b><dd>
+<dt><b><a name='l2h-39'><tt>C_RAW</tt></a></b><dd>
+Options for the <code>setmode</code> method. <tt class="constant">C_ECHO</tt> and
+<tt class="constant">C_CBREAK</tt> enable character echo, the other two disable it,
+<tt class="constant">C_ECHO</tt> and <tt class="constant">C_NOECHO</tt> enable line-oriented input
+(erase/kill processing, etc).
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-35'><tt class='function'>copen</tt></a></b> ()
+<dd>
+Open a new console window. Return a console window object.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-36'><tt class='function'>fopen</tt></a></b> (<var>fp</var>)
+<dd>
+Return the console window object corresponding with the given file
+object. <var>fp</var> should be one of <code>sys.stdin</code>, <code>sys.stdout</code> or
+<code>sys.stderr</code>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html177"
+ HREF="node9.html">5.1 macconsole options object</A>
+<LI><A NAME="tex2html178"
+ HREF="node10.html">5.2 console window object</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A HREF="node9.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="connection-object.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Macintosh Library Modules</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A HREF="node9.html">5.1 macconsole options object</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="contents.html">Contents</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="connection-object.html">4.1 Connection Objects</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

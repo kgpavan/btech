@@ -1,0 +1,49 @@
+Details of DBMS lab assignment 1
+===================================
+
+
+Problem statement: Prepare a Requirements Summary Document by identifying the database requirements for an enterprise/organization.
+
+Maximum limit:  1000 words;
+
+Format: A4 size;  Leave one inch each side. Single space; Times roman font,(10 pt)
+
+First line centered with 12 pt  <CS3400 DBMS Lab Assignment 1: Requirement Summary>
+
+Second line centered with 12 pt< Requirement Summary of  "Organization">
+
+Third line <Group ID: Name1(Roll No), Name 2(Roll No)>
+
+Fourth line: <e-mail of  Name1, e-mail of Name 2>
+
+
+The document  should conatin three parts
+----------------------------------------
+
+1.      About the enterprise
+    General description of enterprise (read Q2/A2)
+
+2.      Data requirements of processes
+     Data requirements of each process (read Q2/A2)
+
+3.      Requerement Summary
+     Final summary (Read Q3/A3)
+
+*****************************************
+
+Q&A regarding assignment
+-------------------------
+
+Q1.  How to select an enterprise or organization ?
+A1:  Consider your family background.  List all organizations  you/your parents/your relatives  know. It may be a grocery shop, cloth shop, goldsmith shop, finance company, chit-fund company, gram panchait, printing press, news paper, water distribution, call center and so on. Or, just go to Koti, Kukatpalli, Habids, or Charminar and list the names of fifty different shops/enterprises/organizations.  Select any  organization you like.
+
+Q2. What is the next step after selecting the organization  ?
+A2: Get the description regarding that organization.  What are the activities that are being carried out to sustain its activities ? (In short, how it earns profits; or how it takes inputs (raw materials, capital, human resources and so on) and transforms to profitable outputs)). Briefly describe the processes that are involved in converting inputs to outputs. You can prepare certain questions and write answers to that questions. Identify data requirements of each process involved. Describe how the data is already maintained, if any database already exists (in paper form or some other form). Pls. try to grasp all the constraints.
+
+Q3.   What is the final step ?
+A3: Write clearly   Requirements Summary which contains English statements regarding data requirements and constraints (Refer last paragraph in Page no. 49 of Raguramakrishan's book). It should be as complete as possible.
+
+Important Note: We do not recommend you to select popular organizations bank, library or any example given in the book.
+
+
+**********************************************************************************************************************************

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Python Reference Manual</title>
+<META NAME="description" CONTENT="Python Reference Manual">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="ref.css">
+<LINK REL="next" href="front.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class='titlepage'><center>
+<h1>Python Reference Manual</h1>
+<p><b><font size='+2'>Guido van Rossum</font></b></p>
+<p>
+	Corporation for National Research Initiatives 
+<BR>
+1895 Preston White Drive, Reston, VA 20191, USA 
+<BR>
+E-mail: <span class="email">guido@python.org</span>
+</p>
+<p><strong>March 22, 2000</strong><br><strong>Release 1.5.2</strong></p>
+<p>
+</center></div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+
+
+<UL>
+<LI><A NAME="tex2html13"
+ href="front.html">Front Matter</A>
+<LI><A NAME="tex2html14"
+ href="contents.html">Contents</A>
+<LI><A NAME="tex2html15"
+ href="introduction.html">1. Introduction</A>
+<UL>
+<LI><A NAME="tex2html16"
+ href="notation.html">1.1 Notation</A>
+</UL>
+<LI><A NAME="tex2html17"
+ href="lexical.html">2. Lexical analysis</A>
+<UL>
+<LI><A NAME="tex2html18"
+ href="line-structure.html">2.1 Line structure</A>
+<LI><A NAME="tex2html19"
+ href="other-tokens.html">2.2 Other tokens</A>
+<LI><A NAME="tex2html20"
+ href="identifiers.html">2.3 Identifiers and keywords</A>
+<LI><A NAME="tex2html21"
+ href="literals.html">2.4 Literals</A>
+<LI><A NAME="tex2html22"
+ href="operators.html">2.5 Operators</A>
+<LI><A NAME="tex2html23"
+ href="delimiters.html">2.6 Delimiters</A>
+</UL>
+<LI><A NAME="tex2html24"
+ href="datamodel.html">3. Data model</A>
+<UL>
+<LI><A NAME="tex2html25"
+ href="objects.html">3.1 Objects, values and types</A>
+<LI><A NAME="tex2html26"
+ href="types.html">3.2 The standard type hierarchy</A>
+<LI><A NAME="tex2html27"
+ href="specialnames.html">3.3 Special method names</A>
+</UL>
+<LI><A NAME="tex2html28"
+ href="execmodel.html">4. Execution model </A>
+<UL>
+<LI><A NAME="tex2html29"
+ href="execframes.html">4.1 Code blocks, execution frames, and namespaces </A>
+<LI><A NAME="tex2html30"
+ href="exceptions.html">4.2 Exceptions </A>
+</UL>
+<LI><A NAME="tex2html31"
+ href="expressions.html">5. Expressions</A>
+<UL>
+<LI><A NAME="tex2html32"
+ href="conversions.html">5.1 Arithmetic conversions</A>
+<LI><A NAME="tex2html33"
+ href="atoms.html">5.2 Atoms</A>
+<LI><A NAME="tex2html34"
+ href="primaries.html">5.3 Primaries</A>
+<LI><A NAME="tex2html35"
+ href="power.html">5.4 The power operator</A>
+<LI><A NAME="tex2html36"
+ href="unary.html">5.5 Unary arithmetic operations </A>
+<LI><A NAME="tex2html37"
+ href="binary.html">5.6 Binary arithmetic operations</A>
+<LI><A NAME="tex2html38"
+ href="shifting.html">5.7 Shifting operations</A>
+<LI><A NAME="tex2html39"
+ href="bitwise.html">5.8 Binary bit-wise operations</A>
+<LI><A NAME="tex2html40"
+ href="comparisons.html">5.9 Comparisons</A>
+<LI><A NAME="tex2html41"
+ href="lambda.html">5.10 Boolean operations</A>
+<LI><A NAME="tex2html42"
+ href="exprlists.html">5.11 Expression lists</A>
+<LI><A NAME="tex2html43"
+ href="summary.html">5.12 Summary</A>
+</UL>
+<LI><A NAME="tex2html44"
+ href="simple.html">6. Simple statements </A>
+<UL>
+<LI><A NAME="tex2html45"
+ href="exprstmts.html">6.1 Expression statements </A>
+<LI><A NAME="tex2html46"
+ href="assert.html">6.2 Assert statements </A>
+<LI><A NAME="tex2html47"
+ href="assignment.html">6.3 Assignment statements </A>
+<LI><A NAME="tex2html48"
+ href="pass.html">6.4 The <tt class="keyword">pass</tt> statement </A>
+<LI><A NAME="tex2html49"
+ href="del.html">6.5 The <tt class="keyword">del</tt> statement </A>
+<LI><A NAME="tex2html50"
+ href="print.html">6.6 The <tt class="keyword">print</tt> statement </A>
+<LI><A NAME="tex2html51"
+ href="return.html">6.7 The <tt class="keyword">return</tt> statement </A>
+<LI><A NAME="tex2html52"
+ href="raise.html">6.8 The <tt class="keyword">raise</tt> statement </A>
+<LI><A NAME="tex2html53"
+ href="break.html">6.9 The <tt class="keyword">break</tt> statement </A>
+<LI><A NAME="tex2html54"
+ href="continue.html">6.10 The <tt class="keyword">continue</tt> statement </A>
+<LI><A NAME="tex2html55"
+ href="import.html">6.11 The <tt class="keyword">import</tt> statement </A>
+<LI><A NAME="tex2html56"
+ href="global.html">6.12 The <tt class="keyword">global</tt> statement </A>
+<LI><A NAME="tex2html57"
+ href="exec.html">6.13 The <tt class="keyword">exec</tt> statement </A>
+</UL>
+<LI><A NAME="tex2html58"
+ href="compound.html">7. Compound statements</A>
+<UL>
+<LI><A NAME="tex2html59"
+ href="if.html">7.1 The <tt class="keyword">if</tt> statement</A>
+<LI><A NAME="tex2html60"
+ href="while.html">7.2 The <tt class="keyword">while</tt> statement</A>
+<LI><A NAME="tex2html61"
+ href="for.html">7.3 The <tt class="keyword">for</tt> statement</A>
+<LI><A NAME="tex2html62"
+ href="try.html">7.4 The <tt class="keyword">try</tt> statement</A>
+<LI><A NAME="tex2html63"
+ href="function.html">7.5 Function definitions</A>
+<LI><A NAME="tex2html64"
+ href="class.html">7.6 Class definitions</A>
+</UL>
+<LI><A NAME="tex2html65"
+ href="top-level.html">8. Top-level components</A>
+<UL>
+<LI><A NAME="tex2html66"
+ href="programs.html">8.1 Complete Python programs</A>
+<LI><A NAME="tex2html67"
+ href="file-input.html">8.2 File input</A>
+<LI><A NAME="tex2html68"
+ href="interactive.html">8.3 Interactive input</A>
+<LI><A NAME="tex2html69"
+ href="expression-input.html">8.4 Expression input</A>
+</UL>
+<LI><A NAME="tex2html70"
+ href="genindex.html">Index</A>
+<LI><A NAME="tex2html71"
+ href="about.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="front.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A HREF="../index.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Reference Manual</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><img width=32 height=32 align=bottom border=0 alt=""
+ src="../icons/blank.gif"></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="front.html">Front Matter</A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A HREF="../index.html">Documentation Index</A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,586 @@
+Difference between processes and threads
+----------------------------------------
+
+Threads share the same address space and memory.
+but each thread maintains its own stack and registers.
+
+Advantages of threads over processes.
+--------------------------------------
+
+context switching is faster in threads.
+
+it is faster to create a thread than a process.
+
+it is faster to terminate a thread than a process
+
+Processes communicate only through the inter process communication mechanisms ( shared memory
+ pipes RPC RMI Links ( DIrect and Indirect communication )) 
+provided by the operating system.
+But communication through threads doesn't require os intervention.
+whereas communication through processes is with OS intervention.
+and also threads share memory and other resources directly.
+
+Threads  share the same address space.
+( key : applications can have different threads of activity all with in the same address space. )
+
+increases responsiveness -
+	allow program to continue even part of it is blocked or is doing a lengtht operation.
+
+if there is an application or a function that is to be implemented as related units of execution
+it is better to implement it as related threads of execution rather than related processes of 
+execution.
+
+race - condition - output of a process in unexpectedly dependent on sequence of execution of the instructions.
+
+
+--
+
+Threads some precautions 
+
+when using threads some precautions need to be taken since they share the same address space.
+
+should carefully avoid race conditions and other non intuitive behaviours
+(such as operations in each thread should be executed atomically )
+
+--
+
+pcb 
+
+stores the following
+
+cpu registers ( to remember the execution state )
+
+cpu scheduling information ( such as the priority of the process ).
+
+accounting information ( amountof cpu used. )
+
+Memory management information ( such as value of the base and limit registers )
+
+I/0 devices information ( list of devices that are assigned to the process )
+
+--
+
+All parts of a process or its data need not have to be on the physical  for the process to be active.
+However if a process attempts to access code that is on the disk the process is temporarily suspeneded
+while the contents of the program are brought to the main memory through a mechanism called paging.
+
+--
+AMD ATHLON 64 X DUAL CORE processor ( runs two processes at a time )
+because of the processor architecture. In general at most only one process can run on 
+an uniprocessor operating system.
+
+Pentium Intel 4 HT can context switch in 0 time.
+( also executing instructions from multiple threads simultaneously )
+--
+
+long term scheduler ( from hard disk to main memory job scheduler )
+medium term scheduler ( most unix systems ) ( from main memory to secondary ( virtual memory ) )
+short term scheduler  ( assigns cpu to one of the processes in the ready queue )
+
+--
+
+The actions that affect all the threads in a process should be managed at the process level.
+since all the threads share the common address space all threads must enter the suspended 
+state at the same level.
+
+temination of a process terminates all the threads of a process.
+--
+Threads donot share any thing except for a copy of registers,stack and a program counter. 
+
+Threads
+
+User level threads
+ Kernel level threads
+
+
+ User level threads created managed and scheduled in the user space.
+
+kernel threads created and managed by the kernel.
+
+Multi-threading models.
+----------------------
+
+
+many to  one -- many user level threads mapped to one kernel level threads
+ 	Entire process will be blocked if the thread makes a blocking system call.
+	used on systems that do not support kernel level threads.
+	entire thread management is done in user space.
+
+
+one to one - each user level thread maps to one kernel level thread.
+		provides more concurrency than many-one model.
+		allows other threads to run if a thread makes a blocking system call.
+		drawback: creating a user thread requires creating the corresponding kernel level thread.
+		most systems restrict the number of threads supported by the system.
+
+many to many - allows many user level threads to be mapped to many kernel level threads.
+		allows the operating system to create sufficient number of kernel level threads.
+		when a thread performs a blocking system call the kernel can schedule another thread for execution.
+
+threading issues
+------------------
+
+fork -  In a multithreaded a new process with a single thread or new process can duplicate all threads.
+	some operating systems have chosed two versions of fork.
+
+thread cancellation -
+
+		if multiple threads are searching in a database and if one thread finds the result then all the other 
+		threads should be cancelled.
+
+signal handelling -
+
+	signal used in unix operating systems to notify that a particlar event has occured.
+	signal may be received synchronously or asynchronously.
+	All signals follow specific patterns.
+		a signal is generated by the occurencce of a particular event.
+		a generated signal is delivered to a process.
+		on delivered the signal should be handled.
+
+	examples-- illegal memory access division by zero.
+
+ In a single threaded program signal handelling is straight forward but how in a multithreaded program.
+ 	deliver a signal to a single thread.
+	deliver a signal to multiple threads.
+	deliver the signal to certain threads in the process.
+	assign a specific thread to receive all the signals in the process.
+	
+
+	It depends on the type of the signal.
+	(control c ) should be sent to all threads.
+		
+ 
+thread pools
+	
+	server - creates a new thread on each client request.
+		discarded after completion 
+		too many threads may exhaust the system.
+
+		solution thread pools
+
+		create a number of threads at system start up and use them when required.
+		in the thread pool the threads sit and wait for work.
+
+		if the pool has no available thread the ssytem should wait until one becomes available.
+
+	benefit: 
+		it is faster to service with an existing thread than with a new thread.
+		a thread pool; limits the number of threads on a system which is important on systems which limit 
+		the number of threads on the ssytem.
+
+Threads share the data
+
+	sharing one of the benefits of multiprogramming.
+		
+ 	however each thread might need its own copy of data in some certain circumstances such
+	data called thread specific data.
+
+solaris many to many
+windows nt one to one.
+
+
+---------------------------------
+
+cpu - scheduling
+
+turn around time
+response  time
+waiting time
+
+
+convoy effect - short processes before long processes in FIFO scheduling.
+
+fcfs 
+---
+
++
+	easy to code and understand.
+
+-
+	not good for time sharing systems.
+	average waiting time very long.
+	convoy effect - lower cpu utilization.
+	penalizes short processes.
+	response time - may be very high especially if there is a large 
+			variance in process execution times.
+
+
+sjf
+---
+
+	shortest job first
+	if bursts of two processes equal use fifo to break the tie.
+	can be both pre-emptive and non-pre-emptive.
+	if the cpu burst of the new process less than remaining time
+	of the current executing process pre-empt.
+
+	sjf - optimal gives minimum waiting time.
+
+	Difficulty -
+		determining the length of the next cpu burst.
+
+	solution - 
+		predict the next cpu burst!!
+		predict to be the avrage of the previous cpu bursts of the process.
+		with out computing the summation predict it interms of previous time burst an previous prediction.
+
+	exponential averaging	
+		give importance to most recent bursts or most old bursts.
+		by varying alpha
+	
+
+priority scheduling
+------------------
+
+	either pre-emptive or non pre-emptive.
+	
+	each process priority number. 		
+
+	problem - starvation
+
+		if a heavily loaded system , the low priority process may not get the cpu for-ever.
+
+	solution - as time increase the priority of the waiting processes for every constant time.
+		  This technique is called aging.
+
+round robin
+-----------
+
+	each process executes min(burst time,time quantum)
+	time quantum large - similar to fcfs
+	time quantum small - too many context switches.
+
+	
+	time - quantum should be large with respect to context switch 
+	       otherwise overhead is very high.	
+			
+	rule of thumb: 80% of the cpu bursts should be smaller than the time quantum.
+
+multi-level queue 
+----------------
+
+	Ready queue divided into several queues.
+	
+	foreground-interactive
+	
+	background-batch
+
+	scheduling done among the queues.
+	with-in the queue it has its own scheduling algorithm.
+	
+	in general foreground - RR
+	background - FCFS
+
+	scheduling done with in the queues
+
+		fixed priority scheduling ( serve all the foreground processes and then back ground processes )
+			- possibility of starvation	
+		for foreground queue ( follow RR ) 80% of the time.
+		for back ground queue ( follow 	RR ) 20% of the time.
+
+	because in general  ( foreground processes have higher priority )
+			    ( background processes have lower priority )
+
+	Method 1
+	--------
+
+	Each queue has absolute priority over lower priority queues.
+
+	No process in the lower priority queue will be executed unless all the higher priority queues are empty.
+	
+	if process enters into a high priority queue when a process in the lower priority queue is executing
+	the process of the lower priority queue will be pre-empted.
+
+	Method 2
+	--------
+
+	another policy is to use time -slice.
+	Lower priority queue receives CPU 20 % of the time and higher priority queues receive CPU 80% of the time.
+
+	Aging: A process can be moved between various queues.
+
+multi-level feedback queue
+--------------------------
+
+	process moving is allowed.
+
+	basic idea - separate processes with different cpu bursts.
+
+	if a process takes too long for a cpu burst it will be demoted to the lower queue.
+
+	if a process has been waiting for too long it will be promoted to the higher queues.
+
+	in a multi-level feed back queue priority is given to low cpu burst processes.
+
+	Example
+
+	three queues q0 q1 q2
+
+	if a new process comes it is kept in queue q0 ( time quantum 8 sec ) FCFS
+
+	if it doesnot complete with in 8 sec it is demoted to lower queue q1 ( time quantum 16 sec ) FCFS
+
+	if it still does not complete it will be kept in the lowest queue q2 FCFS .
+
+	things to consider in multi-level feedback queuse scheduling algorithm
+	----------------------------------------------------------------------
+
+	number of scheduling queues.
+
+	when to promote a process to upper level queues.
+
+	when to demote a process to lower level queues.
+
+	scheduling algorithms for each queue.
+
+	method to determine which queue a process enter when it needs service.
+
+Hard real time systems.
+----------------------
+
+	required to complete critical tasks with in a guaranteed amount of time.
+
+	..process is submitted along with an amount of time in which it need to complete.
+	..scheduler may accept the process of reject it as impossible.
+	..shceduler must exactly know how long each operation takes.
+	..it is difficult to realize this guarantee on general purpose os's.
+	..hence hardware systems have some special general purpose software that is running 
+	  ie dedicated to this critical process.
+	  
+	
+Soft real time systems.
+---------------------
+
+	requires critical tasks are given priority over less fortunate ones.
+	
+	Adding soft real time functionality may cause problems such as starvation.
+
+	A SOFTreal time system is nothing but a general purpose operating system
+		that can support multimedia ,high interactive speed graphics and so on.
+
+	a soft real time system should have priority scheduling and 
+	aging is disallowed.
+
+	priority inheritance control
+
+which scheduling algorithm to select
+
+analytic modelling
+	assumes a pre-determined work load and comes up with a formulaa or number for that work load.
+	+ fast
+	- specific to that work load.
+	
+simulation 
+	using a computer program
+	- limited accuracy
+	
+	
+Implementation
+	code it and run it in os.
+	-ve cost of this approach.
+	-ve reaction of users  due to constant change.
+
+
+Process Synchronization
+--------------------------
+
+Race condition - The process where several processes try to access and manipulate shared data concurrently.
+		The final value of the shared data depends on the order in which the processes are executed.
+
+
+Conditions that need to be preserved for the critical section problem::
+
+1. Mutual Exclusion
+2. Progress. ( !@Deadlock )
+3. Bounded Waiting. ( !starvation )
+
+Hardware solution : Disable interrupts before entering into the critical section.
+
+semaphore
+	
+	integer variable accessed only through two operations wait and signal.
+
+spinlock - process spins while it is waiting for a lock.
+	   This type of semaphore is called spinlock.
+	   The process spins while it is locked.
+		
+	advantage of spinlock :: 
+				no context switch
+
+instead of looping just block.
+
+change wait and signal operations so that wait operation instead of doing busy waiting just blocks....
+
+Deadlock
+--------
+
+Two or more processes waiting for an event to occur which can be caused by one of the waiting processes.
+
+starvation
+-----------
+
+a process may never be removed from the semaphore queue in which it is suspended.
+
+semaphores two types
+
+binary semaphore 0 or 1
+counting semaphore integer value can range over an unrestricted domain.
+	
+problems with semaphores 
+------------------------
+errors are difficult to detect as these might occur only if a
+particular sequence occurs.
+
+so critical regions and monitors...
+-------------------------------------
+v: shared T
+
+region v when B do S
+
+When a process t ries to execute the region statement , the
+Boolean expression B is evaluated. If B is t rue, statement S
+is executed. If it is false, the process is delayed unt il B
+becomes t rue and no other process is in the region
+associated with v.
+
+monitors - like a class
+--------
+
+only one process can be active in a monitor at a time.
+
+advantage of monitors - all separate ones clubbed into a single one 
+
+DP problem using monitors....
+
+		no deadlock but starvation possible...
+
+Deadlocks
+---------
+
+RAG no cycles no deadlock
+
+	cycle possibility of deadlock.
+
+deadlock properties.
+--------------------
+
+1.Mutual Exclusion.
+2.Hold and Wait.
+3.No Preemption.
+4.Circular wait.
+
+Deadlock Prevention - violate one of the conditions.never allow a system to enter into a deadlock state.
+Deadlock Avoidance - Use apriori information and ensure the system never enters into a deadlock state.
+Deadlock Detection - Allow system to enter into a deadlock state.
+
+Bankers Algorithm for finding whether the system is in a safe state
+cycle in a graph with resources which cannot be shared ( another algorithm )
+
+Modification of Bankers algorithm for deadlock detection.
+
+Memory Management
+------------------
+
+source program - addresses symbolic
+after compilation - relocatable addresses ( relative to some starting address )
+		    absolute addresses if memory location available apriori.
+after loading - relocatable addresses into absolute addresses.
+
+logical address + relocation register value = physical address.
+
+logical address - produced by the cpu.
+
+physical address produced by the Memory Management Unit ( MMU )
+
+-- Never swap a process with pending I/O
+
+logical address shud always be less  than  limit register value.
+
+First Fit
+Best Fit
+Worst Fit
+
+External Fragmentation - Requested memory available but is not contiguous.
+Internal Fragmentation - Very less space remaining as a result of allocation.
+			 High overhead to keep tract of this space.
+
+techniques to avoid fragmentation
+
+compaction. ( possible only if relocation is dynamic ( at runtime )) 
+paging 
+
+	logical memory = pages
+	physical memory = frames.
+
+user program is scattered through out the memory.
+with paging there is no external fragmentation.
+but there may be some internal fragmentation.
+	
+using page table two memory accesses
+
+slowed by a factor of 2!!
+
+use TLB - cacche super fast ( Associative memory )
+
+TLD miss see page table.
+
+Memory protection  one bit valid / in valid bit
+
+page tables
+-----------
+
+hierarchical
+hashing 
+inverted ( only one page table for all processes )
+
+
+segmentation ( user view of memory )
+
+Virtual Memory 
+--------------
+
+A technique that allows execution of processes that may not be in the memory completely.
+
+Demand Paging- Paging system with swapping
+
+reference - valid/invalid if valid map
+if invalid ask os if exists if not exists trap
+	if exists ( not in memory ) disk operation free frame swap out swap in.
+	if no free frame find frame that is not in use pick it and use it.
+	
+if reference invalid page..	
+	page fault.
+
+	
+
+if no free frame available.
+	finding the frame to be swapped -
+
+decrease the number of page faults....
+	
+
+	page replacement algorithms.
+
+		fifo
+
+	belady's anomaly --- page faults increasing with the number of frames..
+
+	optimal replacement algorithm - replace the one that will be referenced late 
+
+	lru - least receltly used	( using stack implementation )
+
+
+each process - fixed number of frames...
+
+global replacement..( generally used ....)
+
+local replacement..
+
+Thrashing - high page fault due to low allocation of frames to a process.
+
+Page frequency approach to prevent thrashing..
+
+
+if page fault rate high allocate frames..
+if low de-allocate frames
+if no free frames available suspend process and allocate to other processes...

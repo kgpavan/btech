@@ -1,0 +1,21 @@
+Write a program to mimick the behaviour of ``ls'' command. ls comes as a part
+of GNU Coreutils <http://www.gnu.org/software/coreutils/>. Use system calls for
+directory and other file-system manipulations.
+
+Your ``ls'' should support the following GNU ``ls'' options.
+
+"-a"	: do not hide entries starting with .
+"-b"	: print octal escapes for nongraphic characters
+"-l"	: use a long listing format
+"-R"	: list subdirectories recursively
+"-t"	: sort by modification time
+
+You can implement as many options as you want. Above 5 are mandatory.
+
+``ls'' has a very unique behaviour. When the standard output is a terminal, ``ls'' output
+is adjusted according to the size of the screen. The output is in multiple columns (normal
+behaviour). But when the standard output is not a terminal, ``ls'' by default assumes "-1"
+argument i.e., the contents are printed one per line. Additionally, you may implement this
+feature also.
+
+Note: See the documentation for getopt, scandir, stat.

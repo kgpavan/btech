@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>15.2 sha -- SHA message digest algorithm</title>
+<META NAME="description" CONTENT="15.2 sha -- SHA message digest algorithm">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="lib.css">
+<LINK REL="next" href="module-mpz.html">
+<LINK REL="previous" href="module-md5.html">
+<LINK REL="up" href="crypto.html">
+<LINK REL="next" href="module-mpz.html">
+</head>
+<body bgcolor="#ffffff">
+<div class='navigation'>
+<table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-mpz.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="crypto.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-md5.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-mpz.html">15.3 mpz  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="crypto.html">15. Cryptographic Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-md5.html">15.1 md5  </A></span>
+<br><hr></div>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0017200000000000000000">
+15.2 <tt class="module">sha</tt> --
+         SHA message digest algorithm</A>
+</H1>
+
+<P>
+
+
+<P>
+This module implements the interface to NIST's<a name='l2h-2474'></a> secure hash 
+algorithm,<a name='l2h-2475'></a> known as SHA.  It is used in
+the same way as the <tt class='module'><a href='module-md5.html'>md5</a></tt> module: use the <tt class="function">new()</tt>
+to create an sha object, then feed this object with arbitrary strings
+using the <tt class="method">update()</tt> method, and at any point you can ask it
+for the <i class="dfn">digest</i> of the contatenation of the strings fed to it
+so far.<a name='l2h-2476'></a>  SHA digests are 160 bits instead of 128
+bits.
+
+<P>
+<dl><dt><b><a name='l2h-2470'><tt class='function'>new</tt></a></b> (<big>[</big><var>string</var><big>]</big>)
+<dd>
+  Return a new sha object.  If <var>string</var> is present, the method
+  call <code>update(<var>string</var>)</code> is made.
+</dl>
+
+<P>
+The following values are provided as constants in the module and as
+attributes of the sha objects returned by <tt class="function">new()</tt>:
+
+<P>
+<dl><dt><b><a name='l2h-2471'><tt>blocksize</tt></a></b>
+<dd>
+  Size of the blocks fed into the hash function; this is always
+  <code>1</code>.  This size is used to allow an arbitrary string to be
+  hashed.
+</dl>
+
+<P>
+<dl><dt><b><a name='l2h-2472'><tt>digestsize</tt></a></b>
+<dd>
+  The size of the resulting digest in bytes.  This is always
+  <code>20</code>.
+</dl>
+
+<P>
+A sha object has all the methods the md5 objects have, plus one:
+
+<P>
+<dl><dt><b><a name='l2h-2473'><tt class='method'>hexdigest</tt></a></b> ()
+<dd>
+  Return the digest value as a string of hexadecimal digits.  This may 
+  be used to exchange the value safely in email or other non-binary
+  environments.
+</dl>
+
+<P>
+<div class='seealso'>
+  <p class='heading'><b>See Also:</b></p>
+
+  <div class="seetext"><p>The Secure Hash Algorithm is defined by NIST document FIPS
+           PUB 180-1: <i>Secure Hash Standard</i>, published in April
+           of 1995.  It is available online as plain text at
+           <a class='url' href='http://csrc.nist.gov/fips/fip180-1.txt'>http://csrc.nist.gov/fips/fip180-1.txt</a> (at least one
+           diagram was omitted) and as PostScript at
+           <a class='url' href='http://csrc.nist.gov/fips/fip180-1.ps'>http://csrc.nist.gov/fips/fip180-1.ps</a>.</div>
+</div><p>
+<div class='navigation'><hr><table align='center' width='100%' cellpadding='0' cellspacing='2'>
+<tr>
+<td><A href="module-mpz.html"><img width=32 height=32 align=bottom border=0 alt="next"
+ src="../icons/next.gif"></A></td>
+<td><A href="crypto.html"><img width=32 height=32 align=bottom border=0 alt="up"
+ src="../icons/up.gif"></A></td>
+<td><A href="module-md5.html"><img width=32 height=32 align=bottom border=0 alt="previous"
+ src="../icons/previous.gif"></A></td>
+<td align='center' bgcolor='#99CCFF' width='100%'>
+ <b class=title>Python Library Reference</b></td>
+<td><A href="contents.html"><img width=32 height=32 align=bottom border=0 alt="contents"
+ src="../icons/contents.gif"></A></td>
+<td><a
+ href='modindex.html'><img width=32 height=32 align=bottom border=0 alt="modules"
+ src="../icons/modules.gif"></a></td>
+<td><A href="genindex.html"><img width=32 height=32 align=bottom border=0 alt="index"
+ src="../icons/index.gif"></A></td>
+</tr></table><b class='navlabel'>Next:</b> <span class='sectref'><A href="module-mpz.html">15.3 mpz  </A></span>
+<b class='navlabel'>Up:</b> <span class='sectref'><A href="crypto.html">15. Cryptographic Services</A></span>
+<b class='navlabel'>Previous:</b> <span class='sectref'><A href="module-md5.html">15.1 md5  </A></span>
+</div>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<hr>Send comments on this document to <a href="mailto:python-docs@python.org">python-docs@python.org</a>.
+</ADDRESS>
+</BODY>
+</HTML>
